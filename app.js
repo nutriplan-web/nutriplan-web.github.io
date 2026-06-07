@@ -1,0 +1,1728 @@
+const dayNames = ['LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB', 'DOM'];
+
+function createRecipe(title, calories, protein, fats, ingredients, instructions, category = 'General', drinkType = null, style = 'saludable', image = null) {
+  return { title, nutrition: { calories, protein, fats }, ingredients, instructions, category, drinkType, style, image };
+}
+
+// ---------------------------------------------------------------------------
+// SISTEMA DE IMÁGENES REALES
+// - Recetas de API (TheMealDB): foto auténtica del plato incluida en los datos.
+// - Resto de platos: se resuelve la foto real desde Wikipedia bajo demanda.
+// - Si no hay foto, se muestra un marcador neutro (nunca una foto equivocada).
+// ---------------------------------------------------------------------------
+const PLACEHOLDER_IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='30'%3E%3Crect width='100%25' height='100%25' fill='%23e3efe1'/%3E%3C/svg%3E";
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+const wikiImageCache = (() => {
+  try { return JSON.parse(localStorage.getItem('nutriplan-wiki-img') || '{}'); } catch (e) { return {}; }
+})();
+function saveWikiCache() {
+  try { localStorage.setItem('nutriplan-wiki-img', JSON.stringify(wikiImageCache)); } catch (e) {}
+}
+
+// Excepciones: platos cuyo título no coincide con el artículo de Wikipedia.
+const dishWikiOverride = {
+  'Crema de calabaza con jengibre': 'Sopa de calabaza',
+  'Crema de verduras de temporada': 'Sopa de calabaza',
+  'Friptură de porc cu cartofi': 'Friptură',
+  'Friptură de pui cu legume': 'Friptură',
+  'Sopa de tortilla': 'Sopa azteca',
+  'Tocăniță de ciuperci': 'Tocană',
+  'Bowl de quinoa, pollo y verduras': 'Quinua'
+};
+
+// Genera variantes del título (de más específica a más genérica) para buscar en Wikipedia.
+function wikiQueries(title) {
+  const noParen = title.replace(/\(.*?\)/g, '').trim();
+  const connectors = / cu | con | a la | al | la | en salsa | estilo | de temporada | caser/i;
+  const first = noParen.split(connectors)[0].trim();
+  const list = [title, noParen];
+  if (first && first !== noParen) list.push(first);
+  return Array.from(new Set(list)).filter(Boolean);
+}
+
+// Devuelve la URL de la foto real del plato (Wikipedia ES, RO y EN). Cachea el resultado.
+async function resolveDishImage(title) {
+  if (Object.prototype.hasOwnProperty.call(wikiImageCache, title)) return wikiImageCache[title];
+  const queries = [];
+  if (dishWikiOverride[title]) queries.push(dishWikiOverride[title]);
+  wikiQueries(title).forEach(q => queries.push(q));
+  const uniqueQueries = Array.from(new Set(queries));
+  for (const lang of ['es', 'ro', 'en']) {
+    for (const q of uniqueQueries) {
+      try {
+        const res = await fetch(`https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(q)}`);
+        if (!res.ok) continue;
+        const data = await res.json();
+        const src = data && data.thumbnail && data.thumbnail.source;
+        if (src) {
+          const big = src.replace(/\/\d+px-/, '/640px-');
+          wikiImageCache[title] = big;
+          saveWikiCache();
+          return big;
+        }
+      } catch (e) { /* ignora y prueba el siguiente */ }
+    }
+  }
+  // Último recurso: buscador de Wikipedia (encuentra el artículo aunque el título no sea exacto).
+  const searchTerm = uniqueQueries[uniqueQueries.length - 1] || title;
+  for (const lang of ['es', 'ro', 'en']) {
+    try {
+      const url = `https://${lang}.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(searchTerm)}&gsrlimit=1&prop=pageimages&piprop=thumbnail&pithumbsize=640&format=json&origin=*`;
+      const res = await fetch(url);
+      if (!res.ok) continue;
+      const data = await res.json();
+      const pages = data && data.query && data.query.pages;
+      if (pages) {
+        const first = Object.values(pages)[0];
+        const src = first && first.thumbnail && first.thumbnail.source;
+        if (src) {
+          wikiImageCache[title] = src;
+          saveWikiCache();
+          return src;
+        }
+      }
+    } catch (e) { /* ignora */ }
+  }
+  wikiImageCache[title] = null;
+  saveWikiCache();
+  return null;
+}
+
+let dishImageObserver = null;
+function hydrateLazyImages(root) {
+  const scope = root || document;
+  const images = scope.querySelectorAll('img.dish-lazy:not([data-hydrated])');
+  if (!images.length) return;
+  if (!dishImageObserver) {
+    dishImageObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const img = entry.target;
+        dishImageObserver.unobserve(img);
+        img.dataset.hydrated = '1';
+        resolveDishImage(img.dataset.title).then((src) => {
+          if (src) {
+            img.src = src;
+            img.classList.add('dish-img-loaded');
+          }
+        });
+      });
+    }, { rootMargin: '300px' });
+  }
+  images.forEach((img) => dishImageObserver.observe(img));
+}
+
+// HTML de la foto de un plato. Si trae `image` (API) la usa directa; si no, carga diferida.
+function dishImageHTML(recipe, classes) {
+  const cls = classes || '';
+  const alt = escapeHtml(recipe.title);
+  if (recipe.image) {
+    return `<img src="${recipe.image}" alt="${alt}" loading="lazy" class="${cls} w-full h-full object-cover" />`;
+  }
+  return `<img src="${PLACEHOLDER_IMG}" data-title="${escapeHtml(recipe.title)}" alt="${alt}" class="dish-lazy ${cls} w-full h-full object-cover" />`;
+}
+
+function getCurrentWeekDates() {
+  const today = new Date();
+
+  return Array.from({ length: 7 }, (_, index) => {
+    const date = new Date(today);
+    date.setDate(today.getDate() + index);
+    const dayIndex = (date.getDay() + 6) % 7;
+    return {
+      short: dayNames[dayIndex],
+      num: date.getDate(),
+      long: date.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })
+    };
+  });
+}
+
+const weekDates = getCurrentWeekDates();
+
+function createMealSelection() {
+  return { breakfast: 0, lunch: 0, dinner: 0 };
+}
+
+const selectedMealIndices = {
+  es: Array.from({ length: 7 }, createMealSelection),
+  ro: Array.from({ length: 7 }, createMealSelection)
+};
+
+const favoriteRecipes = new Set();
+
+// ---------------------------------------------------------------------------
+// DATOS DEL MENÚ: 7 días españoles + 7 días rumanos, todos distintos.
+// ---------------------------------------------------------------------------
+const menuData = {
+  es: {
+    badge: 'Cocina Española',
+    language: 'Español',
+    season: 'Primavera',
+    seasonIcon: 'eco',
+    days: [
+      // ----- Día 0 (Lunes) -----
+      {
+        breakfastOptions: [
+          createRecipe('Tostada integral con AOVE y tomate', 320, 8, 18,
+            [{ name: 'Pan integral', qty: '1 rebanada' }, { name: 'Tomate maduro', qty: '1 unidad' }, { name: 'Aceite de oliva extra virgen', qty: '1 cucharada' }, { name: 'Ajo fresco', qty: '1 diente' }],
+            'Tuesta el pan, restriega el ajo, unta el tomate rallado y rocía con aceite de oliva. Sal al gusto.'),
+          createRecipe('Smoothie detox con espinaca y piña', 280, 8, 6,
+            [{ name: 'Espinaca fresca', qty: '100 g' }, { name: 'Piña natural', qty: '120 g' }, { name: 'Yogur natural', qty: '150 g' }, { name: 'Jengibre fresco', qty: '5 g' }],
+            'Licúa la espinaca con piña, yogur y jengibre. Sirve frío.', 'Bebida', 'Limpieza hígado'),
+          createRecipe('Tortilla de patatas', 430, 16, 24,
+            [{ name: 'Huevo', qty: '2 unidades' }, { name: 'Patata', qty: '150 g' }, { name: 'Cebolla', qty: '1/2 unidad' }, { name: 'Aceite de oliva', qty: '2 cucharadas' }],
+            'Fríe la patata con cebolla, mezcla con huevo batido y cuaja la tortilla por ambos lados.', 'General', null, 'normal')
+        ],
+        lunchOptions: [
+          createRecipe('Paella de verduras', 520, 18, 15,
+            [{ name: 'Arroz', qty: '90 g' }, { name: 'Pimiento rojo', qty: '1 unidad' }, { name: 'Calabacín', qty: '100 g' }, { name: 'Alcachofa', qty: '1 unidad' }],
+            'Sofríe las verduras, añade el arroz y el caldo, cocina hasta que el arroz esté tierno.'),
+          createRecipe('Lentejas con chorizo', 560, 26, 22,
+            [{ name: 'Lentejas', qty: '120 g' }, { name: 'Chorizo', qty: '60 g' }, { name: 'Zanahoria', qty: '1 unidad' }, { name: 'Cebolla', qty: '1 unidad' }],
+            'Cuece las lentejas con la verdura y el chorizo en rodajas hasta que estén tiernas. Deja reposar.', 'General', null, 'normal')
+        ],
+        dinnerOptions: [
+          createRecipe('Pescado al horno con pimientos', 420, 36, 14,
+            [{ name: 'Filete de pescado blanco', qty: '180 g' }, { name: 'Pimiento verde', qty: '1 unidad' }, { name: 'Limón', qty: '1/2 unidad' }, { name: 'Aceite de oliva', qty: '1 cucharada' }],
+            'Hornea el pescado con pimientos y limón a 180 °C durante 18-20 minutos.'),
+          createRecipe('Pollo al ajillo con patatas', 620, 30, 25,
+            [{ name: 'Muslo de pollo', qty: '180 g' }, { name: 'Patata', qty: '150 g' }, { name: 'Ajo', qty: '3 dientes' }, { name: 'Aceite de oliva', qty: '1 cucharada' }],
+            'Dora el pollo con ajo y hierbas, cocina las patatas en la misma sartén hasta que estén tiernas.', 'General', null, 'normal')
+        ],
+        liquids: [
+          { name: 'Jugo de remolacha y jengibre', value: 'Limpieza hígado · Remolacha + Jengibre + Naranja' },
+          { name: 'Batido Verde Detox', value: 'Limpieza hígado · Espinaca + Piña + Jengibre' },
+          { name: 'Smoothie de cúrcuma dorada', value: 'Antiinflamatorio · Cúrcuma + Leche Coco' }
+        ]
+      },
+      // ----- Día 1 (Martes) -----
+      {
+        breakfastOptions: [
+          createRecipe('Bowl de avena y frutos rojos', 310, 10, 8,
+            [{ name: 'Avena', qty: '40 g' }, { name: 'Leche vegetal', qty: '200 ml' }, { name: 'Frutos rojos', qty: '80 g' }, { name: 'Nueces picadas', qty: '10 g' }],
+            'Cocina la avena con leche vegetal y sirve con frutos rojos y nueces por encima.'),
+          createRecipe('Pan con tomate y jamón serrano', 380, 20, 16,
+            [{ name: 'Pan integral', qty: '1 rebanada' }, { name: 'Tomate', qty: '1 unidad' }, { name: 'Jamón serrano', qty: '40 g' }, { name: 'Aceite de oliva', qty: '1 cucharada' }],
+            'Unta el tomate sobre el pan, rocía aceite y coloca el jamón serrano encima.', 'General', null, 'normal'),
+          createRecipe('Café con churros', 400, 6, 18,
+            [{ name: 'Churros', qty: '4 unidades' }, { name: 'Café', qty: '1 taza' }, { name: 'Azúcar', qty: '1 cucharadita' }],
+            'Fríe los churros y espolvorea azúcar. Acompaña con café recién hecho.', 'General', null, 'normal')
+        ],
+        lunchOptions: [
+          createRecipe('Gazpacho andaluz', 320, 6, 18,
+            [{ name: 'Tomate', qty: '2 unidades' }, { name: 'Pepino', qty: '1/2 unidad' }, { name: 'Pimiento verde', qty: '1/2 unidad' }, { name: 'Aceite de oliva', qty: '1 cucharada' }],
+            'Tritura las verduras con aceite y vinagre, refrigera y sirve bien frío.'),
+          createRecipe('Cocido madrileño', 680, 34, 28,
+            [{ name: 'Garbanzos', qty: '120 g' }, { name: 'Morcillo de ternera', qty: '100 g' }, { name: 'Patata', qty: '100 g' }, { name: 'Zanahoria', qty: '1 unidad' }],
+            'Cuece los garbanzos con la carne y las verduras a fuego lento. Sirve el caldo y luego los sólidos.', 'General', null, 'normal')
+        ],
+        dinnerOptions: [
+          createRecipe('Tortilla francesa con ensalada', 340, 18, 22,
+            [{ name: 'Huevo', qty: '2 unidades' }, { name: 'Lechuga', qty: '1/2 unidad' }, { name: 'Tomate', qty: '1 unidad' }, { name: 'Aceite de oliva', qty: '1 cucharadita' }],
+            'Cuaja los huevos batidos en sartén y acompaña con una ensalada aliñada.'),
+          createRecipe('Croquetas de jamón', 480, 16, 26,
+            [{ name: 'Croquetas de jamón', qty: '6 unidades' }, { name: 'Lechuga', qty: '1/2 unidad' }, { name: 'Tomate', qty: '1 unidad' }],
+            'Fríe las croquetas hasta dorarlas y sirve con ensalada fresca.', 'General', null, 'normal')
+        ],
+        liquids: [
+          { name: 'Smoothie de frutos rojos', value: 'Antiinflamatorio · Arándanos + Frambuesa + Miel' },
+          { name: 'Agua infusionada menta', value: 'Digestivo · Pepino + Menta + Limón' },
+          { name: 'Jugo verde depurativo', value: 'Drenante linfático · Manzana + Apio + Perejil' }
+        ]
+      },
+      // ----- Día 2 (Miércoles) -----
+      {
+        breakfastOptions: [
+          createRecipe('Tostada de aguacate y huevo', 360, 16, 18,
+            [{ name: 'Pan integral', qty: '1 rebanada' }, { name: 'Aguacate', qty: '1/2 unidad' }, { name: 'Huevo', qty: '1 unidad' }, { name: 'Limón', qty: '1 rodaja' }],
+            'Tuesta el pan, machaca el aguacate con limón y sirve con el huevo poché o cocido.'),
+          createRecipe('Yogur griego con miel y nueces', 300, 14, 14,
+            [{ name: 'Yogur griego', qty: '150 g' }, { name: 'Miel', qty: '1 cucharadita' }, { name: 'Nueces', qty: '15 g' }],
+            'Sirve el yogur con nueces troceadas y un hilo de miel.'),
+          createRecipe('Magdalenas caseras con café', 360, 6, 16,
+            [{ name: 'Magdalenas', qty: '2 unidades' }, { name: 'Café', qty: '1 taza' }, { name: 'Leche', qty: '50 ml' }],
+            'Acompaña las magdalenas con un café con leche caliente.', 'General', null, 'normal')
+        ],
+        lunchOptions: [
+          createRecipe('Ensalada de quinoa y aguacate', 420, 14, 21,
+            [{ name: 'Quinoa cocida', qty: '90 g' }, { name: 'Aguacate', qty: '1/2 unidad' }, { name: 'Tomate', qty: '1 unidad' }, { name: 'Zumo de limón', qty: '1 cucharada' }],
+            'Mezcla la quinoa con aguacate y tomate. Aliña con limón y sal.'),
+          createRecipe('Fabada asturiana', 720, 30, 38,
+            [{ name: 'Fabes', qty: '120 g' }, { name: 'Chorizo', qty: '50 g' }, { name: 'Morcilla', qty: '50 g' }, { name: 'Panceta', qty: '40 g' }],
+            'Cuece las fabes con el compango a fuego lento durante horas hasta que la salsa espese.', 'General', null, 'normal')
+        ],
+        dinnerOptions: [
+          createRecipe('Merluza a la plancha con verduras', 410, 34, 15,
+            [{ name: 'Merluza', qty: '170 g' }, { name: 'Calabacín', qty: '80 g' }, { name: 'Pimiento', qty: '1/2 unidad' }, { name: 'Aceite de oliva', qty: '1 cucharada' }],
+            'Cocina la merluza a la plancha y acompaña con verduras salteadas.'),
+          createRecipe('Pulpo a la gallega', 460, 28, 20,
+            [{ name: 'Pulpo cocido', qty: '150 g' }, { name: 'Patata', qty: '120 g' }, { name: 'Pimentón', qty: '1 cucharadita' }, { name: 'Aceite de oliva', qty: '1 cucharada' }],
+            'Coloca el pulpo sobre rodajas de patata, espolvorea pimentón y rocía aceite de oliva.', 'General', null, 'normal')
+        ],
+        liquids: [
+          { name: 'Batido de avena y canela', value: 'Digestivo · Avena + Manzana + Canela' },
+          { name: 'Jugo de manzana verde', value: 'Digestivo · Manzana + Jengibre' },
+          { name: 'Smoothie antiinflamatorio', value: 'Antiinflamatorio · Cúrcuma + Leche de coco' }
+        ]
+      },
+      // ----- Día 3 (Jueves) -----
+      {
+        breakfastOptions: [
+          createRecipe('Porridge de avena con plátano', 320, 11, 8,
+            [{ name: 'Avena', qty: '45 g' }, { name: 'Leche de almendra', qty: '200 ml' }, { name: 'Plátano', qty: '1/2 unidad' }, { name: 'Canela', qty: '1 pizca' }],
+            'Cocina la avena con leche hasta que esté cremosa. Añade plátano en rodajas y canela.'),
+          createRecipe('Smoothie tropical de mango', 320, 8, 12,
+            [{ name: 'Mango', qty: '120 g' }, { name: 'Plátano', qty: '1/2 unidad' }, { name: 'Leche de coco', qty: '150 ml' }, { name: 'Semillas de chía', qty: '1 cucharada' }],
+            'Licúa todo hasta obtener una textura cremosa. Sirve frío.', 'Bebida', 'Energético'),
+          createRecipe('Bocadillo de tortilla', 450, 18, 22,
+            [{ name: 'Pan tipo baguette', qty: '1/2 unidad' }, { name: 'Huevo', qty: '2 unidades' }, { name: 'Patata', qty: '80 g' }, { name: 'Aceite de oliva', qty: '1 cucharada' }],
+            'Rellena el pan con una tortilla de patata jugosa.', 'General', null, 'normal')
+        ],
+        lunchOptions: [
+          createRecipe('Pisto manchego con huevo', 440, 16, 22,
+            [{ name: 'Calabacín', qty: '100 g' }, { name: 'Pimiento', qty: '1 unidad' }, { name: 'Tomate triturado', qty: '150 g' }, { name: 'Huevo', qty: '1 unidad' }],
+            'Sofríe las verduras con tomate hasta espesar y corona con un huevo a la plancha.'),
+          createRecipe('Arroz a la cubana', 620, 16, 24,
+            [{ name: 'Arroz', qty: '100 g' }, { name: 'Huevo', qty: '2 unidades' }, { name: 'Tomate frito', qty: '100 g' }, { name: 'Plátano', qty: '1 unidad' }],
+            'Sirve el arroz blanco con tomate frito, huevos fritos y plátano frito.', 'General', null, 'normal')
+        ],
+        dinnerOptions: [
+          createRecipe('Crema de calabaza con jengibre', 360, 9, 12,
+            [{ name: 'Calabaza', qty: '220 g' }, { name: 'Jengibre', qty: '5 g' }, { name: 'Cebolla', qty: '1/4 unidad' }, { name: 'Caldo vegetal', qty: '200 ml' }],
+            'Cuece la calabaza con jengibre y cebolla. Tritura con caldo hasta obtener una crema suave.'),
+          createRecipe('Sepia a la plancha con alioli', 430, 30, 20,
+            [{ name: 'Sepia', qty: '180 g' }, { name: 'Ajo', qty: '1 diente' }, { name: 'Alioli', qty: '1 cucharada' }, { name: 'Perejil', qty: 'al gusto' }],
+            'Marca la sepia a la plancha con ajo y perejil, sirve con un toque de alioli.', 'General', null, 'normal')
+        ],
+        liquids: [
+          { name: 'Smoothie de pepino y menta', value: 'Digestivo · Pepino + Menta + Limón' },
+          { name: 'Agua de limón detox', value: 'Limpieza hígado · Limón + Jengibre + Miel' },
+          { name: 'Jugo de granada y moras', value: 'Antioxidante · Granada + Moras + Limón' }
+        ]
+      },
+      // ----- Día 4 (Viernes) -----
+      {
+        breakfastOptions: [
+          createRecipe('Tostada con queso fresco y mermelada', 330, 12, 12,
+            [{ name: 'Pan integral', qty: '1 rebanada' }, { name: 'Queso fresco', qty: '50 g' }, { name: 'Mermelada', qty: '1 cucharada' }],
+            'Unta el queso fresco sobre el pan y añade una capa fina de mermelada.'),
+          createRecipe('Bowl de yogur y granola', 340, 14, 10,
+            [{ name: 'Yogur natural', qty: '150 g' }, { name: 'Granola', qty: '40 g' }, { name: 'Fruta fresca', qty: '60 g' }],
+            'Sirve el yogur con granola crujiente y fruta troceada.'),
+          createRecipe('Churros con chocolate', 440, 7, 20,
+            [{ name: 'Churros', qty: '5 unidades' }, { name: 'Chocolate a la taza', qty: '150 ml' }],
+            'Fríe los churros y sirve con chocolate caliente y espeso para mojar.', 'General', null, 'normal')
+        ],
+        lunchOptions: [
+          createRecipe('Salmón a la plancha con espárragos', 520, 34, 20,
+            [{ name: 'Salmón', qty: '170 g' }, { name: 'Espárragos', qty: '80 g' }, { name: 'Lechuga', qty: '1/2 unidad' }, { name: 'Limón', qty: '1/2 unidad' }],
+            'Cocina el salmón a la plancha y sirve con espárragos y ensalada.'),
+          createRecipe('Macarrones con chorizo', 640, 24, 28,
+            [{ name: 'Macarrones', qty: '100 g' }, { name: 'Chorizo', qty: '60 g' }, { name: 'Tomate triturado', qty: '150 g' }, { name: 'Cebolla', qty: '1/2 unidad' }],
+            'Cocina la pasta y mezcla con una salsa de tomate, cebolla y chorizo. Gratina al gusto.', 'General', null, 'normal')
+        ],
+        dinnerOptions: [
+          createRecipe('Ensalada mediterránea con ventresca', 390, 28, 20,
+            [{ name: 'Lechuga', qty: '1/2 unidad' }, { name: 'Tomate', qty: '1 unidad' }, { name: 'Ventresca de atún', qty: '80 g' }, { name: 'Aceitunas', qty: '10 unidades' }],
+            'Mezcla los ingredientes con aceite de oliva y vinagre. Sirve fresca.'),
+          createRecipe('Albóndigas en salsa', 560, 28, 30,
+            [{ name: 'Carne picada', qty: '150 g' }, { name: 'Tomate triturado', qty: '150 g' }, { name: 'Cebolla', qty: '1/2 unidad' }, { name: 'Pan rallado', qty: '20 g' }],
+            'Forma las albóndigas, dóralas y cocínalas en salsa de tomate y cebolla.', 'General', null, 'normal')
+        ],
+        liquids: [
+          { name: 'Batido de pera y manzana', value: 'Digestivo · Pera + Manzana + Miel' },
+          { name: 'Jugo cítrico energético', value: 'Energético · Naranja + Limón + Jengibre' },
+          { name: 'Jugo de kale y espinaca', value: 'Inmunidad · Kale + Espinaca + Limón' }
+        ]
+      },
+      // ----- Día 5 (Sábado) -----
+      {
+        breakfastOptions: [
+          createRecipe('Tostada integral con aguacate', 350, 9, 18,
+            [{ name: 'Pan integral', qty: '1 rebanada' }, { name: 'Aguacate', qty: '1/2 unidad' }, { name: 'Tomate', qty: '1/2 unidad' }, { name: 'Limón', qty: '1 rodaja' }],
+            'Machaca el aguacate con limón, extiéndelo sobre el pan y corona con tomate.'),
+          createRecipe('Zumo de naranja natural', 160, 3, 1,
+            [{ name: 'Naranja', qty: '3 unidades' }],
+            'Exprime las naranjas y sirve el zumo recién hecho.', 'Bebida', 'Inmunidad'),
+          createRecipe('Tortitas con fruta y miel', 420, 12, 14,
+            [{ name: 'Harina', qty: '60 g' }, { name: 'Huevo', qty: '1 unidad' }, { name: 'Leche', qty: '120 ml' }, { name: 'Miel', qty: '1 cucharada' }],
+            'Prepara la masa y cuaja las tortitas. Sirve con fruta y un hilo de miel.', 'General', null, 'normal')
+        ],
+        lunchOptions: [
+          createRecipe('Ensalada templada de garbanzos', 480, 20, 16,
+            [{ name: 'Garbanzos cocidos', qty: '150 g' }, { name: 'Espinacas', qty: '60 g' }, { name: 'Pimiento rojo', qty: '1/2 unidad' }, { name: 'Pimentón', qty: '1 cucharadita' }],
+            'Saltea las espinacas y el pimiento, mezcla con los garbanzos y condimenta con pimentón.'),
+          createRecipe('Paella de marisco', 620, 30, 18,
+            [{ name: 'Arroz', qty: '100 g' }, { name: 'Gambas', qty: '80 g' }, { name: 'Mejillones', qty: '80 g' }, { name: 'Calamar', qty: '60 g' }],
+            'Sofríe el marisco, añade el arroz y el caldo de pescado y cocina hasta el punto.', 'General', null, 'normal')
+        ],
+        dinnerOptions: [
+          createRecipe('Pimientos rellenos de bacalao', 430, 28, 14,
+            [{ name: 'Pimiento rojo', qty: '1 unidad' }, { name: 'Bacalao desalado', qty: '100 g' }, { name: 'Cebolla', qty: '1/2 unidad' }, { name: 'Tomate triturado', qty: '50 g' }],
+            'Rellena el pimiento con la mezcla de bacalao y cebolla. Hornea 20 minutos a 180 °C.'),
+          createRecipe('Hamburguesa casera con patatas', 720, 32, 38,
+            [{ name: 'Carne de ternera', qty: '150 g' }, { name: 'Pan de hamburguesa', qty: '1 unidad' }, { name: 'Patata', qty: '150 g' }, { name: 'Queso', qty: '30 g' }],
+            'Haz la hamburguesa a la plancha, monta con queso y verduras y acompaña con patatas al horno.', 'General', null, 'normal')
+        ],
+        liquids: [
+          { name: 'Smoothie tropical premium', value: 'Energético · Mango + Plátano + Coco' },
+          { name: 'Jugo de zanahoria', value: 'Energético · Zanahoria + Naranja' },
+          { name: 'Jugo antioxidante', value: 'Antioxidante · Arándanos + Granada' }
+        ]
+      },
+      // ----- Día 6 (Domingo) -----
+      {
+        breakfastOptions: [
+          createRecipe('Huevos revueltos con champiñones', 330, 19, 20,
+            [{ name: 'Huevo', qty: '2 unidades' }, { name: 'Champiñones', qty: '80 g' }, { name: 'Cebollino', qty: 'al gusto' }, { name: 'Aceite de oliva', qty: '1 cucharadita' }],
+            'Saltea los champiñones, añade los huevos batidos y remueve hasta que cuajen cremosos.'),
+          createRecipe('Batido de frutos rojos', 290, 6, 4,
+            [{ name: 'Frutos rojos', qty: '120 g' }, { name: 'Yogur griego', qty: '100 g' }, { name: 'Miel', qty: '1 cucharadita' }],
+            'Licúa los frutos rojos con yogur y miel hasta obtener un batido cremoso.', 'Bebida', 'Antioxidante'),
+          createRecipe('Tostada francesa (torrija)', 420, 12, 18,
+            [{ name: 'Pan', qty: '2 rebanadas' }, { name: 'Huevo', qty: '1 unidad' }, { name: 'Leche', qty: '120 ml' }, { name: 'Canela', qty: '1 cucharadita' }],
+            'Empapa el pan en leche y huevo, fríe y espolvorea azúcar y canela.', 'General', null, 'normal')
+        ],
+        lunchOptions: [
+          createRecipe('Bowl de quinoa, pollo y verduras', 520, 34, 14,
+            [{ name: 'Quinoa cocida', qty: '100 g' }, { name: 'Pechuga de pollo', qty: '120 g' }, { name: 'Tomate cherry', qty: '6 unidades' }, { name: 'Aguacate', qty: '1/4 unidad' }],
+            'Combina la quinoa con pollo a la plancha, tomate cherry y aguacate. Aliña al gusto.'),
+          createRecipe('Cordero asado con patatas', 760, 38, 42,
+            [{ name: 'Pierna de cordero', qty: '200 g' }, { name: 'Patata', qty: '180 g' }, { name: 'Ajo', qty: '3 dientes' }, { name: 'Romero', qty: 'al gusto' }],
+            'Asa el cordero con patatas, ajo y romero a 180 °C hasta que esté tierno y dorado.', 'General', null, 'normal')
+        ],
+        dinnerOptions: [
+          createRecipe('Crema de verduras de temporada', 300, 10, 10,
+            [{ name: 'Calabacín', qty: '100 g' }, { name: 'Puerro', qty: '1 unidad' }, { name: 'Zanahoria', qty: '1 unidad' }, { name: 'Caldo vegetal', qty: '250 ml' }],
+            'Cuece las verduras y tritura con caldo hasta obtener una crema suave.'),
+          createRecipe('Tosta de salmón ahumado', 380, 22, 18,
+            [{ name: 'Pan integral', qty: '1 rebanada' }, { name: 'Salmón ahumado', qty: '70 g' }, { name: 'Queso crema', qty: '30 g' }, { name: 'Eneldo', qty: 'al gusto' }],
+            'Unta el queso crema sobre el pan, añade el salmón ahumado y decora con eneldo.')
+        ],
+        liquids: [
+          { name: 'Smoothie de recuperación', value: 'Recuperación muscular · Plátano + Proteína + Almendra' },
+          { name: 'Agua infusionada limón', value: 'Limpieza hígado · Limón + Jengibre' },
+          { name: 'Batido de coco y jengibre', value: 'Antiinflamatorio · Coco + Jengibre + Canela' }
+        ]
+      }
+    ]
+  },
+  ro: {
+    badge: 'Cocina Rumana',
+    language: 'Rumano',
+    season: 'Verano',
+    seasonIcon: 'restaurant',
+    days: [
+      // ----- Día 0 -----
+      {
+        breakfastOptions: [
+          createRecipe('Iaurt cu nuci și miere', 320, 12, 14,
+            [{ name: 'Iaurt', qty: '150 g' }, { name: 'Nuci', qty: '15 g' }, { name: 'Miere', qty: '1 linguriță' }],
+            'Servește iaurtul cu nuci tocate și un strop de miere.'),
+          createRecipe('Omletă cu brânză și roșii', 350, 18, 22,
+            [{ name: 'Ouă', qty: '2 bucăți' }, { name: 'Brânză', qty: '40 g' }, { name: 'Roșii', qty: '1 unitate' }],
+            'Bate ouăle, adaugă brânza și roșiile și gătește omleta la foc mediu.', 'General', null, 'normal')
+        ],
+        lunchOptions: [
+          createRecipe('Ciorbă de burtă', 420, 22, 18,
+            [{ name: 'Burtă de vită', qty: '150 g' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Smântână', qty: '1 lingură' }, { name: 'Usturoi', qty: '2 căței' }],
+            'Fierbe burta cu legume, drege cu smântână și servește cu usturoi.', 'General', null, 'normal'),
+          createRecipe('Sarmale cu mămăligă', 620, 26, 30,
+            [{ name: 'Carne tocată', qty: '150 g' }, { name: 'Varză murată', qty: '4 foi' }, { name: 'Orez', qty: '40 g' }, { name: 'Mămăligă', qty: '150 g' }],
+            'Învelește amestecul de carne și orez în foi de varză și fierbe încet. Servește cu mămăligă.', 'General', null, 'normal')
+        ],
+        dinnerOptions: [
+          createRecipe('Salată de boeuf', 480, 14, 28,
+            [{ name: 'Cartofi', qty: '150 g' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Mazăre', qty: '60 g' }, { name: 'Maioneză', qty: '2 linguri' }],
+            'Fierbe legumele, taie-le cubulețe și amestecă cu maioneză. Servește rece.'),
+          createRecipe('Mici cu muștar', 560, 30, 38,
+            [{ name: 'Mici', qty: '4 bucăți' }, { name: 'Muștar', qty: '1 lingură' }, { name: 'Pâine', qty: '1 felie' }],
+            'Frige micii pe grătar și servește cu muștar și pâine.', 'General', null, 'normal')
+        ],
+        liquids: [
+          { name: 'Compot de mere', value: 'Digestivo · Mere + Scorțișoară' },
+          { name: 'Limonadă cu mentă', value: 'Refrescante · Lămâie + Mentă' }
+        ]
+      },
+      // ----- Día 1 -----
+      {
+        breakfastOptions: [
+          createRecipe('Brânză proaspătă cu ridichi', 320, 14, 12,
+            [{ name: 'Brânză proaspătă', qty: '80 g' }, { name: 'Ridichi', qty: '3 bucăți' }, { name: 'Pâine integrală', qty: '1 felie' }],
+            'Servește brânza proaspătă cu ridichi feliate și pâine integrală.'),
+          createRecipe('Smoothie cu spanac și măr', 300, 8, 10,
+            [{ name: 'Spanac', qty: '70 g' }, { name: 'Măr', qty: '1/2 unitate' }, { name: 'Banană', qty: '1/2 unitate' }],
+            'Mixează totul până devine cremos și servește rece.', 'Bebida', 'Depurativo')
+        ],
+        lunchOptions: [
+          createRecipe('Ciorbă de fasole cu afumătură', 480, 22, 18,
+            [{ name: 'Fasole', qty: '120 g' }, { name: 'Afumătură', qty: '60 g' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Ceapă', qty: '1/2 unitate' }],
+            'Fierbe fasolea cu afumătura și legumele până se leagă ciorba.', 'General', null, 'normal'),
+          createRecipe('Tochitură moldovenească', 700, 34, 40,
+            [{ name: 'Carne de porc', qty: '160 g' }, { name: 'Cârnați', qty: '60 g' }, { name: 'Mămăligă', qty: '150 g' }, { name: 'Ou', qty: '1 unitate' }],
+            'Călește carnea și cârnații în sos, servește cu mămăligă și ou ochi.', 'General', null, 'normal')
+        ],
+        dinnerOptions: [
+          createRecipe('Chifteluțe de pui la cuptor', 430, 28, 15,
+            [{ name: 'Pui tocat', qty: '120 g' }, { name: 'Ceapă', qty: '1/4 unitate' }, { name: 'Ou', qty: '1 unitate' }],
+            'Formează chifteluțe și coace-le la cuptor până sunt rumene.'),
+          createRecipe('Mâncare de praz cu măsline', 380, 10, 13,
+            [{ name: 'Praz', qty: '120 g' }, { name: 'Măsline', qty: '10 g' }, { name: 'Ulei de măsline', qty: '1 lingură' }],
+            'Gătește prazul în ulei și adaugă măsline la final. Servește cald.')
+        ],
+        liquids: [
+          { name: 'Suc de morcov', value: 'Energético · Morcov + Portocală' },
+          { name: 'Ceai de tei', value: 'Relajante · Tei + Miere' }
+        ]
+      },
+      // ----- Día 2 -----
+      {
+        breakfastOptions: [
+          createRecipe('Terci de ovăz cu fructe', 310, 10, 7,
+            [{ name: 'Ovăz', qty: '45 g' }, { name: 'Lapte', qty: '200 ml' }, { name: 'Fructe', qty: '70 g' }],
+            'Fierbe ovăzul cu lapte și adaugă fructe proaspete la final.'),
+          createRecipe('Papanași cu smântână', 520, 14, 26,
+            [{ name: 'Brânză de vaci', qty: '120 g' }, { name: 'Făină', qty: '50 g' }, { name: 'Smântână', qty: '2 linguri' }, { name: 'Dulceață', qty: '1 lingură' }],
+            'Prăjește papanașii și servește cu smântână și dulceață.', 'General', null, 'normal')
+        ],
+        lunchOptions: [
+          createRecipe('Iahnie de fasole', 460, 20, 12,
+            [{ name: 'Fasole', qty: '120 g' }, { name: 'Ceapă', qty: '1/2 unitate' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Bulion', qty: '100 g' }],
+            'Fierbe fasolea cu ceapă, morcov și bulion până se îngroașă.'),
+          createRecipe('Ardei umpluți', 540, 24, 22,
+            [{ name: 'Ardei', qty: '2 unități' }, { name: 'Carne tocată', qty: '120 g' }, { name: 'Orez', qty: '40 g' }, { name: 'Bulion', qty: '100 g' }],
+            'Umple ardeii cu carne și orez și fierbe în sos de roșii.', 'General', null, 'normal')
+        ],
+        dinnerOptions: [
+          createRecipe('Plachie de pește', 470, 30, 18,
+            [{ name: 'Pește', qty: '170 g' }, { name: 'Roșii', qty: '1 unitate' }, { name: 'Ardei', qty: '1/2 unitate' }, { name: 'Ceapă', qty: '1/2 unitate' }],
+            'Coace peștele cu roșii, ardei și ceapă la cuptor până devine fraged.'),
+          createRecipe('Zacuscă cu pâine', 320, 6, 16,
+            [{ name: 'Vinete', qty: '150 g' }, { name: 'Ardei copt', qty: '80 g' }, { name: 'Bulion', qty: '60 g' }, { name: 'Pâine', qty: '1 felie' }],
+            'Întinde zacusca pe pâine. Ideală rece sau caldă.')
+        ],
+        liquids: [
+          { name: 'Compot de prune', value: 'Digestivo · Prune + Scorțișoară' },
+          { name: 'Suc verde', value: 'Depurativo · Spanac + Măr + Lămâie' }
+        ]
+      },
+      // ----- Día 3 -----
+      {
+        breakfastOptions: [
+          createRecipe('Ouă ochiuri cu mămăligă', 360, 18, 20,
+            [{ name: 'Ouă', qty: '2 bucăți' }, { name: 'Mămăligă', qty: '120 g' }, { name: 'Brânză', qty: '30 g' }],
+            'Prăjește ouăle ochiuri și servește pe mămăligă caldă cu brânză.'),
+          createRecipe('Clătite cu gem', 420, 10, 14,
+            [{ name: 'Făină', qty: '60 g' }, { name: 'Lapte', qty: '150 ml' }, { name: 'Ou', qty: '1 unitate' }, { name: 'Gem', qty: '2 linguri' }],
+            'Prepară aluatul, prăjește clătitele subțiri și umple-le cu gem.', 'General', null, 'normal')
+        ],
+        lunchOptions: [
+          createRecipe('Ciorbă de perișoare', 440, 22, 16,
+            [{ name: 'Carne tocată', qty: '120 g' }, { name: 'Orez', qty: '30 g' }, { name: 'Legume pentru supă', qty: '100 g' }, { name: 'Borș', qty: '100 ml' }],
+            'Fierbe perișoarele cu legume și acrește ciorba cu borș.'),
+          createRecipe('Pilaf cu legume', 480, 12, 14,
+            [{ name: 'Orez', qty: '100 g' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Mazăre', qty: '60 g' }, { name: 'Ardei', qty: '1/2 unitate' }],
+            'Călește legumele, adaugă orezul și apa și fierbe până se absoarbe lichidul.')
+        ],
+        dinnerOptions: [
+          createRecipe('Salată de vinete', 360, 6, 24,
+            [{ name: 'Vinete', qty: '200 g' }, { name: 'Ceapă', qty: '1/4 unitate' }, { name: 'Ulei', qty: '2 linguri' }, { name: 'Pâine', qty: '1 felie' }],
+            'Coace vinetele, toacă-le și amestecă cu ceapă și ulei. Servește cu pâine.'),
+          createRecipe('Pui cu ciuperci', 460, 30, 20,
+            [{ name: 'Piept de pui', qty: '150 g' }, { name: 'Ciuperci', qty: '100 g' }, { name: 'Smântână', qty: '1 lingură' }, { name: 'Ceapă', qty: '1/2 unitate' }],
+            'Călește puiul cu ciuperci și ceapă, drege cu smântână și fierbe câteva minute.', 'General', null, 'normal')
+        ],
+        liquids: [
+          { name: 'Limonadă cu ghimbir', value: 'Energético · Lămâie + Ghimbir' },
+          { name: 'Compot de vișine', value: 'Antioxidante · Vișine + Miere' }
+        ]
+      },
+      // ----- Día 4 -----
+      {
+        breakfastOptions: [
+          createRecipe('Tartine cu brânză și legume', 320, 14, 14,
+            [{ name: 'Pâine integrală', qty: '2 felii' }, { name: 'Brânză', qty: '50 g' }, { name: 'Castravete', qty: '1/2 unitate' }, { name: 'Roșii', qty: '1 unitate' }],
+            'Întinde brânza pe pâine și adaugă felii de legume proaspete.'),
+          createRecipe('Smoothie cu banane și ovăz', 320, 10, 8,
+            [{ name: 'Banană', qty: '1 unitate' }, { name: 'Ovăz', qty: '30 g' }, { name: 'Lapte', qty: '200 ml' }],
+            'Mixează banana cu ovăzul și laptele până devine cremos.', 'Bebida', 'Energético')
+        ],
+        lunchOptions: [
+          createRecipe('Ghiveci de legume', 420, 12, 14,
+            [{ name: 'Cartofi', qty: '120 g' }, { name: 'Vinete', qty: '80 g' }, { name: 'Dovlecel', qty: '80 g' }, { name: 'Roșii', qty: '1 unitate' }],
+            'Coace legumele asortate la cuptor cu ulei până devin fragede.'),
+          createRecipe('Friptură de porc cu cartofi', 700, 34, 40,
+            [{ name: 'Carne de porc', qty: '180 g' }, { name: 'Cartofi', qty: '180 g' }, { name: 'Usturoi', qty: '2 căței' }, { name: 'Cimbru', qty: 'după gust' }],
+            'Frige carnea cu cartofi, usturoi și cimbru la cuptor până se rumenesc.', 'General', null, 'normal')
+        ],
+        dinnerOptions: [
+          createRecipe('Supă cremă de dovleac', 320, 8, 12,
+            [{ name: 'Dovleac', qty: '220 g' }, { name: 'Cartof', qty: '1 unitate' }, { name: 'Ceapă', qty: '1/4 unitate' }, { name: 'Supă de legume', qty: '200 ml' }],
+            'Fierbe dovleacul cu cartof și ceapă și pasează cu supa până devine cremă.'),
+          createRecipe('Salată de roșii cu brânză', 280, 10, 18,
+            [{ name: 'Roșii', qty: '2 unități' }, { name: 'Brânză telemea', qty: '60 g' }, { name: 'Ceapă', qty: '1/4 unitate' }, { name: 'Ulei de măsline', qty: '1 lingură' }],
+            'Taie roșiile, adaugă brânza și ceapa și stropește cu ulei de măsline.')
+        ],
+        liquids: [
+          { name: 'Suc de sfeclă', value: 'Limpieza hígado · Sfeclă + Morcov' },
+          { name: 'Ceai de mușețel', value: 'Digestivo · Mușețel + Miere' }
+        ]
+      },
+      // ----- Día 5 -----
+      {
+        breakfastOptions: [
+          createRecipe('Omletă cu ciuperci', 330, 18, 22,
+            [{ name: 'Ouă', qty: '2 bucăți' }, { name: 'Ciuperci', qty: '80 g' }, { name: 'Ceapă verde', qty: 'după gust' }],
+            'Călește ciupercile, adaugă ouăle bătute și gătește omleta cremoasă.'),
+          createRecipe('Iaurt cu fructe de pădure', 280, 10, 6,
+            [{ name: 'Iaurt', qty: '150 g' }, { name: 'Fructe de pădure', qty: '90 g' }, { name: 'Miere', qty: '1 linguriță' }],
+            'Servește iaurtul cu fructe de pădure și miere.')
+        ],
+        lunchOptions: [
+          createRecipe('Ciorbă de legume', 360, 10, 8,
+            [{ name: 'Cartof', qty: '1 unitate' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Țelină', qty: '40 g' }, { name: 'Borș', qty: '100 ml' }],
+            'Fierbe legumele și acrește ciorba cu borș. Servește cu verdeață.'),
+          createRecipe('Mămăligă cu brânză și smântână', 520, 18, 24,
+            [{ name: 'Mălai', qty: '100 g' }, { name: 'Brânză', qty: '60 g' }, { name: 'Smântână', qty: '2 linguri' }],
+            'Fierbe mămăliga și servește în straturi cu brânză și smântână.', 'General', null, 'normal')
+        ],
+        dinnerOptions: [
+          createRecipe('Pește la grătar cu salată', 410, 32, 16,
+            [{ name: 'Pește', qty: '170 g' }, { name: 'Salată verde', qty: '1/2 unitate' }, { name: 'Lămâie', qty: '1/2 unitate' }, { name: 'Ulei de măsline', qty: '1 lingură' }],
+            'Frige peștele pe grătar și servește cu salată verde și lămâie.'),
+          createRecipe('Tocăniță de ciuperci', 360, 10, 16,
+            [{ name: 'Ciuperci', qty: '200 g' }, { name: 'Ceapă', qty: '1 unitate' }, { name: 'Bulion', qty: '80 g' }, { name: 'Usturoi', qty: '2 căței' }],
+            'Călește ciupercile cu ceapă și bulion până scade sosul.')
+        ],
+        liquids: [
+          { name: 'Limonadă cu mentă', value: 'Refrescante · Lămâie + Mentă' },
+          { name: 'Suc de mere și morcov', value: 'Energético · Măr + Morcov' }
+        ]
+      },
+      // ----- Día 6 -----
+      {
+        breakfastOptions: [
+          createRecipe('Terci de quinoa cu scorțișoară', 310, 9, 7,
+            [{ name: 'Quinoa', qty: '50 g' }, { name: 'Lapte de migdale', qty: '180 ml' }, { name: 'Scorțișoară', qty: '1 linguriță' }, { name: 'Măr', qty: '60 g' }],
+            'Fierbe quinoa cu laptele și scorțișoara, adaugă mărul ras și servește cald.'),
+          createRecipe('Cozonac cu cafea', 420, 8, 16,
+            [{ name: 'Cozonac', qty: '2 felii' }, { name: 'Cafea', qty: '1 cană' }, { name: 'Lapte', qty: '50 ml' }],
+            'Servește feliile de cozonac alături de o cafea caldă cu lapte.', 'General', null, 'normal')
+        ],
+        lunchOptions: [
+          createRecipe('Sarmale de post', 480, 12, 16,
+            [{ name: 'Varză murată', qty: '4 foi' }, { name: 'Orez', qty: '60 g' }, { name: 'Ciuperci', qty: '60 g' }, { name: 'Morcov', qty: '1 unitate' }],
+            'Umple foile de varză cu orez și ciuperci și fierbe încet până sunt fragede.'),
+          createRecipe('Friptură de pui cu legume', 520, 36, 18,
+            [{ name: 'Pulpă de pui', qty: '180 g' }, { name: 'Cartofi', qty: '150 g' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Usturoi', qty: '2 căței' }],
+            'Frige puiul cu legume și usturoi la cuptor până se rumenește.', 'General', null, 'normal')
+        ],
+        dinnerOptions: [
+          createRecipe('Salată orientală', 420, 12, 22,
+            [{ name: 'Cartofi', qty: '180 g' }, { name: 'Ceapă roșie', qty: '1/2 unitate' }, { name: 'Măsline', qty: '10 g' }, { name: 'Ulei de măsline', qty: '2 linguri' }],
+            'Fierbe cartofii, taie-i felii și amestecă cu ceapă, măsline și ulei.'),
+          createRecipe('Supă de pui cu tăiței', 360, 24, 12,
+            [{ name: 'Piept de pui', qty: '120 g' }, { name: 'Tăiței', qty: '60 g' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Țelină', qty: '40 g' }],
+            'Fierbe puiul cu legume, adaugă tăițeii și servește fierbinte.')
+        ],
+        liquids: [
+          { name: 'Compot de mere', value: 'Digestivo · Mere + Scorțișoară' },
+          { name: 'Ceai de cătină', value: 'Inmunidad · Cătină + Miere' }
+        ]
+      }
+    ]
+  }
+};
+
+const dietRules = {
+  vegana: [
+    { find: /Pechuga de pollo|Pulpă de pui|Piept de pui|Pui tocat/gi, replace: 'Tofu ahumado' },
+    { find: /Pescado|Mero|Merluza|Pește/gi, replace: 'Tofu marinado' },
+    { find: /Jamón serrano|Jamón/gi, replace: 'Champiñones asados' },
+    { find: /Yogur|Iaurt/gi, replace: 'Yogur vegetal' }
+  ],
+  vegetariana: [
+    { find: /Pechuga de pollo|Pulpă de pui|Piept de pui/gi, replace: 'Hamburguesa vegetal' },
+    { find: /Pescado|Mero|Merluza|Pește/gi, replace: 'Berenjena al horno' }
+  ],
+  keto: [
+    { find: /Arroz integral|Arroz/gi, replace: 'Arroz de coliflor' },
+    { find: /Pan integral|tostada|Tostada/gi, replace: 'Tortilla de espinacas' },
+    { find: /Garbanzos|Lentejas/gi, replace: 'Ensalada de aguacate' }
+  ],
+  'baja en carbohidratos': [
+    { find: /Arroz integral|Arroz/gi, replace: 'Arroz de coliflor' },
+    { find: /Garbanzos|Lentejas/gi, replace: 'Ensalada de hojas verdes' },
+    { find: /Pan integral|tostada|Tostada/gi, replace: 'Bowl de semillas' }
+  ],
+  mediterránea: []
+};
+
+const allergyRules = {
+  gluten: [
+    { find: /Pan integral|tostada|Tostada|Pâine integrală/gi, replace: 'Bowl de quinoa' }
+  ],
+  lactosa: [
+    { find: /Yogur|Iaurt|Queso|brânză|Brânză/gi, replace: 'Yogur vegetal' }
+  ],
+  frutos: [
+    { find: /Frutos secos|nueces|nuci|Nuci/gi, replace: 'Semillas de girasol' }
+  ],
+  marisco: [
+    { find: /Pescado|Mero|Merluza|Pește/gi, replace: 'Tofu marinado' }
+  ]
+};
+
+function getMealOptionsForDay(dayIndex, meal) {
+  const dayData = menuData[currentOrigin].days[dayIndex];
+  const options = dayData[`${meal}Options`];
+  const filtered = options.filter(option => option.style === currentMenuStyle);
+  return filtered.length > 0 ? filtered : options;
+}
+
+function getMealOptions(meal) {
+  return getMealOptionsForDay(currentDayIndex, meal);
+}
+
+function getStyleLabel(style) {
+  return style === 'normal' ? 'Normal' : 'Saludable';
+}
+
+function adaptRecipeText(text) {
+  let adapted = text;
+  const dietRulesSet = dietRules[currentDiet] || [];
+  dietRulesSet.forEach(rule => {
+    adapted = adapted.replace(rule.find, rule.replace);
+  });
+  Object.keys(currentIntolerances).forEach(intolerance => {
+    if (currentIntolerances[intolerance]) {
+      const allergyRulesSet = allergyRules[intolerance] || [];
+      allergyRulesSet.forEach(rule => {
+        adapted = adapted.replace(rule.find, rule.replace);
+      });
+    }
+  });
+  return adapted;
+}
+
+function getAdaptationNote() {
+  const activeIntolerances = Object.keys(currentIntolerances).filter(key => currentIntolerances[key]);
+  if (activeIntolerances.length === 0 && currentDiet === 'mediterránea') {
+    return 'Productos de Temporada';
+  }
+
+  const labels = [];
+  if (currentDiet && currentDiet !== 'mediterránea') {
+    labels.push(currentDiet);
+  }
+  activeIntolerances.forEach(key => {
+    const labelMap = {
+      gluten: 'sin gluten',
+      lactosa: 'sin lactosa',
+      frutos: 'sin frutos secos',
+      marisco: 'sin marisco'
+    };
+    labels.push(labelMap[key]);
+  });
+  return `Adaptado: ${labels.join(' · ')}`;
+}
+
+let currentOrigin = 'es';
+let currentDayIndex = 0;
+let currentServings = 2;
+let currentMealServings = { breakfast: 2, lunch: 2, dinner: 2 };
+let shoppingMode = 'daily';
+let currentDiet = 'mediterránea';
+let currentMenuStyle = 'saludable';
+let currentIntolerances = {
+  gluten: false,
+  lactosa: false,
+  frutos: false,
+  marisco: false
+};
+
+function initSystem() {
+  renderWeeks();
+  renderOriginFilters();
+  renderDietSelection();
+  renderMenuStyleSelection();
+  renderIntolerances();
+  loadDayDetails();
+  renderShoppingList();
+  switchView('plan');
+}
+
+function switchView(viewId) {
+  document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+  document.getElementById(`view-${viewId}`).classList.remove('hidden');
+
+  document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active-nav'));
+  const activeBtn = document.getElementById(`nav-${viewId}`);
+  if (activeBtn) activeBtn.classList.add('active-nav');
+
+  if (viewId === 'catalog') openCatalog();
+}
+
+function filterOrigin(origin) {
+  currentOrigin = origin;
+  renderWeeks();
+  renderOriginFilters();
+  loadDayDetails();
+}
+
+function renderOriginFilters() {
+  document.getElementById('btn-filter-es').classList.toggle('active-origin', currentOrigin === 'es');
+  document.getElementById('btn-filter-ro').classList.toggle('active-origin', currentOrigin === 'ro');
+}
+
+function renderWeeks() {
+  const container = document.getElementById('weeks-container');
+  container.innerHTML = '';
+  const current = menuData[currentOrigin];
+  current.days.forEach((day, index) => {
+    const isActive = index === currentDayIndex;
+    const weekDate = weekDates[index];
+    container.innerHTML += `
+      <button type="button" onclick="selectDay(${index})" class="flex flex-col items-center justify-center min-w-[68px] h-24 rounded-3xl border ${isActive ? 'border-primary bg-primary/10' : 'border-surface-container'} bg-white shadow-sm text-left p-3 transition-all hover:border-primary">
+        <span class="font-label-md text-sm ${isActive ? 'text-primary' : 'text-on-surface-variant'}">${weekDate.short}</span>
+        <span class="font-headline-sm text-lg text-on-surface mt-1">${weekDate.num}</span>
+      </button>
+    `;
+  });
+  document.getElementById('badge-origin').innerText = current.badge;
+  document.getElementById('language-label').innerText = `Idioma: ${current.language}`;
+  document.getElementById('season-label').innerText = `Temporada: ${current.season}`;
+  document.getElementById('season-icon').innerText = current.seasonIcon;
+}
+
+function selectDay(index) {
+  currentDayIndex = index;
+  renderWeeks();
+  loadDayDetails();
+}
+
+function getCurrentDayData() {
+  return menuData[currentOrigin].days[currentDayIndex];
+}
+
+function getCurrentSelection() {
+  return selectedMealIndices[currentOrigin][currentDayIndex];
+}
+
+function getSelectedOption(meal) {
+  const options = getMealOptions(meal);
+  const selection = getCurrentSelection();
+  const selectedIndex = selection[meal] % options.length;
+  return options[selectedIndex];
+}
+
+function adaptOption(option) {
+  return {
+    title: adaptRecipeText(option.title),
+    instructions: adaptRecipeText(option.instructions),
+    ingredients: option.ingredients.map(item => ({
+      name: adaptRecipeText(item.name),
+      qty: item.qty
+    })),
+    nutrition: option.nutrition
+  };
+}
+
+function parseQtyValue(qty) {
+  const normalized = qty.replace(',', '.').trim();
+  if (/^\d+\s*\/\s*\d+$/.test(normalized)) {
+    const [num, den] = normalized.split('/').map(Number);
+    return num / den;
+  }
+  const numberMatch = normalized.match(/\d+(?:\.\d+)?/);
+  return numberMatch ? parseFloat(numberMatch[0]) : null;
+}
+
+function formatQtyValue(value) {
+  if (Number.isInteger(value)) return String(value);
+  const rounded = Math.round(value * 100) / 100;
+  return rounded % 1 === 0 ? String(rounded) : rounded.toFixed(2).replace(/\.00$/, '');
+}
+
+function scaleIngredientQty(qty, factor) {
+  return qty.replace(/\d+(?:[.,]\d+)?(?:\s*\/\s*\d+)?/g, match => {
+    const baseValue = parseQtyValue(match);
+    if (baseValue === null) return match;
+    const scaledValue = baseValue * factor;
+    return formatQtyValue(scaledValue);
+  });
+}
+
+function scaleIngredients(ingredients, factor) {
+  if (factor === 1) return ingredients;
+  return ingredients.map(item => ({
+    name: item.name,
+    qty: scaleIngredientQty(item.qty, factor)
+  }));
+}
+
+function getNutritionScore(totals) {
+  if (totals.calories <= 1700) return 'A+';
+  if (totals.calories <= 1900) return 'A';
+  if (totals.calories <= 2100) return 'B';
+  return 'B+';
+}
+
+function renderMealCard(meal, label, badgeClass) {
+  const selection = getCurrentSelection();
+  const options = getMealOptions(meal);
+  const selectedIndex = selection[meal] % options.length;
+  const option = options[selectedIndex];
+  const adapted = adaptOption(option);
+  const mealServings = currentMealServings[meal];
+  const scaleFactor = mealServings === 0 ? 1 : mealServings / 2;
+  const scaledIngredients = scaleIngredients(adapted.ingredients, scaleFactor);
+  const isFavorite = favoriteRecipes.has(option.title);
+  const otherOptions = options.filter((_, index) => index !== selectedIndex);
+
+  return `
+    <div class="p-4 bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container">
+      <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase ${badgeClass}">${label}</p>
+          <h4 class="font-headline-sm text-on-surface mt-2">${adapted.title}</h4>
+          <div class="mt-1 space-y-1">
+            <p class="text-label-sm text-on-surface-variant">Categoría: ${option.category}</p>
+            ${option.drinkType ? `<p class="text-label-sm text-secondary font-semibold">Beneficio: ${option.drinkType}</p>` : ''}
+          </div>
+        </div>
+        <div class="flex flex-col items-end gap-2">
+          <button onclick="toggleFavorite('${meal}')" class="px-3 py-2 rounded-full border ${isFavorite ? 'bg-secondary text-white border-secondary' : 'bg-white text-primary border-primary'} text-xs font-semibold transition-all">
+            ${isFavorite ? 'Favorito ♥' : 'Favorito'}
+          </button>
+          <button onclick="refreshMeal('${meal}')" class="px-3 py-2 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold border border-surface-container hover:bg-surface-container-low transition-all">
+            No me gusta
+          </button>
+        </div>
+      </div>
+      <div class="relative overflow-hidden rounded-3xl h-52 mb-4 mt-4 bg-surface-container-high">
+        ${dishImageHTML({ title: option.title, image: null })}
+      </div>
+      <div class="mt-4 text-label-md text-on-surface-variant">
+        <p class="font-semibold">Ingredientes</p>
+        <ul class="list-disc list-inside mt-2 space-y-1">
+          ${scaledIngredients.map(i => `<li>${i.qty} ${i.name}</li>`).join('')}
+        </ul>
+        <p class="font-semibold mt-4">Modo de cocinar</p>
+        <p class="mt-2 text-body-md text-on-surface">${adapted.instructions}</p>
+      </div>
+      <div class="mt-4 text-label-md text-on-surface-variant">
+        ${mealServings === 0 ? 'Esta comida está saltada.' : `Nutrición por receta: ${option.nutrition.calories} kcal · ${option.nutrition.protein}g proteína · ${option.nutrition.fats}g grasa`}
+        <p class="text-xs text-on-surface-variant mt-1">Cantidades ajustadas según porciones.</p>
+      </div>
+      <div class="mt-2 text-label-sm text-on-surface-variant">Estilo: ${getStyleLabel(option.style)}</div>
+      <div class="mt-4 flex items-center justify-between gap-3">
+        <span class="text-label-md text-on-surface-variant">Porciones</span>
+        <div class="inline-flex items-center rounded-full bg-surface-container-high border border-surface-container overflow-hidden">
+          <button onclick="adjustMealServings('${meal}', -1)" class="px-3 py-2 text-primary hover:bg-surface-container-low transition-colors">-</button>
+          <span class="px-4 py-2 text-on-surface">${mealServings}</span>
+          <button onclick="adjustMealServings('${meal}', 1)" class="px-3 py-2 text-primary hover:bg-surface-container-low transition-colors">+</button>
+        </div>
+      </div>
+      ${otherOptions.length > 0 ? `
+        <div class="mt-4 p-3 rounded-3xl bg-surface-container-low">
+          <p class="font-semibold text-on-surface">Otras opciones</p>
+          <div class="mt-3 grid gap-2">
+            ${otherOptions.map(other => `
+              <button onclick="selectRecipeOption('${meal}', ${options.indexOf(other)})" class="w-full text-left p-3 rounded-2xl bg-white border border-surface-container hover:border-primary transition-all text-sm">
+                ${adaptRecipeText(other.title)}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function loadDayDetails() {
+  const dayInfo = weekDates[currentDayIndex];
+  const breakfast = getSelectedOption('breakfast');
+  const lunch = getSelectedOption('lunch');
+  const dinner = getSelectedOption('dinner');
+  const totals = {
+    calories: breakfast.nutrition.calories + lunch.nutrition.calories + dinner.nutrition.calories,
+    protein: breakfast.nutrition.protein + lunch.nutrition.protein + dinner.nutrition.protein,
+    fats: breakfast.nutrition.fats + lunch.nutrition.fats + dinner.nutrition.fats
+  };
+  const note = getAdaptationNote();
+  const score = getNutritionScore(totals);
+  const menuStyleLabel = getStyleLabel(currentMenuStyle);
+
+  document.getElementById('plan-day-title').innerText = `${dayInfo.long}`;
+  const planDayNoteEl = document.getElementById('plan-day-note');
+  if (planDayNoteEl) {
+    planDayNoteEl.innerText = note;
+  }
+  const menuStyleNoteEl = document.getElementById('menu-style-note');
+  if (menuStyleNoteEl) {
+    menuStyleNoteEl.innerText = `Menú actual: ${menuStyleLabel}`;
+  }
+  document.getElementById('day-calories').innerText = `${totals.calories} kcal`;
+  document.getElementById('day-score').innerText = score;
+  document.getElementById('day-protein').innerText = `${totals.protein}g`;
+  document.getElementById('day-fats').innerText = `${totals.fats}g`;
+  document.getElementById('servings-display').innerText = currentServings;
+
+  const liquidsContainer = document.getElementById('liquids-container');
+  liquidsContainer.innerHTML = getCurrentDayData().liquids.map(liquid => `
+    <div class="rounded-3xl bg-surface-container-low p-4">
+      <p class="font-label-md text-label-md text-on-surface-variant">${liquid.name}</p>
+      <p class="font-body-md text-body-md text-on-surface mt-1">${liquid.value}</p>
+    </div>
+  `).join('');
+
+  const recipesContainer = document.getElementById('recipes-list-container');
+  recipesContainer.innerHTML = `
+    ${renderMealCard('breakfast', 'Desayuno', 'text-primary')}
+    ${renderMealCard('lunch', 'Almuerzo', 'text-secondary')}
+    ${renderMealCard('dinner', 'Cena', 'text-tertiary')}
+  `;
+  hydrateLazyImages(recipesContainer);
+
+  renderShoppingList();
+}
+
+function adjustServings(amount) {
+  const nextServings = Math.max(0, currentServings + amount);
+  const delta = nextServings - currentServings;
+  currentServings = nextServings;
+  Object.keys(currentMealServings).forEach(meal => {
+    currentMealServings[meal] = Math.max(0, currentMealServings[meal] + delta);
+  });
+  document.getElementById('servings-display').innerText = currentServings;
+  loadDayDetails();
+}
+
+function adjustMealServings(meal, amount) {
+  currentMealServings[meal] = Math.max(0, currentMealServings[meal] + amount);
+  loadDayDetails();
+}
+
+function setDiet(type) {
+  currentDiet = type;
+  renderDietSelection();
+  loadDayDetails();
+}
+
+function renderDietSelection() {
+  const diets = ['vegana', 'vegetariana', 'keto', 'mediterránea', 'baja en carbohidratos'];
+  diets.forEach(diet => {
+    const normalizedSlug = diet
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '')
+      .replace(/\s+/g, '-')
+      .toLowerCase();
+    const button = document.getElementById(`diet-${normalizedSlug}`);
+    if (button) {
+      if (diet === currentDiet) {
+        button.classList.add('active-diet');
+      } else {
+        button.classList.remove('active-diet');
+      }
+    }
+  });
+  document.getElementById('diet-summary').innerText = `Dieta activa: ${currentDiet}`;
+}
+
+function setMenuStyle(style) {
+  currentMenuStyle = style;
+  renderMenuStyleSelection();
+  loadDayDetails();
+}
+
+function renderMenuStyleSelection() {
+  const options = ['saludable', 'normal'];
+  options.forEach(option => {
+    const button = document.getElementById(`menu-style-${option}`);
+    if (button) {
+      button.classList.toggle('active-menu-style', option === currentMenuStyle);
+    }
+  });
+  const summary = document.getElementById('menu-style-summary');
+  if (summary) {
+    summary.innerText = `Menú activo: ${getStyleLabel(currentMenuStyle)}`;
+  }
+}
+
+function toggleIntolerance(name) {
+  currentIntolerances[name] = !currentIntolerances[name];
+  renderIntolerances();
+  loadDayDetails();
+}
+
+function renderIntolerances() {
+  Object.keys(currentIntolerances).forEach(key => {
+    const card = document.getElementById(`intolerance-${key}`);
+    if (card) card.classList.toggle('active-intolerance', currentIntolerances[key]);
+  });
+}
+
+function refreshMeal(meal) {
+  const selection = getCurrentSelection();
+  const options = getMealOptions(meal);
+  selection[meal] = (selection[meal] + 1) % options.length;
+  loadDayDetails();
+}
+
+function toggleFavorite(meal) {
+  const option = getSelectedOption(meal);
+  if (favoriteRecipes.has(option.title)) {
+    favoriteRecipes.delete(option.title);
+  } else {
+    favoriteRecipes.add(option.title);
+  }
+  loadDayDetails();
+}
+
+function selectRecipeOption(meal, index) {
+  const selection = getCurrentSelection();
+  selection[meal] = index;
+  loadDayDetails();
+}
+
+function setShoppingMode(mode) {
+  shoppingMode = mode;
+  renderShoppingList();
+}
+
+function renderShoppingList() {
+  const container = document.getElementById('shopping-list-sections');
+  const foods = new Map();
+  const dayIndexes = shoppingMode === 'weekly'
+    ? menuData[currentOrigin].days.map((_, index) => index)
+    : [currentDayIndex];
+
+  dayIndexes.forEach(dayIndex => {
+    const dailySelection = selectedMealIndices[currentOrigin][dayIndex];
+    ['breakfast', 'lunch', 'dinner'].forEach(meal => {
+      const mealServings = currentMealServings[meal];
+      if (mealServings === 0) return;
+      const options = getMealOptionsForDay(dayIndex, meal);
+      const option = options[dailySelection[meal] % options.length];
+      const factor = mealServings / 2;
+      scaleIngredients(adaptOption(option).ingredients, factor).forEach(item => {
+        const key = item.name.toLowerCase();
+        if (foods.has(key)) {
+          const existing = foods.get(key);
+          existing.qty = `${existing.qty} + ${item.qty}`;
+        } else {
+          foods.set(key, { ...item });
+        }
+      });
+    });
+  });
+
+  const modeLabel = shoppingMode === 'weekly' ? 'semana' : 'día';
+  document.getElementById('shopping-mode-daily')?.classList.toggle('active-shopping', shoppingMode === 'daily');
+  document.getElementById('shopping-mode-weekly')?.classList.toggle('active-shopping', shoppingMode === 'weekly');
+
+  const sections = [];
+
+  if (foods.size > 0) {
+    sections.push(`
+      <section class="space-y-3">
+        <div class="flex items-center gap-2 text-primary">
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">inventory_2</span>
+          <h3 class="font-label-lg text-label-lg tracking-wider">Ingredientes del menú</h3>
+        </div>
+        <div class="bg-surface-container-lowest rounded-3xl shadow-sm overflow-hidden">
+          ${Array.from(foods.values()).map(item => `
+            <div class="checklist-item flex items-center gap-4 p-4 transition-colors hover:bg-surface-container border-b last:border-b-0 border-surface-container">
+              <input type="checkbox" class="w-6 h-6 rounded-full border-2 border-outline text-primary focus:ring-primary-container cursor-pointer" />
+              <div class="flex-1">
+                <p class="item-text font-body-md text-on-surface">${item.name}</p>
+                <p class="text-label-md text-on-surface-variant">${item.qty} · para ${modeLabel}</p>
+              </div>
+              <span class="material-symbols-outlined text-outline-variant">checklist_rtl</span>
+            </div>
+          `).join('')}
+        </div>
+      </section>
+    `);
+  }
+
+  if (extraShoppingItems.size > 0) {
+    sections.push(`
+      <section class="space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2 text-secondary">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">add_shopping_cart</span>
+            <h3 class="font-label-lg text-label-lg tracking-wider">Añadido por ti</h3>
+          </div>
+          <button data-clear-extras="1" class="text-label-md text-secondary font-semibold px-3 py-1 rounded-full hover:bg-surface-container-high transition-all">Vaciar</button>
+        </div>
+        <div class="bg-surface-container-lowest rounded-3xl shadow-sm overflow-hidden">
+          ${Array.from(extraShoppingItems.entries()).map(([key, item]) => `
+            <div class="checklist-item flex items-center gap-4 p-4 transition-colors hover:bg-surface-container border-b last:border-b-0 border-surface-container">
+              <input type="checkbox" class="w-6 h-6 rounded-full border-2 border-outline text-primary focus:ring-primary-container cursor-pointer" />
+              <div class="flex-1">
+                <p class="item-text font-body-md text-on-surface">${escapeHtml(item.name)}</p>
+                ${item.qty ? `<p class="text-label-md text-on-surface-variant">${escapeHtml(item.qty)}</p>` : ''}
+              </div>
+              <button data-remove="${escapeHtml(key)}" class="text-outline hover:text-error transition-colors">
+                <span class="material-symbols-outlined">close</span>
+              </button>
+            </div>
+          `).join('')}
+        </div>
+      </section>
+    `);
+  }
+
+  if (!sections.length) {
+    container.innerHTML = `
+      <div class="rounded-3xl bg-surface-container-low p-6 text-center text-on-surface-variant">
+        Lista de la compra adaptada: selecciona un menú o añade recetas desde la pestaña Recetas.
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = sections.join('');
+  container.onclick = (event) => {
+    const clearBtn = event.target.closest('[data-clear-extras]');
+    if (clearBtn) { clearExtraItems(); return; }
+    const removeBtn = event.target.closest('[data-remove]');
+    if (removeBtn) { removeExtraItem(removeBtn.getAttribute('data-remove')); }
+  };
+}
+
+// ===========================================================================
+// RECETARIO MUNDIAL (galería de todos los platos, por categoría, +1000)
+// ===========================================================================
+
+// Mapea las categorías en inglés de TheMealDB a español.
+const MEALDB_CATEGORY_ES = {
+  Beef: 'Carne', Chicken: 'Pollo', Pork: 'Cerdo', Lamb: 'Cordero', Goat: 'Cabra',
+  Seafood: 'Pescado y marisco', Pasta: 'Pasta', Dessert: 'Postres', Breakfast: 'Desayuno',
+  Vegan: 'Vegano', Vegetarian: 'Vegetariano', Side: 'Guarnición', Starter: 'Aperitivos',
+  Miscellaneous: 'Varios'
+};
+function mapCategory(cat) {
+  return MEALDB_CATEGORY_ES[cat] || cat || 'Varios';
+}
+
+// Catálogo local de platos famosos del mundo, organizado por país y categoría.
+// (Las fotos se cargan bajo demanda desde Wikipedia.)
+const worldRaw = {
+  'Japón': { 'Pescado y marisco': ['Sushi', 'Sashimi', 'Tempura'], 'Sopas': ['Ramen', 'Udon', 'Sopa de miso'], 'Carne': ['Yakitori', 'Tonkatsu', 'Sukiyaki', 'Katsudon'], 'Aperitivos': ['Gyoza', 'Okonomiyaki', 'Takoyaki', 'Onigiri'], 'Postres': ['Mochi', 'Dorayaki'] },
+  'China': { 'Aperitivos': ['Dim sum', 'Rollito de primavera', 'Baozi', 'Jiaozi', 'Wonton'], 'Carne': ['Pato laqueado de Pekín', 'Cerdo agridulce', 'Char siu', 'Pollo Kung Pao'], 'Arroz': ['Arroz frito', 'Chop suey'], 'Vegetariano': ['Mapo tofu'], 'Sopas': ['Hot pot'] },
+  'Tailandia': { 'Arroz': ['Pad thai', 'Khao pad'], 'Sopas': ['Tom yum'], 'Carne': ['Curry verde tailandés', 'Curry rojo tailandés', 'Massaman', 'Pad krapow'], 'Ensaladas': ['Som tam'], 'Aperitivos': ['Satay'], 'Postres': ['Arroz con mango'] },
+  'Vietnam': { 'Sopas': ['Pho'], 'Aperitivos': ['Banh mi', 'Rollitos vietnamitas'], 'Carne': ['Bun cha', 'Com tam'] },
+  'India': { 'Carne': ['Pollo tikka masala', 'Tandoori', 'Korma', 'Vindaloo', 'Rogan josh', 'Pollo a la mantequilla'], 'Arroz': ['Biryani'], 'Vegetariano': ['Dal', 'Chana masala', 'Paneer tikka'], 'Aperitivos': ['Samosa', 'Dosa'], 'Panadería': ['Naan', 'Chapati'] },
+  'Corea del Sur': { 'Arroz': ['Bibimbap'], 'Vegetariano': ['Kimchi', 'Japchae'], 'Carne': ['Bulgogi', 'Samgyeopsal'], 'Aperitivos': ['Tteokbokki'], 'Sopas': ['Kimchi jjigae', 'Sundubu jjigae'] },
+  'México': { 'Aperitivos': ['Tacos', 'Tacos al pastor', 'Quesadilla', 'Nachos', 'Tamales', 'Elote'], 'Carne': ['Mole poblano', 'Chiles en nogada', 'Cochinita pibil', 'Fajitas'], 'Sopas': ['Pozole'], 'Vegetariano': ['Guacamole', 'Chilaquiles'], 'Arroz': ['Burrito'] },
+  'Italia': { 'Pasta': ['Spaghetti carbonara', 'Lasaña', 'Ravioli', 'Gnocchi', 'Tagliatelle al ragú', 'Pesto'], 'Panadería': ['Pizza margarita', 'Focaccia', 'Bruschetta'], 'Arroz': ['Risotto', 'Polenta'], 'Carne': ['Osso buco', 'Saltimbocca'], 'Postres': ['Tiramisú', 'Panna cotta', 'Cannoli', 'Gelato'], 'Ensaladas': ['Ensalada caprese'] },
+  'Francia': { 'Panadería': ['Croissant', 'Baguette'], 'Vegetariano': ['Ratatouille'], 'Carne': ['Coq au vin', 'Cassoulet', 'Pot-au-feu', 'Boeuf bourguignon'], 'Pescado y marisco': ['Bullabesa', 'Escargots'], 'Aperitivos': ['Quiche lorraine', 'Crepe', 'Foie gras'], 'Postres': ['Crème brûlée', 'Macaron', 'Tarta Tatin', 'Soufflé', 'Profiterol'] },
+  'España': { 'Arroz': ['Paella', 'Arroz negro'], 'Aperitivos': ['Tortilla de patatas', 'Croquetas', 'Patatas bravas', 'Pan con tomate', 'Calçots', 'Pinchos'], 'Sopas': ['Gazpacho', 'Salmorejo'], 'Carne': ['Jamón ibérico', 'Cochinillo asado'], 'Pescado y marisco': ['Pulpo a la gallega', 'Gambas al ajillo'], 'Postres': ['Churros', 'Crema catalana', 'Flan'] },
+  'Grecia': { 'Carne': ['Musaca', 'Souvlaki', 'Gyros', 'Pastitsio'], 'Aperitivos': ['Tzatziki', 'Spanakopita', 'Dolma'], 'Ensaladas': ['Ensalada griega'], 'Postres': ['Baklava'] },
+  'Turquía': { 'Carne': ['Kebab', 'Döner kebab', 'Köfte', 'Adana kebab'], 'Arroz': ['Pilav'], 'Aperitivos': ['Lahmacun', 'Börek', 'Meze', 'Dolma'], 'Panadería': ['Simit'], 'Postres': ['Baklava turco', 'Lokum'] },
+  'Líbano': { 'Vegetariano': ['Hummus', 'Falafel', 'Baba ganoush'], 'Ensaladas': ['Tabulé', 'Fattoush'], 'Carne': ['Shawarma', 'Kibbeh'], 'Panadería': ['Manakish'] },
+  'Marruecos': { 'Carne': ['Tayín', 'Mechoui'], 'Arroz': ['Cuscús'], 'Sopas': ['Harira'], 'Aperitivos': ['Pastela'] },
+  'Estados Unidos': { 'Carne': ['Hamburguesa', 'Barbacoa', 'Alitas Buffalo', 'Cerdo desmechado'], 'Aperitivos': ['Perrito caliente', 'Macarrones con queso', 'Cornbread'], 'Sopas': ['Clam chowder', 'Jambalaya'], 'Postres': ['Tarta de queso', 'Brownie', 'Tortitas americanas'] },
+  'Reino Unido': { 'Pescado y marisco': ['Fish and chips'], 'Carne': ['Rosbif', 'Pastel de carne', 'Cottage pie', 'Beef Wellington', 'Salchichas con puré'], 'Panadería': ['Scones', 'Cornish pasty'], 'Postres': ['Trifle', 'Pudin de toffee'] },
+  'Alemania': { 'Carne': ['Bratwurst', 'Schnitzel', 'Currywurst', 'Sauerbraten'], 'Vegetariano': ['Chucrut'], 'Pasta': ['Spätzle'], 'Panadería': ['Pretzel'], 'Postres': ['Strudel de manzana', 'Selva Negra'] },
+  'Argentina': { 'Carne': ['Asado', 'Milanesa', 'Choripán'], 'Aperitivos': ['Empanadas', 'Provoleta'], 'Sopas': ['Locro'], 'Postres': ['Alfajor', 'Dulce de leche'] },
+  'Brasil': { 'Carne': ['Feijoada', 'Picanha'], 'Aperitivos': ['Pão de queijo', 'Coxinha'], 'Pescado y marisco': ['Moqueca'], 'Postres': ['Brigadeiro'], 'Vegetariano': ['Acarajé'] },
+  'Perú': { 'Pescado y marisco': ['Ceviche'], 'Carne': ['Lomo saltado', 'Anticucho', 'Ají de gallina'], 'Vegetariano': ['Causa limeña', 'Papa a la huancaína'] },
+  'Colombia': { 'Carne': ['Bandeja paisa'], 'Aperitivos': ['Arepa', 'Empanada colombiana'], 'Sopas': ['Ajiaco'] },
+  'Venezuela': { 'Aperitivos': ['Arepa venezolana', 'Tequeños', 'Hallaca'], 'Carne': ['Pabellón criollo'] },
+  'Rusia': { 'Sopas': ['Borscht'], 'Carne': ['Ternera Stróganoff', 'Pelmeni'], 'Aperitivos': ['Blini', 'Pirozhki'] },
+  'Polonia': { 'Aperitivos': ['Pierogi'], 'Carne': ['Bigos', 'Kielbasa'], 'Sopas': ['Zurek'] },
+  'Hungría': { 'Sopas': ['Gulash'], 'Carne': ['Pörkölt'], 'Postres': ['Chimenea húngara'] },
+  'Indonesia': { 'Arroz': ['Nasi goreng', 'Nasi lemak'], 'Carne': ['Rendang', 'Satay de pollo'], 'Pasta': ['Mie goreng'], 'Sopas': ['Laksa'] },
+  'Filipinas': { 'Carne': ['Adobo filipino', 'Lechón'], 'Aperitivos': ['Lumpia', 'Pancit'], 'Sopas': ['Sinigang'] },
+  'Etiopía': { 'Panadería': ['Injera'], 'Carne': ['Doro wat'] },
+  'Nigeria': { 'Arroz': ['Jollof rice'], 'Carne': ['Suya'] },
+  'Egipto': { 'Vegetariano': ['Koshari', 'Ful medames'], 'Sopas': ['Molokhia'] },
+  'Portugal': { 'Pescado y marisco': ['Bacalao a Brás', 'Caldeirada', 'Sardinas asadas'], 'Carne': ['Francesinha', 'Cozido a portuguesa'], 'Postres': ['Pastel de nata'], 'Sopas': ['Caldo verde'] },
+  'Países Bajos': { 'Aperitivos': ['Bitterballen', 'Stroopwafel'], 'Pescado y marisco': ['Arenque holandés'], 'Carne': ['Stamppot'] },
+  'Suecia': { 'Carne': ['Albóndigas suecas'], 'Pescado y marisco': ['Gravlax'], 'Postres': ['Kanelbullar'] },
+  'Suiza': { 'Vegetariano': ['Fondue de queso', 'Raclette'], 'Carne': ['Rösti'] },
+  'Austria': { 'Carne': ['Wiener Schnitzel'], 'Postres': ['Tarta Sacher', 'Apfelstrudel'] },
+  'Bélgica': { 'Aperitivos': ['Patatas fritas belgas', 'Gofre de Lieja'], 'Pescado y marisco': ['Mejillones con patatas'] },
+  'Irlanda': { 'Carne': ['Estofado irlandés'], 'Vegetariano': ['Colcannon'], 'Panadería': ['Pan de soda'] },
+  'Cuba': { 'Carne': ['Ropa vieja', 'Lechón asado'], 'Arroz': ['Arroz congrí'], 'Aperitivos': ['Sandwich cubano'] },
+  'Chile': { 'Aperitivos': ['Empanada de pino', 'Completo'], 'Carne': ['Pastel de choclo'], 'Ensaladas': ['Ensalada chilena'] },
+  'Ecuador': { 'Sopas': ['Encebollado', 'Locro de papa'], 'Pescado y marisco': ['Ceviche de camarón'] },
+  'Bolivia': { 'Aperitivos': ['Salteñas'], 'Carne': ['Silpancho'] },
+  'Jamaica': { 'Carne': ['Pollo jerk'], 'Arroz': ['Rice and peas'] },
+  'Irán': { 'Arroz': ['Chelo kabab'], 'Carne': ['Ghormeh sabzi'], 'Sopas': ['Ash reshteh'] },
+  'Israel': { 'Vegetariano': ['Falafel israelí', 'Sabich'], 'Ensaladas': ['Ensalada israelí'], 'Aperitivos': ['Bourekas'] },
+  'Pakistán': { 'Arroz': ['Biryani pakistaní'], 'Carne': ['Nihari', 'Haleem'] },
+  'Indonesia 2': { 'Aperitivos': ['Gado-gado', 'Bakso'], 'Carne': ['Sate ayam'] },
+  'Malasia': { 'Arroz': ['Nasi kandar'], 'Sopas': ['Laksa de Penang'], 'Carne': ['Rendang de ternera'] },
+  'Singapur': { 'Pollo': ['Arroz con pollo hainanés'], 'Pescado y marisco': ['Cangrejo con chile'] },
+  'Australia': { 'Carne': ['Meat pie australiano'], 'Postres': ['Pavlova', 'Lamington'] },
+  'Canadá': { 'Aperitivos': ['Poutine'], 'Postres': ['Tarta de azúcar', 'Beaver tail'] },
+  'Sudáfrica': { 'Carne': ['Bobotie', 'Boerewors'], 'Aperitivos': ['Bunny chow'] },
+  'Vietnam 2': { 'Aperitivos': ['Banh xeo'], 'Sopas': ['Bun bo Hue'] },
+  'India 2': { 'Vegetariano': ['Aloo gobi', 'Palak paneer', 'Pakora'], 'Postres': ['Gulab jamun', 'Kheer'], 'Aperitivos': ['Pani puri'] },
+  'China 2': { 'Aperitivos': ['Mantou', 'Xiaolongbao'], 'Carne': ['Cerdo Dongpo', 'Ternera con brócoli'], 'Sopas': ['Sopa agripicante'] },
+  'México 2': { 'Sopas': ['Sopa de tortilla', 'Menudo'], 'Aperitivos': ['Sopes', 'Tostadas', 'Flautas'], 'Postres': ['Tres leches', 'Churros mexicanos'] },
+  'Internacional': { 'Desayuno': ['Shakshuka', 'Huevos benedictinos', 'Granola', 'Bagel', 'Desayuno inglés completo', 'Tortitas con sirope', 'Açaí bowl', 'Avena nocturna'], 'Postres': ['Helado', 'Gofre', 'Donut', 'Tarta de manzana', 'Mousse de chocolate', 'Cheesecake de frutos rojos', 'Crepe de chocolate'], 'Bebidas': ['Smoothie de frutas', 'Limonada', 'Batido de chocolate', 'Té chai', 'Café con leche', 'Horchata'] }
+};
+
+const worldDishes = [];
+Object.keys(worldRaw).forEach(area => {
+  Object.keys(worldRaw[area]).forEach(category => {
+    worldRaw[area][category].forEach(title => {
+      worldDishes.push({ title, category, area, image: null, ingredients: [], instructions: '', style: 'normal', source: 'world' });
+    });
+  });
+});
+
+// --- Traducción automática EN -> ES -------------------------------------
+// Diccionario de alimentos (traducción instantánea de ingredientes, sin internet).
+const ES_FOOD = {
+  'chicken': 'pollo', 'chicken breast': 'pechuga de pollo', 'chicken breasts': 'pechugas de pollo', 'chicken thighs': 'muslos de pollo', 'beef': 'ternera', 'minced beef': 'carne picada', 'beef mince': 'carne picada', 'ground beef': 'carne picada', 'pork': 'cerdo', 'lamb': 'cordero', 'lamb mince': 'cordero picado', 'bacon': 'bacon', 'sausage': 'salchicha', 'sausages': 'salchichas', 'ham': 'jamón', 'turkey': 'pavo', 'fish': 'pescado', 'salmon': 'salmón', 'tuna': 'atún', 'cod': 'bacalao', 'prawns': 'gambas', 'shrimp': 'gambas', 'duck': 'pato', 'mince': 'carne picada',
+  'oil': 'aceite', 'olive oil': 'aceite de oliva', 'vegetable oil': 'aceite vegetal', 'sunflower oil': 'aceite de girasol', 'butter': 'mantequilla', 'salt': 'sal', 'pepper': 'pimienta', 'black pepper': 'pimienta negra', 'sugar': 'azúcar', 'brown sugar': 'azúcar moreno', 'icing sugar': 'azúcar glas', 'flour': 'harina', 'plain flour': 'harina', 'self-raising flour': 'harina con levadura', 'water': 'agua', 'milk': 'leche', 'egg': 'huevo', 'eggs': 'huevos', 'egg yolk': 'yema de huevo', 'egg yolks': 'yemas de huevo', 'cheese': 'queso', 'cheddar cheese': 'queso cheddar', 'parmesan cheese': 'queso parmesano', 'parmesan': 'parmesano', 'mozzarella': 'mozzarella', 'cream': 'nata', 'double cream': 'nata para montar', 'sour cream': 'crema agria', 'yogurt': 'yogur', 'yoghurt': 'yogur',
+  'onion': 'cebolla', 'onions': 'cebollas', 'red onion': 'cebolla roja', 'spring onion': 'cebolleta', 'spring onions': 'cebolletas', 'garlic': 'ajo', 'garlic clove': 'diente de ajo', 'garlic cloves': 'dientes de ajo', 'tomato': 'tomate', 'tomatoes': 'tomates', 'tomato puree': 'tomate concentrado', 'chopped tomatoes': 'tomate triturado', 'tomato sauce': 'salsa de tomate', 'potato': 'patata', 'potatoes': 'patatas', 'carrot': 'zanahoria', 'carrots': 'zanahorias', 'celery': 'apio', 'bell pepper': 'pimiento', 'red pepper': 'pimiento rojo', 'green pepper': 'pimiento verde', 'chilli': 'chile', 'chili': 'chile', 'red chilli': 'chile rojo', 'mushroom': 'champiñón', 'mushrooms': 'champiñones', 'spinach': 'espinacas', 'lettuce': 'lechuga', 'cucumber': 'pepino', 'courgette': 'calabacín', 'zucchini': 'calabacín', 'aubergine': 'berenjena', 'eggplant': 'berenjena', 'peas': 'guisantes', 'green beans': 'judías verdes', 'beans': 'alubias', 'kidney beans': 'alubias rojas', 'chickpeas': 'garbanzos', 'lentils': 'lentejas', 'sweetcorn': 'maíz', 'corn': 'maíz', 'broccoli': 'brócoli', 'cauliflower': 'coliflor', 'cabbage': 'col', 'leek': 'puerro', 'leeks': 'puerros', 'ginger': 'jengibre', 'avocado': 'aguacate',
+  'lemon': 'limón', 'lime': 'lima', 'orange': 'naranja', 'apple': 'manzana', 'banana': 'plátano', 'coconut milk': 'leche de coco', 'coconut': 'coco', 'rice': 'arroz', 'basmati rice': 'arroz basmati', 'pasta': 'pasta', 'spaghetti': 'espaguetis', 'noodles': 'fideos', 'bread': 'pan', 'breadcrumbs': 'pan rallado', 'puff pastry': 'hojaldre', 'pastry': 'masa', 'oats': 'avena', 'honey': 'miel', 'soy sauce': 'salsa de soja', 'worcestershire sauce': 'salsa worcestershire', 'vinegar': 'vinagre', 'mustard': 'mostaza', 'mayonnaise': 'mayonesa', 'stock': 'caldo', 'chicken stock': 'caldo de pollo', 'beef stock': 'caldo de carne', 'vegetable stock': 'caldo de verduras', 'wine': 'vino', 'white wine': 'vino blanco', 'red wine': 'vino tinto', 'bay leaf': 'hoja de laurel', 'bay leaves': 'hojas de laurel', 'parsley': 'perejil', 'coriander': 'cilantro', 'cilantro': 'cilantro', 'basil': 'albahaca', 'oregano': 'orégano', 'thyme': 'tomillo', 'rosemary': 'romero', 'mint': 'menta', 'cinnamon': 'canela', 'cumin': 'comino', 'paprika': 'pimentón', 'turmeric': 'cúrcuma', 'curry powder': 'curry en polvo', 'chilli powder': 'chile en polvo', 'nutmeg': 'nuez moscada', 'vanilla extract': 'extracto de vainilla', 'vanilla': 'vainilla', 'chocolate': 'chocolate', 'dark chocolate': 'chocolate negro', 'cocoa': 'cacao', 'almonds': 'almendras', 'walnuts': 'nueces', 'peanuts': 'cacahuetes', 'raisins': 'pasas', 'baking powder': 'levadura en polvo', 'bicarbonate of soda': 'bicarbonato', 'yeast': 'levadura', 'cornflour': 'maicena', 'cornstarch': 'maicena', 'lemon juice': 'zumo de limón', 'lime juice': 'zumo de lima', 'lemon zest': 'ralladura de limón'
+};
+// Palabras sueltas (adjetivos/unidades) para traducir lo que no encaje como frase entera.
+const ES_WORD = Object.assign({}, ES_FOOD, {
+  'chopped': 'picado', 'sliced': 'en rodajas', 'diced': 'en dados', 'minced': 'picado', 'grated': 'rallado', 'fresh': 'fresco', 'dried': 'seco', 'ground': 'molido', 'large': 'grande', 'small': 'pequeño', 'medium': 'mediano', 'boneless': 'sin hueso', 'skinless': 'sin piel', 'whole': 'entero', 'of': 'de', 'and': 'y'
+});
+function capitalizeFirst(text) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+function translateIngredientName(name) {
+  const lower = name.toLowerCase().trim();
+  if (ES_FOOD[lower]) return capitalizeFirst(ES_FOOD[lower]);
+  if (lower.endsWith('s') && ES_FOOD[lower.slice(0, -1)]) return capitalizeFirst(ES_FOOD[lower.slice(0, -1)]);
+  const words = lower.split(/\s+/).map(w => ES_WORD[w] || (w.endsWith('s') && ES_WORD[w.slice(0, -1)]) || w);
+  return capitalizeFirst(words.join(' '));
+}
+const ES_UNIT = [
+  [/\btablespoons?\b/gi, 'cucharadas'], [/\btbsp\b/gi, 'cucharadas'], [/\bteaspoons?\b/gi, 'cucharaditas'], [/\btsp\b/gi, 'cucharaditas'],
+  [/\bcups?\b/gi, 'tazas'], [/\bcloves?\b/gi, 'dientes'], [/\bpinch\b/gi, 'pizca'], [/\bslices?\b/gi, 'rodajas'], [/\bcan\b/gi, 'lata'],
+  [/\bpound(s)?\b/gi, 'libras'], [/\blb(s)?\b/gi, 'libras'], [/\boz\b/gi, 'onzas'], [/\bhandful\b/gi, 'puñado'], [/\bbunch\b/gi, 'manojo'],
+  [/\bdash\b/gi, 'chorrito'], [/\bto taste\b/gi, 'al gusto'], [/\bchopped\b/gi, 'picado'], [/\bsliced\b/gi, 'en rodajas'],
+  [/\bgrated\b/gi, 'rallado'], [/\blarge\b/gi, 'grande'], [/\bsmall\b/gi, 'pequeño'], [/\bmedium\b/gi, 'mediano'], [/\bfresh\b/gi, 'fresco']
+];
+function translateMeasure(measure) {
+  let out = measure;
+  ES_UNIT.forEach(([re, es]) => { out = out.replace(re, es); });
+  return out;
+}
+
+// Traducción de texto largo (pasos, títulos) bajo demanda, con caché en el navegador.
+const translationCache = (() => {
+  try { return JSON.parse(localStorage.getItem('nutriplan-trans') || '{}'); } catch (e) { return {}; }
+})();
+function saveTranslationCache() {
+  try { localStorage.setItem('nutriplan-trans', JSON.stringify(translationCache)); } catch (e) {}
+}
+function chunkText(text, max) {
+  const parts = [];
+  let current = '';
+  text.split(/(?<=[.!?])\s+/).forEach(sentence => {
+    if ((current + ' ' + sentence).length > max) {
+      if (current) parts.push(current);
+      if (sentence.length > max) {
+        for (let i = 0; i < sentence.length; i += max) parts.push(sentence.slice(i, i + max));
+        current = '';
+      } else {
+        current = sentence;
+      }
+    } else {
+      current = current ? `${current} ${sentence}` : sentence;
+    }
+  });
+  if (current) parts.push(current);
+  return parts;
+}
+async function translateChunk(chunk) {
+  try {
+    const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=es&dt=t&q=${encodeURIComponent(chunk)}`);
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && Array.isArray(data[0])) {
+        return data[0].map(seg => seg[0]).join('');
+      }
+    }
+  } catch (e) { /* prueba el siguiente */ }
+  try {
+    const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(chunk)}&langpair=en|es`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.responseData && data.responseData.translatedText) {
+        return data.responseData.translatedText;
+      }
+    }
+  } catch (e) { /* sin traducción */ }
+  return null;
+}
+async function translateText(text) {
+  if (!text) return text;
+  if (Object.prototype.hasOwnProperty.call(translationCache, text)) return translationCache[text];
+  const chunks = chunkText(text, 450);
+  const translated = [];
+  for (const chunk of chunks) {
+    const out = await translateChunk(chunk);
+    translated.push(out || chunk);
+  }
+  const result = translated.join(' ');
+  translationCache[text] = result;
+  saveTranslationCache();
+  return result;
+}
+let translationObserver = null;
+function hydrateTranslations(root) {
+  const scope = root || document;
+  const nodes = scope.querySelectorAll('.tr-lazy:not([data-translated])');
+  if (!nodes.length) return;
+  if (!translationObserver) {
+    translationObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        translationObserver.unobserve(el);
+        el.dataset.translated = '1';
+        translateText(el.dataset.en).then((es) => { if (es) el.textContent = es; });
+      });
+    }, { rootMargin: '250px' });
+  }
+  nodes.forEach((el) => translationObserver.observe(el));
+}
+
+function mapMealDbRecipe(m) {
+  const ingredients = [];
+  for (let i = 1; i <= 20; i++) {
+    const name = m[`strIngredient${i}`];
+    const measure = m[`strMeasure${i}`];
+    if (name && name.trim()) {
+      ingredients.push({ name: translateIngredientName(name.trim()), qty: translateMeasure((measure || '').trim()) });
+    }
+  }
+  return {
+    title: m.strMeal,
+    category: mapCategory(m.strCategory),
+    area: m.strArea || 'Internacional',
+    image: m.strMealThumb,
+    ingredients,
+    instructions: m.strInstructions || '',
+    style: 'normal',
+    source: 'api'
+  };
+}
+
+function getLocalMenuRecipes() {
+  const out = [];
+  const seen = new Set();
+  ['es', 'ro'].forEach(origin => {
+    menuData[origin].days.forEach(day => {
+      ['breakfast', 'lunch', 'dinner'].forEach(meal => {
+        day[`${meal}Options`].forEach(option => {
+          if (seen.has(option.title)) return;
+          seen.add(option.title);
+          let category = 'Platos principales';
+          if (option.category === 'Bebida') category = 'Bebidas';
+          else if (meal === 'breakfast') category = 'Desayuno';
+          out.push({
+            title: option.title,
+            category,
+            area: origin === 'es' ? 'España' : 'Rumanía',
+            image: null,
+            ingredients: option.ingredients,
+            instructions: option.instructions,
+            style: option.style,
+            source: 'local'
+          });
+        });
+      });
+    });
+  });
+  return out;
+}
+
+let catalogData = null;
+let catalogLoading = false;
+let catalogRenderLimit = 48;
+let catalogServings = 2;
+const catalogFilter = { text: '', category: 'all' };
+// Productos añadidos manualmente a la lista de la compra (desde recetas o a mano).
+const extraShoppingItems = new Map();
+
+function catalogBaseServings(recipe) {
+  return recipe.source === 'api' ? 4 : 2;
+}
+
+function adjustCatalogServings(amount) {
+  catalogServings = Math.max(1, catalogServings + amount);
+  const display = document.getElementById('catalog-servings');
+  if (display) display.innerText = catalogServings;
+  renderCatalog();
+}
+
+function showToast(message) {
+  let toast = document.getElementById('nutriplan-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'nutriplan-toast';
+    toast.className = 'fixed left-1/2 -translate-x-1/2 bottom-28 z-[60] bg-inverse-surface text-inverse-on-surface px-5 py-3 rounded-full shadow-lg text-sm font-semibold transition-opacity duration-300';
+    document.body.appendChild(toast);
+  }
+  toast.innerText = message;
+  toast.style.opacity = '1';
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => { toast.style.opacity = '0'; }, 2200);
+}
+
+function addRecipeToShopping(title) {
+  if (!catalogData) return;
+  const recipe = catalogData.find(r => r.title === title);
+  if (!recipe) return;
+  const scaled = scaleIngredients(recipe.ingredients, catalogServings / catalogBaseServings(recipe));
+  if (!scaled.length) {
+    showToast('Esta receta no tiene cantidades detalladas');
+    return;
+  }
+  scaled.forEach(item => {
+    const key = item.name.toLowerCase();
+    if (extraShoppingItems.has(key)) {
+      const existing = extraShoppingItems.get(key);
+      existing.qty = `${existing.qty} + ${item.qty}`;
+    } else {
+      extraShoppingItems.set(key, { name: item.name, qty: item.qty });
+    }
+  });
+  renderShoppingList();
+  showToast(`Añadido a la lista (${catalogServings} comensales): ${title}`);
+}
+
+function handleExtraItemKey(event) {
+  if (event.key !== 'Enter') return;
+  const value = event.target.value.trim();
+  if (!value) return;
+  const key = value.toLowerCase();
+  if (!extraShoppingItems.has(key)) {
+    extraShoppingItems.set(key, { name: value, qty: '' });
+  }
+  event.target.value = '';
+  renderShoppingList();
+  showToast(`Añadido: ${value}`);
+  switchView('cart');
+}
+
+function removeExtraItem(key) {
+  extraShoppingItems.delete(key);
+  renderShoppingList();
+}
+
+function clearExtraItems() {
+  extraShoppingItems.clear();
+  renderShoppingList();
+}
+
+async function ensureCatalogData() {
+  if (catalogData || catalogLoading) return;
+  catalogLoading = true;
+  renderCatalog();
+
+  const apiMeals = [];
+  try {
+    const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    const responses = await Promise.all(letters.map(letter =>
+      fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
+        .then(r => r.json())
+        .catch(() => ({ meals: null }))
+    ));
+    const seenIds = new Set();
+    responses.forEach(data => {
+      (data.meals || []).forEach(m => {
+        if (seenIds.has(m.idMeal)) return;
+        seenIds.add(m.idMeal);
+        apiMeals.push(mapMealDbRecipe(m));
+      });
+    });
+  } catch (e) { /* sin conexión: seguimos con el catálogo local */ }
+
+  const byTitle = new Map();
+  const add = (recipe) => {
+    const key = recipe.title.toLowerCase();
+    if (!byTitle.has(key)) byTitle.set(key, recipe);
+  };
+  apiMeals.forEach(add);
+  worldDishes.forEach(add);
+  getLocalMenuRecipes().forEach(add);
+
+  catalogData = Array.from(byTitle.values()).sort((a, b) => a.title.localeCompare(b.title, 'es'));
+  catalogLoading = false;
+}
+
+async function openCatalog() {
+  renderCatalog();
+  await ensureCatalogData();
+  renderCatalog();
+}
+
+function catalogCategories() {
+  const counts = {};
+  catalogData.forEach(r => { counts[r.category] = (counts[r.category] || 0) + 1; });
+  return Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+}
+
+function getFilteredCatalog() {
+  return catalogData.filter(recipe => {
+    if (catalogFilter.category === 'fav') return favoriteRecipes.has(recipe.title);
+    if (catalogFilter.category !== 'all' && recipe.category !== catalogFilter.category) return false;
+    if (catalogFilter.text) {
+      const haystack = `${recipe.title} ${recipe.area} ${recipe.category} ${recipe.ingredients.map(i => i.name).join(' ')}`.toLowerCase();
+      if (!haystack.includes(catalogFilter.text)) return false;
+    }
+    return true;
+  });
+}
+
+function renderCatalogCard(recipe) {
+  const isFavorite = favoriteRecipes.has(recipe.title);
+  const title = escapeHtml(recipe.title);
+  const area = escapeHtml(recipe.area || 'Internacional');
+  const category = escapeHtml(recipe.category);
+  const scaledIngredients = scaleIngredients(recipe.ingredients, catalogServings / catalogBaseServings(recipe));
+  const ingredientsHTML = scaledIngredients.length
+    ? `<ul class="list-disc list-inside mt-1 space-y-1">${scaledIngredients.slice(0, 12).map(i => `<li>${escapeHtml(`${i.qty} ${i.name}`.trim())}</li>`).join('')}</ul>`
+    : `<p class="mt-1">Plato típico de ${area}.</p>`;
+  let instructions = recipe.instructions || `Receta tradicional de ${recipe.area || 'la cocina internacional'}.`;
+  if (instructions.length > 260) instructions = `${instructions.slice(0, 260).trim()}…`;
+  const hasIngredients = scaledIngredients.length > 0;
+  const isApi = recipe.source === 'api';
+  const instrText = escapeHtml(instructions);
+  const titleEl = isApi
+    ? `<h4 class="font-headline-sm text-on-surface tr-lazy" data-en="${title}">${title}</h4>`
+    : `<h4 class="font-headline-sm text-on-surface">${title}</h4>`;
+  const instrEl = isApi
+    ? `<p class="mt-1 text-body-md text-on-surface tr-lazy" data-en="${instrText}">${instrText}</p>`
+    : `<p class="mt-1 text-body-md text-on-surface">${instrText}</p>`;
+
+  return `
+    <div class="bg-surface-container-lowest rounded-3xl shadow-sm border border-surface-container overflow-hidden flex flex-col">
+      <div class="relative h-44 w-full bg-surface-container-high">
+        ${dishImageHTML(recipe)}
+        <div class="absolute top-3 left-3 flex gap-2">
+          <span class="bg-white/90 backdrop-blur text-primary text-xs font-semibold px-2 py-1 rounded-full">${category}</span>
+          <span class="bg-white/90 backdrop-blur text-on-surface-variant text-xs font-semibold px-2 py-1 rounded-full">${area}</span>
+        </div>
+        <button data-fav="${title}" class="absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center ${isFavorite ? 'bg-secondary text-white' : 'bg-white/90 text-primary'} shadow-sm">
+          <span class="material-symbols-outlined" style="font-size:20px; font-variation-settings:'FILL' ${isFavorite ? 1 : 0};">favorite</span>
+        </button>
+      </div>
+      <div class="p-4 flex flex-col gap-3 flex-1">
+        ${titleEl}
+        <div class="text-label-md text-on-surface-variant">
+          <p class="font-semibold text-on-surface">Ingredientes <span class="text-primary">· ${catalogServings} comensales</span></p>
+          ${ingredientsHTML}
+        </div>
+        <div class="text-label-md text-on-surface-variant">
+          <p class="font-semibold text-on-surface">Modo de cocinar</p>
+          ${instrEl}
+        </div>
+        <button data-add="${title}" class="mt-auto w-full flex items-center justify-center gap-2 ${hasIngredients ? 'bg-primary-container text-on-primary-container' : 'bg-surface-container-high text-on-surface-variant'} font-semibold py-3 rounded-2xl active:scale-[0.98] transition-all">
+          <span class="material-symbols-outlined" style="font-size:20px;">add_shopping_cart</span>
+          Añadir a la lista
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function renderCatalog() {
+  const grid = document.getElementById('catalog-grid');
+  if (!grid) return;
+  const countEl = document.getElementById('catalog-count');
+  const chipsContainer = document.getElementById('catalog-chips');
+
+  if (!catalogData) {
+    if (chipsContainer) chipsContainer.innerHTML = '';
+    if (countEl) countEl.innerText = '';
+    grid.innerHTML = `
+      <div class="col-span-full rounded-3xl bg-surface-container-low p-10 text-center text-on-surface-variant">
+        <span class="material-symbols-outlined animate-spin text-primary" style="font-size:40px;">progress_activity</span>
+        <p class="mt-3">Cargando recetas de todo el mundo…</p>
+      </div>
+    `;
+    return;
+  }
+
+  if (chipsContainer) {
+    const chips = [{ id: 'all', label: 'Todos' }]
+      .concat(catalogCategories().map(c => ({ id: c, label: c })))
+      .concat([{ id: 'fav', label: 'Favoritos ♥' }]);
+    chipsContainer.innerHTML = chips.map(chip => `
+      <button onclick="setCatalogCategory('${chip.id.replace(/'/g, "\\'")}')" class="px-4 py-2 rounded-full font-label-lg text-label-lg whitespace-nowrap border border-surface-container transition-all ${catalogFilter.category === chip.id ? 'active-catalog' : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-variant'}">${escapeHtml(chip.label)}</button>
+    `).join('');
+  }
+
+  const filtered = getFilteredCatalog();
+  if (countEl) countEl.innerText = `${filtered.length} platos`;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="col-span-full rounded-3xl bg-surface-container-low p-6 text-center text-on-surface-variant">
+        No hay platos que coincidan con tu búsqueda.
+      </div>
+    `;
+    return;
+  }
+
+  const visible = filtered.slice(0, catalogRenderLimit);
+  const moreCount = filtered.length - visible.length;
+  grid.innerHTML = visible.map(renderCatalogCard).join('')
+    + (moreCount > 0
+      ? `<div class="col-span-full flex justify-center pt-2"><button onclick="catalogMore()" class="px-6 py-3 rounded-full bg-primary text-on-primary font-semibold shadow-sm active:scale-95 transition-all">Ver más platos (${moreCount})</button></div>`
+      : '');
+
+  grid.onclick = (event) => {
+    const favBtn = event.target.closest('[data-fav]');
+    if (favBtn) { toggleCatalogFavorite(favBtn.getAttribute('data-fav')); return; }
+    const addBtn = event.target.closest('[data-add]');
+    if (addBtn) { addRecipeToShopping(addBtn.getAttribute('data-add')); }
+  };
+
+  hydrateLazyImages(grid);
+  hydrateTranslations(grid);
+}
+
+function catalogSearch(value) {
+  catalogFilter.text = value.trim().toLowerCase();
+  catalogRenderLimit = 48;
+  renderCatalog();
+}
+
+function setCatalogCategory(category) {
+  catalogFilter.category = category;
+  catalogRenderLimit = 48;
+  renderCatalog();
+}
+
+function catalogMore() {
+  catalogRenderLimit += 48;
+  renderCatalog();
+}
+
+function toggleCatalogFavorite(title) {
+  if (favoriteRecipes.has(title)) {
+    favoriteRecipes.delete(title);
+  } else {
+    favoriteRecipes.add(title);
+  }
+  renderCatalog();
+}
+
+window.onload = initSystem;
