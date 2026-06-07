@@ -111,3 +111,35 @@ summary {
 summary::-webkit-details-marker {
   display: none;
 }
+
+/* ---------- Modo oscuro ---------- */
+html.dark, html.dark body { background: #10140f; color: #e6e8e3; }
+html.dark .bg-background,
+html.dark .bg-surface,
+html.dark .bg-surface-bright { background-color: #10140f !important; }
+html.dark .bg-surface-container-lowest,
+html.dark .bg-white { background-color: #1b201a !important; }
+html.dark .bg-surface-container-low { background-color: #1f241d !important; }
+html.dark .bg-surface-container,
+html.dark .bg-surface-container-high,
+html.dark .bg-surface-container-highest { background-color: #262b23 !important; }
+html.dark .text-on-surface,
+html.dark .text-on-background { color: #e6e8e3 !important; }
+html.dark .text-on-surface-variant,
+html.dark .text-outline { color: #aeb6a8 !important; }
+html.dark .border-surface-container,
+html.dark .border-surface-variant,
+html.dark .border-outline-variant { border-color: #333a31 !important; }
+html.dark header,
+html.dark nav { background-color: #161a14 !important; }
+html.dark .dish-lazy { background: #262b23; }
+
+/* ---------- Impresión / PDF ---------- */
+@media print {
+  header, nav, button, #catalog-chips { display: none !important; }
+  body { background: #fff !important; }
+  main { padding: 0 !important; max-width: none !important; }
+  .view-section.hidden { display: none !important; }
+  img { max-height: 220px; }
+  * { box-shadow: none !important; }
+}

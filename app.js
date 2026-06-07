@@ -749,7 +749,43 @@ let currentIntolerances = {
   marisco: false
 };
 
+// --- Persistencia: recuerda tus datos entre sesiones ---------------------
+function persistState() {
+  try {
+    localStorage.setItem('nutriplan-state', JSON.stringify({
+      currentOrigin, currentDayIndex, currentServings, currentMealServings, shoppingMode,
+      currentDiet, currentMenuStyle, currentIntolerances, catalogServings,
+      favorites: Array.from(favoriteRecipes),
+      selected: selectedMealIndices,
+      extras: Array.from(extraShoppingItems.entries()),
+      dark: document.documentElement.classList.contains('dark')
+    }));
+  } catch (e) {}
+}
+function restoreState() {
+  let s = null;
+  try { s = JSON.parse(localStorage.getItem('nutriplan-state') || 'null'); } catch (e) {}
+  if (!s) return;
+  if (s.currentOrigin) currentOrigin = s.currentOrigin;
+  if (typeof s.currentDayIndex === 'number') currentDayIndex = s.currentDayIndex;
+  if (typeof s.currentServings === 'number') currentServings = s.currentServings;
+  if (s.currentMealServings) currentMealServings = s.currentMealServings;
+  if (s.shoppingMode) shoppingMode = s.shoppingMode;
+  if (s.currentDiet) currentDiet = s.currentDiet;
+  if (s.currentMenuStyle) currentMenuStyle = s.currentMenuStyle;
+  if (s.currentIntolerances) currentIntolerances = s.currentIntolerances;
+  if (typeof s.catalogServings === 'number') catalogServings = s.catalogServings;
+  if (Array.isArray(s.favorites)) s.favorites.forEach(f => favoriteRecipes.add(f));
+  if (s.selected) ['es', 'ro'].forEach(o => { if (s.selected[o]) selectedMealIndices[o] = s.selected[o]; });
+  if (Array.isArray(s.extras)) s.extras.forEach(([k, v]) => extraShoppingItems.set(k, v));
+  if (s.dark) document.documentElement.classList.add('dark');
+}
+
 function initSystem() {
+  restoreState();
+  applyDarkModeButton();
+  const catalogServingsEl = document.getElementById('catalog-servings');
+  if (catalogServingsEl) catalogServingsEl.innerText = catalogServings;
   renderWeeks();
   renderOriginFilters();
   renderDietSelection();
@@ -759,6 +795,16 @@ function initSystem() {
   renderShoppingList();
   loadVisitCounter();
   switchView('plan');
+}
+
+function toggleDarkMode() {
+  document.documentElement.classList.toggle('dark');
+  applyDarkModeButton();
+  persistState();
+}
+function applyDarkModeButton() {
+  const btn = document.getElementById('dark-toggle');
+  if (btn) btn.innerText = document.documentElement.classList.contains('dark') ? 'Desactivar' : 'Activar';
 }
 
 // Contador de visitas (servicio gratuito). Cuenta una vez por navegador.
@@ -1122,13 +1168,11 @@ function setShoppingMode(mode) {
   renderShoppingList();
 }
 
-function renderShoppingList() {
-  const container = document.getElementById('shopping-list-sections');
+function collectShoppingFoods() {
   const foods = new Map();
   const dayIndexes = shoppingMode === 'weekly'
     ? menuData[currentOrigin].days.map((_, index) => index)
     : [currentDayIndex];
-
   dayIndexes.forEach(dayIndex => {
     const dailySelection = selectedMealIndices[currentOrigin][dayIndex];
     ['breakfast', 'lunch', 'dinner'].forEach(meal => {
@@ -1136,19 +1180,51 @@ function renderShoppingList() {
       if (mealServings === 0) return;
       const options = getMealOptionsForDay(dayIndex, meal);
       const option = options[dailySelection[meal] % options.length];
-      const factor = mealServings / 2;
-      scaleIngredients(adaptOption(option).ingredients, factor).forEach(item => {
+      scaleIngredients(adaptOption(option).ingredients, mealServings / 2).forEach(item => {
         const key = item.name.toLowerCase();
         if (foods.has(key)) {
-          const existing = foods.get(key);
-          existing.qty = `${existing.qty} + ${item.qty}`;
+          foods.get(key).qty = `${foods.get(key).qty} + ${item.qty}`;
         } else {
           foods.set(key, { ...item });
         }
       });
     });
   });
+  return foods;
+}
 
+function buildShoppingText() {
+  const lines = ['🛒 Lista de la compra · NutriPlan', ''];
+  const foods = collectShoppingFoods();
+  if (foods.size) {
+    lines.push('— Del menú —');
+    foods.forEach(item => lines.push(`• ${item.name}: ${item.qty}`));
+    lines.push('');
+  }
+  if (extraShoppingItems.size) {
+    lines.push('— Añadido por ti —');
+    extraShoppingItems.forEach(item => lines.push(`• ${item.name}${item.qty ? ': ' + item.qty : ''}`));
+  }
+  return lines.join('\n').trim();
+}
+
+function copyShoppingList() {
+  const text = buildShoppingText();
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => showToast('Lista copiada al portapapeles')).catch(() => showToast('No se pudo copiar'));
+  } else {
+    showToast('Tu navegador no permite copiar');
+  }
+}
+
+function shareShoppingWhatsApp() {
+  window.open('https://wa.me/?text=' + encodeURIComponent(buildShoppingText()), '_blank');
+}
+
+function renderShoppingList() {
+  persistState();
+  const container = document.getElementById('shopping-list-sections');
+  const foods = collectShoppingFoods();
   const modeLabel = shoppingMode === 'weekly' ? 'semana' : 'día';
   document.getElementById('shopping-mode-daily')?.classList.toggle('active-shopping', shoppingMode === 'daily');
   document.getElementById('shopping-mode-weekly')?.classList.toggle('active-shopping', shoppingMode === 'weekly');
@@ -1328,41 +1404,8 @@ Object.keys(worldRaw).forEach(area => {
 });
 
 // --- Traducción automática EN -> ES -------------------------------------
-// Diccionario de alimentos (traducción instantánea de ingredientes, sin internet).
-const ES_FOOD = {
-  'chicken': 'pollo', 'chicken breast': 'pechuga de pollo', 'chicken breasts': 'pechugas de pollo', 'chicken thighs': 'muslos de pollo', 'beef': 'ternera', 'minced beef': 'carne picada', 'beef mince': 'carne picada', 'ground beef': 'carne picada', 'pork': 'cerdo', 'lamb': 'cordero', 'lamb mince': 'cordero picado', 'bacon': 'bacon', 'sausage': 'salchicha', 'sausages': 'salchichas', 'ham': 'jamón', 'turkey': 'pavo', 'fish': 'pescado', 'salmon': 'salmón', 'tuna': 'atún', 'cod': 'bacalao', 'prawns': 'gambas', 'shrimp': 'gambas', 'duck': 'pato', 'mince': 'carne picada',
-  'oil': 'aceite', 'olive oil': 'aceite de oliva', 'vegetable oil': 'aceite vegetal', 'sunflower oil': 'aceite de girasol', 'butter': 'mantequilla', 'salt': 'sal', 'pepper': 'pimienta', 'black pepper': 'pimienta negra', 'sugar': 'azúcar', 'brown sugar': 'azúcar moreno', 'icing sugar': 'azúcar glas', 'flour': 'harina', 'plain flour': 'harina', 'self-raising flour': 'harina con levadura', 'water': 'agua', 'milk': 'leche', 'egg': 'huevo', 'eggs': 'huevos', 'egg yolk': 'yema de huevo', 'egg yolks': 'yemas de huevo', 'cheese': 'queso', 'cheddar cheese': 'queso cheddar', 'parmesan cheese': 'queso parmesano', 'parmesan': 'parmesano', 'mozzarella': 'mozzarella', 'cream': 'nata', 'double cream': 'nata para montar', 'sour cream': 'crema agria', 'yogurt': 'yogur', 'yoghurt': 'yogur',
-  'onion': 'cebolla', 'onions': 'cebollas', 'red onion': 'cebolla roja', 'spring onion': 'cebolleta', 'spring onions': 'cebolletas', 'garlic': 'ajo', 'garlic clove': 'diente de ajo', 'garlic cloves': 'dientes de ajo', 'tomato': 'tomate', 'tomatoes': 'tomates', 'tomato puree': 'tomate concentrado', 'chopped tomatoes': 'tomate triturado', 'tomato sauce': 'salsa de tomate', 'potato': 'patata', 'potatoes': 'patatas', 'carrot': 'zanahoria', 'carrots': 'zanahorias', 'celery': 'apio', 'bell pepper': 'pimiento', 'red pepper': 'pimiento rojo', 'green pepper': 'pimiento verde', 'chilli': 'chile', 'chili': 'chile', 'red chilli': 'chile rojo', 'mushroom': 'champiñón', 'mushrooms': 'champiñones', 'spinach': 'espinacas', 'lettuce': 'lechuga', 'cucumber': 'pepino', 'courgette': 'calabacín', 'zucchini': 'calabacín', 'aubergine': 'berenjena', 'eggplant': 'berenjena', 'peas': 'guisantes', 'green beans': 'judías verdes', 'beans': 'alubias', 'kidney beans': 'alubias rojas', 'chickpeas': 'garbanzos', 'lentils': 'lentejas', 'sweetcorn': 'maíz', 'corn': 'maíz', 'broccoli': 'brócoli', 'cauliflower': 'coliflor', 'cabbage': 'col', 'leek': 'puerro', 'leeks': 'puerros', 'ginger': 'jengibre', 'avocado': 'aguacate',
-  'lemon': 'limón', 'lime': 'lima', 'orange': 'naranja', 'apple': 'manzana', 'banana': 'plátano', 'coconut milk': 'leche de coco', 'coconut': 'coco', 'rice': 'arroz', 'basmati rice': 'arroz basmati', 'pasta': 'pasta', 'spaghetti': 'espaguetis', 'noodles': 'fideos', 'bread': 'pan', 'breadcrumbs': 'pan rallado', 'puff pastry': 'hojaldre', 'pastry': 'masa', 'oats': 'avena', 'honey': 'miel', 'soy sauce': 'salsa de soja', 'worcestershire sauce': 'salsa worcestershire', 'vinegar': 'vinagre', 'mustard': 'mostaza', 'mayonnaise': 'mayonesa', 'stock': 'caldo', 'chicken stock': 'caldo de pollo', 'beef stock': 'caldo de carne', 'vegetable stock': 'caldo de verduras', 'wine': 'vino', 'white wine': 'vino blanco', 'red wine': 'vino tinto', 'bay leaf': 'hoja de laurel', 'bay leaves': 'hojas de laurel', 'parsley': 'perejil', 'coriander': 'cilantro', 'cilantro': 'cilantro', 'basil': 'albahaca', 'oregano': 'orégano', 'thyme': 'tomillo', 'rosemary': 'romero', 'mint': 'menta', 'cinnamon': 'canela', 'cumin': 'comino', 'paprika': 'pimentón', 'turmeric': 'cúrcuma', 'curry powder': 'curry en polvo', 'chilli powder': 'chile en polvo', 'nutmeg': 'nuez moscada', 'vanilla extract': 'extracto de vainilla', 'vanilla': 'vainilla', 'chocolate': 'chocolate', 'dark chocolate': 'chocolate negro', 'cocoa': 'cacao', 'almonds': 'almendras', 'walnuts': 'nueces', 'peanuts': 'cacahuetes', 'raisins': 'pasas', 'baking powder': 'levadura en polvo', 'bicarbonate of soda': 'bicarbonato', 'yeast': 'levadura', 'cornflour': 'maicena', 'cornstarch': 'maicena', 'lemon juice': 'zumo de limón', 'lime juice': 'zumo de lima', 'lemon zest': 'ralladura de limón'
-};
-// Palabras sueltas (adjetivos/unidades) para traducir lo que no encaje como frase entera.
-const ES_WORD = Object.assign({}, ES_FOOD, {
-  'chopped': 'picado', 'sliced': 'en rodajas', 'diced': 'en dados', 'minced': 'picado', 'grated': 'rallado', 'fresh': 'fresco', 'dried': 'seco', 'ground': 'molido', 'large': 'grande', 'small': 'pequeño', 'medium': 'mediano', 'boneless': 'sin hueso', 'skinless': 'sin piel', 'whole': 'entero', 'of': 'de', 'and': 'y'
-});
-function capitalizeFirst(text) {
-  return text.charAt(0).toUpperCase() + text.slice(1);
-}
-function translateIngredientName(name) {
-  const lower = name.toLowerCase().trim();
-  if (ES_FOOD[lower]) return capitalizeFirst(ES_FOOD[lower]);
-  if (lower.endsWith('s') && ES_FOOD[lower.slice(0, -1)]) return capitalizeFirst(ES_FOOD[lower.slice(0, -1)]);
-  const words = lower.split(/\s+/).map(w => ES_WORD[w] || (w.endsWith('s') && ES_WORD[w.slice(0, -1)]) || w);
-  return capitalizeFirst(words.join(' '));
-}
-const ES_UNIT = [
-  [/\btablespoons?\b/gi, 'cucharadas'], [/\btbsp\b/gi, 'cucharadas'], [/\bteaspoons?\b/gi, 'cucharaditas'], [/\btsp\b/gi, 'cucharaditas'],
-  [/\bcups?\b/gi, 'tazas'], [/\bcloves?\b/gi, 'dientes'], [/\bpinch\b/gi, 'pizca'], [/\bslices?\b/gi, 'rodajas'], [/\bcan\b/gi, 'lata'],
-  [/\bpound(s)?\b/gi, 'libras'], [/\blb(s)?\b/gi, 'libras'], [/\boz\b/gi, 'onzas'], [/\bhandful\b/gi, 'puñado'], [/\bbunch\b/gi, 'manojo'],
-  [/\bdash\b/gi, 'chorrito'], [/\bto taste\b/gi, 'al gusto'], [/\bchopped\b/gi, 'picado'], [/\bsliced\b/gi, 'en rodajas'],
-  [/\bgrated\b/gi, 'rallado'], [/\blarge\b/gi, 'grande'], [/\bsmall\b/gi, 'pequeño'], [/\bmedium\b/gi, 'mediano'], [/\bfresh\b/gi, 'fresco']
-];
-function translateMeasure(measure) {
-  let out = measure;
-  ES_UNIT.forEach(([re, es]) => { out = out.replace(re, es); });
-  return out;
-}
-
-// Traducción de texto largo (pasos, títulos) bajo demanda, con caché en el navegador.
+// Las recetas de la API se traducen con un traductor real (respeta la gramática:
+// "chopped onion" -> "cebolla picada"), bajo demanda y con caché en el navegador.
 const translationCache = (() => {
   try { return JSON.parse(localStorage.getItem('nutriplan-trans') || '{}'); } catch (e) { return {}; }
 })();
@@ -1442,13 +1485,43 @@ function hydrateTranslations(root) {
   nodes.forEach((el) => translationObserver.observe(el));
 }
 
+// Líneas de ingredientes en inglés (origen para traducir por línea completa).
+function ingredientLinesEN(recipe) {
+  return recipe.ingredients.map(i => `${i.qty} ${i.name}`.replace(/\s+/g, ' ').trim());
+}
+function scaleLine(line, factor) {
+  return factor === 1 ? line : scaleIngredientQty(line, factor);
+}
+let ingredientObserver = null;
+function hydrateIngredients(root) {
+  const scope = root || document;
+  const lists = scope.querySelectorAll('ul.ing-lazy:not([data-done])');
+  if (!lists.length) return;
+  if (!ingredientObserver) {
+    ingredientObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const ul = entry.target;
+        ingredientObserver.unobserve(ul);
+        ul.dataset.done = '1';
+        const base = Number(ul.dataset.base) || 4;
+        translateText(ul.dataset.en).then((es) => {
+          const factor = catalogServings / base;
+          ul.innerHTML = es.split('\n').map(line => `<li>${escapeHtml(scaleLine(line, factor))}</li>`).join('');
+        });
+      });
+    }, { rootMargin: '250px' });
+  }
+  lists.forEach((ul) => ingredientObserver.observe(ul));
+}
+
 function mapMealDbRecipe(m) {
   const ingredients = [];
   for (let i = 1; i <= 20; i++) {
     const name = m[`strIngredient${i}`];
     const measure = m[`strMeasure${i}`];
     if (name && name.trim()) {
-      ingredients.push({ name: translateIngredientName(name.trim()), qty: translateMeasure((measure || '').trim()) });
+      ingredients.push({ name: name.trim(), qty: (measure || '').trim() });
     }
   }
   return {
@@ -1508,6 +1581,7 @@ function adjustCatalogServings(amount) {
   catalogServings = Math.max(1, catalogServings + amount);
   const display = document.getElementById('catalog-servings');
   if (display) display.innerText = catalogServings;
+  persistState();
   renderCatalog();
 }
 
@@ -1525,24 +1599,27 @@ function showToast(message) {
   showToast._timer = setTimeout(() => { toast.style.opacity = '0'; }, 2200);
 }
 
-function addRecipeToShopping(title) {
+async function addRecipeToShopping(title) {
   if (!catalogData) return;
   const recipe = catalogData.find(r => r.title === title);
   if (!recipe) return;
-  const scaled = scaleIngredients(recipe.ingredients, catalogServings / catalogBaseServings(recipe));
-  if (!scaled.length) {
+  if (!recipe.ingredients.length) {
     showToast('Esta receta no tiene cantidades detalladas');
     return;
   }
-  scaled.forEach(item => {
-    const key = item.name.toLowerCase();
-    if (extraShoppingItems.has(key)) {
-      const existing = extraShoppingItems.get(key);
-      existing.qty = `${existing.qty} + ${item.qty}`;
-    } else {
-      extraShoppingItems.set(key, { name: item.name, qty: item.qty });
-    }
+  const factor = catalogServings / catalogBaseServings(recipe);
+  let lines;
+  if (recipe.source === 'api') {
+    const es = await translateText(ingredientLinesEN(recipe).join('\n'));
+    lines = es.split('\n').map(line => scaleLine(line, factor));
+  } else {
+    lines = scaleIngredients(recipe.ingredients, factor).map(i => `${i.qty} ${i.name}`.trim());
+  }
+  lines.forEach(line => {
+    const key = line.toLowerCase();
+    if (!extraShoppingItems.has(key)) extraShoppingItems.set(key, { name: line, qty: '' });
   });
+  persistState();
   renderShoppingList();
   showToast(`Añadido a la lista (${catalogServings} comensales): ${title}`);
 }
@@ -1619,13 +1696,36 @@ function catalogCategories() {
   return Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
 }
 
+function normalizeText(text) {
+  return text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+}
+// Sinónimos español -> inglés para buscar ingredientes también en recetas de la API.
+const SEARCH_SYNONYMS = {
+  pollo: 'chicken', ternera: 'beef', vaca: 'beef', cerdo: 'pork', cordero: 'lamb', pavo: 'turkey',
+  pescado: 'fish', salmon: 'salmon', atun: 'tuna', bacalao: 'cod', gambas: 'prawn', gamba: 'prawn', marisco: 'seafood',
+  arroz: 'rice', pasta: 'pasta', fideos: 'noodle', huevo: 'egg', huevos: 'egg', queso: 'cheese', leche: 'milk',
+  nata: 'cream', mantequilla: 'butter', yogur: 'yogurt', tomate: 'tomato', cebolla: 'onion', ajo: 'garlic',
+  patata: 'potato', patatas: 'potato', zanahoria: 'carrot', champinones: 'mushroom', champinon: 'mushroom',
+  espinacas: 'spinach', guisantes: 'pea', garbanzos: 'chickpea', lentejas: 'lentil', alubias: 'bean', judias: 'bean',
+  limon: 'lemon', lima: 'lime', naranja: 'orange', manzana: 'apple', platano: 'banana', fresa: 'strawberry',
+  chocolate: 'chocolate', harina: 'flour', azucar: 'sugar', aceite: 'oil', pan: 'bread', miel: 'honey',
+  jengibre: 'ginger', curry: 'curry', coco: 'coconut', maiz: 'corn', calabacin: 'courgette', berenjena: 'aubergine',
+  pimiento: 'pepper', chile: 'chilli', vino: 'wine'
+};
 function getFilteredCatalog() {
+  const terms = catalogFilter.text
+    ? catalogFilter.text.split(',').map(t => normalizeText(t.trim())).filter(Boolean)
+    : [];
   return catalogData.filter(recipe => {
-    if (catalogFilter.category === 'fav') return favoriteRecipes.has(recipe.title);
-    if (catalogFilter.category !== 'all' && recipe.category !== catalogFilter.category) return false;
-    if (catalogFilter.text) {
-      const haystack = `${recipe.title} ${recipe.area} ${recipe.category} ${recipe.ingredients.map(i => i.name).join(' ')}`.toLowerCase();
-      if (!haystack.includes(catalogFilter.text)) return false;
+    if (catalogFilter.category === 'fav') {
+      if (!favoriteRecipes.has(recipe.title)) return false;
+    } else if (catalogFilter.category !== 'all' && recipe.category !== catalogFilter.category) {
+      return false;
+    }
+    if (terms.length) {
+      const haystack = normalizeText(`${recipe.title} ${recipe.area} ${recipe.category} ${recipe.ingredients.map(i => i.name).join(' ')}`);
+      const matchesAll = terms.every(term => haystack.includes(term) || (SEARCH_SYNONYMS[term] && haystack.includes(SEARCH_SYNONYMS[term])));
+      if (!matchesAll) return false;
     }
     return true;
   });
@@ -1636,13 +1736,28 @@ function renderCatalogCard(recipe) {
   const title = escapeHtml(recipe.title);
   const area = escapeHtml(recipe.area || 'Internacional');
   const category = escapeHtml(recipe.category);
-  const scaledIngredients = scaleIngredients(recipe.ingredients, catalogServings / catalogBaseServings(recipe));
-  const ingredientsHTML = scaledIngredients.length
-    ? `<ul class="list-disc list-inside mt-1 space-y-1">${scaledIngredients.slice(0, 12).map(i => `<li>${escapeHtml(`${i.qty} ${i.name}`.trim())}</li>`).join('')}</ul>`
-    : `<p class="mt-1">Plato típico de ${area}.</p>`;
+  const base = catalogBaseServings(recipe);
+  const factor = catalogServings / base;
+  const hasIngredients = recipe.ingredients.length > 0;
+  let ingredientsHTML;
+  if (!hasIngredients) {
+    ingredientsHTML = `<p class="mt-1">Plato típico de ${area}.</p>`;
+  } else if (recipe.source === 'api') {
+    // Ingredientes en inglés -> traducción por línea completa (con caché y escalado).
+    const baseLines = ingredientLinesEN(recipe);
+    const joinedEN = baseLines.join('\n');
+    if (Object.prototype.hasOwnProperty.call(translationCache, joinedEN)) {
+      const esLines = translationCache[joinedEN].split('\n');
+      ingredientsHTML = `<ul class="list-disc list-inside mt-1 space-y-1">${esLines.map(line => `<li>${escapeHtml(scaleLine(line, factor))}</li>`).join('')}</ul>`;
+    } else {
+      ingredientsHTML = `<ul class="list-disc list-inside mt-1 space-y-1 ing-lazy" data-base="${base}" data-en="${escapeHtml(joinedEN)}">${baseLines.map(line => `<li>${escapeHtml(scaleLine(line, factor))}</li>`).join('')}</ul>`;
+    }
+  } else {
+    const scaled = scaleIngredients(recipe.ingredients, factor);
+    ingredientsHTML = `<ul class="list-disc list-inside mt-1 space-y-1">${scaled.slice(0, 14).map(i => `<li>${escapeHtml(`${i.qty} ${i.name}`.trim())}</li>`).join('')}</ul>`;
+  }
   let instructions = recipe.instructions || `Receta tradicional de ${recipe.area || 'la cocina internacional'}.`;
-  if (instructions.length > 260) instructions = `${instructions.slice(0, 260).trim()}…`;
-  const hasIngredients = scaledIngredients.length > 0;
+  if (instructions.length > 320) instructions = `${instructions.slice(0, 320).trim()}…`;
   const isApi = recipe.source === 'api';
   const instrText = escapeHtml(instructions);
   const titleEl = isApi
@@ -1738,6 +1853,7 @@ function renderCatalog() {
 
   hydrateLazyImages(grid);
   hydrateTranslations(grid);
+  hydrateIngredients(grid);
 }
 
 function catalogSearch(value) {
@@ -1763,7 +1879,13 @@ function toggleCatalogFavorite(title) {
   } else {
     favoriteRecipes.add(title);
   }
+  persistState();
   renderCatalog();
 }
 
 window.onload = initSystem;
+
+// PWA: registra el Service Worker para poder instalar la app y usarla offline.
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}

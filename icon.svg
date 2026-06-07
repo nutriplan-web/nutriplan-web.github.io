@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#416743"/>
+  <g fill="none" stroke="#ffffff" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Tenedor -->
+    <path d="M170 120 v90 a26 26 0 0 0 52 0 v-90" />
+    <path d="M196 120 v300" />
+    <!-- Cuchara/cuchillo -->
+    <path d="M320 120 c-34 0 -52 40 -52 90 c0 34 22 50 42 54 l-2 156" />
+  </g>
+  <circle cx="256" cy="300" r="120" fill="none" stroke="#c2eec0" stroke-width="16" opacity="0.65"/>
+</svg>

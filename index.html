@@ -8,6 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="styles.css"/>
+    <link rel="manifest" href="manifest.json"/>
+    <meta name="theme-color" content="#416743"/>
+    <link rel="apple-touch-icon" href="icon.svg"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-title" content="NutriPlan"/>
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -233,7 +238,7 @@
 
             <div class="relative group">
                 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
-                <input oninput="catalogSearch(this.value)" class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary text-body-md placeholder:text-outline-variant transition-all" placeholder="Busca un plato o ingrediente..." type="text"/>
+                <input oninput="catalogSearch(this.value)" class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary text-body-md placeholder:text-outline-variant transition-all" placeholder="Busca un plato o lo que tienes: pollo, arroz..." type="text"/>
             </div>
 
             <div class="flex items-center justify-between gap-3 rounded-3xl bg-surface-container-low p-3">
@@ -278,6 +283,17 @@
                   <button id="shopping-mode-daily" onclick="setShoppingMode('daily')" class="px-4 py-2 rounded-full text-label-md text-on-surface-variant transition-all">Diaria</button>
                   <button id="shopping-mode-weekly" onclick="setShoppingMode('weekly')" class="px-4 py-2 rounded-full text-label-md text-on-surface-variant transition-all">Semanal</button>
                 </div>
+            </div>
+
+            <div class="flex gap-3">
+                <button onclick="copyShoppingList()" class="flex-1 flex items-center justify-center gap-2 bg-surface-container-high text-on-surface font-semibold py-3 rounded-2xl active:scale-[0.98] transition-all">
+                    <span class="material-symbols-outlined" style="font-size:20px;">content_copy</span>
+                    Copiar
+                </button>
+                <button onclick="shareShoppingWhatsApp()" class="flex-1 flex items-center justify-center gap-2 bg-primary text-on-primary font-semibold py-3 rounded-2xl active:scale-[0.98] transition-all">
+                    <span class="material-symbols-outlined" style="font-size:20px;">share</span>
+                    WhatsApp
+                </button>
             </div>
 
             <div id="shopping-list-sections" class="space-y-stack-lg"></div>
@@ -354,6 +370,25 @@
                         <p class="text-label-md text-on-surface-variant">Selecciona recetas marinas seguras</p>
                     </button>
                 </div>
+            </section>
+
+            <!-- TEMA -->
+            <section class="space-y-stack-md">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">dark_mode</span>
+                    <h3 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface">Apariencia</h3>
+                </div>
+                <div class="flex items-center justify-between rounded-3xl bg-surface-container-low p-4">
+                    <div>
+                        <p class="font-label-lg text-on-surface">Modo oscuro</p>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">Cambia el aspecto de la app</p>
+                    </div>
+                    <button id="dark-toggle" onclick="toggleDarkMode()" class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface font-semibold active:scale-95 transition-all">Activar</button>
+                </div>
+                <button onclick="window.print()" class="w-full flex items-center justify-center gap-2 bg-surface-container-high text-on-surface font-semibold py-3 rounded-2xl active:scale-[0.98] transition-all">
+                    <span class="material-symbols-outlined" style="font-size:20px;">print</span>
+                    Imprimir / Guardar como PDF
+                </button>
             </section>
 
             <!-- ACERCA DE: contador de visitas + legal -->
