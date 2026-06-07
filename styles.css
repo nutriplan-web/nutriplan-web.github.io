@@ -104,3 +104,10 @@ img.dish-lazy.dish-img-loaded {
 @keyframes nutriplan-spin {
   to { transform: rotate(360deg); }
 }
+
+summary {
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}

@@ -757,7 +757,30 @@ function initSystem() {
   renderIntolerances();
   loadDayDetails();
   renderShoppingList();
+  loadVisitCounter();
   switchView('plan');
+}
+
+// Contador de visitas (servicio gratuito). Cuenta una vez por navegador.
+async function loadVisitCounter() {
+  const el = document.getElementById('visit-counter');
+  const ns = 'nutriplan-app-florrincheptine';
+  const key = 'home';
+  let alreadyCounted = false;
+  try { alreadyCounted = localStorage.getItem('nutriplan-visited') === '1'; } catch (e) {}
+  const endpoint = alreadyCounted ? 'get' : 'hit';
+  try {
+    const res = await fetch(`https://abacus.jasoncameron.dev/${endpoint}/${ns}/${key}`);
+    const data = await res.json();
+    if (!alreadyCounted) {
+      try { localStorage.setItem('nutriplan-visited', '1'); } catch (e) {}
+    }
+    if (el && typeof data.value === 'number') {
+      el.innerText = data.value.toLocaleString('es-ES');
+    }
+  } catch (e) {
+    if (el) el.innerText = '—';
+  }
 }
 
 function switchView(viewId) {
@@ -1216,6 +1239,24 @@ function mapCategory(cat) {
   return MEALDB_CATEGORY_ES[cat] || cat || 'Varios';
 }
 
+// Traduce el país/cocina de TheMealDB (en inglés) al español.
+const MEALDB_AREA_ES = {
+  American: 'Estadounidense', British: 'Británica', Canadian: 'Canadiense', Chinese: 'China',
+  Croatian: 'Croata', Dutch: 'Holandesa', Egyptian: 'Egipcia', Filipino: 'Filipina', French: 'Francesa',
+  Greek: 'Griega', Indian: 'India', Irish: 'Irlandesa', Italian: 'Italiana', Jamaican: 'Jamaicana',
+  Japanese: 'Japonesa', Kenyan: 'Keniana', Malaysian: 'Malasia', Mexican: 'Mexicana', Moroccan: 'Marroquí',
+  Polish: 'Polaca', Portuguese: 'Portuguesa', Russian: 'Rusa', Spanish: 'Española', Thai: 'Tailandesa',
+  Tunisian: 'Tunecina', Turkish: 'Turca', Ukrainian: 'Ucraniana', Vietnamese: 'Vietnamita',
+  Algerian: 'Argelina', Argentinian: 'Argentina', Australian: 'Australiana', Norwegian: 'Noruega',
+  'Saudi Arabian': 'Saudí', Slovakian: 'Eslovaca', Syrian: 'Siria', Uruguayan: 'Uruguaya',
+  Venezuelan: 'Venezolana', France: 'Francesa', India: 'India', Netherlands: 'Holandesa',
+  Argentina: 'Argentina', Norway: 'Noruega', Slovakia: 'Eslovaca', Uruguay: 'Uruguaya',
+  Venezuela: 'Venezolana', Unknown: 'Internacional'
+};
+function mapArea(area) {
+  return MEALDB_AREA_ES[area] || area || 'Internacional';
+}
+
 // Catálogo local de platos famosos del mundo, organizado por país y categoría.
 // (Las fotos se cargan bajo demanda desde Wikipedia.)
 const worldRaw = {
@@ -1413,7 +1454,7 @@ function mapMealDbRecipe(m) {
   return {
     title: m.strMeal,
     category: mapCategory(m.strCategory),
-    area: m.strArea || 'Internacional',
+    area: mapArea(m.strArea),
     image: m.strMealThumb,
     ingredients,
     instructions: m.strInstructions || '',

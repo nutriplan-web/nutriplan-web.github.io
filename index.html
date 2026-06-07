@@ -355,29 +355,84 @@
                     </button>
                 </div>
             </section>
+
+            <!-- ACERCA DE: contador de visitas + legal -->
+            <section class="space-y-stack-md">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">info</span>
+                    <h3 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface">Acerca de NutriPlan</h3>
+                </div>
+
+                <div class="flex items-center justify-between rounded-3xl bg-surface-container-low p-4">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary">visibility</span>
+                        <div>
+                            <p class="font-label-md text-label-md text-on-surface-variant">Visitas a la página</p>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant">Personas que han abierto la app</p>
+                        </div>
+                    </div>
+                    <span id="visit-counter" class="font-data-display text-data-display text-primary">…</span>
+                </div>
+
+                <div class="rounded-3xl bg-surface-container-low divide-y divide-surface-variant/40 overflow-hidden">
+                    <details class="group">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+                            <span class="font-label-lg text-on-surface">Aviso legal</span>
+                            <span class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <p class="px-4 pb-4 text-body-sm text-on-surface-variant">NutriPlan es una aplicación gratuita de uso personal y orientativo. El contenido se ofrece "tal cual", sin garantías. El responsable de la web no se hace responsable del uso que se haga de la información ni de errores u omisiones en recetas, cantidades o datos nutricionales.</p>
+                    </details>
+                    <details class="group">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+                            <span class="font-label-lg text-on-surface">Privacidad y datos</span>
+                            <span class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="px-4 pb-4 text-body-sm text-on-surface-variant space-y-2">
+                            <p>No se solicita registro ni datos personales. Tus preferencias (dieta, comensales, lista de la compra, favoritos) se guardan <strong>solo en tu navegador</strong> (localStorage) y no se envían a ningún servidor propio.</p>
+                            <p>Para mostrar recetas, fotos y traducciones, la app consulta servicios externos gratuitos (ver Créditos). El contador de visitas guarda únicamente un número total y anónimo, sin identificarte.</p>
+                        </div>
+                    </details>
+                    <details class="group">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+                            <span class="font-label-lg text-on-surface">Aviso nutricional</span>
+                            <span class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <p class="px-4 pb-4 text-body-sm text-on-surface-variant">La información nutricional y las adaptaciones por dieta o alergias son orientativas y <strong>no sustituyen el consejo de un médico o dietista-nutricionista</strong>. Si tienes alergias o intolerancias, verifica siempre los ingredientes de cada producto antes de consumirlo.</p>
+                    </details>
+                    <details class="group">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+                            <span class="font-label-lg text-on-surface">Créditos de datos</span>
+                            <span class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <p class="px-4 pb-4 text-body-sm text-on-surface-variant">Recetas e imágenes: TheMealDB y Wikimedia/Wikipedia. Traducciones: servicios de traducción gratuitos. Iconos: Material Symbols (Google). Contador: abacus.jasoncameron.dev. Cada servicio pertenece a sus respectivos propietarios.</p>
+                    </details>
+                </div>
+
+                <p class="text-center text-label-md text-on-surface-variant pt-2">NutriPlan · Hecho con 💚 · Uso personal</p>
+            </section>
         </div>
 
     </main>
 
     <!-- GLOBAL BOTTOM NAVIGATION BAR -->
     <nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-gutter py-2 pb-safe bg-surface dark:bg-surface-container shadow-[0px_-4px_20px_0px_rgba(65,103,67,0.04)] rounded-t-xl">
-        <button id="nav-plan" onclick="switchView('plan')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-4 py-1 transition-all duration-200">
-            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+        <button id="nav-plan" onclick="switchView('plan')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
+            <span class="material-symbols-outlined">calendar_month</span>
             <span class="font-label-md text-label-md">Plan</span>
         </button>
-        <button id="nav-recipes" onclick="switchView('recipes')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-200">
+        <button id="nav-recipes" onclick="switchView('recipes')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">today</span>
             <span class="font-label-md text-label-md">Día</span>
         </button>
-        <button id="nav-catalog" onclick="switchView('catalog')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-200">
+        <button id="nav-catalog" onclick="switchView('catalog')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">restaurant_menu</span>
             <span class="font-label-md text-label-md">Recetas</span>
         </button>
-        <button id="nav-cart" onclick="switchView('cart')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-200">
+        <button id="nav-cart" onclick="switchView('cart')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">shopping_cart</span>
             <span class="font-label-md text-label-md">Lista</span>
         </button>
-        <button id="nav-profile" onclick="switchView('profile')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-200">
+        <button id="nav-profile" onclick="switchView('profile')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">person</span>
             <span class="font-label-md text-label-md">Perfil</span>
         </button>
