@@ -1,22 +1,8 @@
 # Publicar y mantener NutriPlan (GitHub Pages)
 
-La app está publicada con GitHub Pages desde el repositorio
-`florrincheptine-skech/menu-diario`.
-
-## Dirección corta (un solo paso, gratis)
-
-Para que la app quede en **https://florrincheptine-skech.github.io/** (sin el
-`/menu-diario/` final), renombra el repositorio:
-
-1. Abre https://github.com/florrincheptine-skech/menu-diario/settings
-2. En el primer campo ("Repository name") escribe exactamente:
-   `florrincheptine-skech.github.io`
-3. Pulsa **Rename**.
-4. Ve a **Settings → Pages** y comprueba que Source sigue siendo
-   *Deploy from a branch* → `main` → `/ (root)`.
-5. En ~1 minuto la app responde en https://florrincheptine-skech.github.io/
-
-> El enlace antiguo (…/menu-diario/) dejará de funcionar; comparte el nuevo.
+La app está publicada en **https://florrincheptine-sketch.github.io/** desde el
+repositorio `florrincheptine-sketch/florrincheptine-sketch.github.io` (la URL es
+corta porque el repo lleva el nombre especial de usuario de GitHub Pages).
 
 ## Publicar cambios
 
@@ -26,15 +12,16 @@ En la carpeta del proyecto, ejecuta:
 ./publicar.sh
 ```
 
-Te pedirá tu usuario de GitHub y un **token** (créalo en
-https://github.com/settings/tokens → "Tokens (classic)" → permiso `repo`).
+Las credenciales ya están guardadas en este equipo (`~/.git-credentials`).
+Si el token caduca o se revoca, crea otro en
+https://github.com/settings/tokens → "Tokens (classic)" → permiso `repo`.
 
 ## Salir en Google (Search Console)
 
 Google tarda semanas en encontrar una web nueva por sí solo. Para acelerarlo:
 
 1. Entra en https://search.google.com/search-console con tu cuenta de Google.
-2. Añade la propiedad **Prefijo de URL**: `https://florrincheptine-skech.github.io/`
+2. Añade la propiedad **Prefijo de URL**: `https://florrincheptine-sketch.github.io/`
 3. Verifica con la opción **Etiqueta HTML**: te dará una línea tipo
    `<meta name="google-site-verification" content="XXXX"/>`.
    Pásamela y la añado al `index.html` (o pégala tú dentro de `<head>`),
