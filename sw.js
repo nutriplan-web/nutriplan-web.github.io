@@ -1,6 +1,13 @@
-// Service Worker de NutriPlan: permite instalar la app y usar el "esqueleto" sin conexión.
-const CACHE = 'nutriplan-v1';
-const ASSETS = ['./', './index.html', './app.js', './styles.css', './icon.svg', './manifest.json'];
+// Service Worker de NutriPlan: instala la app completa (incluidos los datos de
+// recetas y fotos) para que funcione rápida, estable y sin conexión.
+const CACHE = 'nutriplan-v2';
+const ASSETS = [
+  './', './index.html', './app.js', './styles.css', './icon.svg', './manifest.json',
+  './icon-192.png', './icon-512.png',
+  './recipes.json', './menu_images.json'
+];
+// Ficheros de datos grandes que no cambian entre versiones: se sirven de caché.
+const DATA_FILES = ['recipes.json', 'menu_images.json'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -19,13 +26,31 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
-  // Solo gestionamos recursos propios; las APIs externas (recetas, fotos, traducción) van directas a la red.
+  // Solo gestionamos recursos propios; lo externo (fotos, contador) va directo a la red.
   if (url.origin !== location.origin) return;
+
+  const isData = DATA_FILES.some((f) => url.pathname.endsWith('/' + f));
+  if (isData) {
+    // Datos empaquetados: caché primero (instantáneo y fiable), red solo si faltan.
+    event.respondWith(
+      caches.match(event.request).then((cached) => cached || fetch(event.request).then((response) => {
+        const copy = response.clone();
+        caches.open(CACHE).then((cache) => cache.put(event.request, copy));
+        return response;
+      }))
+    );
+    return;
+  }
+
+  // App (HTML/JS/CSS): red primero para recibir actualizaciones al instante,
+  // con la copia en caché como respaldo cuando no hay conexión.
   event.respondWith(
-    caches.match(event.request).then((cached) => cached || fetch(event.request).then((response) => {
+    fetch(event.request).then((response) => {
       const copy = response.clone();
       caches.open(CACHE).then((cache) => cache.put(event.request, copy));
       return response;
-    }).catch(() => caches.match('./index.html')))
+    }).catch(() =>
+      caches.match(event.request).then((cached) => cached || caches.match('./index.html'))
+    )
   );
 });

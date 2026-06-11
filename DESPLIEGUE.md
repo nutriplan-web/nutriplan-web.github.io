@@ -1,52 +1,53 @@
-# Publicar NutriPlan gratis en internet (GitHub Pages)
+# Publicar y mantener NutriPlan (GitHub Pages)
 
-La app es 100% estática (HTML + JS + CSS), así que se puede alojar gratis y sin
-servidor. Las recetas, fotos y traducciones se obtienen de servicios públicos
-gratuitos desde el navegador del usuario. **No hace falta login: es abierta.**
+La app está publicada con GitHub Pages desde el repositorio
+`florrincheptine-skech/menu-diario`.
 
-El repositorio ya está inicializado y con un primer commit hecho. Solo falta
-subirlo a tu cuenta de GitHub y activar Pages.
+## Dirección corta (un solo paso, gratis)
 
-## Opción A — GitHub Pages (la que elegiste)
+Para que la app quede en **https://florrincheptine-skech.github.io/** (sin el
+`/menu-diario/` final), renombra el repositorio:
 
-1. Entra en https://github.com y crea un repositorio **público** nuevo, por
-   ejemplo `menu-diario`. **No** marques "Add a README".
+1. Abre https://github.com/florrincheptine-skech/menu-diario/settings
+2. En el primer campo ("Repository name") escribe exactamente:
+   `florrincheptine-skech.github.io`
+3. Pulsa **Rename**.
+4. Ve a **Settings → Pages** y comprueba que Source sigue siendo
+   *Deploy from a branch* → `main` → `/ (root)`.
+5. En ~1 minuto la app responde en https://florrincheptine-skech.github.io/
 
-2. En una terminal, dentro de la carpeta `Menu Diario`, ejecuta (cambia
-   `TU-USUARIO` por tu usuario de GitHub):
+> El enlace antiguo (…/menu-diario/) dejará de funcionar; comparte el nuevo.
 
-   ```bash
-   git remote add origin https://github.com/TU-USUARIO/menu-diario.git
-   git branch -M main
-   git push -u origin main
-   ```
+## Publicar cambios
 
-   Te pedirá usuario y un **token** (no la contraseña). Crea el token en
-   https://github.com/settings/tokens (Tokens classic → marca el permiso `repo`).
+En la carpeta del proyecto, ejecuta:
 
-3. En GitHub, ve a tu repo → **Settings** → **Pages**:
-   - **Source**: *Deploy from a branch*
-   - **Branch**: `main` y carpeta `/ (root)` → **Save**
+```bash
+./publicar.sh
+```
 
-4. Espera ~1 minuto. Tu app estará en:
+Te pedirá tu usuario de GitHub y un **token** (créalo en
+https://github.com/settings/tokens → "Tokens (classic)" → permiso `repo`).
 
-   ```
-   https://TU-USUARIO.github.io/menu-diario/
-   ```
+## Salir en Google (Search Console)
 
-   Ese enlace lo puedes abrir y compartir desde cualquier móvil u ordenador.
+Google tarda semanas en encontrar una web nueva por sí solo. Para acelerarlo:
 
-## Opción B — Más fácil aún, sin comandos (Netlify Drop)
+1. Entra en https://search.google.com/search-console con tu cuenta de Google.
+2. Añade la propiedad **Prefijo de URL**: `https://florrincheptine-skech.github.io/`
+3. Verifica con la opción **Etiqueta HTML**: te dará una línea tipo
+   `<meta name="google-site-verification" content="XXXX"/>`.
+   Pásamela y la añado al `index.html` (o pégala tú dentro de `<head>`),
+   publica con `./publicar.sh` y pulsa "Verificar".
+4. En Search Console, ve a **Sitemaps** y envía: `sitemap.xml`
+5. En **Inspección de URLs**, pega la URL de la app y pulsa
+   **Solicitar indexación**.
 
-Si prefieres no usar git:
-
-1. Entra en https://app.netlify.com/drop
-2. Arrastra la carpeta `Menu Diario` entera a la página.
-3. Te dará una URL pública gratuita al instante (puedes personalizar el nombre).
+Con esto Google suele indexar en días. La app ya incluye título, descripción,
+datos estructurados, `robots.txt` y `sitemap.xml` para salir bien presentada.
 
 ## Notas
 
-- `serve.py` solo sirve para verlo en tu móvil por la red local; **no es
-  necesario** para la web publicada.
-- Si actualizas el código, vuelve a hacer `git add -A && git commit -m "cambios"
-  && git push` y Pages se actualiza solo.
+- `serve.py` es solo para verla en local/móvil; no afecta a la web publicada.
+- Si regeneras recetas o fotos (`build_recipes.py`, `build_menu_images.py`),
+  recuerda publicar también los JSON.

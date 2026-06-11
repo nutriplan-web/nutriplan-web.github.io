@@ -6,8 +6,9 @@ function createRecipe(title, calories, protein, fats, ingredients, instructions,
 
 // ---------------------------------------------------------------------------
 // SISTEMA DE IMÁGENES REALES
-// - Recetas de API (TheMealDB): foto auténtica del plato incluida en los datos.
-// - Resto de platos: se resuelve la foto real desde Wikipedia bajo demanda.
+// - Recetas del recetario (recipes.json): foto auténtica incluida en los datos.
+// - Resto de platos: foto pre-resuelta en menu_images.json (generado una vez
+//   con build_menu_images.py); Wikipedia en vivo solo para títulos nuevos.
 // - Si no hay foto, se muestra un marcador neutro (nunca una foto equivocada).
 // ---------------------------------------------------------------------------
 const PLACEHOLDER_IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='30'%3E%3Crect width='100%25' height='100%25' fill='%23e3efe1'/%3E%3C/svg%3E";
@@ -48,8 +49,14 @@ function wikiQueries(title) {
   return Array.from(new Set(list)).filter(Boolean);
 }
 
-// Devuelve la URL de la foto real del plato (Wikipedia ES, RO y EN). Cachea el resultado.
+// Fotos pre-resueltas de los platos locales (fichero empaquetado con la app).
+const menuImagesPromise = fetch('menu_images.json').then(r => (r.ok ? r.json() : {})).catch(() => ({}));
+
+// Devuelve la URL de la foto real del plato. Primero consulta menu_images.json
+// (sin red, fiable); solo si el título no está ahí pregunta a Wikipedia en vivo.
 async function resolveDishImage(title) {
+  const preResolved = await menuImagesPromise;
+  if (Object.prototype.hasOwnProperty.call(preResolved, title)) return preResolved[title];
   if (Object.prototype.hasOwnProperty.call(wikiImageCache, title)) return wikiImageCache[title];
   const queries = [];
   if (dishWikiOverride[title]) queries.push(dishWikiOverride[title]);
@@ -1304,37 +1311,8 @@ function renderShoppingList() {
 // RECETARIO MUNDIAL (galería de todos los platos, por categoría, +1000)
 // ===========================================================================
 
-// Mapea las categorías en inglés de TheMealDB a español.
-const MEALDB_CATEGORY_ES = {
-  Beef: 'Carne', Chicken: 'Pollo', Pork: 'Cerdo', Lamb: 'Cordero', Goat: 'Cabra',
-  Seafood: 'Pescado y marisco', Pasta: 'Pasta', Dessert: 'Postres', Breakfast: 'Desayuno',
-  Vegan: 'Vegano', Vegetarian: 'Vegetariano', Side: 'Guarnición', Starter: 'Aperitivos',
-  Miscellaneous: 'Varios'
-};
-function mapCategory(cat) {
-  return MEALDB_CATEGORY_ES[cat] || cat || 'Varios';
-}
-
-// Traduce el país/cocina de TheMealDB (en inglés) al español.
-const MEALDB_AREA_ES = {
-  American: 'Estadounidense', British: 'Británica', Canadian: 'Canadiense', Chinese: 'China',
-  Croatian: 'Croata', Dutch: 'Holandesa', Egyptian: 'Egipcia', Filipino: 'Filipina', French: 'Francesa',
-  Greek: 'Griega', Indian: 'India', Irish: 'Irlandesa', Italian: 'Italiana', Jamaican: 'Jamaicana',
-  Japanese: 'Japonesa', Kenyan: 'Keniana', Malaysian: 'Malasia', Mexican: 'Mexicana', Moroccan: 'Marroquí',
-  Polish: 'Polaca', Portuguese: 'Portuguesa', Russian: 'Rusa', Spanish: 'Española', Thai: 'Tailandesa',
-  Tunisian: 'Tunecina', Turkish: 'Turca', Ukrainian: 'Ucraniana', Vietnamese: 'Vietnamita',
-  Algerian: 'Argelina', Argentinian: 'Argentina', Australian: 'Australiana', Norwegian: 'Noruega',
-  'Saudi Arabian': 'Saudí', Slovakian: 'Eslovaca', Syrian: 'Siria', Uruguayan: 'Uruguaya',
-  Venezuelan: 'Venezolana', France: 'Francesa', India: 'India', Netherlands: 'Holandesa',
-  Argentina: 'Argentina', Norway: 'Noruega', Slovakia: 'Eslovaca', Uruguay: 'Uruguaya',
-  Venezuela: 'Venezolana', Unknown: 'Internacional'
-};
-function mapArea(area) {
-  return MEALDB_AREA_ES[area] || area || 'Internacional';
-}
-
 // Catálogo local de platos famosos del mundo, organizado por país y categoría.
-// (Las fotos se cargan bajo demanda desde Wikipedia.)
+// (Las fotos se resuelven desde menu_images.json, generado una vez con build_menu_images.py.)
 const worldRaw = {
   'Japón': { 'Pescado y marisco': ['Sushi', 'Sashimi', 'Tempura'], 'Sopas': ['Ramen', 'Udon', 'Sopa de miso'], 'Carne': ['Yakitori', 'Tonkatsu', 'Sukiyaki', 'Katsudon'], 'Aperitivos': ['Gyoza', 'Okonomiyaki', 'Takoyaki', 'Onigiri'], 'Postres': ['Mochi', 'Dorayaki'] },
   'China': { 'Aperitivos': ['Dim sum', 'Rollito de primavera', 'Baozi', 'Jiaozi', 'Wonton'], 'Carne': ['Pato laqueado de Pekín', 'Cerdo agridulce', 'Char siu', 'Pollo Kung Pao'], 'Arroz': ['Arroz frito', 'Chop suey'], 'Vegetariano': ['Mapo tofu'], 'Sopas': ['Hot pot'] },
@@ -1403,137 +1381,13 @@ Object.keys(worldRaw).forEach(area => {
   });
 });
 
-// --- Traducción automática EN -> ES -------------------------------------
-// Las recetas de la API se traducen con un traductor real (respeta la gramática:
-// "chopped onion" -> "cebolla picada"), bajo demanda y con caché en el navegador.
-const translationCache = (() => {
-  try { return JSON.parse(localStorage.getItem('nutriplan-trans') || '{}'); } catch (e) { return {}; }
-})();
-function saveTranslationCache() {
-  try { localStorage.setItem('nutriplan-trans', JSON.stringify(translationCache)); } catch (e) {}
-}
-function chunkText(text, max) {
-  const parts = [];
-  let current = '';
-  text.split(/(?<=[.!?])\s+/).forEach(sentence => {
-    if ((current + ' ' + sentence).length > max) {
-      if (current) parts.push(current);
-      if (sentence.length > max) {
-        for (let i = 0; i < sentence.length; i += max) parts.push(sentence.slice(i, i + max));
-        current = '';
-      } else {
-        current = sentence;
-      }
-    } else {
-      current = current ? `${current} ${sentence}` : sentence;
-    }
-  });
-  if (current) parts.push(current);
-  return parts;
-}
-async function translateChunk(chunk) {
-  try {
-    const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=es&dt=t&q=${encodeURIComponent(chunk)}`);
-    if (res.ok) {
-      const data = await res.json();
-      if (Array.isArray(data) && Array.isArray(data[0])) {
-        return data[0].map(seg => seg[0]).join('');
-      }
-    }
-  } catch (e) { /* prueba el siguiente */ }
-  try {
-    const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(chunk)}&langpair=en|es`);
-    if (res.ok) {
-      const data = await res.json();
-      if (data && data.responseData && data.responseData.translatedText) {
-        return data.responseData.translatedText;
-      }
-    }
-  } catch (e) { /* sin traducción */ }
-  return null;
-}
-async function translateText(text) {
-  if (!text) return text;
-  if (Object.prototype.hasOwnProperty.call(translationCache, text)) return translationCache[text];
-  const chunks = chunkText(text, 450);
-  const translated = [];
-  for (const chunk of chunks) {
-    const out = await translateChunk(chunk);
-    translated.push(out || chunk);
-  }
-  const result = translated.join(' ');
-  translationCache[text] = result;
-  saveTranslationCache();
-  return result;
-}
-let translationObserver = null;
-function hydrateTranslations(root) {
-  const scope = root || document;
-  const nodes = scope.querySelectorAll('.tr-lazy:not([data-translated])');
-  if (!nodes.length) return;
-  if (!translationObserver) {
-    translationObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        translationObserver.unobserve(el);
-        el.dataset.translated = '1';
-        translateText(el.dataset.en).then((es) => { if (es) el.textContent = es; });
-      });
-    }, { rootMargin: '250px' });
-  }
-  nodes.forEach((el) => translationObserver.observe(el));
-}
+// Las recetas llegan ya traducidas al español en recipes.json (se traducen una
+// sola vez con build_recipes.py); la app no traduce nada en vivo.
+// Limpieza de cachés antiguas de traducción/fotos que ya no se usan.
+try { localStorage.removeItem('nutriplan-trans'); } catch (e) {}
 
-// Líneas de ingredientes en inglés (origen para traducir por línea completa).
-function ingredientLinesEN(recipe) {
-  return recipe.ingredients.map(i => `${i.qty} ${i.name}`.replace(/\s+/g, ' ').trim());
-}
 function scaleLine(line, factor) {
   return factor === 1 ? line : scaleIngredientQty(line, factor);
-}
-let ingredientObserver = null;
-function hydrateIngredients(root) {
-  const scope = root || document;
-  const lists = scope.querySelectorAll('ul.ing-lazy:not([data-done])');
-  if (!lists.length) return;
-  if (!ingredientObserver) {
-    ingredientObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const ul = entry.target;
-        ingredientObserver.unobserve(ul);
-        ul.dataset.done = '1';
-        const base = Number(ul.dataset.base) || 4;
-        translateText(ul.dataset.en).then((es) => {
-          const factor = catalogServings / base;
-          ul.innerHTML = es.split('\n').map(line => `<li>${escapeHtml(scaleLine(line, factor))}</li>`).join('');
-        });
-      });
-    }, { rootMargin: '250px' });
-  }
-  lists.forEach((ul) => ingredientObserver.observe(ul));
-}
-
-function mapMealDbRecipe(m) {
-  const ingredients = [];
-  for (let i = 1; i <= 20; i++) {
-    const name = m[`strIngredient${i}`];
-    const measure = m[`strMeasure${i}`];
-    if (name && name.trim()) {
-      ingredients.push({ name: name.trim(), qty: (measure || '').trim() });
-    }
-  }
-  return {
-    title: m.strMeal,
-    category: mapCategory(m.strCategory),
-    area: mapArea(m.strArea),
-    image: m.strMealThumb,
-    ingredients,
-    instructions: m.strInstructions || '',
-    style: 'normal',
-    source: 'api'
-  };
 }
 
 function getLocalMenuRecipes() {
@@ -1574,7 +1428,13 @@ const catalogFilter = { text: '', category: 'all' };
 const extraShoppingItems = new Map();
 
 function catalogBaseServings(recipe) {
-  return recipe.source === 'api' ? 4 : 2;
+  return recipe.source === 'db' ? 4 : 2;
+}
+
+// Líneas de ingredientes en español de una receta (texto plano, listas para escalar).
+function ingredientLinesES(recipe) {
+  if (recipe.source === 'db') return recipe.ingredients.slice();
+  return recipe.ingredients.map(i => `${i.qty} ${i.name}`.replace(/\s+/g, ' ').trim());
 }
 
 function adjustCatalogServings(amount) {
@@ -1609,9 +1469,8 @@ async function addRecipeToShopping(title) {
   }
   const factor = catalogServings / catalogBaseServings(recipe);
   let lines;
-  if (recipe.source === 'api') {
-    const es = await translateText(ingredientLinesEN(recipe).join('\n'));
-    lines = es.split('\n').map(line => scaleLine(line, factor));
+  if (recipe.source === 'db') {
+    lines = ingredientLinesES(recipe).map(line => scaleLine(line, factor));
   } else {
     lines = scaleIngredients(recipe.ingredients, factor).map(i => `${i.qty} ${i.name}`.trim());
   }
@@ -1653,32 +1512,38 @@ async function ensureCatalogData() {
   catalogLoading = true;
   renderCatalog();
 
-  const apiMeals = [];
+  // Recetario empaquetado con la app (666 recetas ya traducidas al español).
+  // Es un fichero local cacheado por el Service Worker: carga instantánea,
+  // sin depender de APIs externas ni de traducción en vivo.
+  // El traductor deja los títulos con mayúscula en cada palabra; en español
+  // los conectores van en minúscula ("Arroz Frito Con Pollo" -> "... con Pollo").
+  const fixTitleES = (t) => t.replace(/ (De|Del|La|Las|El|Los|Lo|En|Con|Y|E|O|U|A|Al|Para|Por|Su|Sus|Un|Una)(?= )/g, (s) => s.toLowerCase());
+  let dbMeals = [];
   try {
-    const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
-    const responses = await Promise.all(letters.map(letter =>
-      fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
-        .then(r => r.json())
-        .catch(() => ({ meals: null }))
-    ));
-    const seenIds = new Set();
-    responses.forEach(data => {
-      (data.meals || []).forEach(m => {
-        if (seenIds.has(m.idMeal)) return;
-        seenIds.add(m.idMeal);
-        apiMeals.push(mapMealDbRecipe(m));
-      });
-    });
-  } catch (e) { /* sin conexión: seguimos con el catálogo local */ }
+    const res = await fetch('recipes.json');
+    if (res.ok) {
+      dbMeals = (await res.json()).map(r => ({
+        title: fixTitleES(r.title || ''),
+        titleEN: r.titleEN || '',
+        category: r.category || 'Varios',
+        area: r.area || 'Internacional',
+        image: r.image || null,
+        ingredients: r.ingredients || [],
+        instructions: r.instructions || '',
+        style: 'normal',
+        source: 'db'
+      }));
+    }
+  } catch (e) { /* sin fichero: seguimos con el catálogo local */ }
 
   const byTitle = new Map();
   const add = (recipe) => {
-    const key = recipe.title.toLowerCase();
+    const key = normalizeText(recipe.title);
     if (!byTitle.has(key)) byTitle.set(key, recipe);
   };
-  apiMeals.forEach(add);
-  worldDishes.forEach(add);
+  dbMeals.forEach(add);
   getLocalMenuRecipes().forEach(add);
+  worldDishes.forEach(add);
 
   catalogData = Array.from(byTitle.values()).sort((a, b) => a.title.localeCompare(b.title, 'es'));
   catalogLoading = false;
@@ -1712,23 +1577,54 @@ const SEARCH_SYNONYMS = {
   jengibre: 'ginger', curry: 'curry', coco: 'coconut', maiz: 'corn', calabacin: 'courgette', berenjena: 'aubergine',
   pimiento: 'pepper', chile: 'chilli', vino: 'wine'
 };
+// Texto donde se busca (todo en minúsculas y sin acentos): título ES + EN,
+// país, categoría e ingredientes ya en español. Se calcula una sola vez por receta.
+function searchHaystacks(recipe) {
+  if (!recipe._search) {
+    const ings = recipe.source === 'db'
+      ? recipe.ingredients.join(' ')
+      : recipe.ingredients.map(i => i.name).join(' ');
+    recipe._search = {
+      title: normalizeText(`${recipe.title} ${recipe.titleEN || ''}`),
+      rest: normalizeText(`${recipe.area} ${recipe.category} ${ings}`)
+    };
+  }
+  return recipe._search;
+}
+function termMatches(term, text) {
+  return text.includes(term) || (SEARCH_SYNONYMS[term] && text.includes(SEARCH_SYNONYMS[term]));
+}
 function getFilteredCatalog() {
   const terms = catalogFilter.text
     ? catalogFilter.text.split(',').map(t => normalizeText(t.trim())).filter(Boolean)
     : [];
-  return catalogData.filter(recipe => {
+  const scored = [];
+  catalogData.forEach((recipe, index) => {
     if (catalogFilter.category === 'fav') {
-      if (!favoriteRecipes.has(recipe.title)) return false;
+      if (!favoriteRecipes.has(recipe.title)) return;
     } else if (catalogFilter.category !== 'all' && recipe.category !== catalogFilter.category) {
-      return false;
+      return;
     }
+    let score = 0;
     if (terms.length) {
-      const haystack = normalizeText(`${recipe.title} ${recipe.area} ${recipe.category} ${recipe.ingredients.map(i => i.name).join(' ')}`);
-      const matchesAll = terms.every(term => haystack.includes(term) || (SEARCH_SYNONYMS[term] && haystack.includes(SEARCH_SYNONYMS[term])));
-      if (!matchesAll) return false;
+      const { title, rest } = searchHaystacks(recipe);
+      for (const term of terms) {
+        if (termMatches(term, title)) {
+          score += title.startsWith(term) ? 3 : 2; // coincidencia en el título: primero
+        } else if (termMatches(term, rest)) {
+          score += 1; // coincidencia en ingredientes/país/categoría
+        } else {
+          return; // todos los términos deben coincidir
+        }
+      }
+      // A igualdad de coincidencia, antes los platos con receta completa.
+      if (recipe.ingredients.length) score += 0.5;
     }
-    return true;
+    scored.push({ recipe, score, index });
   });
+  // Mejor coincidencia primero; a igualdad, mantiene el orden alfabético.
+  scored.sort((a, b) => b.score - a.score || a.index - b.index);
+  return scored.map(s => s.recipe);
 }
 
 function renderCatalogCard(recipe) {
@@ -1742,30 +1638,18 @@ function renderCatalogCard(recipe) {
   let ingredientsHTML;
   if (!hasIngredients) {
     ingredientsHTML = `<p class="mt-1">Plato típico de ${area}.</p>`;
-  } else if (recipe.source === 'api') {
-    // Ingredientes en inglés -> traducción por línea completa (con caché y escalado).
-    const baseLines = ingredientLinesEN(recipe);
-    const joinedEN = baseLines.join('\n');
-    if (Object.prototype.hasOwnProperty.call(translationCache, joinedEN)) {
-      const esLines = translationCache[joinedEN].split('\n');
-      ingredientsHTML = `<ul class="list-disc list-inside mt-1 space-y-1">${esLines.map(line => `<li>${escapeHtml(scaleLine(line, factor))}</li>`).join('')}</ul>`;
-    } else {
-      ingredientsHTML = `<ul class="list-disc list-inside mt-1 space-y-1 ing-lazy" data-base="${base}" data-en="${escapeHtml(joinedEN)}">${baseLines.map(line => `<li>${escapeHtml(scaleLine(line, factor))}</li>`).join('')}</ul>`;
-    }
+  } else if (recipe.source === 'db') {
+    // Ingredientes ya en español dentro de recipes.json; solo se escalan.
+    const lines = ingredientLinesES(recipe).map(line => scaleLine(line, factor));
+    ingredientsHTML = `<ul class="list-disc list-inside mt-1 space-y-1">${lines.map(line => `<li>${escapeHtml(line)}</li>`).join('')}</ul>`;
   } else {
     const scaled = scaleIngredients(recipe.ingredients, factor);
     ingredientsHTML = `<ul class="list-disc list-inside mt-1 space-y-1">${scaled.slice(0, 14).map(i => `<li>${escapeHtml(`${i.qty} ${i.name}`.trim())}</li>`).join('')}</ul>`;
   }
   let instructions = recipe.instructions || `Receta tradicional de ${recipe.area || 'la cocina internacional'}.`;
   if (instructions.length > 320) instructions = `${instructions.slice(0, 320).trim()}…`;
-  const isApi = recipe.source === 'api';
-  const instrText = escapeHtml(instructions);
-  const titleEl = isApi
-    ? `<h4 class="font-headline-sm text-on-surface tr-lazy" data-en="${title}">${title}</h4>`
-    : `<h4 class="font-headline-sm text-on-surface">${title}</h4>`;
-  const instrEl = isApi
-    ? `<p class="mt-1 text-body-md text-on-surface tr-lazy" data-en="${instrText}">${instrText}</p>`
-    : `<p class="mt-1 text-body-md text-on-surface">${instrText}</p>`;
+  const titleEl = `<h4 class="font-headline-sm text-on-surface">${title}</h4>`;
+  const instrEl = `<p class="mt-1 text-body-md text-on-surface">${escapeHtml(instructions)}</p>`;
 
   return `
     <div class="bg-surface-container-lowest rounded-3xl shadow-sm border border-surface-container overflow-hidden flex flex-col">
@@ -1852,14 +1736,17 @@ function renderCatalog() {
   };
 
   hydrateLazyImages(grid);
-  hydrateTranslations(grid);
-  hydrateIngredients(grid);
 }
 
+// Espera breve tras dejar de teclear para filtrar (búsqueda fluida sin parpadeos).
+let catalogSearchTimer = null;
 function catalogSearch(value) {
-  catalogFilter.text = value.trim().toLowerCase();
-  catalogRenderLimit = 48;
-  renderCatalog();
+  clearTimeout(catalogSearchTimer);
+  catalogSearchTimer = setTimeout(() => {
+    catalogFilter.text = value.trim().toLowerCase();
+    catalogRenderLimit = 48;
+    renderCatalog();
+  }, 150);
 }
 
 function setCatalogCategory(category) {
