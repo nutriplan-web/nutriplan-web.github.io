@@ -14,6 +14,11 @@ if m:
     for arr in re.findall(r'\[([^\]]*)\]', m.group(1)):
         titles += [t.replace("\\'", "'") for t in re.findall(r"'((?:[^'\\]|\\.)*)'", arr)]
 
+# Zumos y batidos (juiceData): titulos de cada bebida.
+m = re.search(r'const juiceData = \[(.*?)\n\]\.map', src, re.S)
+if m:
+    titles += [t.replace("\\'", "'") for t in re.findall(r"title: '((?:[^'\\]|\\.)*)'", m.group(1))]
+
 # Excepciones definidas en la app (titulo -> articulo de Wikipedia).
 overrides = {}
 m = re.search(r'const dishWikiOverride = \{(.*?)\n\};', src, re.S)
@@ -90,8 +95,15 @@ if os.path.exists('menu_images.json'):
     except Exception:
         result = {}
 
+# Bebidas: NO se buscan fotos en Wikipedia (los resultados eran erroneos);
+# la app les pone su propio diseño con degradado y emoji.
+DRINK = re.compile(r'\b(zumo|batido|smoothie|lassi|ayran|limonada|colada|licuado)\b', re.I)
+
 ok = sum(1 for t in titles if result.get(t))
 for i, t in enumerate(titles, 1):
+    if DRINK.search(t):
+        result[t] = None
+        continue
     if result.get(t):
         continue
     img = resolve(t)

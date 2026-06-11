@@ -1,6 +1,6 @@
 // Service Worker de NutriPlan: instala la app completa (incluidos los datos de
 // recetas y fotos) para que funcione rápida, estable y sin conexión.
-const CACHE = 'nutriplan-v2';
+const CACHE = 'nutriplan-v3';
 const ASSETS = [
   './', './index.html', './app.js', './styles.css', './icon.svg', './manifest.json',
   './icon-192.png', './icon-512.png',

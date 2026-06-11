@@ -127,10 +127,22 @@ function hydrateLazyImages(root) {
   images.forEach((img) => dishImageObserver.observe(img));
 }
 
-// HTML de la foto de un plato. Si trae `image` (API) la usa directa; si no, carga diferida.
+// Aspecto propio de zumos y batidos: degradado + emoji según el tipo de bebida
+// (las fotos de bebidas en Wikipedia eran poco fiables; así nunca hay foto equivocada).
+const JUICE_LOOK = {
+  Zumo: { emoji: '🍊', bg: 'linear-gradient(135deg,#ffe0b2,#ffb74d)' },
+  Batido: { emoji: '🥤', bg: 'linear-gradient(135deg,#f8bbd0,#f48fb1)' },
+  Smoothie: { emoji: '🍓', bg: 'linear-gradient(135deg,#c8e6c9,#81c784)' }
+};
+
+// HTML de la foto de un plato. Si trae `image` la usa directa; si no, carga diferida.
 function dishImageHTML(recipe, classes) {
   const cls = classes || '';
   const alt = escapeHtml(recipe.title);
+  if (recipe.source === 'juice') {
+    const look = JUICE_LOOK[recipe.type] || JUICE_LOOK.Zumo;
+    return `<div role="img" aria-label="${alt}" class="${cls} w-full h-full flex items-center justify-center" style="background:${look.bg};"><span style="font-size:64px;">${look.emoji}</span></div>`;
+  }
   if (recipe.image) {
     return `<img src="${recipe.image}" alt="${alt}" loading="lazy" class="${cls} w-full h-full object-cover" />`;
   }
@@ -1419,21 +1431,158 @@ function getLocalMenuRecipes() {
   return out;
 }
 
+// ===========================================================================
+// ZUMOS Y BATIDOS (apartado propio, organizados por sus beneficios)
+// Cantidades para 2 vasos. Los beneficios son orientativos, no consejo médico.
+// ===========================================================================
+const JUICE_CATEGORY = 'Zumos y batidos';
+const juiceData = [
+  { title: 'Zumo de naranja natural', type: 'Zumo', benefits: ['Inmunidad', 'Energía'],
+    benefitsText: 'La vitamina C de la naranja contribuye a las defensas y a reducir el cansancio.',
+    ingredients: ['4 naranjas de zumo', '1 cucharadita de miel (opcional)'],
+    instructions: 'Exprime las naranjas y sírvelo recién hecho para conservar la vitamina C. Endulza con miel solo si lo necesitas.' },
+  { title: 'Zumo verde detox', type: 'Zumo', benefits: ['Detox', 'Digestión'],
+    benefitsText: 'Apio, pepino y manzana aportan agua, fibra y minerales que ayudan a depurar.',
+    ingredients: ['2 ramas de apio', '1/2 pepino', '1 manzana verde', '1 puñado de espinacas', 'zumo de 1/2 limón', '200 ml de agua fría'],
+    instructions: 'Lava todo, trocea y licúa o tritura con el agua. Cuela si lo prefieres más fino y bebe en el momento.' },
+  { title: 'Zumo de zanahoria, naranja y jengibre', type: 'Zumo', benefits: ['Vista', 'Inmunidad'],
+    benefitsText: 'El betacaroteno de la zanahoria cuida la vista y la piel; el jengibre es antiinflamatorio.',
+    ingredients: ['3 zanahorias', '2 naranjas', '1 trozo (2 cm) de jengibre fresco'],
+    instructions: 'Licúa las zanahorias con el jengibre pelado y mezcla con el zumo de las naranjas. Remueve y sirve frío.' },
+  { title: 'Zumo de remolacha y manzana', type: 'Zumo', benefits: ['Deporte', 'Corazón'],
+    benefitsText: 'Los nitratos naturales de la remolacha favorecen la circulación y el rendimiento deportivo.',
+    ingredients: ['1 remolacha cruda pelada', '2 manzanas', 'zumo de 1/2 limón', '150 ml de agua'],
+    instructions: 'Trocea la remolacha y las manzanas, tritura con el agua y el limón y cuela. Ideal una hora antes de entrenar.' },
+  { title: 'Zumo de granada', type: 'Zumo', benefits: ['Antioxidante', 'Corazón'],
+    benefitsText: 'La granada es una de las frutas con más antioxidantes; ayuda a cuidar el corazón.',
+    ingredients: ['3 granadas grandes'],
+    instructions: 'Desgrana las granadas y pasa los granos por el exprimidor o tritura y cuela. Bebe recién hecho.' },
+  { title: 'Zumo de piña y pepino', type: 'Zumo', benefits: ['Digestión', 'Hidratación'],
+    benefitsText: 'La bromelina de la piña ayuda a digerir y el pepino hidrata con muy pocas calorías.',
+    ingredients: ['1/2 piña pelada', '1/2 pepino', 'hojas de menta', '150 ml de agua fría'],
+    instructions: 'Tritura la piña y el pepino con el agua, cuela y sirve con la menta picada por encima.' },
+  { title: 'Zumo de sandía y lima', type: 'Zumo', benefits: ['Hidratación', 'Deporte'],
+    benefitsText: 'La sandía es 92% agua y aporta potasio: perfecta para reponer tras el calor o el ejercicio.',
+    ingredients: ['600 g de sandía sin pepitas', 'zumo de 1 lima', 'hojas de hierbabuena'],
+    instructions: 'Tritura la sandía con el zumo de lima, cuela si quieres y sirve muy frío con la hierbabuena.' },
+  { title: 'Limonada casera con menta', type: 'Zumo', benefits: ['Hidratación', 'Inmunidad'],
+    benefitsText: 'Refresca, hidrata y aporta vitamina C sin los azúcares de los refrescos.',
+    ingredients: ['3 limones', '500 ml de agua fría', '1 cucharada de miel o azúcar', 'hojas de menta', 'hielo'],
+    instructions: 'Exprime los limones, mezcla con el agua y la miel hasta disolver y sirve con hielo y menta.' },
+  { title: 'Zumo de pomelo y naranja', type: 'Zumo', benefits: ['Detox', 'Inmunidad'],
+    benefitsText: 'Cítricos bajos en azúcar y ricos en vitamina C; el pomelo es ligeramente depurativo.',
+    ingredients: ['2 pomelos', '1 naranja', '1 cucharadita de miel (opcional)'],
+    instructions: 'Exprime los cítricos, mezcla y endulza ligeramente si el pomelo te resulta muy amargo.' },
+  { title: 'Zumo de uva negra', type: 'Zumo', benefits: ['Antioxidante', 'Corazón'],
+    benefitsText: 'Los polifenoles de la piel de la uva negra (resveratrol) son antioxidantes cardioprotectores.',
+    ingredients: ['500 g de uva negra sin rabitos'],
+    instructions: 'Lava bien la uva, tritura con piel y cuela. Sirve frío sin endulzar: la uva ya es muy dulce.' },
+  { title: 'Zumo de tomate especiado', type: 'Zumo', benefits: ['Antioxidante', 'Saciante'],
+    benefitsText: 'El licopeno del tomate es un potente antioxidante y este zumo apenas tiene calorías.',
+    ingredients: ['5 tomates maduros', 'zumo de 1/2 limón', 'una pizca de sal y pimienta', 'unas gotas de salsa picante (opcional)', '1 rama de apio para decorar'],
+    instructions: 'Tritura los tomates, cuela, salpimienta y añade el limón. Sirve frío con la rama de apio.' },
+  { title: 'Batido de fresa y plátano', type: 'Batido', benefits: ['Energía', 'Deporte'],
+    benefitsText: 'Carbohidratos del plátano y vitamina C de la fresa: energía rápida antes o después de entrenar.',
+    ingredients: ['250 g de fresas', '1 plátano maduro', '300 ml de leche o bebida vegetal', '1 cucharadita de miel (opcional)'],
+    instructions: 'Lava y trocea las fresas, pela el plátano y bate todo con la leche hasta que quede cremoso.' },
+  { title: 'Batido de avena y plátano', type: 'Batido', benefits: ['Saciante', 'Energía'],
+    benefitsText: 'La avena aporta fibra beta-glucano que sacia y da energía estable toda la mañana.',
+    ingredients: ['1 plátano', '4 cucharadas de copos de avena', '300 ml de leche o bebida vegetal', '1 cucharadita de canela', '1 cucharadita de miel'],
+    instructions: 'Bate todo 1 minuto y deja reposar 5 minutos para que la avena espese. Ideal de desayuno.' },
+  { title: 'Smoothie de espinacas y mango', type: 'Smoothie', benefits: ['Detox', 'Piel'],
+    benefitsText: 'Hierro y folatos de la espinaca con la vitamina A del mango: piel y cabello más sanos.',
+    ingredients: ['1 mango maduro', '2 puñados de espinacas frescas', '1 plátano', '250 ml de agua de coco o agua'],
+    instructions: 'Pela y trocea el mango y el plátano, añade las espinacas lavadas y bate con el agua de coco.' },
+  { title: 'Smoothie de frutos rojos y yogur', type: 'Smoothie', benefits: ['Antioxidante', 'Digestión'],
+    benefitsText: 'Antocianinas antioxidantes de los frutos rojos y probióticos del yogur para la flora intestinal.',
+    ingredients: ['200 g de frutos rojos (frescos o congelados)', '2 yogures naturales', '1 cucharada de miel', '100 ml de leche'],
+    instructions: 'Bate todo hasta que quede homogéneo. Con fruta congelada queda como un sorbete cremoso.' },
+  { title: 'Batido de chocolate, plátano y cacahuete', type: 'Batido', benefits: ['Deporte', 'Saciante'],
+    benefitsText: 'Proteína del cacahuete y la leche con carbohidratos del plátano: recuperación muscular.',
+    ingredients: ['1 plátano', '1 cucharada de crema de cacahuete', '1 cucharada de cacao puro en polvo', '300 ml de leche', '2 dátiles (opcional)'],
+    instructions: 'Bate todos los ingredientes hasta que quede cremoso. Perfecto después de entrenar.' },
+  { title: 'Smoothie de aguacate y cacao', type: 'Smoothie', benefits: ['Corazón', 'Saciante'],
+    benefitsText: 'Grasas saludables del aguacate y magnesio del cacao puro: cremoso, saciante y cardiosaludable.',
+    ingredients: ['1/2 aguacate maduro', '1 cucharada de cacao puro', '1 plátano', '250 ml de bebida de almendras', '2 dátiles'],
+    instructions: 'Bate todo bien hasta que no queden grumos. Parece un postre de chocolate, pero es pura fruta.' },
+  { title: 'Lassi de mango', type: 'Batido', benefits: ['Digestión', 'Huesos'],
+    benefitsText: 'Bebida india de yogur: probióticos para la digestión y calcio para los huesos.',
+    ingredients: ['1 mango maduro', '2 yogures naturales', '100 ml de leche fría', '1 cucharadita de miel', 'una pizca de cardamomo molido'],
+    instructions: 'Bate el mango pelado con el yogur, la leche y la miel. Sirve frío con el cardamomo por encima.' },
+  { title: 'Batido de papaya y naranja', type: 'Batido', benefits: ['Digestión', 'Piel'],
+    benefitsText: 'La papaína de la papaya facilita la digestión de las proteínas y su vitamina A cuida la piel.',
+    ingredients: ['1/2 papaya madura', 'zumo de 2 naranjas', '1 yogur natural', 'hielo'],
+    instructions: 'Pela la papaya, retira las semillas y bate con el zumo y el yogur. Sirve con hielo.' },
+  { title: 'Smoothie de kiwi, pepino y manzana', type: 'Smoothie', benefits: ['Inmunidad', 'Digestión'],
+    benefitsText: 'El kiwi tiene más vitamina C que la naranja y fibra que regula el tránsito intestinal.',
+    ingredients: ['3 kiwis pelados', '1/2 pepino', '1 manzana verde', '150 ml de agua fría', 'zumo de 1/2 lima'],
+    instructions: 'Tritura todo junto hasta que quede fino. No lo cueles: la fibra del kiwi es parte del beneficio.' },
+  { title: 'Batido dorado de cúrcuma y mango', type: 'Batido', benefits: ['Antioxidante', 'Inmunidad'],
+    benefitsText: 'La curcumina es antiinflamatoria; con pimienta negra y grasa láctea se absorbe mucho mejor.',
+    ingredients: ['1 mango', '1 cucharadita de cúrcuma molida', 'una pizca de pimienta negra', '300 ml de leche entera o de coco', '1 cucharadita de miel'],
+    instructions: 'Bate todo 1 minuto. La pizca de pimienta no se nota y multiplica el efecto de la cúrcuma.' },
+  { title: 'Batido de melocotón y yogur', type: 'Batido', benefits: ['Piel', 'Huesos'],
+    benefitsText: 'Vitamina A del melocotón para la piel y calcio + proteínas del yogur para los huesos.',
+    ingredients: ['3 melocotones maduros', '2 yogures naturales', '1 cucharadita de vainilla', '1 cucharada de miel', 'hielo'],
+    instructions: 'Pela los melocotones y bate con el resto. En invierno funciona igual con melocotón en su jugo (escurrido).' },
+  { title: 'Batido de café y plátano', type: 'Batido', benefits: ['Energía', 'Deporte'],
+    benefitsText: 'Cafeína natural y carbohidratos del plátano: el empujón perfecto para empezar el día.',
+    ingredients: ['1 café expreso frío', '1 plátano', '250 ml de leche', '2 dátiles', 'hielo', 'una pizca de canela'],
+    instructions: 'Bate todo con el hielo y sirve inmediatamente. Sustituye al café con azúcar de media mañana.' },
+  { title: 'Piña colada sin alcohol', type: 'Batido', benefits: ['Hidratación', 'Energía'],
+    benefitsText: 'Versión saludable del clásico: hidrata y aporta la bromelina digestiva de la piña.',
+    ingredients: ['1/2 piña pelada', '200 ml de leche de coco', '150 ml de zumo de piña', 'hielo picado'],
+    instructions: 'Bate la piña con la leche de coco, el zumo y el hielo hasta que quede espumoso. Sirve muy frío.' },
+  { title: 'Smoothie de arándanos y avena', type: 'Smoothie', benefits: ['Antioxidante', 'Saciante'],
+    benefitsText: 'Los arándanos protegen la memoria y la vista; la avena mantiene el hambre a raya.',
+    ingredients: ['150 g de arándanos', '3 cucharadas de copos de avena', '1 yogur natural', '200 ml de leche', '1 cucharadita de miel'],
+    instructions: 'Bate todo y deja reposar 5 minutos. Con arándanos congelados queda más cremoso aún.' },
+  { title: 'Ayran de pepino y menta', type: 'Batido', benefits: ['Hidratación', 'Digestión'],
+    benefitsText: 'Bebida turca de yogur salado: repone sales y refresca mejor que cualquier refresco en verano.',
+    ingredients: ['2 yogures naturales', '200 ml de agua muy fría', '1/2 pepino', 'hojas de menta', 'una pizca de sal'],
+    instructions: 'Bate el yogur con el agua y la sal, añade el pepino rallado y la menta picada y sirve con hielo.' },
+  { title: 'Batido de dátiles y almendras', type: 'Batido', benefits: ['Energía', 'Huesos'],
+    benefitsText: 'Azúcares naturales del dátil de absorción lenta y calcio de las almendras.',
+    ingredients: ['6 dátiles sin hueso', '300 ml de bebida de almendras', '1 plátano', 'una pizca de canela', 'hielo'],
+    instructions: 'Remoja los dátiles 10 minutos en agua caliente, escurre y bate con el resto hasta que quede fino.' },
+  { title: 'Zumo antigripal de cítricos y jengibre', type: 'Zumo', benefits: ['Inmunidad', 'Antioxidante'],
+    benefitsText: 'Triple dosis de vitamina C con jengibre y miel: el clásico reconstituyente del invierno.',
+    ingredients: ['2 naranjas', '1 limón', '1 mandarina', '1 trozo (2 cm) de jengibre', '1 cucharada de miel'],
+    instructions: 'Exprime los cítricos, ralla el jengibre y mézclalo todo con la miel. Tómalo recién hecho.' }
+].map(j => ({
+  title: j.title,
+  category: JUICE_CATEGORY,
+  area: 'Saludable',
+  image: null,
+  ingredients: j.ingredients,
+  instructions: j.instructions,
+  style: 'saludable',
+  source: 'juice',
+  type: j.type,
+  benefits: j.benefits,
+  benefitsText: j.benefitsText
+}));
+
 let catalogData = null;
 let catalogLoading = false;
 let catalogRenderLimit = 48;
 let catalogServings = 2;
-const catalogFilter = { text: '', category: 'all' };
+const catalogFilter = { text: '', category: 'all', benefit: 'all' };
 // Productos añadidos manualmente a la lista de la compra (desde recetas o a mano).
 const extraShoppingItems = new Map();
 
+// Recetas cuyos ingredientes son líneas de texto en español (recetario y zumos).
+function hasPlainIngredients(recipe) {
+  return recipe.source === 'db' || recipe.source === 'juice';
+}
+
 function catalogBaseServings(recipe) {
-  return recipe.source === 'db' ? 4 : 2;
+  return recipe.source === 'db' ? 4 : 2; // zumos: 2 vasos, menú local: 2 comensales
 }
 
 // Líneas de ingredientes en español de una receta (texto plano, listas para escalar).
 function ingredientLinesES(recipe) {
-  if (recipe.source === 'db') return recipe.ingredients.slice();
+  if (hasPlainIngredients(recipe)) return recipe.ingredients.slice();
   return recipe.ingredients.map(i => `${i.qty} ${i.name}`.replace(/\s+/g, ' ').trim());
 }
 
@@ -1469,7 +1618,7 @@ async function addRecipeToShopping(title) {
   }
   const factor = catalogServings / catalogBaseServings(recipe);
   let lines;
-  if (recipe.source === 'db') {
+  if (hasPlainIngredients(recipe)) {
     lines = ingredientLinesES(recipe).map(line => scaleLine(line, factor));
   } else {
     lines = scaleIngredients(recipe.ingredients, factor).map(i => `${i.qty} ${i.name}`.trim());
@@ -1542,6 +1691,7 @@ async function ensureCatalogData() {
     if (!byTitle.has(key)) byTitle.set(key, recipe);
   };
   dbMeals.forEach(add);
+  juiceData.forEach(add);
   getLocalMenuRecipes().forEach(add);
   worldDishes.forEach(add);
 
@@ -1581,12 +1731,13 @@ const SEARCH_SYNONYMS = {
 // país, categoría e ingredientes ya en español. Se calcula una sola vez por receta.
 function searchHaystacks(recipe) {
   if (!recipe._search) {
-    const ings = recipe.source === 'db'
+    const ings = hasPlainIngredients(recipe)
       ? recipe.ingredients.join(' ')
       : recipe.ingredients.map(i => i.name).join(' ');
+    const extra = recipe.benefits ? `${recipe.type} ${recipe.benefits.join(' ')}` : '';
     recipe._search = {
       title: normalizeText(`${recipe.title} ${recipe.titleEN || ''}`),
-      rest: normalizeText(`${recipe.area} ${recipe.category} ${ings}`)
+      rest: normalizeText(`${recipe.area} ${recipe.category} ${extra} ${ings}`)
     };
   }
   return recipe._search;
@@ -1604,6 +1755,10 @@ function getFilteredCatalog() {
       if (!favoriteRecipes.has(recipe.title)) return;
     } else if (catalogFilter.category !== 'all' && recipe.category !== catalogFilter.category) {
       return;
+    }
+    // Dentro de "Zumos y batidos" se puede filtrar además por beneficio.
+    if (catalogFilter.category === JUICE_CATEGORY && catalogFilter.benefit !== 'all') {
+      if (!recipe.benefits || !recipe.benefits.includes(catalogFilter.benefit)) return;
     }
     let score = 0;
     if (terms.length) {
@@ -1630,7 +1785,7 @@ function getFilteredCatalog() {
 function renderCatalogCard(recipe) {
   const isFavorite = favoriteRecipes.has(recipe.title);
   const title = escapeHtml(recipe.title);
-  const area = escapeHtml(recipe.area || 'Internacional');
+  const area = escapeHtml(recipe.source === 'juice' ? recipe.type : (recipe.area || 'Internacional'));
   const category = escapeHtml(recipe.category);
   const base = catalogBaseServings(recipe);
   const factor = catalogServings / base;
@@ -1638,8 +1793,8 @@ function renderCatalogCard(recipe) {
   let ingredientsHTML;
   if (!hasIngredients) {
     ingredientsHTML = `<p class="mt-1">Plato típico de ${area}.</p>`;
-  } else if (recipe.source === 'db') {
-    // Ingredientes ya en español dentro de recipes.json; solo se escalan.
+  } else if (hasPlainIngredients(recipe)) {
+    // Ingredientes ya en español (recetario o zumos); solo se escalan.
     const lines = ingredientLinesES(recipe).map(line => scaleLine(line, factor));
     ingredientsHTML = `<ul class="list-disc list-inside mt-1 space-y-1">${lines.map(line => `<li>${escapeHtml(line)}</li>`).join('')}</ul>`;
   } else {
@@ -1650,6 +1805,15 @@ function renderCatalogCard(recipe) {
   if (instructions.length > 320) instructions = `${instructions.slice(0, 320).trim()}…`;
   const titleEl = `<h4 class="font-headline-sm text-on-surface">${title}</h4>`;
   const instrEl = `<p class="mt-1 text-body-md text-on-surface">${escapeHtml(instructions)}</p>`;
+  // Zumos y batidos: beneficios destacados con su explicación.
+  const benefitsEl = recipe.benefits ? `
+        <div class="text-label-md">
+          <div class="flex flex-wrap gap-1.5">
+            ${recipe.benefits.map(b => `<span class="bg-primary-fixed text-on-primary-fixed text-xs font-semibold px-2 py-1 rounded-full">✦ ${escapeHtml(b)}</span>`).join('')}
+          </div>
+          <p class="mt-2 text-on-surface-variant">${escapeHtml(recipe.benefitsText || '')}</p>
+        </div>` : '';
+  const servingsLabel = recipe.source === 'juice' ? 'vasos' : 'comensales';
 
   return `
     <div class="bg-surface-container-lowest rounded-3xl shadow-sm border border-surface-container overflow-hidden flex flex-col">
@@ -1665,12 +1829,13 @@ function renderCatalogCard(recipe) {
       </div>
       <div class="p-4 flex flex-col gap-3 flex-1">
         ${titleEl}
+        ${benefitsEl}
         <div class="text-label-md text-on-surface-variant">
-          <p class="font-semibold text-on-surface">Ingredientes <span class="text-primary">· ${catalogServings} comensales</span></p>
+          <p class="font-semibold text-on-surface">Ingredientes <span class="text-primary">· ${catalogServings} ${servingsLabel}</span></p>
           ${ingredientsHTML}
         </div>
         <div class="text-label-md text-on-surface-variant">
-          <p class="font-semibold text-on-surface">Modo de cocinar</p>
+          <p class="font-semibold text-on-surface">${recipe.source === 'juice' ? 'Preparación' : 'Modo de cocinar'}</p>
           ${instrEl}
         </div>
         <button data-add="${title}" class="mt-auto w-full flex items-center justify-center gap-2 ${hasIngredients ? 'bg-primary-container text-on-primary-container' : 'bg-surface-container-high text-on-surface-variant'} font-semibold py-3 rounded-2xl active:scale-[0.98] transition-all">
@@ -1702,11 +1867,21 @@ function renderCatalog() {
 
   if (chipsContainer) {
     const chips = [{ id: 'all', label: 'Todos' }]
-      .concat(catalogCategories().map(c => ({ id: c, label: c })))
+      .concat(catalogCategories().map(c => ({ id: c, label: c === JUICE_CATEGORY ? '🥤 ' + c : c })))
       .concat([{ id: 'fav', label: 'Favoritos ♥' }]);
-    chipsContainer.innerHTML = chips.map(chip => `
+    let html = chips.map(chip => `
       <button onclick="setCatalogCategory('${chip.id.replace(/'/g, "\\'")}')" class="px-4 py-2 rounded-full font-label-lg text-label-lg whitespace-nowrap border border-surface-container transition-all ${catalogFilter.category === chip.id ? 'active-catalog' : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-variant'}">${escapeHtml(chip.label)}</button>
     `).join('');
+    // Dentro de Zumos y batidos: segunda fila de chips para filtrar por beneficio.
+    if (catalogFilter.category === JUICE_CATEGORY) {
+      const benefits = Array.from(new Set(juiceData.flatMap(j => j.benefits))).sort((a, b) => a.localeCompare(b, 'es'));
+      html += `<div class="w-full flex gap-2 overflow-x-auto pt-2">` +
+        [{ id: 'all', label: 'Todos los beneficios' }].concat(benefits.map(b => ({ id: b, label: b })))
+          .map(chip => `
+            <button onclick="setCatalogBenefit('${chip.id.replace(/'/g, "\\'")}')" class="px-3 py-1.5 rounded-full text-label-md whitespace-nowrap border transition-all ${catalogFilter.benefit === chip.id ? 'bg-secondary text-white border-secondary' : 'bg-surface-container-low text-on-surface-variant border-surface-container hover:bg-surface-variant'}">${escapeHtml(chip.label)}</button>
+          `).join('') + `</div>`;
+    }
+    chipsContainer.innerHTML = html;
   }
 
   const filtered = getFilteredCatalog();
@@ -1751,6 +1926,13 @@ function catalogSearch(value) {
 
 function setCatalogCategory(category) {
   catalogFilter.category = category;
+  catalogFilter.benefit = 'all';
+  catalogRenderLimit = 48;
+  renderCatalog();
+}
+
+function setCatalogBenefit(benefit) {
+  catalogFilter.benefit = benefit;
   catalogRenderLimit = 48;
   renderCatalog();
 }
