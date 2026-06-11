@@ -5,9 +5,9 @@
 set -e
 cd "$(dirname "$0")"
 
-# Si el repo ya se renombró a florrincheptine-sketch.github.io, apunta el remoto ahí.
-if git ls-remote https://github.com/florrincheptine-sketch/florrincheptine-sketch.github.io.git HEAD >/dev/null 2>&1; then
-  git remote set-url origin https://github.com/florrincheptine-sketch/florrincheptine-sketch.github.io.git
+# Si el repo ya se renombró a nutriplan-web.github.io, apunta el remoto ahí.
+if git ls-remote https://github.com/nutriplan-web/nutriplan-web.github.io.git HEAD >/dev/null 2>&1; then
+  git remote set-url origin https://github.com/nutriplan-web/nutriplan-web.github.io.git
 fi
 
 git add -A

@@ -829,7 +829,7 @@ function applyDarkModeButton() {
 // Contador de visitas (servicio gratuito). Cuenta una vez por navegador.
 async function loadVisitCounter() {
   const el = document.getElementById('visit-counter');
-  const ns = 'nutriplan-app-florrincheptine';
+  const ns = 'nutriplan-web-app';
   const key = 'home';
   let alreadyCounted = false;
   try { alreadyCounted = localStorage.getItem('nutriplan-visited') === '1'; } catch (e) {}

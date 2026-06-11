@@ -4,7 +4,7 @@ Planificador de menú semanal con recetario mundial (+1000 platos en español,
 fotos reales), cantidades por comensales y lista de la compra automática.
 App web estática e instalable (PWA), funciona sin conexión.
 
-**Web:** https://florrincheptine-sketch.github.io/
+**Web:** https://nutriplan-web.github.io/
 
 ## Estructura
 
