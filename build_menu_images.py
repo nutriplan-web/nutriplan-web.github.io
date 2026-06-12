@@ -8,11 +8,9 @@ src = open('app.js', encoding='utf-8').read()
 titles = re.findall(r"createRecipe\(\s*'((?:[^'\\]|\\.)*)'", src)
 titles = [t.replace("\\'", "'") for t in titles]
 
-# Platos del mundo (worldRaw): titulos dentro de los arrays por categoria.
-m = re.search(r'const worldRaw = \{(.*?)\n\};', src, re.S)
-if m:
-    for arr in re.findall(r'\[([^\]]*)\]', m.group(1)):
-        titles += [t.replace("\\'", "'") for t in re.findall(r"'((?:[^'\\]|\\.)*)'", arr)]
+# Platos del mundo: titulos de world_recipes.json.
+if os.path.exists('world_recipes.json'):
+    titles += [r['title'] for r in json.load(open('world_recipes.json'))]
 
 # Zumos y batidos (juiceData): titulos de cada bebida.
 m = re.search(r'const juiceData = \[(.*?)\n\]\.map', src, re.S)

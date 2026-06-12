@@ -1323,75 +1323,8 @@ function renderShoppingList() {
 // RECETARIO MUNDIAL (galería de todos los platos, por categoría, +1000)
 // ===========================================================================
 
-// Catálogo local de platos famosos del mundo, organizado por país y categoría.
-// (Las fotos se resuelven desde menu_images.json, generado una vez con build_menu_images.py.)
-const worldRaw = {
-  'Japón': { 'Pescado y marisco': ['Sushi', 'Sashimi', 'Tempura'], 'Sopas': ['Ramen', 'Udon', 'Sopa de miso'], 'Carne': ['Yakitori', 'Tonkatsu', 'Sukiyaki', 'Katsudon'], 'Aperitivos': ['Gyoza', 'Okonomiyaki', 'Takoyaki', 'Onigiri'], 'Postres': ['Mochi', 'Dorayaki'] },
-  'China': { 'Aperitivos': ['Dim sum', 'Rollito de primavera', 'Baozi', 'Jiaozi', 'Wonton'], 'Carne': ['Pato laqueado de Pekín', 'Cerdo agridulce', 'Char siu', 'Pollo Kung Pao'], 'Arroz': ['Arroz frito', 'Chop suey'], 'Vegetariano': ['Mapo tofu'], 'Sopas': ['Hot pot'] },
-  'Tailandia': { 'Arroz': ['Pad thai', 'Khao pad'], 'Sopas': ['Tom yum'], 'Carne': ['Curry verde tailandés', 'Curry rojo tailandés', 'Massaman', 'Pad krapow'], 'Ensaladas': ['Som tam'], 'Aperitivos': ['Satay'], 'Postres': ['Arroz con mango'] },
-  'Vietnam': { 'Sopas': ['Pho'], 'Aperitivos': ['Banh mi', 'Rollitos vietnamitas'], 'Carne': ['Bun cha', 'Com tam'] },
-  'India': { 'Carne': ['Pollo tikka masala', 'Tandoori', 'Korma', 'Vindaloo', 'Rogan josh', 'Pollo a la mantequilla'], 'Arroz': ['Biryani'], 'Vegetariano': ['Dal', 'Chana masala', 'Paneer tikka'], 'Aperitivos': ['Samosa', 'Dosa'], 'Panadería': ['Naan', 'Chapati'] },
-  'Corea del Sur': { 'Arroz': ['Bibimbap'], 'Vegetariano': ['Kimchi', 'Japchae'], 'Carne': ['Bulgogi', 'Samgyeopsal'], 'Aperitivos': ['Tteokbokki'], 'Sopas': ['Kimchi jjigae', 'Sundubu jjigae'] },
-  'México': { 'Aperitivos': ['Tacos', 'Tacos al pastor', 'Quesadilla', 'Nachos', 'Tamales', 'Elote'], 'Carne': ['Mole poblano', 'Chiles en nogada', 'Cochinita pibil', 'Fajitas'], 'Sopas': ['Pozole'], 'Vegetariano': ['Guacamole', 'Chilaquiles'], 'Arroz': ['Burrito'] },
-  'Italia': { 'Pasta': ['Spaghetti carbonara', 'Lasaña', 'Ravioli', 'Gnocchi', 'Tagliatelle al ragú', 'Pesto'], 'Panadería': ['Pizza margarita', 'Focaccia', 'Bruschetta'], 'Arroz': ['Risotto', 'Polenta'], 'Carne': ['Osso buco', 'Saltimbocca'], 'Postres': ['Tiramisú', 'Panna cotta', 'Cannoli', 'Gelato'], 'Ensaladas': ['Ensalada caprese'] },
-  'Francia': { 'Panadería': ['Croissant', 'Baguette'], 'Vegetariano': ['Ratatouille'], 'Carne': ['Coq au vin', 'Cassoulet', 'Pot-au-feu', 'Boeuf bourguignon'], 'Pescado y marisco': ['Bullabesa', 'Escargots'], 'Aperitivos': ['Quiche lorraine', 'Crepe', 'Foie gras'], 'Postres': ['Crème brûlée', 'Macaron', 'Tarta Tatin', 'Soufflé', 'Profiterol'] },
-  'España': { 'Arroz': ['Paella', 'Arroz negro'], 'Aperitivos': ['Tortilla de patatas', 'Croquetas', 'Patatas bravas', 'Pan con tomate', 'Calçots', 'Pinchos'], 'Sopas': ['Gazpacho', 'Salmorejo'], 'Carne': ['Jamón ibérico', 'Cochinillo asado'], 'Pescado y marisco': ['Pulpo a la gallega', 'Gambas al ajillo'], 'Postres': ['Churros', 'Crema catalana', 'Flan'] },
-  'Grecia': { 'Carne': ['Musaca', 'Souvlaki', 'Gyros', 'Pastitsio'], 'Aperitivos': ['Tzatziki', 'Spanakopita', 'Dolma'], 'Ensaladas': ['Ensalada griega'], 'Postres': ['Baklava'] },
-  'Turquía': { 'Carne': ['Kebab', 'Döner kebab', 'Köfte', 'Adana kebab'], 'Arroz': ['Pilav'], 'Aperitivos': ['Lahmacun', 'Börek', 'Meze', 'Dolma'], 'Panadería': ['Simit'], 'Postres': ['Baklava turco', 'Lokum'] },
-  'Líbano': { 'Vegetariano': ['Hummus', 'Falafel', 'Baba ganoush'], 'Ensaladas': ['Tabulé', 'Fattoush'], 'Carne': ['Shawarma', 'Kibbeh'], 'Panadería': ['Manakish'] },
-  'Marruecos': { 'Carne': ['Tayín', 'Mechoui'], 'Arroz': ['Cuscús'], 'Sopas': ['Harira'], 'Aperitivos': ['Pastela'] },
-  'Estados Unidos': { 'Carne': ['Hamburguesa', 'Barbacoa', 'Alitas Buffalo', 'Cerdo desmechado'], 'Aperitivos': ['Perrito caliente', 'Macarrones con queso', 'Cornbread'], 'Sopas': ['Clam chowder', 'Jambalaya'], 'Postres': ['Tarta de queso', 'Brownie', 'Tortitas americanas'] },
-  'Reino Unido': { 'Pescado y marisco': ['Fish and chips'], 'Carne': ['Rosbif', 'Pastel de carne', 'Cottage pie', 'Beef Wellington', 'Salchichas con puré'], 'Panadería': ['Scones', 'Cornish pasty'], 'Postres': ['Trifle', 'Pudin de toffee'] },
-  'Alemania': { 'Carne': ['Bratwurst', 'Schnitzel', 'Currywurst', 'Sauerbraten'], 'Vegetariano': ['Chucrut'], 'Pasta': ['Spätzle'], 'Panadería': ['Pretzel'], 'Postres': ['Strudel de manzana', 'Selva Negra'] },
-  'Argentina': { 'Carne': ['Asado', 'Milanesa', 'Choripán'], 'Aperitivos': ['Empanadas', 'Provoleta'], 'Sopas': ['Locro'], 'Postres': ['Alfajor', 'Dulce de leche'] },
-  'Brasil': { 'Carne': ['Feijoada', 'Picanha'], 'Aperitivos': ['Pão de queijo', 'Coxinha'], 'Pescado y marisco': ['Moqueca'], 'Postres': ['Brigadeiro'], 'Vegetariano': ['Acarajé'] },
-  'Perú': { 'Pescado y marisco': ['Ceviche'], 'Carne': ['Lomo saltado', 'Anticucho', 'Ají de gallina'], 'Vegetariano': ['Causa limeña', 'Papa a la huancaína'] },
-  'Colombia': { 'Carne': ['Bandeja paisa'], 'Aperitivos': ['Arepa', 'Empanada colombiana'], 'Sopas': ['Ajiaco'] },
-  'Venezuela': { 'Aperitivos': ['Arepa venezolana', 'Tequeños', 'Hallaca'], 'Carne': ['Pabellón criollo'] },
-  'Rusia': { 'Sopas': ['Borscht'], 'Carne': ['Ternera Stróganoff', 'Pelmeni'], 'Aperitivos': ['Blini', 'Pirozhki'] },
-  'Polonia': { 'Aperitivos': ['Pierogi'], 'Carne': ['Bigos', 'Kielbasa'], 'Sopas': ['Zurek'] },
-  'Hungría': { 'Sopas': ['Gulash'], 'Carne': ['Pörkölt'], 'Postres': ['Chimenea húngara'] },
-  'Indonesia': { 'Arroz': ['Nasi goreng', 'Nasi lemak'], 'Carne': ['Rendang', 'Satay de pollo'], 'Pasta': ['Mie goreng'], 'Sopas': ['Laksa'] },
-  'Filipinas': { 'Carne': ['Adobo filipino', 'Lechón'], 'Aperitivos': ['Lumpia', 'Pancit'], 'Sopas': ['Sinigang'] },
-  'Etiopía': { 'Panadería': ['Injera'], 'Carne': ['Doro wat'] },
-  'Nigeria': { 'Arroz': ['Jollof rice'], 'Carne': ['Suya'] },
-  'Egipto': { 'Vegetariano': ['Koshari', 'Ful medames'], 'Sopas': ['Molokhia'] },
-  'Portugal': { 'Pescado y marisco': ['Bacalao a Brás', 'Caldeirada', 'Sardinas asadas'], 'Carne': ['Francesinha', 'Cozido a portuguesa'], 'Postres': ['Pastel de nata'], 'Sopas': ['Caldo verde'] },
-  'Países Bajos': { 'Aperitivos': ['Bitterballen', 'Stroopwafel'], 'Pescado y marisco': ['Arenque holandés'], 'Carne': ['Stamppot'] },
-  'Suecia': { 'Carne': ['Albóndigas suecas'], 'Pescado y marisco': ['Gravlax'], 'Postres': ['Kanelbullar'] },
-  'Suiza': { 'Vegetariano': ['Fondue de queso', 'Raclette'], 'Carne': ['Rösti'] },
-  'Austria': { 'Carne': ['Wiener Schnitzel'], 'Postres': ['Tarta Sacher', 'Apfelstrudel'] },
-  'Bélgica': { 'Aperitivos': ['Patatas fritas belgas', 'Gofre de Lieja'], 'Pescado y marisco': ['Mejillones con patatas'] },
-  'Irlanda': { 'Carne': ['Estofado irlandés'], 'Vegetariano': ['Colcannon'], 'Panadería': ['Pan de soda'] },
-  'Cuba': { 'Carne': ['Ropa vieja', 'Lechón asado'], 'Arroz': ['Arroz congrí'], 'Aperitivos': ['Sandwich cubano'] },
-  'Chile': { 'Aperitivos': ['Empanada de pino', 'Completo'], 'Carne': ['Pastel de choclo'], 'Ensaladas': ['Ensalada chilena'] },
-  'Ecuador': { 'Sopas': ['Encebollado', 'Locro de papa'], 'Pescado y marisco': ['Ceviche de camarón'] },
-  'Bolivia': { 'Aperitivos': ['Salteñas'], 'Carne': ['Silpancho'] },
-  'Jamaica': { 'Carne': ['Pollo jerk'], 'Arroz': ['Rice and peas'] },
-  'Irán': { 'Arroz': ['Chelo kabab'], 'Carne': ['Ghormeh sabzi'], 'Sopas': ['Ash reshteh'] },
-  'Israel': { 'Vegetariano': ['Falafel israelí', 'Sabich'], 'Ensaladas': ['Ensalada israelí'], 'Aperitivos': ['Bourekas'] },
-  'Pakistán': { 'Arroz': ['Biryani pakistaní'], 'Carne': ['Nihari', 'Haleem'] },
-  'Indonesia 2': { 'Aperitivos': ['Gado-gado', 'Bakso'], 'Carne': ['Sate ayam'] },
-  'Malasia': { 'Arroz': ['Nasi kandar'], 'Sopas': ['Laksa de Penang'], 'Carne': ['Rendang de ternera'] },
-  'Singapur': { 'Pollo': ['Arroz con pollo hainanés'], 'Pescado y marisco': ['Cangrejo con chile'] },
-  'Australia': { 'Carne': ['Meat pie australiano'], 'Postres': ['Pavlova', 'Lamington'] },
-  'Canadá': { 'Aperitivos': ['Poutine'], 'Postres': ['Tarta de azúcar', 'Beaver tail'] },
-  'Sudáfrica': { 'Carne': ['Bobotie', 'Boerewors'], 'Aperitivos': ['Bunny chow'] },
-  'Vietnam 2': { 'Aperitivos': ['Banh xeo'], 'Sopas': ['Bun bo Hue'] },
-  'India 2': { 'Vegetariano': ['Aloo gobi', 'Palak paneer', 'Pakora'], 'Postres': ['Gulab jamun', 'Kheer'], 'Aperitivos': ['Pani puri'] },
-  'China 2': { 'Aperitivos': ['Mantou', 'Xiaolongbao'], 'Carne': ['Cerdo Dongpo', 'Ternera con brócoli'], 'Sopas': ['Sopa agripicante'] },
-  'México 2': { 'Sopas': ['Sopa de tortilla', 'Menudo'], 'Aperitivos': ['Sopes', 'Tostadas', 'Flautas'], 'Postres': ['Tres leches', 'Churros mexicanos'] },
-  'Internacional': { 'Desayuno': ['Shakshuka', 'Huevos benedictinos', 'Granola', 'Bagel', 'Desayuno inglés completo', 'Tortitas con sirope', 'Açaí bowl', 'Avena nocturna'], 'Postres': ['Helado', 'Gofre', 'Donut', 'Tarta de manzana', 'Mousse de chocolate', 'Cheesecake de frutos rojos', 'Crepe de chocolate'], 'Bebidas': ['Smoothie de frutas', 'Limonada', 'Batido de chocolate', 'Té chai', 'Café con leche', 'Horchata'] }
-};
-
-const worldDishes = [];
-Object.keys(worldRaw).forEach(area => {
-  Object.keys(worldRaw[area]).forEach(category => {
-    worldRaw[area][category].forEach(title => {
-      worldDishes.push({ title, category, area, image: null, ingredients: [], instructions: '', style: 'normal', source: 'world' });
-    });
-  });
-});
+// Platos famosos del mundo: recetas completas (ingredientes para 2 raciones y
+// preparación detallada) empaquetadas en world_recipes.json.
 
 // Las recetas llegan ya traducidas al español en recipes.json (se traducen una
 // sola vez con build_recipes.py); la app no traduce nada en vivo.
@@ -1571,9 +1504,9 @@ const catalogFilter = { text: '', category: 'all', benefit: 'all' };
 // Productos añadidos manualmente a la lista de la compra (desde recetas o a mano).
 const extraShoppingItems = new Map();
 
-// Recetas cuyos ingredientes son líneas de texto en español (recetario y zumos).
+// Recetas cuyos ingredientes son líneas de texto en español (recetario, mundo y zumos).
 function hasPlainIngredients(recipe) {
-  return recipe.source === 'db' || recipe.source === 'juice';
+  return recipe.source === 'db' || recipe.source === 'juice' || recipe.source === 'world';
 }
 
 function catalogBaseServings(recipe) {
@@ -1661,17 +1594,22 @@ async function ensureCatalogData() {
   catalogLoading = true;
   renderCatalog();
 
-  // Recetario empaquetado con la app (666 recetas ya traducidas al español).
-  // Es un fichero local cacheado por el Service Worker: carga instantánea,
-  // sin depender de APIs externas ni de traducción en vivo.
+  // Recetario empaquetado con la app: recipes.json (666 recetas traducidas) y
+  // world_recipes.json (364 platos del mundo con receta completa en español,
+  // cantidades para 2 raciones y preparación detallada). Ficheros locales
+  // cacheados por el Service Worker: carga instantánea y sin APIs externas.
   // El traductor deja los títulos con mayúscula en cada palabra; en español
   // los conectores van en minúscula ("Arroz Frito Con Pollo" -> "... con Pollo").
   const fixTitleES = (t) => t.replace(/ (De|Del|La|Las|El|Los|Lo|En|Con|Y|E|O|U|A|Al|Para|Por|Su|Sus|Un|Una)(?= )/g, (s) => s.toLowerCase());
   let dbMeals = [];
+  let worldDishes = [];
   try {
-    const res = await fetch('recipes.json');
-    if (res.ok) {
-      dbMeals = (await res.json()).map(r => ({
+    const [dbRes, worldRes] = await Promise.all([
+      fetch('recipes.json').catch(() => null),
+      fetch('world_recipes.json').catch(() => null)
+    ]);
+    if (dbRes && dbRes.ok) {
+      dbMeals = (await dbRes.json()).map(r => ({
         title: fixTitleES(r.title || ''),
         titleEN: r.titleEN || '',
         category: r.category || 'Varios',
@@ -1683,7 +1621,19 @@ async function ensureCatalogData() {
         source: 'db'
       }));
     }
-  } catch (e) { /* sin fichero: seguimos con el catálogo local */ }
+    if (worldRes && worldRes.ok) {
+      worldDishes = (await worldRes.json()).map(r => ({
+        title: r.title,
+        category: r.category || 'Varios',
+        area: r.area || 'Internacional',
+        image: null,
+        ingredients: r.ingredients || [],
+        instructions: r.instructions || '',
+        style: 'normal',
+        source: 'world'
+      }));
+    }
+  } catch (e) { /* sin ficheros: seguimos con el catálogo local */ }
 
   const byTitle = new Map();
   const add = (recipe) => {
@@ -1801,10 +1751,22 @@ function renderCatalogCard(recipe) {
     const scaled = scaleIngredients(recipe.ingredients, factor);
     ingredientsHTML = `<ul class="list-disc list-inside mt-1 space-y-1">${scaled.slice(0, 14).map(i => `<li>${escapeHtml(`${i.qty} ${i.name}`.trim())}</li>`).join('')}</ul>`;
   }
-  let instructions = recipe.instructions || `Receta tradicional de ${recipe.area || 'la cocina internacional'}.`;
-  if (instructions.length > 320) instructions = `${instructions.slice(0, 320).trim()}…`;
+  const fullInstr = recipe.instructions || `Receta tradicional de ${recipe.area || 'la cocina internacional'}.`;
   const titleEl = `<h4 class="font-headline-sm text-on-surface">${title}</h4>`;
-  const instrEl = `<p class="mt-1 text-body-md text-on-surface">${escapeHtml(instructions)}</p>`;
+  // Recetas largas: se muestran resumidas con botón "Ver receta completa".
+  let instrEl;
+  if (fullInstr.length > 320) {
+    const shortText = `${fullInstr.slice(0, 280).trim()}…`;
+    instrEl = `
+      <p class="mt-1 text-body-md text-on-surface instr-short">${escapeHtml(shortText)}
+        <button onclick="toggleInstr(this, true)" class="text-primary font-semibold underline-offset-2 underline">Ver receta completa</button>
+      </p>
+      <p class="mt-1 text-body-md text-on-surface instr-full hidden" style="white-space:pre-line">${escapeHtml(fullInstr)}
+        <button onclick="toggleInstr(this, false)" class="text-primary font-semibold underline-offset-2 underline">Ver menos</button>
+      </p>`;
+  } else {
+    instrEl = `<p class="mt-1 text-body-md text-on-surface" style="white-space:pre-line">${escapeHtml(fullInstr)}</p>`;
+  }
   // Zumos y batidos: beneficios destacados con su explicación.
   const benefitsEl = recipe.benefits ? `
         <div class="text-label-md">
@@ -1940,6 +1902,16 @@ function setCatalogBenefit(benefit) {
 function catalogMore() {
   catalogRenderLimit += 48;
   renderCatalog();
+}
+
+// Despliega o pliega la receta completa dentro de una tarjeta.
+function toggleInstr(btn, expand) {
+  const card = btn.closest('div');
+  const short = card.querySelector('.instr-short');
+  const full = card.querySelector('.instr-full');
+  if (!short || !full) return;
+  short.classList.toggle('hidden', expand);
+  full.classList.toggle('hidden', !expand);
 }
 
 function toggleCatalogFavorite(title) {

@@ -1,7 +1,7 @@
 # NutriPlan
 
-Planificador de menú semanal con recetario mundial (+1000 platos en español,
-fotos reales), cantidades por comensales y lista de la compra automática.
+Planificador de menú semanal con recetario mundial (+1100 platos en español
+con receta completa), cantidades por comensales y lista de la compra automática.
 App web estática e instalable (PWA), funciona sin conexión.
 
 **Web:** https://nutriplan-web.github.io/
@@ -11,6 +11,8 @@ App web estática e instalable (PWA), funciona sin conexión.
 - `index.html`, `app.js`, `styles.css` — la aplicación.
 - `recipes.json` — 666 recetas de TheMealDB ya traducidas al español
   (se genera una sola vez con `build_recipes.py`).
+- `world_recipes.json` — 364 platos famosos del mundo con receta completa
+  en español (ingredientes para 2 raciones y preparación detallada).
 - `menu_images.json` — fotos pre-resueltas de los platos locales y del mundo
   (se genera una sola vez con `build_menu_images.py`).
 - `sw.js`, `manifest.json` — instalación y modo sin conexión.
