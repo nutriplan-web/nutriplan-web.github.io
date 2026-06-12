@@ -1,6 +1,6 @@
 // Service Worker de NutriPlan: instala la app completa (incluidos los datos de
 // recetas y fotos) para que funcione rápida, estable y sin conexión.
-const CACHE = 'nutriplan-v4';
+const CACHE = 'nutriplan-v5';
 const ASSETS = [
   './', './index.html', './app.js', './styles.css', './icon.svg', './manifest.json',
   './icon-192.png', './icon-512.png',
@@ -29,7 +29,8 @@ self.addEventListener('fetch', (event) => {
   // Solo gestionamos recursos propios; lo externo (fotos, contador) va directo a la red.
   if (url.origin !== location.origin) return;
 
-  const isData = DATA_FILES.some((f) => url.pathname.endsWith('/' + f));
+  // Las fotos del menú (img/) tampoco cambian: caché primero.
+  const isData = DATA_FILES.some((f) => url.pathname.endsWith('/' + f)) || url.pathname.includes('/img/');
   if (isData) {
     // Datos empaquetados: caché primero (instantáneo y fiable), red solo si faltan.
     event.respondWith(

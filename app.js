@@ -166,6 +166,25 @@ function getCurrentWeekDates() {
 
 const weekDates = getCurrentWeekDates();
 
+// --- Rotación diaria del menú ---------------------------------------------
+// El menú de cada fecha se elige por el día REAL del calendario (no por la
+// posición en la lista), así avanza solo cada día que pasa. `menuShift`
+// permite además cambiar el menú de toda la semana con un botón.
+let menuShift = 0;
+function menuDayFor(position) {
+  const now = new Date();
+  const epochDays = Math.floor((now.getTime() - now.getTimezoneOffset() * 60000) / 86400000);
+  return (((epochDays + position + menuShift) % 7) + 7) % 7;
+}
+
+function shuffleWeekMenu() {
+  menuShift = (menuShift + 1 + Math.floor(Math.random() * 5)) % 7;
+  persistState();
+  renderWeeks();
+  loadDayDetails();
+  showToast('Menú de la semana cambiado');
+}
+
 function createMealSelection() {
   return { breakfast: 0, lunch: 0, dinner: 0 };
 }
@@ -701,7 +720,7 @@ const allergyRules = {
 };
 
 function getMealOptionsForDay(dayIndex, meal) {
-  const dayData = menuData[currentOrigin].days[dayIndex];
+  const dayData = menuData[currentOrigin].days[menuDayFor(dayIndex)];
   const options = dayData[`${meal}Options`];
   const filtered = options.filter(option => option.style === currentMenuStyle);
   return filtered.length > 0 ? filtered : options;
@@ -772,7 +791,7 @@ let currentIntolerances = {
 function persistState() {
   try {
     localStorage.setItem('nutriplan-state', JSON.stringify({
-      currentOrigin, currentDayIndex, currentServings, currentMealServings, shoppingMode,
+      currentOrigin, currentDayIndex, currentServings, currentMealServings, shoppingMode, menuShift,
       currentDiet, currentMenuStyle, currentIntolerances, catalogServings,
       favorites: Array.from(favoriteRecipes),
       selected: selectedMealIndices,
@@ -787,6 +806,7 @@ function restoreState() {
   if (!s) return;
   if (s.currentOrigin) currentOrigin = s.currentOrigin;
   if (typeof s.currentDayIndex === 'number') currentDayIndex = s.currentDayIndex;
+  if (typeof s.menuShift === 'number') menuShift = s.menuShift;
   if (typeof s.currentServings === 'number') currentServings = s.currentServings;
   if (s.currentMealServings) currentMealServings = s.currentMealServings;
   if (s.shoppingMode) shoppingMode = s.shoppingMode;
@@ -898,11 +918,11 @@ function selectDay(index) {
 }
 
 function getCurrentDayData() {
-  return menuData[currentOrigin].days[currentDayIndex];
+  return menuData[currentOrigin].days[menuDayFor(currentDayIndex)];
 }
 
 function getCurrentSelection() {
-  return selectedMealIndices[currentOrigin][currentDayIndex];
+  return selectedMealIndices[currentOrigin][menuDayFor(currentDayIndex)];
 }
 
 function getSelectedOption(meal) {
@@ -1193,7 +1213,7 @@ function collectShoppingFoods() {
     ? menuData[currentOrigin].days.map((_, index) => index)
     : [currentDayIndex];
   dayIndexes.forEach(dayIndex => {
-    const dailySelection = selectedMealIndices[currentOrigin][dayIndex];
+    const dailySelection = selectedMealIndices[currentOrigin][menuDayFor(dayIndex)];
     ['breakfast', 'lunch', 'dinner'].forEach(meal => {
       const mealServings = currentMealServings[meal];
       if (mealServings === 0) return;
@@ -1345,7 +1365,7 @@ function getLocalMenuRecipes() {
           if (seen.has(option.title)) return;
           seen.add(option.title);
           let category = 'Platos principales';
-          if (option.category === 'Bebida') category = 'Bebidas';
+          if (option.category === 'Bebida') category = JUICE_CATEGORY;
           else if (meal === 'breakfast') category = 'Desayuno';
           out.push({
             title: option.title,
@@ -1608,11 +1628,14 @@ async function ensureCatalogData() {
       fetch('recipes.json').catch(() => null),
       fetch('world_recipes.json').catch(() => null)
     ]);
+    // Categorías corregidas del recetario: acento de Guarnición y la categoría
+    // residual "Cabra" (2 platos) se integra en Carne.
+    const FIX_CAT = { 'Guarnicion': 'Guarnición', 'Cabra': 'Carne' };
     if (dbRes && dbRes.ok) {
       dbMeals = (await dbRes.json()).map(r => ({
         title: fixTitleES(r.title || ''),
         titleEN: r.titleEN || '',
-        category: r.category || 'Varios',
+        category: FIX_CAT[r.category] || r.category || 'Varios',
         area: r.area || 'Internacional',
         image: r.image || null,
         ingredients: r.ingredients || [],
@@ -1624,7 +1647,8 @@ async function ensureCatalogData() {
     if (worldRes && worldRes.ok) {
       worldDishes = (await worldRes.json()).map(r => ({
         title: r.title,
-        category: r.category || 'Varios',
+        // Las bebidas sueltas se unifican en el apartado de Zumos y batidos.
+        category: r.category === 'Bebidas' ? JUICE_CATEGORY : (r.category || 'Varios'),
         area: r.area || 'Internacional',
         image: null,
         ingredients: r.ingredients || [],
@@ -1634,6 +1658,32 @@ async function ensureCatalogData() {
       }));
     }
   } catch (e) { /* sin ficheros: seguimos con el catálogo local */ }
+
+  // --- Platos duplicados entre el recetario y los platos del mundo ---------
+  // Se queda la receta del mundo (mejor redactada en español) y hereda la
+  // foto real del recetario; la entrada duplicada del recetario se quita.
+  const DB_DUP_TO_WORLD = {
+    'cerdo tonkatsu': 'Tonkatsu', 'katsudon japones': 'Katsudon', 'turquia banh mi': 'Banh mi',
+    'pollo tandoori': 'Tandoori', 'cordero rogan josh': 'Rogan josh', 'cassoulet de cerdo': 'Cassoulet',
+    'croquetas de jamon': 'Croquetas', 'freidora de patatas bravas': 'Patatas bravas',
+    'gazpacho rapido': 'Gazpacho', 'gambas al ajillo al jerez': 'Gambas al ajillo',
+    'kebab adana': 'Adana kebab', 'lahmacun turco': 'Lahmacun', 'queso borek': 'Börek',
+    'pan shawarma': 'Shawarma', 'cuscus de pollo': 'Cuscús', 'tarta de queso crema': 'Tarta de queso',
+    'asado de carne': 'Asado', 'empanadas de carne': 'Empanadas', 'alfajores': 'Alfajor',
+    'borsch': 'Borscht', 'panqueques blinis': 'Blini', 'rendang de carne': 'Rendang',
+    'stroopwafel holandes': 'Stroopwafel', 'locro': 'Locro', 'desayuno ingles': 'Desayuno inglés completo'
+  };
+  // Duplicados internos de la lista del mundo (ya cubiertos por otro apartado).
+  const WORLD_SKIP = new Set(['rendang de ternera', 'limonada', 'batido de chocolate', 'smoothie de frutas']);
+  worldDishes = worldDishes.filter(w => !WORLD_SKIP.has(normalizeText(w.title)));
+  const worldByNorm = new Map(worldDishes.map(w => [normalizeText(w.title), w]));
+  dbMeals = dbMeals.filter(r => {
+    const target = DB_DUP_TO_WORLD[normalizeText(r.title)];
+    if (!target) return true;
+    const w = worldByNorm.get(normalizeText(target));
+    if (w && !w.image) w.image = r.image;
+    return false;
+  });
 
   const byTitle = new Map();
   const add = (recipe) => {
@@ -1655,10 +1705,19 @@ async function openCatalog() {
   renderCatalog();
 }
 
+// Orden lógico de las categorías en los chips (desayuno -> platos -> dulces).
+const CATEGORY_ORDER = [
+  'Desayuno', 'Carne', 'Pollo', 'Cerdo', 'Cordero', 'Pescado y marisco',
+  'Arroz', 'Pasta', 'Sopas', 'Vegetariano', 'Vegano', 'Ensaladas',
+  'Guarnición', 'Aperitivos', 'Panadería', 'Platos principales', 'Postres',
+  JUICE_CATEGORY, 'Varios'
+];
 function catalogCategories() {
-  const counts = {};
-  catalogData.forEach(r => { counts[r.category] = (counts[r.category] || 0) + 1; });
-  return Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+  const present = new Set(catalogData.map(r => r.category));
+  const ordered = CATEGORY_ORDER.filter(c => present.has(c));
+  // Cualquier categoría nueva no prevista se añade al final, ordenada.
+  const extras = Array.from(present).filter(c => !CATEGORY_ORDER.includes(c)).sort((a, b) => a.localeCompare(b, 'es'));
+  return ordered.concat(extras);
 }
 
 function normalizeText(text) {

@@ -183,7 +183,13 @@
             </section>
 
             <section class="space-y-stack-sm">
-                <h2 class="font-headline-sm text-headline-sm text-on-surface">Menú Semanal</h2>
+                <div class="flex items-center justify-between">
+                    <h2 class="font-headline-sm text-headline-sm text-on-surface">Menú Semanal</h2>
+                    <button onclick="shuffleWeekMenu()" class="flex items-center gap-1.5 text-primary font-semibold text-label-lg bg-primary-container/40 px-4 py-2 rounded-full active:scale-95 transition-all">
+                        <span class="material-symbols-outlined" style="font-size:18px;">cached</span>
+                        Cambiar menú
+                    </button>
+                </div>
                 <div class="flex gap-3 overflow-x-auto scroll-hide py-2" id="weeks-container">
                     <!-- Dinámico por script semanal sin repeticiones -->
                 </div>
