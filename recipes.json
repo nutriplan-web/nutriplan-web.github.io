@@ -566,7 +566,7 @@
 "1 cucharadita de vainilla",
 "1/2 taza de agua hirviendo"
 ],
-"instructions": "Simplemente mezcle todos los ingredientes secos con los ingredientes húmedos y mezcle por completo. Hornear durante 45 min a 180 grados. Decorar con un poco de chocolate vegano derretido"
+"instructions": "Prepara los huevos de lino: mezcla 2 cucharadas de lino molido con 6 cucharadas de agua y deja reposar 10 minutos hasta que gelifique.\nPrecalienta el horno a 180 °C y engrasa un molde redondo de 20 cm.\nTamiza en un bol la harina, el cacao y el polvo de hornear y mezcla con el azúcar de coco.\nAñade los huevos de lino, la leche de almendras y la vainilla y bate hasta integrar.\nIncorpora el agua hirviendo poco a poco sin dejar de mezclar: la masa quedará bastante líquida, es lo correcto y da un bizcocho jugoso.\nVierte en el molde y hornea 45 minutos o hasta que un palillo salga limpio.\nDeja enfriar 15 minutos en el molde y desmolda sobre una rejilla.\nDecora con chocolate vegano derretido por encima una vez frío."
 },
 {
 "id": "52795",
@@ -6434,11 +6434,16 @@
 "area": "India",
 "image": "https://www.themealdb.com/images/media/meals/hqaejl1695738653.jpg",
 "ingredients": [
-"2 pan",
-"2 huevos",
-"0,5 sal"
+"4 rebanadas de pan de molde",
+"3 huevos",
+"1 cebolla pequeña picada fina",
+"1 chile verde picado (opcional)",
+"2 cucharadas de cilantro fresco picado",
+"1/4 cucharadita de cúrcuma",
+"Sal y pimienta al gusto",
+"1 cucharada de aceite o mantequilla"
 ],
-"instructions": "Haz y disfruta"
+"instructions": "Bate los huevos en un bol ancho con la cebolla, el chile, el cilantro, la cúrcuma, la sal y la pimienta hasta que estén espumosos.\nCalienta el aceite en una sartén antiadherente a fuego medio y vierte la mitad del huevo batido.\nColoca encima 2 rebanadas de pan, presiónalas ligeramente para que se empapen y dales la vuelta enseguida para que ambas caras tengan huevo.\nCocina 2-3 minutos por lado hasta que la tortilla esté dorada y el pan crujiente en los bordes.\nDobla el pan sobre sí mismo como un sándwich y repite con el resto del huevo y el pan.\nSirve caliente, tal cual o con kétchup y chutney: es el desayuno callejero más famoso de la India."
 },
 {
 "id": "53077",
@@ -13805,7 +13810,7 @@
 "Al gusto Sal",
 "Al gusto Pimienta"
 ],
-"instructions": "Simplemente combine todo en un tazón y sirva junto con casi cualquier cosa."
+"instructions": "Pela el mango y córtalo en daditos pequeños y regulares; ponlos en un bol.\nPica muy fino la cebolleta, el chile scotch bonnet (sin semillas si lo quieres suave; usa guantes) y el cilantro.\nMezcla todo con la ralladura y el zumo de la lima y salpimienta.\nDeja reposar 15-20 minutos en la nevera para que los sabores se integren.\nRemueve y prueba antes de servir: debe equilibrar dulce, ácido y picante.\nPerfecta como salsa fresca para pescado a la plancha, pollo, tacos o simplemente con totopos."
 },
 {
 "id": "53434",
@@ -14137,7 +14142,7 @@
 "1 cucharadita de sal",
 "1 taza de agua"
 ],
-"instructions": "Hierva agua con sal y luego agregue sémola; reduzca el fuego y cubra. revolviendo ocasionalmente. Cocine aproximadamente 15 minutos o hasta que la sémola tenga la consistencia deseada. Enfriar y luego servir."
+"instructions": "Pon a hervir el agua con la sal en un cazo.\nVierte la sémola en forma de lluvia, batiendo con varillas para que no se formen grumos.\nBaja el fuego al mínimo, tapa y cocina unos 15 minutos, removiendo de vez en cuando, hasta obtener la consistencia deseada.\nApártala del fuego y deja reposar 2 minutos tapada.\nSírvela caliente: en versión dulce con leche, miel y canela, o salada con mantequilla y queso rallado como guarnición cremosa."
 },
 {
 "id": "53451",

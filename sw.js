@@ -1,13 +1,15 @@
 // Service Worker de NutriPlan: instala la app completa (incluidos los datos de
 // recetas y fotos) para que funcione rápida, estable y sin conexión.
-const CACHE = 'nutriplan-v5';
+const CACHE = 'nutriplan-v7';
 const ASSETS = [
   './', './index.html', './app.js', './styles.css', './icon.svg', './manifest.json',
   './icon-192.png', './icon-512.png',
-  './recipes.json', './world_recipes.json', './menu_images.json'
+  './recipes.json', './world_recipes.json', './menu_images.json',
+  './i18n_ro.json', './i18n_es.json', './i18n_en.json',
+  './catalog_ro.json', './catalog_en.json'
 ];
 // Ficheros de datos grandes que no cambian entre versiones: se sirven de caché.
-const DATA_FILES = ['recipes.json', 'world_recipes.json', 'menu_images.json'];
+const DATA_FILES = ['recipes.json', 'world_recipes.json', 'menu_images.json', 'catalog_ro.json', 'catalog_en.json'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(

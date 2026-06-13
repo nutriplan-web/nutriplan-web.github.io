@@ -159,9 +159,12 @@
             </div>
             <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-primary-fixed-dim">NutriPlan</h1>
         </div>
-        <button onclick="switchView('profile')" class="hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-150">
-            <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">settings</span>
-        </button>
+        <div class="flex items-center gap-1">
+            <button id="lang-toggle" onclick="toggleLang()" class="hover:bg-surface-container-high transition-colors px-3 py-1.5 rounded-full active:scale-95 duration-150 font-label-lg text-label-lg text-primary dark:text-primary-fixed-dim border border-outline-variant" title="Español / Română / English">ES</button>
+            <button onclick="switchView('profile')" class="hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-150">
+                <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">settings</span>
+            </button>
+        </div>
     </header>
 
     <!-- CONTAINER VIEWS -->
@@ -177,17 +180,17 @@
                     </div>
                 </div>
                 <div class="flex gap-2 overflow-x-auto scroll-hide py-1">
-                    <button onclick="filterOrigin('es')" id="btn-filter-es" class="bg-surface-container-high text-on-surface-variant px-6 py-2 rounded-full font-label-lg text-label-lg hover:bg-surface-variant transition-all whitespace-nowrap">Comida Española</button>
-                    <button onclick="filterOrigin('ro')" id="btn-filter-ro" class="bg-surface-container-high text-on-surface-variant px-6 py-2 rounded-full font-label-lg text-label-lg hover:bg-surface-variant transition-all whitespace-nowrap">Comida Rumana</button>
+                    <button onclick="filterOrigin('es')" id="btn-filter-es" data-i18n="cuisine_es" class="bg-surface-container-high text-on-surface-variant px-6 py-2 rounded-full font-label-lg text-label-lg hover:bg-surface-variant transition-all whitespace-nowrap">Comida Española</button>
+                    <button onclick="filterOrigin('ro')" id="btn-filter-ro" data-i18n="cuisine_ro" class="bg-surface-container-high text-on-surface-variant px-6 py-2 rounded-full font-label-lg text-label-lg hover:bg-surface-variant transition-all whitespace-nowrap">Comida Rumana</button>
                 </div>
             </section>
 
             <section class="space-y-stack-sm">
                 <div class="flex items-center justify-between">
-                    <h2 class="font-headline-sm text-headline-sm text-on-surface">Menú Semanal</h2>
+                    <h2 class="font-headline-sm text-headline-sm text-on-surface" data-i18n="weekly_menu">Menú Semanal</h2>
                     <button onclick="shuffleWeekMenu()" class="flex items-center gap-1.5 text-primary font-semibold text-label-lg bg-primary-container/40 px-4 py-2 rounded-full active:scale-95 transition-all">
                         <span class="material-symbols-outlined" style="font-size:18px;">cached</span>
-                        Cambiar menú
+                        <span data-i18n="change_menu">Cambiar menú</span>
                     </button>
                 </div>
                 <div class="flex gap-3 overflow-x-auto scroll-hide py-2" id="weeks-container">
@@ -202,7 +205,7 @@
                         <div class="absolute top-4 left-4 flex gap-2">
                             <span id="badge-origin" class="bg-white/90 backdrop-blur-md text-primary font-label-lg px-3 py-1 rounded-full shadow-sm">Estilo Seleccionado</span>
                             <span id="language-label" class="bg-white/90 backdrop-blur-md text-on-surface-variant font-label-lg px-3 py-1 rounded-full shadow-sm">Idioma: Español</span>
-                            <span class="bg-white/90 backdrop-blur-md text-on-tertiary-container font-label-lg px-3 py-1 rounded-full shadow-sm">Adaptativo</span>
+                            <span class="bg-white/90 backdrop-blur-md text-on-tertiary-container font-label-lg px-3 py-1 rounded-full shadow-sm" data-i18n="adaptive">Adaptativo</span>
                         </div>
                     </div>
                     <div class="p-6 space-y-stack-md">
@@ -216,25 +219,25 @@
                                 <div class="w-12 h-12 bg-primary flex items-center justify-center rounded-xl shadow-md transform rotate-3">
                                     <span id="day-score" class="text-white font-display-lg text-[28px]">A</span>
                                 </div>
-                                <span class="font-label-md text-label-md text-primary mt-1">Nutri-Score</span>
+                                <span class="font-label-md text-label-md text-primary mt-1" data-i18n="nutri_score">Nutri-Score</span>
                             </div>
                         </div>
                         <div class="grid grid-cols-3 gap-4 py-4 border-y border-surface-variant/50">
                             <div class="text-center">
-                                <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Calorías</p>
+                                <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" data-i18n="calories">Calorías</p>
                                 <p id="day-calories" class="font-data-display text-data-display text-primary">1,850</p>
                             </div>
                             <div class="text-center">
-                                <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Proteína</p>
+                                <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" data-i18n="protein">Proteína</p>
                                 <p id="day-protein" class="font-data-display text-data-display text-tertiary">110g</p>
                             </div>
                             <div class="text-center">
-                                <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Grasas</p>
+                                <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" data-i18n="fats">Grasas</p>
                                 <p id="day-fats" class="font-data-display text-data-display text-secondary">65g</p>
                             </div>
                         </div>
                         <button onclick="switchView('recipes')" class="w-full bg-primary-container text-on-primary-container font-headline-sm py-4 rounded-2xl flex items-center justify-center gap-2 hover:opacity-90 transition-opacity active:scale-[0.98] duration-150">
-                            Ver menú del día
+                            <span data-i18n="see_day_menu">Ver menú del día</span>
                             <span class="material-symbols-outlined">arrow_forward</span>
                         </button>
                     </div>
@@ -246,8 +249,8 @@
         <div id="view-recipes" class="view-section hidden space-y-stack-lg">
             <section class="bg-surface-container-low rounded-xl p-stack-md flex justify-between items-center shadow-sm">
                 <div>
-                    <p class="font-label-lg text-label-lg text-on-surface-variant">Comensales</p>
-                    <p class="font-body-md text-body-md text-on-surface">Ajuste de porciones dinámicas</p>
+                    <p class="font-label-lg text-label-lg text-on-surface-variant" data-i18n="servings">Comensales</p>
+                    <p class="font-body-md text-body-md text-on-surface" data-i18n="servings_sub">Ajuste de porciones dinámicas</p>
                 </div>
                 <div class="flex items-center bg-surface-container-highest rounded-full px-2 py-1 gap-4">
                     <button onclick="adjustServings(-1)" class="w-10 h-10 flex items-center justify-center bg-surface rounded-full text-primary shadow-sm active:scale-95 duration-150">
@@ -266,8 +269,8 @@
             <section class="space-y-stack-md">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Líquidos Nutritivos</p>
-                        <h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">Smoothies y Jugos Saludables</h3>
+                        <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" data-i18n="liquids_label">Líquidos Nutritivos</p>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface mt-1" data-i18n="liquids_title">Smoothies y Jugos Saludables</h3>
                     </div>
                 </div>
                 <div id="liquids-container" class="grid grid-cols-1 gap-3"></div>
@@ -277,19 +280,19 @@
         <!-- BLOCK 3B: FULL RECIPE CATALOG VIEW -->
         <div id="view-catalog" class="view-section hidden space-y-stack-md">
             <section class="space-y-stack-sm">
-                <h2 class="font-headline-md text-headline-md text-on-surface">Recetario completo</h2>
-                <p class="text-on-surface-variant font-body-md">Más de 1100 platos del mundo, todos con su receta completa: ingredientes, cantidades y preparación paso a paso. <span id="catalog-count" class="text-primary font-semibold"></span></p>
+                <h2 class="font-headline-md text-headline-md text-on-surface" data-i18n="catalog_title">Recetario completo</h2>
+                <p class="text-on-surface-variant font-body-md"><span data-i18n="catalog_sub">Más de 1100 platos del mundo, todos con su receta completa: ingredientes, cantidades y preparación paso a paso.</span> <span id="catalog-count" class="text-primary font-semibold"></span></p>
             </section>
 
             <div class="relative group">
                 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
-                <input oninput="catalogSearch(this.value)" class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary text-body-md placeholder:text-outline-variant transition-all" placeholder="Busca un plato o lo que tienes: pollo, arroz..." type="text"/>
+                <input oninput="catalogSearch(this.value)" data-i18n-ph="search_ph" class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary text-body-md placeholder:text-outline-variant transition-all" placeholder="Busca un plato o lo que tienes: pollo, arroz..." type="text"/>
             </div>
 
             <div class="flex items-center justify-between gap-3 rounded-3xl bg-surface-container-low p-3">
                 <div>
-                    <p class="font-label-md text-label-md text-on-surface-variant">Comensales</p>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant">Las cantidades se ajustan</p>
+                    <p class="font-label-md text-label-md text-on-surface-variant" data-i18n="servings">Comensales</p>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="qty_note">Las cantidades se ajustan</p>
                 </div>
                 <div class="flex items-center bg-surface-container-high rounded-full px-2 py-1 gap-3">
                     <button onclick="adjustCatalogServings(-1)" class="w-9 h-9 flex items-center justify-center bg-surface rounded-full text-primary shadow-sm active:scale-95">
@@ -310,30 +313,30 @@
         <!-- BLOCK 4: SHOPPING CART VIEW -->
         <div id="view-cart" class="view-section hidden space-y-stack-lg">
             <section class="space-y-stack-sm">
-                <h2 class="font-headline-md text-headline-md text-on-surface">Lista de la Compra</h2>
-                <p class="text-on-surface-variant font-body-md">Sugerencias inteligentes basadas en tu plan semanal.</p>
+                <h2 class="font-headline-md text-headline-md text-on-surface" data-i18n="cart_title">Lista de la Compra</h2>
+                <p class="text-on-surface-variant font-body-md" data-i18n="cart_sub">Sugerencias inteligentes basadas en tu plan semanal.</p>
             </section>
 
             <div class="relative group">
                 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
-                <input id="extra-item-input" onkeydown="handleExtraItemKey(event)" class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary text-body-md placeholder:text-outline-variant transition-all" placeholder="Añadir algo extra y pulsa Enter..." type="text"/>
+                <input id="extra-item-input" onkeydown="handleExtraItemKey(event)" data-i18n-ph="extra_ph" class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary text-body-md placeholder:text-outline-variant transition-all" placeholder="Añadir algo extra y pulsa Enter..." type="text"/>
             </div>
 
             <div class="flex flex-wrap items-center justify-between gap-3 rounded-3xl bg-surface-container-low p-3 mt-4">
                 <div>
-                  <p class="font-label-md text-label-md text-on-surface-variant">Modo de compra</p>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant">Diaria o semanal</p>
+                  <p class="font-label-md text-label-md text-on-surface-variant" data-i18n="shop_mode">Modo de compra</p>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="shop_mode_sub">Diaria o semanal</p>
                 </div>
                 <div class="inline-flex rounded-full bg-surface-container-high p-1">
-                  <button id="shopping-mode-daily" onclick="setShoppingMode('daily')" class="px-4 py-2 rounded-full text-label-md text-on-surface-variant transition-all">Diaria</button>
-                  <button id="shopping-mode-weekly" onclick="setShoppingMode('weekly')" class="px-4 py-2 rounded-full text-label-md text-on-surface-variant transition-all">Semanal</button>
+                  <button id="shopping-mode-daily" onclick="setShoppingMode('daily')" data-i18n="daily" class="px-4 py-2 rounded-full text-label-md text-on-surface-variant transition-all">Diaria</button>
+                  <button id="shopping-mode-weekly" onclick="setShoppingMode('weekly')" data-i18n="weekly" class="px-4 py-2 rounded-full text-label-md text-on-surface-variant transition-all">Semanal</button>
                 </div>
             </div>
 
             <div class="flex gap-3">
                 <button onclick="copyShoppingList()" class="flex-1 flex items-center justify-center gap-2 bg-surface-container-high text-on-surface font-semibold py-3 rounded-2xl active:scale-[0.98] transition-all">
                     <span class="material-symbols-outlined" style="font-size:20px;">content_copy</span>
-                    Copiar
+                    <span data-i18n="copy_btn">Copiar</span>
                 </button>
                 <button onclick="shareShoppingWhatsApp()" class="flex-1 flex items-center justify-center gap-2 bg-primary text-on-primary font-semibold py-3 rounded-2xl active:scale-[0.98] transition-all">
                     <span class="material-symbols-outlined" style="font-size:20px;">share</span>
@@ -347,46 +350,69 @@
         <!-- BLOCK 5: PROFILE & CONFIGURATION VIEW -->
         <div id="view-profile" class="view-section hidden space-y-stack-lg">
             <section class="space-y-stack-sm">
-                <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Configuración Nutricional</h2>
-                <p class="font-body-md text-on-surface-variant">Ajustes directos del motor adaptativo.</p>
+                <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface" data-i18n="profile_title">Configuración Nutricional</h2>
+                <p class="font-body-md text-on-surface-variant" data-i18n="profile_sub">Ajustes directos del motor adaptativo.</p>
+            </section>
+
+            <!-- IDIOMA / LIMBĂ / LANGUAGE -->
+            <section class="space-y-stack-md">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">translate</span>
+                    <h3 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface" data-i18n="lang_title">Idioma / Limbă / Language</h3>
+                </div>
+                <p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="lang_sub">Toda la app en español, rumano o inglés</p>
+                <div class="grid grid-cols-3 gap-4">
+                    <button onclick="setLang('es')" id="lang-es" class="p-stack-md bg-surface-container-lowest text-on-surface-variant rounded-xl border border-outline-variant flex flex-col items-center gap-2 transition-all">
+                        <span class="text-2xl">🇪🇸</span>
+                        <span class="font-label-lg text-label-lg">Español</span>
+                    </button>
+                    <button onclick="setLang('ro')" id="lang-ro" class="p-stack-md bg-surface-container-lowest text-on-surface-variant rounded-xl border border-outline-variant flex flex-col items-center gap-2 transition-all">
+                        <span class="text-2xl">🇷🇴</span>
+                        <span class="font-label-lg text-label-lg">Română</span>
+                    </button>
+                    <button onclick="setLang('en')" id="lang-en" class="p-stack-md bg-surface-container-lowest text-on-surface-variant rounded-xl border border-outline-variant flex flex-col items-center gap-2 transition-all">
+                        <span class="text-2xl">🇬🇧</span>
+                        <span class="font-label-lg text-label-lg">English</span>
+                    </button>
+                </div>
             </section>
 
             <section class="space-y-stack-md">
                 <div class="flex items-center gap-2">
                     <span class="material-symbols-outlined text-primary">restaurant</span>
-                    <h3 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface">Tipo de Dieta Primaria</h3>
+                    <h3 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface" data-i18n="diet_title">Tipo de Dieta Primaria</h3>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <button onclick="setDiet('vegana')" id="diet-vegana" class="p-stack-md bg-surface-container-lowest text-on-surface-variant rounded-xl border border-outline-variant flex flex-col items-center gap-2 transition-all">
                         <span class="material-symbols-outlined text-2xl">spa</span>
-                        <span class="font-label-lg text-label-lg">Vegana</span>
+                        <span class="font-label-lg text-label-lg" data-i18n="diet_vegana">Vegana</span>
                     </button>
                     <button onclick="setDiet('vegetariana')" id="diet-vegetariana" class="p-stack-md bg-surface-container-lowest text-on-surface-variant rounded-xl border border-outline-variant flex flex-col items-center gap-2 transition-all">
                         <span class="material-symbols-outlined text-2xl">eco</span>
-                        <span class="font-label-lg text-label-lg">Vegetariana</span>
+                        <span class="font-label-lg text-label-lg" data-i18n="diet_vegetariana">Vegetariana</span>
                     </button>
                     <button onclick="setDiet('keto')" id="diet-keto" class="p-stack-md bg-surface-container-lowest text-on-surface-variant rounded-xl border border-outline-variant flex flex-col items-center gap-2 transition-all">
                         <span class="material-symbols-outlined text-2xl">fitness_center</span>
-                        <span class="font-label-lg text-label-lg">Keto</span>
+                        <span class="font-label-lg text-label-lg" data-i18n="diet_keto">Keto</span>
                     </button>
                     <button onclick="setDiet('mediterranea')" id="diet-mediterranea" class="p-stack-md bg-surface-container-lowest text-on-surface-variant rounded-xl border border-outline-variant flex flex-col items-center gap-2 transition-all">
                         <span class="material-symbols-outlined text-2xl">local_florist</span>
-                        <span class="font-label-lg text-label-lg">Mediterránea</span>
+                        <span class="font-label-lg text-label-lg" data-i18n="diet_mediterranea">Mediterránea</span>
                     </button>
-                    <button onclick="setDiet('baja en carbohidratos')" id="diet-baja-en-carbohidratos" class="p-stack-md bg-surface-container-lowest text-on-surface-variant rounded-xl border border-outline-variant flex flex-col items-center gap-2 transition-all col-span-2">
+                    <button onclick="setDiet('baja')" id="diet-baja" class="p-stack-md bg-surface-container-lowest text-on-surface-variant rounded-xl border border-outline-variant flex flex-col items-center gap-2 transition-all col-span-2">
                         <span class="material-symbols-outlined text-2xl">no_carbs</span>
-                        <span class="font-label-lg text-label-lg">Baja en carbohidratos</span>
+                        <span class="font-label-lg text-label-lg" data-i18n="diet_baja">Baja en carbohidratos</span>
                     </button>
                 </div>
                 <p id="diet-summary" class="mt-3 font-body-md text-on-surface-variant">Dieta activa: Mediterránea</p>
                 <section class="space-y-stack-md">
                   <div class="flex items-center gap-2">
                     <span class="material-symbols-outlined text-primary">swap_horiz</span>
-                    <h3 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface">Estilo de Menú</h3>
+                    <h3 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface" data-i18n="menu_style_title">Estilo de Menú</h3>
                   </div>
                   <div class="inline-flex rounded-full bg-surface-container-high p-1">
-                    <button id="menu-style-saludable" onclick="setMenuStyle('saludable')" class="px-4 py-2 rounded-full text-label-md text-on-surface-variant transition-all">Saludable</button>
-                    <button id="menu-style-normal" onclick="setMenuStyle('normal')" class="px-4 py-2 rounded-full text-label-md text-on-surface-variant transition-all">Normal</button>
+                    <button id="menu-style-saludable" onclick="setMenuStyle('saludable')" data-i18n="style_saludable" class="px-4 py-2 rounded-full text-label-md text-on-surface-variant transition-all">Saludable</button>
+                    <button id="menu-style-normal" onclick="setMenuStyle('normal')" data-i18n="style_normal" class="px-4 py-2 rounded-full text-label-md text-on-surface-variant transition-all">Normal</button>
                   </div>
                   <p id="menu-style-summary" class="mt-3 font-body-md text-on-surface-variant">Menú activo: Saludable</p>
                 </section>
@@ -395,24 +421,24 @@
             <section class="space-y-stack-md">
                 <div class="flex items-center gap-2">
                     <span class="material-symbols-outlined text-secondary">warning</span>
-                    <h3 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface">Exclusiones Alérgicas</h3>
+                    <h3 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface" data-i18n="allergy_title">Exclusiones Alérgicas</h3>
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <button id="intolerance-gluten" onclick="toggleIntolerance('gluten')" class="p-4 bg-surface-container-lowest rounded-2xl border border-outline-variant text-on-surface transition-all text-left">
-                        <p class="font-label-lg">Sin gluten</p>
-                        <p class="text-label-md text-on-surface-variant">Adapta automáticamente el menú</p>
+                        <p class="font-label-lg" data-i18n="no_gluten">Sin gluten</p>
+                        <p class="text-label-md text-on-surface-variant" data-i18n="no_gluten_sub">Adapta automáticamente el menú</p>
                     </button>
                     <button id="intolerance-lactosa" onclick="toggleIntolerance('lactosa')" class="p-4 bg-surface-container-lowest rounded-2xl border border-outline-variant text-on-surface transition-all text-left">
-                        <p class="font-label-lg">Sin lactosa</p>
-                        <p class="text-label-md text-on-surface-variant">Sin lácteos en recetas</p>
+                        <p class="font-label-lg" data-i18n="no_lactose">Sin lactosa</p>
+                        <p class="text-label-md text-on-surface-variant" data-i18n="no_lactose_sub">Sin lácteos en recetas</p>
                     </button>
                     <button id="intolerance-frutos" onclick="toggleIntolerance('frutos')" class="p-4 bg-surface-container-lowest rounded-2xl border border-outline-variant text-on-surface transition-all text-left">
-                        <p class="font-label-lg">Sin frutos secos</p>
-                        <p class="text-label-md text-on-surface-variant">Evita nueces y semillas</p>
+                        <p class="font-label-lg" data-i18n="no_nuts">Sin frutos secos</p>
+                        <p class="text-label-md text-on-surface-variant" data-i18n="no_nuts_sub">Evita nueces y frutos de cáscara</p>
                     </button>
                     <button id="intolerance-marisco" onclick="toggleIntolerance('marisco')" class="p-4 bg-surface-container-lowest rounded-2xl border border-outline-variant text-on-surface transition-all text-left">
-                        <p class="font-label-lg">Sin marisco</p>
-                        <p class="text-label-md text-on-surface-variant">Selecciona recetas marinas seguras</p>
+                        <p class="font-label-lg" data-i18n="no_seafood">Sin marisco</p>
+                        <p class="text-label-md text-on-surface-variant" data-i18n="no_seafood_sub">Evita crustáceos y moluscos</p>
                     </button>
                 </div>
             </section>
@@ -421,18 +447,18 @@
             <section class="space-y-stack-md">
                 <div class="flex items-center gap-2">
                     <span class="material-symbols-outlined text-primary">dark_mode</span>
-                    <h3 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface">Apariencia</h3>
+                    <h3 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface" data-i18n="appearance">Apariencia</h3>
                 </div>
                 <div class="flex items-center justify-between rounded-3xl bg-surface-container-low p-4">
                     <div>
-                        <p class="font-label-lg text-on-surface">Modo oscuro</p>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant">Cambia el aspecto de la app</p>
+                        <p class="font-label-lg text-on-surface" data-i18n="dark_mode">Modo oscuro</p>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="dark_sub">Cambia el aspecto de la app</p>
                     </div>
                     <button id="dark-toggle" onclick="toggleDarkMode()" class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface font-semibold active:scale-95 transition-all">Activar</button>
                 </div>
                 <button onclick="window.print()" class="w-full flex items-center justify-center gap-2 bg-surface-container-high text-on-surface font-semibold py-3 rounded-2xl active:scale-[0.98] transition-all">
                     <span class="material-symbols-outlined" style="font-size:20px;">print</span>
-                    Imprimir / Guardar como PDF
+                    <span data-i18n="print_btn">Imprimir / Guardar como PDF</span>
                 </button>
             </section>
 
@@ -440,15 +466,15 @@
             <section class="space-y-stack-md">
                 <div class="flex items-center gap-2">
                     <span class="material-symbols-outlined text-primary">info</span>
-                    <h3 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface">Acerca de NutriPlan</h3>
+                    <h3 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface" data-i18n="about">Acerca de NutriPlan</h3>
                 </div>
 
                 <div class="flex items-center justify-between rounded-3xl bg-surface-container-low p-4">
                     <div class="flex items-center gap-3">
                         <span class="material-symbols-outlined text-primary">visibility</span>
                         <div>
-                            <p class="font-label-md text-label-md text-on-surface-variant">Visitas a la página</p>
-                            <p class="font-body-sm text-body-sm text-on-surface-variant">Personas que han abierto la app</p>
+                            <p class="font-label-md text-label-md text-on-surface-variant" data-i18n="visits">Visitas a la página</p>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="visits_sub">Personas que han abierto la app</p>
                         </div>
                     </div>
                     <span id="visit-counter" class="font-data-display text-data-display text-primary">…</span>
@@ -457,38 +483,64 @@
                 <div class="rounded-3xl bg-surface-container-low divide-y divide-surface-variant/40 overflow-hidden">
                     <details class="group">
                         <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
-                            <span class="font-label-lg text-on-surface">Aviso legal</span>
+                            <span class="font-label-lg text-on-surface" data-i18n="legal">Aviso legal</span>
                             <span class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
                         </summary>
-                        <p class="px-4 pb-4 text-body-sm text-on-surface-variant">NutriPlan es una aplicación gratuita de uso personal y orientativo. El contenido se ofrece "tal cual", sin garantías. El responsable de la web no se hace responsable del uso que se haga de la información ni de errores u omisiones en recetas, cantidades o datos nutricionales.</p>
+                        <p class="px-4 pb-4 text-body-sm text-on-surface-variant" data-i18n="legal_text">NutriPlan es una aplicación gratuita de uso personal y orientativo. El contenido se ofrece "tal cual", sin garantías. El responsable de la web no se hace responsable del uso que se haga de la información ni de errores u omisiones en recetas, cantidades o datos nutricionales.</p>
                     </details>
                     <details class="group">
                         <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
-                            <span class="font-label-lg text-on-surface">Privacidad y datos</span>
+                            <span class="font-label-lg text-on-surface" data-i18n="privacy">Privacidad y datos</span>
                             <span class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
                         </summary>
                         <div class="px-4 pb-4 text-body-sm text-on-surface-variant space-y-2">
-                            <p>No se solicita registro ni datos personales. Tus preferencias (dieta, comensales, lista de la compra, favoritos) se guardan <strong>solo en tu navegador</strong> (localStorage) y no se envían a ningún servidor propio.</p>
-                            <p>Para mostrar recetas, fotos y traducciones, la app consulta servicios externos gratuitos (ver Créditos). El contador de visitas guarda únicamente un número total y anónimo, sin identificarte.</p>
+                            <p data-i18n="privacy_t1">No se solicita registro ni datos personales. Tus preferencias (dieta, comensales, lista de la compra, favoritos) se guardan solo en tu navegador (localStorage) y no se envían a ningún servidor propio.</p>
+                            <p data-i18n="privacy_t2">Para mostrar recetas, fotos y traducciones, la app consulta servicios externos gratuitos (ver Créditos). El contador de visitas guarda únicamente un número total y anónimo, sin identificarte.</p>
                         </div>
                     </details>
                     <details class="group">
                         <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
-                            <span class="font-label-lg text-on-surface">Aviso nutricional</span>
+                            <span class="font-label-lg text-on-surface" data-i18n="sources_title">Fuentes de nutrición</span>
                             <span class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
                         </summary>
-                        <p class="px-4 pb-4 text-body-sm text-on-surface-variant">La información nutricional y las adaptaciones por dieta o alergias son orientativas y <strong>no sustituyen el consejo de un médico o dietista-nutricionista</strong>. Si tienes alergias o intolerancias, verifica siempre los ingredientes de cada producto antes de consumirlo.</p>
+                        <div class="px-4 pb-4 text-body-sm text-on-surface-variant space-y-3">
+                            <p data-i18n="sources_text">Las pautas del menú saludable (más verdura, legumbre y pescado; menos azúcar, carne procesada y sal) siguen las recomendaciones de estos organismos:</p>
+                            <ul class="space-y-2">
+                                <li>
+                                    <a href="https://www.who.int/es/news-room/fact-sheets/detail/healthy-diet" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-primary font-semibold hover:underline underline-offset-2">
+                                        <span class="material-symbols-outlined" style="font-size:18px;">open_in_new</span><span data-i18n="source_who">OMS — Alimentación sana</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://nutritionsource.hsph.harvard.edu/healthy-eating-plate/translations/spanish/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-primary font-semibold hover:underline underline-offset-2">
+                                        <span class="material-symbols-outlined" style="font-size:18px;">open_in_new</span><span data-i18n="source_harvard">El Plato para Comer Saludable — Univ. de Harvard</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.aesan.gob.es/AECOSAN/web/nutricion/seccion/educaNAOS.htm" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-primary font-semibold hover:underline underline-offset-2">
+                                        <span class="material-symbols-outlined" style="font-size:18px;">open_in_new</span><span data-i18n="source_aesan">AESAN — Estrategia NAOS (España)</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </details>
                     <details class="group">
                         <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
-                            <span class="font-label-lg text-on-surface">Créditos de datos</span>
+                            <span class="font-label-lg text-on-surface" data-i18n="nutri_notice">Aviso nutricional</span>
                             <span class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
                         </summary>
-                        <p class="px-4 pb-4 text-body-sm text-on-surface-variant">Recetas e imágenes: TheMealDB y Wikimedia/Wikipedia. Traducciones: servicios de traducción gratuitos. Iconos: Material Symbols (Google). Contador: abacus.jasoncameron.dev. Cada servicio pertenece a sus respectivos propietarios.</p>
+                        <p class="px-4 pb-4 text-body-sm text-on-surface-variant" data-i18n="nutri_text">La información nutricional, los alérgenos detectados y las adaptaciones por dieta o alergias son orientativos y no sustituyen el consejo de un médico o dietista-nutricionista. Si tienes alergias o intolerancias, verifica siempre los ingredientes de cada producto antes de consumirlo.</p>
+                    </details>
+                    <details class="group">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+                            <span class="font-label-lg text-on-surface" data-i18n="credits">Créditos de datos</span>
+                            <span class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <p class="px-4 pb-4 text-body-sm text-on-surface-variant" data-i18n="credits_text">Recetas e imágenes: TheMealDB y Wikimedia/Wikipedia. Traducciones: servicios de traducción gratuitos. Iconos: Material Symbols (Google). Contador: abacus.jasoncameron.dev. Cada servicio pertenece a sus respectivos propietarios.</p>
                     </details>
                 </div>
 
-                <p class="text-center text-label-md text-on-surface-variant pt-2">NutriPlan · Hecho con 💚 · Uso personal</p>
+                <p class="text-center text-label-md text-on-surface-variant pt-2" data-i18n="footer">NutriPlan · Hecho con 💚 · Uso personal</p>
             </section>
         </div>
 
@@ -498,23 +550,23 @@
     <nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-gutter py-2 pb-safe bg-surface dark:bg-surface-container shadow-[0px_-4px_20px_0px_rgba(65,103,67,0.04)] rounded-t-xl">
         <button id="nav-plan" onclick="switchView('plan')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">calendar_month</span>
-            <span class="font-label-md text-label-md">Plan</span>
+            <span class="font-label-md text-label-md" data-i18n="nav_plan">Plan</span>
         </button>
         <button id="nav-recipes" onclick="switchView('recipes')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">today</span>
-            <span class="font-label-md text-label-md">Día</span>
+            <span class="font-label-md text-label-md" data-i18n="nav_day">Día</span>
         </button>
         <button id="nav-catalog" onclick="switchView('catalog')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">restaurant_menu</span>
-            <span class="font-label-md text-label-md">Recetas</span>
+            <span class="font-label-md text-label-md" data-i18n="nav_recipes">Recetas</span>
         </button>
         <button id="nav-cart" onclick="switchView('cart')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">shopping_cart</span>
-            <span class="font-label-md text-label-md">Lista</span>
+            <span class="font-label-md text-label-md" data-i18n="nav_cart">Lista</span>
         </button>
         <button id="nav-profile" onclick="switchView('profile')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">person</span>
-            <span class="font-label-md text-label-md">Perfil</span>
+            <span class="font-label-md text-label-md" data-i18n="nav_profile">Perfil</span>
         </button>
     </nav>
 

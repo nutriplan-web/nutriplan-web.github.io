@@ -1,4 +1,495 @@
-const dayNames = ['LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB', 'DOM'];
+// ===========================================================================
+// IDIOMA GLOBAL DE LA APP: español ('es'), rumano ('ro') o inglés ('en').
+// Cambia TODA la interfaz y también las recetas (menú, zumos y recetario):
+// las traducciones de recetas se generan una vez con build_i18n.py y se
+// empaquetan en i18n_ro.json, i18n_es.json, i18n_en.json, catalog_ro.json
+// y catalog_en.json.
+// ===========================================================================
+const APP_LANGS = ['es', 'ro', 'en'];
+let currentLang = (() => {
+  try {
+    const saved = localStorage.getItem('nutriplan-lang');
+    return APP_LANGS.includes(saved) ? saved : 'es';
+  } catch (e) { return 'es'; }
+})();
+
+const I18N = {
+  es: {
+    app_title: 'NutriPlan — Menú semanal, +1000 recetas del mundo y lista de la compra',
+    nav_plan: 'Plan', nav_day: 'Día', nav_recipes: 'Recetas', nav_cart: 'Lista', nav_profile: 'Perfil',
+    cuisine_es: 'Comida Española', cuisine_ro: 'Comida Rumana',
+    weekly_menu: 'Menú Semanal', change_menu: 'Cambiar menú',
+    badge_es: 'Cocina Española', badge_ro: 'Cocina Rumana',
+    lang_label: 'Idioma: Español', season: 'Temporada', season_es_menu: 'Primavera', season_ro_menu: 'Verano',
+    adaptive: 'Adaptativo', season_products: 'Productos de Temporada', current_menu: 'Menú actual',
+    calories: 'Calorías', protein: 'Proteína', fats: 'Grasas', see_day_menu: 'Ver menú del día', nutri_score: 'Nutri-Score',
+    servings: 'Comensales', servings_sub: 'Ajuste de porciones dinámicas',
+    liquids_label: 'Líquidos Nutritivos', liquids_title: 'Smoothies y Jugos Saludables',
+    breakfast: 'Desayuno', lunch: 'Almuerzo', dinner: 'Cena',
+    category: 'Categoría', benefit: 'Beneficio', favorite: 'Favorito', favorite_active: 'Favorito ♥',
+    dislike: 'No me gusta', ingredients: 'Ingredientes', cook_mode: 'Modo de cocinar', preparation: 'Preparación',
+    meal_skipped: 'Esta comida está saltada.', nutrition_label: 'Nutrición por receta',
+    protein_word: 'proteína', fat_word: 'grasa',
+    qty_adjusted: 'Cantidades ajustadas según porciones.', style: 'Estilo',
+    style_saludable: 'Saludable', style_normal: 'Normal', portions: 'Porciones', other_options: 'Otras opciones',
+    adapted_badge: 'Adaptado a tu configuración', allergens: 'Alérgenos', no_allergens: 'sin alérgenos comunes detectados',
+    allergen_note: 'Orientativo: con dietas o exclusiones activas el plato se adapta; verifica siempre el etiquetado.',
+    alg_gluten: 'gluten', alg_crustaceos: 'crustáceos', alg_huevo: 'huevo', alg_pescado: 'pescado',
+    alg_cacahuete: 'cacahuetes', alg_soja: 'soja', alg_lacteos: 'lácteos', alg_frutos: 'frutos de cáscara',
+    alg_apio: 'apio', alg_mostaza: 'mostaza', alg_sesamo: 'sésamo', alg_sulfitos: 'sulfitos',
+    alg_altramuz: 'altramuces', alg_moluscos: 'moluscos',
+    toast_week_changed: 'Menú de la semana cambiado', toast_lang: 'Idioma cambiado a español',
+    catalog_title: 'Recetario completo',
+    catalog_sub: 'Más de 1100 platos del mundo, todos con su receta completa: ingredientes, cantidades y preparación paso a paso.',
+    search_ph: 'Busca un plato o lo que tienes: pollo, arroz...', qty_note: 'Las cantidades se ajustan',
+    dishes_count: 'platos', loading_catalog: 'Cargando recetas de todo el mundo…',
+    no_results: 'No hay platos que coincidan con tu búsqueda.', see_more: 'Ver más platos',
+    chip_all: 'Todos', chip_fav: 'Favoritos ♥', chip_top: '⭐ Top mundial', all_benefits: 'Todos los beneficios',
+    top_note: 'Los platos más famosos y valorados de la cocina mundial, seleccionados del recetario.',
+    add_to_list: 'Añadir a la lista', full_recipe: 'Ver receta completa', see_less: 'Ver menos',
+    typical_dish: 'Plato típico de', traditional_recipe: 'Receta tradicional de',
+    glasses: 'vasos', diners: 'comensales',
+    no_qty_toast: 'Esta receta no tiene cantidades detalladas', added_list_toast: 'Añadido a la lista', added_toast: 'Añadido',
+    cart_title: 'Lista de la Compra', cart_sub: 'Sugerencias inteligentes basadas en tu plan semanal.',
+    extra_ph: 'Añadir algo extra y pulsa Enter...', shop_mode: 'Modo de compra', shop_mode_sub: 'Diaria o semanal',
+    daily: 'Diaria', weekly: 'Semanal', copy_btn: 'Copiar',
+    list_header: '🛒 Lista de la compra · NutriPlan', from_menu: '— Del menú —', added_by_you: 'Añadido por ti',
+    clear: 'Vaciar', for_day: 'para día', for_week: 'para semana',
+    empty_list: 'Lista de la compra adaptada: selecciona un menú o añade recetas desde la pestaña Recetas.',
+    copied: 'Lista copiada al portapapeles', copy_fail: 'No se pudo copiar', copy_unsupported: 'Tu navegador no permite copiar',
+    menu_ings: 'Ingredientes del menú',
+    profile_title: 'Configuración Nutricional', profile_sub: 'Ajustes directos del motor adaptativo.',
+    diet_title: 'Tipo de Dieta Primaria', diet_vegana: 'Vegana', diet_vegetariana: 'Vegetariana', diet_keto: 'Keto',
+    diet_mediterranea: 'Mediterránea', diet_baja: 'Baja en carbohidratos', diet_active: 'Dieta activa',
+    menu_style_title: 'Estilo de Menú', menu_active: 'Menú activo', allergy_title: 'Exclusiones Alérgicas',
+    no_gluten: 'Sin gluten', no_gluten_sub: 'Adapta automáticamente el menú',
+    no_lactose: 'Sin lactosa', no_lactose_sub: 'Sin lácteos en recetas',
+    no_nuts: 'Sin frutos secos', no_nuts_sub: 'Evita nueces y frutos de cáscara',
+    no_seafood: 'Sin marisco', no_seafood_sub: 'Evita crustáceos y moluscos', adapted: 'Adaptado',
+    video_link: 'Vídeos más vistos de esta receta',
+    sources_title: 'Fuentes de nutrición', sources_sub: 'Guías oficiales en las que se apoya el estilo Saludable',
+    sources_text: 'Las pautas del menú saludable (más verdura, legumbre y pescado; menos azúcar, carne procesada y sal) siguen las recomendaciones de estos organismos:',
+    source_who: 'OMS — Alimentación sana', source_harvard: 'El Plato para Comer Saludable — Univ. de Harvard', source_aesan: 'AESAN — Estrategia NAOS (España)',
+    lang_title: 'Idioma / Limbă / Language', lang_sub: 'Toda la app en español, rumano o inglés',
+    appearance: 'Apariencia', dark_mode: 'Modo oscuro', dark_sub: 'Cambia el aspecto de la app',
+    activate: 'Activar', deactivate: 'Desactivar', print_btn: 'Imprimir / Guardar como PDF',
+    about: 'Acerca de NutriPlan', visits: 'Visitas a la página', visits_sub: 'Personas que han abierto la app',
+    legal: 'Aviso legal',
+    legal_text: 'NutriPlan es una aplicación gratuita de uso personal y orientativo. El contenido se ofrece "tal cual", sin garantías. El responsable de la web no se hace responsable del uso que se haga de la información ni de errores u omisiones en recetas, cantidades o datos nutricionales.',
+    privacy: 'Privacidad y datos',
+    privacy_t1: 'No se solicita registro ni datos personales. Tus preferencias (dieta, comensales, lista de la compra, favoritos) se guardan solo en tu navegador (localStorage) y no se envían a ningún servidor propio.',
+    privacy_t2: 'Para mostrar recetas, fotos y traducciones, la app consulta servicios externos gratuitos (ver Créditos). El contador de visitas guarda únicamente un número total y anónimo, sin identificarte.',
+    nutri_notice: 'Aviso nutricional',
+    nutri_text: 'La información nutricional, los alérgenos detectados y las adaptaciones por dieta o alergias son orientativos y no sustituyen el consejo de un médico o dietista-nutricionista. Si tienes alergias o intolerancias, verifica siempre los ingredientes de cada producto antes de consumirlo.',
+    credits: 'Créditos de datos',
+    credits_text: 'Recetas e imágenes: TheMealDB y Wikimedia/Wikipedia. Traducciones: servicios de traducción gratuitos. Iconos: Material Symbols (Google). Contador: abacus.jasoncameron.dev. Cada servicio pertenece a sus respectivos propietarios.',
+    footer: 'NutriPlan · Hecho con 💚 · Uso personal'
+  },
+  ro: {
+    app_title: 'NutriPlan — Meniu săptămânal, +1000 de rețete din lume și listă de cumpărături',
+    nav_plan: 'Plan', nav_day: 'Azi', nav_recipes: 'Rețete', nav_cart: 'Listă', nav_profile: 'Profil',
+    cuisine_es: 'Mâncare Spaniolă', cuisine_ro: 'Mâncare Românească',
+    weekly_menu: 'Meniu Săptămânal', change_menu: 'Schimbă meniul',
+    badge_es: 'Bucătărie Spaniolă', badge_ro: 'Bucătărie Românească',
+    lang_label: 'Limbă: Română', season: 'Sezon', season_es_menu: 'Primăvară', season_ro_menu: 'Vară',
+    adaptive: 'Adaptiv', season_products: 'Produse de sezon', current_menu: 'Meniu actual',
+    calories: 'Calorii', protein: 'Proteine', fats: 'Grăsimi', see_day_menu: 'Vezi meniul zilei', nutri_score: 'Nutri-Score',
+    servings: 'Persoane', servings_sub: 'Ajustare dinamică a porțiilor',
+    liquids_label: 'Lichide Nutritive', liquids_title: 'Smoothie-uri și Sucuri Sănătoase',
+    breakfast: 'Mic dejun', lunch: 'Prânz', dinner: 'Cină',
+    category: 'Categorie', benefit: 'Beneficiu', favorite: 'Favorit', favorite_active: 'Favorit ♥',
+    dislike: 'Nu îmi place', ingredients: 'Ingrediente', cook_mode: 'Mod de preparare', preparation: 'Preparare',
+    meal_skipped: 'Această masă este sărită.', nutrition_label: 'Nutriție per rețetă',
+    protein_word: 'proteine', fat_word: 'grăsimi',
+    qty_adjusted: 'Cantități ajustate după porții.', style: 'Stil',
+    style_saludable: 'Sănătos', style_normal: 'Normal', portions: 'Porții', other_options: 'Alte opțiuni',
+    adapted_badge: 'Adaptat la setările tale', allergens: 'Alergeni', no_allergens: 'fără alergeni comuni detectați',
+    allergen_note: 'Orientativ: cu diete sau excluderi active felul se adaptează; verifică întotdeauna eticheta.',
+    alg_gluten: 'gluten', alg_crustaceos: 'crustacee', alg_huevo: 'ou', alg_pescado: 'pește',
+    alg_cacahuete: 'arahide', alg_soja: 'soia', alg_lacteos: 'lactate', alg_frutos: 'fructe cu coajă',
+    alg_apio: 'țelină', alg_mostaza: 'muștar', alg_sesamo: 'susan', alg_sulfitos: 'sulfiți',
+    alg_altramuz: 'lupin', alg_moluscos: 'moluște',
+    toast_week_changed: 'Meniul săptămânii a fost schimbat', toast_lang: 'Limba a fost schimbată în română',
+    catalog_title: 'Rețetar complet',
+    catalog_sub: 'Peste 1100 de feluri din toată lumea, toate cu rețeta completă: ingrediente, cantități și preparare pas cu pas.',
+    search_ph: 'Caută un fel sau ce ai în casă: pui, orez...', qty_note: 'Cantitățile se ajustează',
+    dishes_count: 'feluri', loading_catalog: 'Se încarcă rețete din toată lumea…',
+    no_results: 'Nu există feluri care să corespundă căutării tale.', see_more: 'Vezi mai multe feluri',
+    chip_all: 'Toate', chip_fav: 'Favorite ♥', chip_top: '⭐ Top mondial', all_benefits: 'Toate beneficiile',
+    top_note: 'Cele mai faimoase și apreciate feluri din bucătăria lumii, selectate din rețetar.',
+    add_to_list: 'Adaugă în listă', full_recipe: 'Vezi rețeta completă', see_less: 'Vezi mai puțin',
+    typical_dish: 'Fel tipic din', traditional_recipe: 'Rețetă tradițională din',
+    glasses: 'pahare', diners: 'persoane',
+    no_qty_toast: 'Această rețetă nu are cantități detaliate', added_list_toast: 'Adăugat în listă', added_toast: 'Adăugat',
+    cart_title: 'Listă de Cumpărături', cart_sub: 'Sugestii inteligente bazate pe planul tău săptămânal.',
+    extra_ph: 'Adaugă ceva extra și apasă Enter...', shop_mode: 'Mod de cumpărături', shop_mode_sub: 'Zilnic sau săptămânal',
+    daily: 'Zilnic', weekly: 'Săptămânal', copy_btn: 'Copiază',
+    list_header: '🛒 Listă de cumpărături · NutriPlan', from_menu: '— Din meniu —', added_by_you: 'Adăugat de tine',
+    clear: 'Golește', for_day: 'pentru o zi', for_week: 'pentru o săptămână',
+    empty_list: 'Listă de cumpărături adaptată: alege un meniu sau adaugă rețete din fila Rețete.',
+    copied: 'Listă copiată în clipboard', copy_fail: 'Nu s-a putut copia', copy_unsupported: 'Browserul tău nu permite copierea',
+    menu_ings: 'Ingredientele meniului',
+    profile_title: 'Configurare Nutrițională', profile_sub: 'Setări directe ale motorului adaptiv.',
+    diet_title: 'Tip de Dietă Principală', diet_vegana: 'Vegană', diet_vegetariana: 'Vegetariană', diet_keto: 'Keto',
+    diet_mediterranea: 'Mediteraneană', diet_baja: 'Săracă în carbohidrați', diet_active: 'Dietă activă',
+    menu_style_title: 'Stil de Meniu', menu_active: 'Meniu activ', allergy_title: 'Excluderi Alergice',
+    no_gluten: 'Fără gluten', no_gluten_sub: 'Adaptează automat meniul',
+    no_lactose: 'Fără lactoză', no_lactose_sub: 'Fără lactate în rețete',
+    no_nuts: 'Fără fructe cu coajă', no_nuts_sub: 'Evită nucile și alunele',
+    no_seafood: 'Fără fructe de mare', no_seafood_sub: 'Evită crustaceele și moluștele', adapted: 'Adaptat',
+    video_link: 'Cele mai vizionate clipuri cu această rețetă',
+    sources_title: 'Surse de nutriție', sources_sub: 'Ghidurile oficiale pe care se bazează stilul Sănătos',
+    sources_text: 'Regulile meniului sănătos (mai multe legume, leguminoase și pește; mai puțin zahăr, carne procesată și sare) urmează recomandările acestor organisme:',
+    source_who: 'OMS — Alimentație sănătoasă', source_harvard: 'Farfuria Alimentației Sănătoase — Univ. Harvard', source_aesan: 'AESAN — Strategia NAOS (Spania)',
+    lang_title: 'Limbă / Idioma / Language', lang_sub: 'Toată aplicația în spaniolă, română sau engleză',
+    appearance: 'Aspect', dark_mode: 'Mod întunecat', dark_sub: 'Schimbă aspectul aplicației',
+    activate: 'Activează', deactivate: 'Dezactivează', print_btn: 'Tipărește / Salvează ca PDF',
+    about: 'Despre NutriPlan', visits: 'Vizite pe pagină', visits_sub: 'Persoane care au deschis aplicația',
+    legal: 'Aviz legal',
+    legal_text: 'NutriPlan este o aplicație gratuită de uz personal și orientativ. Conținutul este oferit "ca atare", fără garanții. Responsabilul site-ului nu răspunde pentru folosirea informațiilor și nici pentru erori sau omisiuni în rețete, cantități sau date nutriționale.',
+    privacy: 'Confidențialitate și date',
+    privacy_t1: 'Nu se cere înregistrare și nici date personale. Preferințele tale (dietă, persoane, listă de cumpărături, favorite) se salvează doar în browserul tău (localStorage) și nu se trimit către niciun server propriu.',
+    privacy_t2: 'Pentru a afișa rețete, fotografii și traduceri, aplicația folosește servicii externe gratuite (vezi Credite). Contorul de vizite păstrează doar un număr total și anonim, fără să te identifice.',
+    nutri_notice: 'Aviz nutrițional',
+    nutri_text: 'Informațiile nutriționale, alergenii detectați și adaptările pentru diete sau alergii sunt orientative și nu înlocuiesc sfatul unui medic sau dietetician-nutriționist. Dacă ai alergii sau intoleranțe, verifică întotdeauna ingredientele fiecărui produs înainte de a-l consuma.',
+    credits: 'Credite de date',
+    credits_text: 'Rețete și imagini: TheMealDB și Wikimedia/Wikipedia. Traduceri: servicii gratuite de traducere. Pictograme: Material Symbols (Google). Contor: abacus.jasoncameron.dev. Fiecare serviciu aparține proprietarilor săi.',
+    footer: 'NutriPlan · Făcut cu 💚 · Uz personal'
+  },
+  en: {
+    app_title: 'NutriPlan — Weekly menu, 1000+ world recipes and shopping list',
+    nav_plan: 'Plan', nav_day: 'Today', nav_recipes: 'Recipes', nav_cart: 'List', nav_profile: 'Profile',
+    cuisine_es: 'Spanish Food', cuisine_ro: 'Romanian Food',
+    weekly_menu: 'Weekly Menu', change_menu: 'Change menu',
+    badge_es: 'Spanish Cuisine', badge_ro: 'Romanian Cuisine',
+    lang_label: 'Language: English', season: 'Season', season_es_menu: 'Spring', season_ro_menu: 'Summer',
+    adaptive: 'Adaptive', season_products: 'Seasonal Produce', current_menu: 'Current menu',
+    calories: 'Calories', protein: 'Protein', fats: 'Fats', see_day_menu: 'See today’s menu', nutri_score: 'Nutri-Score',
+    servings: 'Diners', servings_sub: 'Dynamic portion adjustment',
+    liquids_label: 'Nutritious Drinks', liquids_title: 'Healthy Smoothies and Juices',
+    breakfast: 'Breakfast', lunch: 'Lunch', dinner: 'Dinner',
+    category: 'Category', benefit: 'Benefit', favorite: 'Favourite', favorite_active: 'Favourite ♥',
+    dislike: 'Not for me', ingredients: 'Ingredients', cook_mode: 'How to cook it', preparation: 'Preparation',
+    meal_skipped: 'This meal is skipped.', nutrition_label: 'Nutrition per recipe',
+    protein_word: 'protein', fat_word: 'fat',
+    qty_adjusted: 'Quantities adjusted to the portions.', style: 'Style',
+    style_saludable: 'Healthy', style_normal: 'Regular', portions: 'Portions', other_options: 'Other options',
+    adapted_badge: 'Adapted to your settings', allergens: 'Allergens', no_allergens: 'no common allergens detected',
+    allergen_note: 'Indicative: with active diets or exclusions the dish is adapted; always check product labels.',
+    alg_gluten: 'gluten', alg_crustaceos: 'crustaceans', alg_huevo: 'egg', alg_pescado: 'fish',
+    alg_cacahuete: 'peanuts', alg_soja: 'soy', alg_lacteos: 'dairy', alg_frutos: 'tree nuts',
+    alg_apio: 'celery', alg_mostaza: 'mustard', alg_sesamo: 'sesame', alg_sulfitos: 'sulphites',
+    alg_altramuz: 'lupin', alg_moluscos: 'molluscs',
+    toast_week_changed: 'Weekly menu changed', toast_lang: 'Language switched to English',
+    catalog_title: 'Complete recipe book',
+    catalog_sub: 'Over 1100 dishes from around the world, all with the full recipe: ingredients, quantities and step-by-step preparation.',
+    search_ph: 'Search a dish or what you have: chicken, rice...', qty_note: 'Quantities adjust automatically',
+    dishes_count: 'dishes', loading_catalog: 'Loading recipes from around the world…',
+    no_results: 'No dishes match your search.', see_more: 'See more dishes',
+    chip_all: 'All', chip_fav: 'Favourites ♥', chip_top: '⭐ World top', all_benefits: 'All benefits',
+    top_note: 'The most famous and best-loved dishes of world cuisine, selected from the recipe book.',
+    add_to_list: 'Add to list', full_recipe: 'See full recipe', see_less: 'See less',
+    typical_dish: 'Typical dish from', traditional_recipe: 'Traditional recipe from',
+    glasses: 'glasses', diners: 'diners',
+    no_qty_toast: 'This recipe has no detailed quantities', added_list_toast: 'Added to the list', added_toast: 'Added',
+    cart_title: 'Shopping List', cart_sub: 'Smart suggestions based on your weekly plan.',
+    extra_ph: 'Add something extra and press Enter...', shop_mode: 'Shopping mode', shop_mode_sub: 'Daily or weekly',
+    daily: 'Daily', weekly: 'Weekly', copy_btn: 'Copy',
+    list_header: '🛒 Shopping list · NutriPlan', from_menu: '— From the menu —', added_by_you: 'Added by you',
+    clear: 'Clear', for_day: 'for one day', for_week: 'for one week',
+    empty_list: 'Adaptive shopping list: pick a menu or add recipes from the Recipes tab.',
+    copied: 'List copied to clipboard', copy_fail: 'Could not copy', copy_unsupported: 'Your browser does not allow copying',
+    menu_ings: 'Menu ingredients',
+    profile_title: 'Nutrition Settings', profile_sub: 'Direct controls of the adaptive engine.',
+    diet_title: 'Primary Diet Type', diet_vegana: 'Vegan', diet_vegetariana: 'Vegetarian', diet_keto: 'Keto',
+    diet_mediterranea: 'Mediterranean', diet_baja: 'Low carb', diet_active: 'Active diet',
+    menu_style_title: 'Menu Style', menu_active: 'Active menu', allergy_title: 'Allergy Exclusions',
+    no_gluten: 'Gluten free', no_gluten_sub: 'Adapts the menu automatically',
+    no_lactose: 'Lactose free', no_lactose_sub: 'No dairy in recipes',
+    no_nuts: 'Nut free', no_nuts_sub: 'Avoids walnuts and tree nuts',
+    no_seafood: 'Shellfish free', no_seafood_sub: 'Avoids crustaceans and molluscs', adapted: 'Adapted',
+    video_link: 'Most viewed videos of this recipe',
+    sources_title: 'Nutrition sources', sources_sub: 'Official guidelines behind the Healthy style',
+    sources_text: 'The healthy menu rules (more vegetables, legumes and fish; less sugar, processed meat and salt) follow the recommendations of these organisations:',
+    source_who: 'WHO — Healthy diet', source_harvard: 'The Healthy Eating Plate — Harvard Univ.', source_aesan: 'AESAN — NAOS Strategy (Spain)',
+    lang_title: 'Language / Idioma / Limbă', lang_sub: 'The whole app in Spanish, Romanian or English',
+    appearance: 'Appearance', dark_mode: 'Dark mode', dark_sub: 'Changes the look of the app',
+    activate: 'Turn on', deactivate: 'Turn off', print_btn: 'Print / Save as PDF',
+    about: 'About NutriPlan', visits: 'Page visits', visits_sub: 'People who have opened the app',
+    legal: 'Legal notice',
+    legal_text: 'NutriPlan is a free app for personal, informational use. The content is provided "as is", without warranties. The site owner is not responsible for the use of this information or for errors or omissions in recipes, quantities or nutrition data.',
+    privacy: 'Privacy and data',
+    privacy_t1: 'No sign-up or personal data is requested. Your preferences (diet, diners, shopping list, favourites) are stored only in your browser (localStorage) and are never sent to any server of our own.',
+    privacy_t2: 'To show recipes, photos and translations, the app uses free external services (see Credits). The visit counter stores only an anonymous total number, without identifying you.',
+    nutri_notice: 'Nutrition notice',
+    nutri_text: 'Nutrition information, detected allergens and diet or allergy adaptations are indicative and do not replace the advice of a doctor or registered dietitian. If you have allergies or intolerances, always check the ingredients of every product before eating it.',
+    credits: 'Data credits',
+    credits_text: 'Recipes and images: TheMealDB and Wikimedia/Wikipedia. Translations: free translation services. Icons: Material Symbols (Google). Counter: abacus.jasoncameron.dev. Each service belongs to its respective owners.',
+    footer: 'NutriPlan · Made with 💚 · Personal use'
+  }
+};
+
+function t(key) {
+  const lang = I18N[currentLang] || I18N.es;
+  if (key in lang) return lang[key];
+  return key in I18N.es ? I18N.es[key] : key;
+}
+
+// Traducción de categorías, países, beneficios y tipos de bebida (solo al rumano;
+// en español se muestran tal cual vienen en los datos).
+const CAT_RO = {
+  'Aperitivos': 'Aperitive', 'Arroz': 'Orez', 'Carne': 'Carne', 'Cerdo': 'Porc', 'Cordero': 'Miel',
+  'Desayuno': 'Mic dejun', 'Ensaladas': 'Salate', 'Guarnición': 'Garnituri', 'Panadería': 'Panificație',
+  'Pasta': 'Paste', 'Pescado y marisco': 'Pește și fructe de mare', 'Pollo': 'Pui', 'Postres': 'Deserturi',
+  'Sopas': 'Supe', 'Varios': 'Diverse', 'Vegano': 'Vegan', 'Vegetariano': 'Vegetarian',
+  'Platos principales': 'Feluri principale', 'Zumos y batidos': 'Sucuri și smoothie-uri',
+  'General': 'General', 'Bebida': 'Băutură'
+};
+const AREA_RO = {
+  'Alemania': 'Germania', 'Argelina': 'Algeriană', 'Argentina': 'Argentina', 'Australia': 'Australia',
+  'Australiana': 'Australiană', 'Austria': 'Austria', 'Bolivia': 'Bolivia', 'Brasil': 'Brazilia',
+  'Britanica': 'Britanică', 'Bélgica': 'Belgia', 'Canadiense': 'Canadiană', 'Canadá': 'Canada',
+  'Chile': 'Chile', 'China': 'China', 'Colombia': 'Columbia', 'Corea del Sur': 'Coreea de Sud',
+  'Croata': 'Croată', 'Cuba': 'Cuba', 'Ecuador': 'Ecuador', 'Egipcia': 'Egipteană', 'Egipto': 'Egipt',
+  'Espanola': 'Spaniolă', 'España': 'Spania', 'Estados Unidos': 'Statele Unite', 'Etiopía': 'Etiopia',
+  'Filipina': 'Filipineză', 'Filipinas': 'Filipine', 'France': 'Franța', 'Francia': 'Franța',
+  'Grecia': 'Grecia', 'Griega': 'Grecească', 'Hungría': 'Ungaria', 'India': 'India', 'Indonesia': 'Indonezia',
+  'Internacional': 'Internațional', 'Irlanda': 'Irlanda', 'Irlandesa': 'Irlandeză', 'Irán': 'Iran',
+  'Israel': 'Israel', 'Italia': 'Italia', 'Italiana': 'Italiană', 'Jamaica': 'Jamaica',
+  'Jamaicana': 'Jamaicană', 'Japonesa': 'Japoneză', 'Japón': 'Japonia', 'Keniana': 'Keniană',
+  'Líbano': 'Liban', 'Malasia': 'Malaezia', 'Marroqui': 'Marocană', 'Marruecos': 'Maroc',
+  'Mexicana': 'Mexicană', 'México': 'Mexic', 'Netherlands': 'Țările de Jos', 'Nigeria': 'Nigeria',
+  'Norway': 'Norvegia', 'Pakistán': 'Pakistan', 'Países Bajos': 'Țările de Jos', 'Perú': 'Peru',
+  'Polaca': 'Poloneză', 'Polonia': 'Polonia', 'Portugal': 'Portugalia', 'Portuguesa': 'Portugheză',
+  'Reino Unido': 'Regatul Unit', 'Rusa': 'Rusească', 'Rusia': 'Rusia', 'Saudi': 'Arabia Saudită',
+  'Singapur': 'Singapore', 'Siria': 'Siria', 'Slovakia': 'Slovacia', 'Sudáfrica': 'Africa de Sud',
+  'Suecia': 'Suedia', 'Suiza': 'Elveția', 'Tailandesa': 'Tailandeză', 'Tailandia': 'Tailanda',
+  'Tunecina': 'Tunisiană', 'Turca': 'Turcească', 'Turquía': 'Turcia', 'Ucraniana': 'Ucraineană',
+  'United States': 'Statele Unite', 'Uruguaya': 'Uruguayană', 'Venezuela': 'Venezuela',
+  'Vietnam': 'Vietnam', 'Vietnamita': 'Vietnameză', 'Rumanía': 'România', 'Saludable': 'Sănătos'
+};
+const BENEFIT_RO = {
+  'Inmunidad': 'Imunitate', 'Energía': 'Energie', 'Detox': 'Detox', 'Digestión': 'Digestie',
+  'Vista': 'Vedere', 'Deporte': 'Sport', 'Corazón': 'Inimă', 'Antioxidante': 'Antioxidant',
+  'Hidratación': 'Hidratare', 'Saciante': 'Sățios', 'Piel': 'Piele', 'Huesos': 'Oase',
+  'Limpieza hígado': 'Detoxifiere ficat', 'Antiinflamatorio': 'Antiinflamator', 'Energético': 'Energizant',
+  'Depurativo': 'Depurativ', 'Digestivo': 'Digestiv', 'Refrescante': 'Răcoritor', 'Relajante': 'Relaxant',
+  'Recuperación muscular': 'Recuperare musculară', 'Drenante linfático': 'Drenaj limfatic',
+  'Antioxidante · Granada + Moras + Limón': null
+};
+const TYPE_RO = { 'Zumo': 'Suc', 'Batido': 'Shake', 'Smoothie': 'Smoothie' };
+
+// Mapas equivalentes al inglés (los datos originales están en español).
+const CAT_EN = {
+  'Aperitivos': 'Starters', 'Arroz': 'Rice', 'Carne': 'Meat', 'Cerdo': 'Pork', 'Cordero': 'Lamb',
+  'Desayuno': 'Breakfast', 'Ensaladas': 'Salads', 'Guarnición': 'Side dishes', 'Panadería': 'Bakery',
+  'Pasta': 'Pasta', 'Pescado y marisco': 'Fish and seafood', 'Pollo': 'Chicken', 'Postres': 'Desserts',
+  'Sopas': 'Soups', 'Varios': 'Miscellaneous', 'Vegano': 'Vegan', 'Vegetariano': 'Vegetarian',
+  'Platos principales': 'Main courses', 'Zumos y batidos': 'Juices and smoothies',
+  'General': 'General', 'Bebida': 'Drink'
+};
+const AREA_EN = {
+  'Alemania': 'Germany', 'Argelina': 'Algerian', 'Australiana': 'Australian', 'Brasil': 'Brazil',
+  'Britanica': 'British', 'Bélgica': 'Belgium', 'Canadiense': 'Canadian', 'Canadá': 'Canada',
+  'Corea del Sur': 'South Korea', 'Croata': 'Croatian', 'Egipcia': 'Egyptian', 'Egipto': 'Egypt',
+  'Espanola': 'Spanish', 'España': 'Spain', 'Estados Unidos': 'United States', 'Etiopía': 'Ethiopia',
+  'Filipina': 'Filipino', 'Filipinas': 'Philippines', 'Francia': 'France', 'Grecia': 'Greece',
+  'Griega': 'Greek', 'Hungría': 'Hungary', 'Indonesia': 'Indonesia', 'Internacional': 'International',
+  'Irlanda': 'Ireland', 'Irlandesa': 'Irish', 'Irán': 'Iran', 'Italia': 'Italy', 'Italiana': 'Italian',
+  'Jamaicana': 'Jamaican', 'Japonesa': 'Japanese', 'Japón': 'Japan', 'Keniana': 'Kenyan',
+  'Líbano': 'Lebanon', 'Malasia': 'Malaysia', 'Marroqui': 'Moroccan', 'Marruecos': 'Morocco',
+  'Mexicana': 'Mexican', 'México': 'Mexico', 'Pakistán': 'Pakistan', 'Países Bajos': 'Netherlands',
+  'Perú': 'Peru', 'Polaca': 'Polish', 'Polonia': 'Poland', 'Portuguesa': 'Portuguese',
+  'Reino Unido': 'United Kingdom', 'Rusa': 'Russian', 'Rusia': 'Russia', 'Saudi': 'Saudi Arabia',
+  'Singapur': 'Singapore', 'Siria': 'Syria', 'Slovakia': 'Slovakia', 'Sudáfrica': 'South Africa',
+  'Suecia': 'Sweden', 'Suiza': 'Switzerland', 'Tailandesa': 'Thai', 'Tailandia': 'Thailand',
+  'Tunecina': 'Tunisian', 'Turca': 'Turkish', 'Turquía': 'Turkey', 'Ucraniana': 'Ukrainian',
+  'Uruguaya': 'Uruguayan', 'Vietnamita': 'Vietnamese', 'Rumanía': 'Romania', 'Saludable': 'Healthy'
+};
+const BENEFIT_EN = {
+  'Inmunidad': 'Immunity', 'Energía': 'Energy', 'Detox': 'Detox', 'Digestión': 'Digestion',
+  'Vista': 'Eyesight', 'Deporte': 'Sport', 'Corazón': 'Heart', 'Antioxidante': 'Antioxidant',
+  'Hidratación': 'Hydration', 'Saciante': 'Filling', 'Piel': 'Skin', 'Huesos': 'Bones',
+  'Limpieza hígado': 'Liver cleanse', 'Antiinflamatorio': 'Anti-inflammatory', 'Energético': 'Energising',
+  'Depurativo': 'Cleansing', 'Digestivo': 'Digestive', 'Refrescante': 'Refreshing', 'Relajante': 'Relaxing',
+  'Recuperación muscular': 'Muscle recovery', 'Drenante linfático': 'Lymphatic drainage'
+};
+const TYPE_EN = { 'Zumo': 'Juice', 'Batido': 'Shake', 'Smoothie': 'Smoothie' };
+
+function pickMap(roMap, enMap, value) {
+  if (currentLang === 'ro') return roMap[value] || value;
+  if (currentLang === 'en') return enMap[value] || value;
+  return value;
+}
+function tCat(c) { return pickMap(CAT_RO, CAT_EN, c); }
+function tArea(a) { return pickMap(AREA_RO, AREA_EN, a); }
+function tBenefit(b) { return pickMap(BENEFIT_RO, BENEFIT_EN, b); }
+function tType(ty) { return pickMap(TYPE_RO, TYPE_EN, ty); }
+
+const dayNamesByLang = {
+  es: ['LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB', 'DOM'],
+  ro: ['LUN', 'MAR', 'MIE', 'JOI', 'VIN', 'SÂM', 'DUM'],
+  en: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
+};
+
+// Traducciones de las recetas del menú, zumos y líquidos (clave: título original).
+let dishTrRO = {};
+let dishTrES = {};
+let dishTrEN = {};
+const dishTrReady = Promise.all([
+  fetch('i18n_ro.json').then(r => (r.ok ? r.json() : {})).catch(() => ({})),
+  fetch('i18n_es.json').then(r => (r.ok ? r.json() : {})).catch(() => ({})),
+  fetch('i18n_en.json').then(r => (r.ok ? r.json() : {})).catch(() => ({}))
+]).then(([ro, es, en]) => { dishTrRO = ro; dishTrES = es; dishTrEN = en; });
+
+// Traducción del recetario completo al rumano o inglés (ficheros grandes:
+// cada uno se carga una sola vez y solo cuando hace falta).
+const catalogTrByLang = { ro: null, en: null };
+const catalogTrLoadingByLang = {};
+function ensureCatalogTr() {
+  if (!(currentLang in catalogTrByLang) || catalogTrByLang[currentLang]) return Promise.resolve();
+  const lang = currentLang;
+  if (!catalogTrLoadingByLang[lang]) {
+    catalogTrLoadingByLang[lang] = fetch('catalog_' + lang + '.json')
+      .then(r => (r.ok ? r.json() : {}))
+      .catch(() => ({}))
+      .then(d => { catalogTrByLang[lang] = d; });
+  }
+  return catalogTrLoadingByLang[lang];
+}
+
+function cap(text) { return text ? text.charAt(0).toUpperCase() + text.slice(1) : text; }
+
+// Entrada traducida de un plato del menú/zumos para el idioma actual (o null).
+function trDish(title) {
+  if (currentLang === 'es') return dishTrES[title] || null;
+  const table = currentLang === 'ro' ? dishTrRO : dishTrEN;
+  return table[title] || null;
+}
+
+// Unidades de las cantidades ('1 cucharada', '2 bucăți'...) según el idioma.
+const QTY_ES_RO = [
+  [/unidades/gi, 'bucăți'], [/unidad/gi, 'bucată'], [/cucharaditas/gi, 'lingurițe'], [/cucharadita/gi, 'linguriță'],
+  [/cucharadas/gi, 'linguri'], [/cucharada/gi, 'lingură'], [/rebanadas/gi, 'felii'], [/rebanada/gi, 'felie'],
+  [/dientes/gi, 'căței'], [/diente/gi, 'cățel'], [/al gusto/gi, 'după gust'], [/pizca/gi, 'praf'],
+  [/rodajas/gi, 'felii'], [/rodaja/gi, 'felie'], [/tazas/gi, 'căni'], [/taza/gi, 'cană'],
+  [/hojas/gi, 'frunze'], [/puñado/gi, 'pumn'], [/vasos/gi, 'pahare'], [/vaso/gi, 'pahar'],
+  [/ramas/gi, 'fire'], [/rama/gi, 'fir'], [/latas/gi, 'conserve'], [/lata/gi, 'conservă']
+];
+const QTY_RO_ES = [
+  [/bucăți|bucati/gi, 'unidades'], [/bucată|bucata/gi, 'unidad'], [/unități/gi, 'unidades'], [/unitate/gi, 'unidad'],
+  [/lingurițe|lingurite/gi, 'cucharaditas'], [/linguriță|lingurita/gi, 'cucharadita'],
+  [/linguri/gi, 'cucharadas'], [/lingură|lingura/gi, 'cucharada'], [/felii/gi, 'rebanadas'], [/felie/gi, 'rebanada'],
+  [/căței|catei/gi, 'dientes'], [/cățel|catel/gi, 'diente'], [/după gust|dupa gust/gi, 'al gusto'],
+  [/căni|cani/gi, 'tazas'], [/cană|cana/gi, 'taza'], [/foi\b/gi, 'hojas'], [/cești|cesti/gi, 'tazas']
+];
+const QTY_ES_EN = [
+  [/unidades/gi, 'units'], [/unidad/gi, 'unit'], [/cucharaditas/gi, 'teaspoons'], [/cucharadita/gi, 'teaspoon'],
+  [/cucharadas/gi, 'tablespoons'], [/cucharada/gi, 'tablespoon'], [/rebanadas/gi, 'slices'], [/rebanada/gi, 'slice'],
+  [/dientes/gi, 'cloves'], [/diente/gi, 'clove'], [/al gusto/gi, 'to taste'], [/pizca/gi, 'pinch'],
+  [/rodajas/gi, 'slices'], [/rodaja/gi, 'slice'], [/tazas/gi, 'cups'], [/taza/gi, 'cup'],
+  [/hojas/gi, 'leaves'], [/puñado/gi, 'handful'], [/vasos/gi, 'glasses'], [/vaso/gi, 'glass'],
+  [/ramas/gi, 'sprigs'], [/rama/gi, 'sprig'], [/latas/gi, 'cans'], [/lata/gi, 'can']
+];
+const QTY_RO_EN = [
+  [/bucăți|bucati/gi, 'units'], [/bucată|bucata/gi, 'unit'], [/lingurițe|lingurite/gi, 'teaspoons'],
+  [/linguriță|lingurita/gi, 'teaspoon'], [/linguri/gi, 'tablespoons'], [/lingură|lingura/gi, 'tablespoon'],
+  [/felii/gi, 'slices'], [/felie/gi, 'slice'], [/căței|catei/gi, 'cloves'], [/cățel|catel/gi, 'clove'],
+  [/după gust|dupa gust/gi, 'to taste'], [/praf/gi, 'pinch'], [/căni|cani/gi, 'cups'], [/cană|cana/gi, 'cup'],
+  [/foi\b/gi, 'leaves'], [/pahare/gi, 'glasses'], [/pahar/gi, 'glass'], [/fire\b/gi, 'sprigs'], [/fir\b/gi, 'sprig'],
+  [/conserve/gi, 'cans'], [/conservă|conserva/gi, 'can']
+];
+function trQty(qty) {
+  let maps;
+  if (currentLang === 'ro') maps = QTY_ES_RO;
+  else if (currentLang === 'en') maps = QTY_ES_EN.concat(QTY_RO_EN);
+  else maps = QTY_RO_ES;
+  let out = qty;
+  maps.forEach(([rx, rep]) => { out = out.replace(rx, rep); });
+  return out;
+}
+
+// ===========================================================================
+// ALÉRGENOS: detección automática en los INGREDIENTES de cada plato
+// (los 14 alérgenos de declaración obligatoria en la UE). Patrones en
+// español y rumano porque los datos originales están en ambos idiomas.
+// ===========================================================================
+const ALLERGEN_PATTERNS = {
+  gluten: /\bpan\b|panecillo|pâine|paine|harina|făină|faina|trigo|grâu|cebada|\borz\b|centeno|secară|avena|ovăz|ovaz|pasta\b|macarrones|espagueti|fideos|tăiței|taitei|noodles|cuscús|couscous|bulgur|galleta|biscui|churro|magdalena|croqueta|empanad|rebozad|baguette|tortita|crep\b|clătite|clatite|cozonac|papanaș|papanas|borș\b|bors\b|sémola|semola|seitán|seitan|cerveza|\bbere\b|salsa de soja|sos de soia|tarta|bizcocho|mălai\b|\bbread\b|breadcrumbs|wheat flour|\bflour\b|\bwheat\b|barley|\brye\b|\boats\b|spaghetti|semolina|soy sauce|\bbeer\b|cookie|cracker|croissant|\bcake\b|pancake|croquette/i,
+  crustaceos: /gamba|langostino|camarón|camaron|cangrejo|nécora|cigala|carabinero|bogavante|langosta|crustáceo|crevete|crevet|\bcrab\b|homar|shrimps?\b|prawns?\b|lobster|crayfish|langoustine/i,
+  huevo: /huevo|\bouă\b|\boua\b|\bou\b|mayonesa|maioneză|maioneza|alioli|merengue|natilla|\beggs?\b|mayonnaise|meringue/i,
+  pescado: /pescado|merluza|bacalao|salmón|salmon|atún|atun\b|ventresca|sardina|boquerón|anchoa|trucha|lubina|dorada|\brape\b|pește|peste\b|somon|hering|anșoa|caballa|bonito|salsa de pescado|\bfish\b|\bhake\b|\bcod\b|\btuna\b|anchov|trout|sea bass|mackerel|herring|sardine/i,
+  cacahuete: /cacahuete|cacahuate|maní\b|arahide|peanut/i,
+  soja: /soja|soia|tofu|edamame|miso|tempeh|\bsoy\b|soybean/i,
+  lacteos: /leche(?!\s+de\s+(?:coco|almendra|soja|avena|arroz))|lapte(?!\s+de\s+(?:cocos|migdale|soia|ovăz|ovaz|orez))|(?<!almond |coconut |soy |oat |rice )milk\b|queso|brânză|branza|telemea|cașcaval|cascaval|yogur|iaurt|yogh?urt|\bnata\b|smântână|smantana|mantequilla(?!\s+de\s+(?:maní|mani|cacahuete))|\bunt\b(?!\s+de\s+arahide)|(?<!peanut |cocoa |cacao )butter\b|cheese|(?<!coconut )cream\b|kéfir|kefir|chefir|requesón|ricotta|mozzarella|parmesano|parmesan|feta|lassi|helado|înghețată|ice cream|cuajada/i,
+  frutos: /nuez(?!\s+moscada)|nueces|\bnuci\b|nucă\b(?!\s+moscat)|almendra|migdale|avellana|alune de pădure|pistacho|fistic|anacardo|\bcaju\b|pacana|macadamia|piñones|turrón|granola|walnuts?\b|almonds?\b|hazelnuts?\b|pistachios?\b|cashews?\b|pecans?\b|pine nuts/i,
+  apio: /\bapio\b|țelină|telina|celery/i,
+  mostaza: /mostaza|muștar|mustar|dijon|mustard/i,
+  sesamo: /sésamo|sesamo|ajonjolí|tahini|tahína|\bsusan\b|sesame/i,
+  sulfitos: /\bvino\b|vin alb|vin roșu|vinagre de vino|\bpasas\b|stafide|\bwine\b|raisins?\b/i,
+  altramuz: /altramuz|lupin/i,
+  moluscos: /mejillón|mejillones|midii|almeja|scoici|calamar|pulpo|caracatiță|caracatita|sepia|sepie|vieira|ostra|stridii|caracol|\bmelc\b|mussels?\b|clams?\b|squid|octopus|oysters?\b|scallops?\b|snails?\b|calamari|cuttlefish/i
+};
+
+// Texto de ingredientes de una receta (vale para pares {name,qty} y para líneas).
+function ingredientsText(ingredients) {
+  if (!ingredients || !ingredients.length) return '';
+  return typeof ingredients[0] === 'string'
+    ? ingredients.join(' · ')
+    : ingredients.map(i => i.name).join(' · ');
+}
+function allergensOfText(text) {
+  if (!text) return [];
+  return Object.keys(ALLERGEN_PATTERNS).filter(a => ALLERGEN_PATTERNS[a].test(text));
+}
+// Pie de tarjeta con el listado de alérgenos del plato.
+function allergenFooterHTML(allergens) {
+  const list = allergens.length
+    ? allergens.map(a => t('alg_' + a)).join(', ')
+    : t('no_allergens');
+  return `
+    <div class="mt-3 pt-3 border-t border-surface-container text-label-md text-on-surface-variant">
+      <p><span class="font-semibold ${allergens.length ? 'text-secondary' : 'text-primary'}">${allergens.length ? '⚠ ' : '✓ '}${t('allergens')}:</span> ${escapeHtml(list)}</p>
+      <p class="text-xs opacity-75 mt-0.5">${t('allergen_note')}</p>
+    </div>`;
+}
+
+// ===========================================================================
+// MOTOR DE DIETA: detecta si un plato es incompatible con la dieta o las
+// exclusiones alérgicas activas; el menú elige primero platos compatibles
+// y, si no hay ninguno, adapta el plato por sustitución de ingredientes.
+// ===========================================================================
+const DIET_BLOCKERS = {
+  vegana: /pollo|pavo|ternera|cerdo|cordero|carne|jamón|chorizo|morcill|panceta|bacon|salchich|burtă|burta|\bpui\b|pulpă de pui|piept de pui|porc|vită|vita\b|\bmici\b|cârnați|carnati|afumătură|afumatura|pescado|merluza|bacalao|salmón|atún|ventresca|sardina|anchoa|sepia|pulpo|calamar|gamba|mejillón|mejillones|marisco|pește|peste\b|somon|huevo|\bouă\b|\boua\b|\bou\b|leche\b(?!\s+de\s+(?:coco|almendras?|soja|avena|arroz))|lapte\b(?!\s+de\s+(?:cocos|migdale|soia|ovăz|ovaz|orez))|queso|brânză|branza|telemea|cașcaval|yogur|iaurt|\bnata\b|smântână|smantana|mantequilla|\bunt\b|\bmiel\b|miere|mayonesa|maioneză|alioli|croqueta|burtă/i,
+  vegetariana: /pollo|pavo|ternera|cerdo|cordero|\bcarne\b|carne picada|carne tocată|jamón|chorizo|morcill|panceta|bacon|salchich|burtă|burta|\bpui\b|pulpă de pui|piept de pui|porc\b|vită|vita\b|\bmici\b|cârnați|carnati|afumătură|afumatura|pescado|merluza|bacalao|salmón|atún|ventresca|sardina|anchoa|sepia|pulpo|calamar|gamba|mejillón|mejillones|marisco|pește|peste\b|somon|croqueta/i,
+  keto: /arroz|orez|pasta\b|macarrones|fideos|tăiței|taitei|\bpan\b|pâine|paine|patata|cartof|harina|făină|faina|azúcar|azucar|zahăr|zahar|plátano|platano|banană|banana|garbanzo|năut|naut|lenteja|linte|alubia|fabes|fasole|quinoa|avena|ovăz|ovaz|maíz|maiz|mălai|malai|mămăligă|mamaliga|porumb|churro|magdalena|\bmiel\b|miere|mermelada|\bgem\b|dulceață|dulceata|cozonac|granola|cuscús|dátil|curmale|borș|bors\b|baguette|tortita|crep\b|clătite|clatite|tarta|galleta/i,
+  mediterranea: null
+};
+DIET_BLOCKERS.baja = DIET_BLOCKERS.keto;
+
+// Exclusiones de ajustes -> alérgenos detectados que bloquean un plato.
+const INTOLERANCE_TO_ALLERGENS = {
+  gluten: ['gluten'],
+  lactosa: ['lacteos'],
+  frutos: ['frutos', 'cacahuete'],
+  marisco: ['crustaceos', 'moluscos']
+};
+
+function optionDetectionText(option) {
+  return option.title + ' · ' + ingredientsText(option.ingredients);
+}
+function violatesDiet(option) {
+  const rx = DIET_BLOCKERS[currentDiet];
+  return !!(rx && rx.test(optionDetectionText(option)));
+}
+function violatesAllergies(option) {
+  const present = allergensOfText(ingredientsText(option.ingredients));
+  return Object.keys(currentIntolerances).some(key =>
+    currentIntolerances[key] && (INTOLERANCE_TO_ALLERGENS[key] || []).some(a => present.includes(a)));
+}
+function optionNeedsAdaptation(option) {
+  return violatesDiet(option) || violatesAllergies(option);
+}
 
 function createRecipe(title, calories, protein, fats, ingredients, instructions, category = 'General', drinkType = null, style = 'saludable', image = null) {
   return { title, nutrition: { calories, protein, fats }, ingredients, instructions, category, drinkType, style, image };
@@ -151,6 +642,8 @@ function dishImageHTML(recipe, classes) {
 
 function getCurrentWeekDates() {
   const today = new Date();
+  const locale = { es: 'es-ES', ro: 'ro-RO', en: 'en-GB' }[currentLang] || 'es-ES';
+  const dayNames = dayNamesByLang[currentLang] || dayNamesByLang.es;
 
   return Array.from({ length: 7 }, (_, index) => {
     const date = new Date(today);
@@ -159,12 +652,12 @@ function getCurrentWeekDates() {
     return {
       short: dayNames[dayIndex],
       num: date.getDate(),
-      long: date.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })
+      long: date.toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long' })
     };
   });
 }
 
-const weekDates = getCurrentWeekDates();
+let weekDates = getCurrentWeekDates();
 
 // --- Rotación diaria del menú ---------------------------------------------
 // El menú de cada fecha se elige por el día REAL del calendario (no por la
@@ -182,7 +675,7 @@ function shuffleWeekMenu() {
   persistState();
   renderWeeks();
   loadDayDetails();
-  showToast('Menú de la semana cambiado');
+  showToast(t('toast_week_changed'));
 }
 
 function createMealSelection() {
@@ -210,30 +703,30 @@ const menuData = {
       {
         breakfastOptions: [
           createRecipe('Tostada integral con AOVE y tomate', 320, 8, 18,
-            [{ name: 'Pan integral', qty: '1 rebanada' }, { name: 'Tomate maduro', qty: '1 unidad' }, { name: 'Aceite de oliva extra virgen', qty: '1 cucharada' }, { name: 'Ajo fresco', qty: '1 diente' }],
-            'Tuesta el pan, restriega el ajo, unta el tomate rallado y rocía con aceite de oliva. Sal al gusto.'),
+            [{ name: 'Pan integral', qty: '2 rebanadas' }, { name: 'Tomate maduro', qty: '2 unidades' }, { name: 'Aceite de oliva extra virgen', qty: '2 cucharadas' }, { name: 'Ajo fresco', qty: '1 diente' }, { name: 'Sal en escamas', qty: '1 pizca' }],
+            'Ralla los tomates por la parte cortada y deja escurrir el exceso de agua en un colador 5 minutos. Tuesta el pan hasta que esté dorado y frota cada rebanada con el diente de ajo partido. Reparte el tomate rallado, sazona con la sal y termina con un buen chorro de aceite de oliva justo antes de servir.'),
           createRecipe('Smoothie detox con espinaca y piña', 280, 8, 6,
-            [{ name: 'Espinaca fresca', qty: '100 g' }, { name: 'Piña natural', qty: '120 g' }, { name: 'Yogur natural', qty: '150 g' }, { name: 'Jengibre fresco', qty: '5 g' }],
-            'Licúa la espinaca con piña, yogur y jengibre. Sirve frío.', 'Bebida', 'Limpieza hígado'),
+            [{ name: 'Espinaca fresca', qty: '100 g' }, { name: 'Piña natural', qty: '200 g' }, { name: 'Yogur natural', qty: '250 g' }, { name: 'Jengibre fresco', qty: '10 g' }, { name: 'Agua fría', qty: '100 ml' }, { name: 'Zumo de limón', qty: '1 cucharada' }],
+            'Lava bien las espinacas y pela y trocea la piña y el jengibre. Pon todo en la batidora con el yogur, el agua fría y el zumo de limón y tritura 1 minuto a máxima potencia hasta que no queden trozos. Sirve inmediatamente, bien frío, para aprovechar todas las vitaminas.', 'Bebida', 'Limpieza hígado'),
           createRecipe('Tortilla de patatas', 430, 16, 24,
-            [{ name: 'Huevo', qty: '2 unidades' }, { name: 'Patata', qty: '150 g' }, { name: 'Cebolla', qty: '1/2 unidad' }, { name: 'Aceite de oliva', qty: '2 cucharadas' }],
-            'Fríe la patata con cebolla, mezcla con huevo batido y cuaja la tortilla por ambos lados.', 'General', null, 'normal')
+            [{ name: 'Huevo', qty: '4 unidades' }, { name: 'Patata', qty: '400 g' }, { name: 'Cebolla', qty: '1 unidad' }, { name: 'Aceite de oliva', qty: '200 ml' }, { name: 'Sal', qty: 'al gusto' }],
+            'Pela y corta las patatas en láminas finas y la cebolla en juliana. Confítalas en el aceite a fuego medio-bajo 20 minutos, removiendo de vez en cuando, hasta que estén tiernas pero sin dorarse; escúrrelas bien. Bate los huevos con sal, mezcla con las patatas y deja reposar 10 minutos. Cuaja la tortilla en una sartén pequeña con una cucharada del aceite 3 minutos, dale la vuelta con un plato y cuaja otros 2-3 minutos según la quieras de jugosa.', 'General', null, 'normal')
         ],
         lunchOptions: [
           createRecipe('Paella de verduras', 520, 18, 15,
-            [{ name: 'Arroz', qty: '90 g' }, { name: 'Pimiento rojo', qty: '1 unidad' }, { name: 'Calabacín', qty: '100 g' }, { name: 'Alcachofa', qty: '1 unidad' }],
-            'Sofríe las verduras, añade el arroz y el caldo, cocina hasta que el arroz esté tierno.'),
+            [{ name: 'Arroz redondo', qty: '180 g' }, { name: 'Caldo de verduras', qty: '500 ml' }, { name: 'Pimiento rojo', qty: '1 unidad' }, { name: 'Calabacín', qty: '1/2 unidad' }, { name: 'Alcachofa', qty: '2 unidades' }, { name: 'Judías verdes', qty: '80 g' }, { name: 'Tomate rallado', qty: '1 unidad' }, { name: 'Ajo', qty: '2 dientes' }, { name: 'Pimentón dulce', qty: '1 cucharadita' }, { name: 'Azafrán', qty: '1 pizca' }, { name: 'Aceite de oliva', qty: '3 cucharadas' }],
+            'Sofríe en la paella el pimiento, el calabacín, las alcachofas en cuartos y las judías con el aceite 8 minutos. Añade el ajo picado, el tomate rallado y el pimentón y cocina 2 minutos más. Incorpora el arroz, dale una vuelta, vierte el caldo caliente con el azafrán y reparte bien. Cuece 10 minutos a fuego fuerte y 8 a fuego suave sin remover. Apaga, tapa con un paño y deja reposar 5 minutos antes de servir.'),
           createRecipe('Lentejas con chorizo', 560, 26, 22,
-            [{ name: 'Lentejas', qty: '120 g' }, { name: 'Chorizo', qty: '60 g' }, { name: 'Zanahoria', qty: '1 unidad' }, { name: 'Cebolla', qty: '1 unidad' }],
-            'Cuece las lentejas con la verdura y el chorizo en rodajas hasta que estén tiernas. Deja reposar.', 'General', null, 'normal')
+            [{ name: 'Lentejas pardinas', qty: '200 g' }, { name: 'Chorizo', qty: '100 g' }, { name: 'Zanahoria', qty: '1 unidad' }, { name: 'Cebolla', qty: '1 unidad' }, { name: 'Pimiento verde', qty: '1/2 unidad' }, { name: 'Patata', qty: '1 unidad' }, { name: 'Ajo', qty: '2 dientes' }, { name: 'Hoja de laurel', qty: '1 unidad' }, { name: 'Pimentón dulce', qty: '1 cucharadita' }, { name: 'Aceite de oliva', qty: '1 cucharada' }, { name: 'Agua', qty: '800 ml' }],
+            'Pon en una olla las lentejas (no necesitan remojo) con el agua fría, la cebolla y el pimiento picados, la zanahoria en rodajas, los ajos enteros, el laurel y el chorizo en rodajas gruesas. Lleva a ebullición, espuma, y cuece a fuego suave 30 minutos. Añade la patata en cachelos y el pimentón disuelto en el aceite y cocina 20 minutos más hasta que todo esté tierno. Rectifica de sal y deja reposar 10 minutos: están aún mejor de un día para otro.', 'General', null, 'normal')
         ],
         dinnerOptions: [
           createRecipe('Pescado al horno con pimientos', 420, 36, 14,
-            [{ name: 'Filete de pescado blanco', qty: '180 g' }, { name: 'Pimiento verde', qty: '1 unidad' }, { name: 'Limón', qty: '1/2 unidad' }, { name: 'Aceite de oliva', qty: '1 cucharada' }],
-            'Hornea el pescado con pimientos y limón a 180 °C durante 18-20 minutos.'),
+            [{ name: 'Filete de pescado blanco', qty: '350 g' }, { name: 'Pimiento verde', qty: '1 unidad' }, { name: 'Pimiento rojo', qty: '1/2 unidad' }, { name: 'Cebolla', qty: '1/2 unidad' }, { name: 'Patata', qty: '1 unidad' }, { name: 'Limón', qty: '1/2 unidad' }, { name: 'Vino blanco', qty: '50 ml' }, { name: 'Aceite de oliva', qty: '2 cucharadas' }, { name: 'Perejil fresco', qty: 'al gusto' }],
+            'Precalienta el horno a 200 °C. Corta la patata en rodajas finas, los pimientos en tiras y la cebolla en juliana, aliña con la mitad del aceite y sal y hornea 20 minutos como cama. Coloca encima los filetes salpimentados, riega con el vino, el resto del aceite y unas rodajas de limón y hornea 12-15 minutos más, hasta que el pescado se separe en lascas. Espolvorea perejil picado al servir.'),
           createRecipe('Pollo al ajillo con patatas', 620, 30, 25,
-            [{ name: 'Muslo de pollo', qty: '180 g' }, { name: 'Patata', qty: '150 g' }, { name: 'Ajo', qty: '3 dientes' }, { name: 'Aceite de oliva', qty: '1 cucharada' }],
-            'Dora el pollo con ajo y hierbas, cocina las patatas en la misma sartén hasta que estén tiernas.', 'General', null, 'normal')
+            [{ name: 'Muslo de pollo', qty: '450 g' }, { name: 'Patata', qty: '300 g' }, { name: 'Ajo', qty: '6 dientes' }, { name: 'Vino blanco', qty: '100 ml' }, { name: 'Romero', qty: '1 rama' }, { name: 'Aceite de oliva', qty: '3 cucharadas' }, { name: 'Sal y pimienta', qty: 'al gusto' }],
+            'Trocea el pollo, salpimienta y dóralo en una sartén amplia con el aceite a fuego vivo 8 minutos. Añade los ajos enteros aplastados y las patatas en dados y rehoga 5 minutos. Vierte el vino, añade el romero, tapa y cocina a fuego medio 20 minutos, removiendo de vez en cuando, hasta que el pollo esté hecho por dentro y las patatas tiernas. Sube el fuego al final para que todo quede dorado.', 'General', null, 'normal')
         ],
         liquids: [
           { name: 'Jugo de remolacha y jengibre', value: 'Limpieza hígado · Remolacha + Jengibre + Naranja' },
@@ -245,30 +738,30 @@ const menuData = {
       {
         breakfastOptions: [
           createRecipe('Bowl de avena y frutos rojos', 310, 10, 8,
-            [{ name: 'Avena', qty: '40 g' }, { name: 'Leche vegetal', qty: '200 ml' }, { name: 'Frutos rojos', qty: '80 g' }, { name: 'Nueces picadas', qty: '10 g' }],
-            'Cocina la avena con leche vegetal y sirve con frutos rojos y nueces por encima.'),
+            [{ name: 'Copos de avena', qty: '80 g' }, { name: 'Leche vegetal', qty: '400 ml' }, { name: 'Frutos rojos', qty: '150 g' }, { name: 'Nueces picadas', qty: '20 g' }, { name: 'Miel', qty: '1 cucharadita' }, { name: 'Canela', qty: '1 pizca' }],
+            'Cuece los copos de avena con la leche vegetal a fuego suave 5-7 minutos, removiendo, hasta que quede una crema espesa. Reparte en dos cuencos y corona con los frutos rojos, las nueces picadas, un hilo de miel y la canela. En verano puedes dejar la avena en remojo toda la noche en la nevera y tomarla fría.'),
           createRecipe('Pan con tomate y jamón serrano', 380, 20, 16,
-            [{ name: 'Pan integral', qty: '1 rebanada' }, { name: 'Tomate', qty: '1 unidad' }, { name: 'Jamón serrano', qty: '40 g' }, { name: 'Aceite de oliva', qty: '1 cucharada' }],
-            'Unta el tomate sobre el pan, rocía aceite y coloca el jamón serrano encima.', 'General', null, 'normal'),
+            [{ name: 'Pan integral', qty: '2 rebanadas' }, { name: 'Tomate', qty: '1 unidad' }, { name: 'Jamón serrano', qty: '80 g' }, { name: 'Aceite de oliva', qty: '2 cucharadas' }, { name: 'Ajo', qty: '1 diente' }],
+            'Tuesta el pan y frótalo ligeramente con el ajo. Ralla el tomate, escúrrelo un poco y repártelo sobre las tostadas con una pizca de sal y el aceite. Termina cubriendo con las lonchas de jamón serrano recién cortado.', 'General', null, 'normal'),
           createRecipe('Café con churros', 400, 6, 18,
-            [{ name: 'Churros', qty: '4 unidades' }, { name: 'Café', qty: '1 taza' }, { name: 'Azúcar', qty: '1 cucharadita' }],
-            'Fríe los churros y espolvorea azúcar. Acompaña con café recién hecho.', 'General', null, 'normal')
+            [{ name: 'Harina', qty: '125 g' }, { name: 'Agua', qty: '250 ml' }, { name: 'Sal', qty: '1 pizca' }, { name: 'Aceite de oliva suave', qty: '400 ml' }, { name: 'Azúcar', qty: '2 cucharadas' }, { name: 'Café', qty: '2 tazas' }],
+            'Hierve el agua con la sal, retira del fuego y añade la harina de golpe; remueve enérgicamente hasta obtener una masa lisa. Pasa la masa templada a una manga con boquilla rizada. Calienta el aceite a 180 °C y fríe tiras de masa hasta que estén doradas, escúrrelas sobre papel y rebózalas en azúcar. Sirve con café recién hecho o con chocolate caliente.', 'General', null, 'normal')
         ],
         lunchOptions: [
           createRecipe('Gazpacho andaluz', 320, 6, 18,
-            [{ name: 'Tomate', qty: '2 unidades' }, { name: 'Pepino', qty: '1/2 unidad' }, { name: 'Pimiento verde', qty: '1/2 unidad' }, { name: 'Aceite de oliva', qty: '1 cucharada' }],
-            'Tritura las verduras con aceite y vinagre, refrigera y sirve bien frío.'),
+            [{ name: 'Tomate maduro', qty: '600 g' }, { name: 'Pepino', qty: '1/2 unidad' }, { name: 'Pimiento verde', qty: '1/2 unidad' }, { name: 'Ajo', qty: '1/2 diente' }, { name: 'Pan duro', qty: '30 g' }, { name: 'Aceite de oliva virgen extra', qty: '3 cucharadas' }, { name: 'Vinagre de jerez', qty: '1 cucharada' }, { name: 'Agua fría', qty: '100 ml' }, { name: 'Sal', qty: 'al gusto' }],
+            'Trocea los tomates, el pepino pelado, el pimiento y el ajo y tritúralos con el pan remojado, el vinagre y la sal durante 2 minutos. Con la batidora en marcha añade el aceite poco a poco para que emulsione y ajusta el espesor con el agua fría. Pasa por un colador fino si lo quieres más sedoso y refrigera al menos 2 horas. Sirve muy frío con picatostes o verdura picada por encima.'),
           createRecipe('Cocido madrileño', 680, 34, 28,
-            [{ name: 'Garbanzos', qty: '120 g' }, { name: 'Morcillo de ternera', qty: '100 g' }, { name: 'Patata', qty: '100 g' }, { name: 'Zanahoria', qty: '1 unidad' }],
-            'Cuece los garbanzos con la carne y las verduras a fuego lento. Sirve el caldo y luego los sólidos.', 'General', null, 'normal')
+            [{ name: 'Garbanzos', qty: '250 g' }, { name: 'Morcillo de ternera', qty: '250 g' }, { name: 'Pollo', qty: '1/4 unidad' }, { name: 'Tocino fresco', qty: '60 g' }, { name: 'Chorizo', qty: '1 unidad' }, { name: 'Hueso de jamón', qty: '1 unidad' }, { name: 'Zanahoria', qty: '2 unidades' }, { name: 'Patata', qty: '2 unidades' }, { name: 'Repollo', qty: '1/4 unidad' }, { name: 'Fideos finos', qty: '60 g' }, { name: 'Sal', qty: 'al gusto' }],
+            'Pon los garbanzos en remojo la víspera con agua templada y sal. En una olla grande con agua fría mete el morcillo, el pollo, el tocino y el hueso de jamón; lleva a ebullición y espuma bien. Añade los garbanzos en una red y cuece a fuego suave unas 2 horas (45 minutos en olla exprés). Incorpora las zanahorias y las patatas y cuece 30 minutos más; mientras, cuece aparte el repollo con el chorizo. Cuela parte del caldo y cuece en él los fideos 3 minutos. Sirve en tres vuelcos: primero la sopa, luego los garbanzos con la verdura y por último las carnes troceadas.', 'General', null, 'normal')
         ],
         dinnerOptions: [
           createRecipe('Tortilla francesa con ensalada', 340, 18, 22,
-            [{ name: 'Huevo', qty: '2 unidades' }, { name: 'Lechuga', qty: '1/2 unidad' }, { name: 'Tomate', qty: '1 unidad' }, { name: 'Aceite de oliva', qty: '1 cucharadita' }],
-            'Cuaja los huevos batidos en sartén y acompaña con una ensalada aliñada.'),
+            [{ name: 'Huevo', qty: '4 unidades' }, { name: 'Lechuga', qty: '1/2 unidad' }, { name: 'Tomate', qty: '1 unidad' }, { name: 'Cebolleta', qty: '1/4 unidad' }, { name: 'Aceite de oliva', qty: '2 cucharaditas' }, { name: 'Vinagre', qty: '1 cucharadita' }, { name: 'Sal', qty: 'al gusto' }],
+            'Bate los huevos con una pizca de sal sin que lleguen a espumar. Calienta una sartén antiadherente con unas gotas de aceite, vierte el huevo y, con el fuego medio, ve plegando la tortilla sobre sí misma antes de que cuaje del todo para que quede jugosa. Acompaña con la lechuga, el tomate y la cebolleta aliñados con aceite, vinagre y sal.'),
           createRecipe('Croquetas de jamón', 480, 16, 26,
-            [{ name: 'Croquetas de jamón', qty: '6 unidades' }, { name: 'Lechuga', qty: '1/2 unidad' }, { name: 'Tomate', qty: '1 unidad' }],
-            'Fríe las croquetas hasta dorarlas y sirve con ensalada fresca.', 'General', null, 'normal')
+            [{ name: 'Jamón serrano', qty: '100 g' }, { name: 'Mantequilla', qty: '50 g' }, { name: 'Harina', qty: '60 g' }, { name: 'Leche', qty: '500 ml' }, { name: 'Cebolla', qty: '1/4 unidad' }, { name: 'Huevo', qty: '1 unidad' }, { name: 'Pan rallado', qty: '80 g' }, { name: 'Aceite para freír', qty: '300 ml' }, { name: 'Nuez moscada', qty: '1 pizca' }],
+            'Funde la mantequilla y sofríe la cebolla muy picada con el jamón en taquitos 3 minutos. Añade la harina y cocínala 2 minutos sin que tome color; vierte la leche caliente poco a poco, removiendo, y trabaja la bechamel 15-20 minutos a fuego suave hasta que se despegue de la sartén. Sazona con nuez moscada, extiende en una fuente y enfría en la nevera al menos 4 horas. Forma las croquetas, pásalas por huevo batido y pan rallado y fríelas en aceite bien caliente hasta dorarlas. Sirve con ensalada fresca.', 'General', null, 'normal')
         ],
         liquids: [
           { name: 'Smoothie de frutos rojos', value: 'Antiinflamatorio · Arándanos + Frambuesa + Miel' },
@@ -280,30 +773,30 @@ const menuData = {
       {
         breakfastOptions: [
           createRecipe('Tostada de aguacate y huevo', 360, 16, 18,
-            [{ name: 'Pan integral', qty: '1 rebanada' }, { name: 'Aguacate', qty: '1/2 unidad' }, { name: 'Huevo', qty: '1 unidad' }, { name: 'Limón', qty: '1 rodaja' }],
-            'Tuesta el pan, machaca el aguacate con limón y sirve con el huevo poché o cocido.'),
+            [{ name: 'Pan integral', qty: '2 rebanadas' }, { name: 'Aguacate', qty: '1 unidad' }, { name: 'Huevo', qty: '2 unidades' }, { name: 'Limón', qty: '1/2 unidad' }, { name: 'Vinagre', qty: '1 cucharada' }, { name: 'Sal y pimienta', qty: 'al gusto' }],
+            'Para los huevos poché, hierve agua con el vinagre, crea un remolino y cuaja cada huevo 3 minutos; también puedes cocerlos 10 minutos si los prefieres duros. Machaca el aguacate con el zumo de limón, sal y pimienta. Tuesta el pan, extiende la crema de aguacate y corona cada tostada con un huevo.'),
           createRecipe('Yogur griego con miel y nueces', 300, 14, 14,
-            [{ name: 'Yogur griego', qty: '150 g' }, { name: 'Miel', qty: '1 cucharadita' }, { name: 'Nueces', qty: '15 g' }],
-            'Sirve el yogur con nueces troceadas y un hilo de miel.'),
+            [{ name: 'Yogur griego', qty: '300 g' }, { name: 'Miel', qty: '2 cucharaditas' }, { name: 'Nueces', qty: '30 g' }, { name: 'Canela', qty: '1 pizca' }],
+            'Reparte el yogur griego en dos cuencos. Trocea las nueces y tuéstalas 2 minutos en una sartén sin aceite para potenciar su sabor. Reparte las nueces sobre el yogur, riega con la miel y termina con una pizca de canela.'),
           createRecipe('Magdalenas caseras con café', 360, 6, 16,
-            [{ name: 'Magdalenas', qty: '2 unidades' }, { name: 'Café', qty: '1 taza' }, { name: 'Leche', qty: '50 ml' }],
-            'Acompaña las magdalenas con un café con leche caliente.', 'General', null, 'normal')
+            [{ name: 'Harina', qty: '125 g' }, { name: 'Huevo', qty: '2 unidades' }, { name: 'Azúcar', qty: '100 g' }, { name: 'Aceite de oliva suave', qty: '100 ml' }, { name: 'Leche', qty: '60 ml' }, { name: 'Levadura química', qty: '8 g' }, { name: 'Ralladura de limón', qty: '1 unidad' }, { name: 'Café', qty: '2 tazas' }],
+            'Bate los huevos con el azúcar hasta que blanqueen y doblen su volumen. Añade el aceite, la leche y la ralladura y mezcla; incorpora la harina tamizada con la levadura con movimientos suaves. Reposa la masa 30 minutos en la nevera, llena los moldes 3/4 y hornea a 210 °C bajando a 190 °C unos 14-16 minutos hasta que suban con copete. Acompaña con café con leche caliente.', 'General', null, 'normal')
         ],
         lunchOptions: [
           createRecipe('Ensalada de quinoa y aguacate', 420, 14, 21,
-            [{ name: 'Quinoa cocida', qty: '90 g' }, { name: 'Aguacate', qty: '1/2 unidad' }, { name: 'Tomate', qty: '1 unidad' }, { name: 'Zumo de limón', qty: '1 cucharada' }],
-            'Mezcla la quinoa con aguacate y tomate. Aliña con limón y sal.'),
+            [{ name: 'Quinoa', qty: '120 g' }, { name: 'Aguacate', qty: '1 unidad' }, { name: 'Tomate cherry', qty: '12 unidades' }, { name: 'Pepino', qty: '1/2 unidad' }, { name: 'Cebolla morada', qty: '1/4 unidad' }, { name: 'Zumo de limón', qty: '2 cucharadas' }, { name: 'Aceite de oliva', qty: '2 cucharadas' }, { name: 'Perejil fresco', qty: 'al gusto' }],
+            'Lava la quinoa bajo el grifo y cuécela en el doble de agua con sal 15 minutos hasta que el grano se abra; escúrrela y deja enfriar. Mezcla en una ensaladera con los cherry partidos, el pepino en dados, la cebolla en pluma fina y el aguacate troceado. Aliña con el limón, el aceite, sal y perejil picado justo antes de servir.'),
           createRecipe('Fabada asturiana', 720, 30, 38,
-            [{ name: 'Fabes', qty: '120 g' }, { name: 'Chorizo', qty: '50 g' }, { name: 'Morcilla', qty: '50 g' }, { name: 'Panceta', qty: '40 g' }],
-            'Cuece las fabes con el compango a fuego lento durante horas hasta que la salsa espese.', 'General', null, 'normal')
+            [{ name: 'Fabes', qty: '250 g' }, { name: 'Chorizo asturiano', qty: '1 unidad' }, { name: 'Morcilla asturiana', qty: '1 unidad' }, { name: 'Panceta curada', qty: '80 g' }, { name: 'Lacón', qty: '100 g' }, { name: 'Cebolla', qty: '1/2 unidad' }, { name: 'Hoja de laurel', qty: '1 unidad' }, { name: 'Azafrán', qty: '1 pizca' }, { name: 'Aceite de oliva', qty: '1 cucharada' }],
+            'Pon las fabes en remojo en agua fría la víspera y desala el lacón si lo necesita. Ponlas a cocer cubiertas de agua fría con el compango (chorizo, morcilla, panceta y lacón), la cebolla, el laurel y el aceite; cuando hierva, espuma y baja el fuego al mínimo. Cuece 2-3 horas con la olla a penas burbujeando, asustando las fabes con agua fría dos o tres veces y moviendo la olla en vaivén sin remover con cuchara para que no se rompan. Añade el azafrán al final, rectifica de sal y deja reposar media hora; sirve las fabes con el compango troceado.', 'General', null, 'normal')
         ],
         dinnerOptions: [
           createRecipe('Merluza a la plancha con verduras', 410, 34, 15,
-            [{ name: 'Merluza', qty: '170 g' }, { name: 'Calabacín', qty: '80 g' }, { name: 'Pimiento', qty: '1/2 unidad' }, { name: 'Aceite de oliva', qty: '1 cucharada' }],
-            'Cocina la merluza a la plancha y acompaña con verduras salteadas.'),
+            [{ name: 'Lomos de merluza', qty: '350 g' }, { name: 'Calabacín', qty: '1/2 unidad' }, { name: 'Pimiento rojo', qty: '1/2 unidad' }, { name: 'Espárragos verdes', qty: '6 unidades' }, { name: 'Ajo', qty: '1 diente' }, { name: 'Limón', qty: '1/2 unidad' }, { name: 'Aceite de oliva', qty: '2 cucharadas' }, { name: 'Perejil', qty: 'al gusto' }],
+            'Saltea el calabacín en medias lunas, el pimiento en tiras y los espárragos troceados con una cucharada de aceite y el ajo laminado 6-8 minutos; deben quedar al dente. Seca bien los lomos de merluza, salpimienta y hazlos en plancha bien caliente con el resto del aceite 3 minutos por el lado de la piel y 2 por el otro. Sirve la merluza sobre las verduras con un chorrito de limón y perejil picado.'),
           createRecipe('Pulpo a la gallega', 460, 28, 20,
-            [{ name: 'Pulpo cocido', qty: '150 g' }, { name: 'Patata', qty: '120 g' }, { name: 'Pimentón', qty: '1 cucharadita' }, { name: 'Aceite de oliva', qty: '1 cucharada' }],
-            'Coloca el pulpo sobre rodajas de patata, espolvorea pimentón y rocía aceite de oliva.', 'General', null, 'normal')
+            [{ name: 'Pulpo cocido', qty: '300 g' }, { name: 'Patata', qty: '300 g' }, { name: 'Pimentón dulce', qty: '1 cucharadita' }, { name: 'Pimentón picante', qty: '1/2 cucharadita' }, { name: 'Aceite de oliva virgen extra', qty: '3 cucharadas' }, { name: 'Sal gruesa', qty: 'al gusto' }],
+            'Cuece las patatas enteras con piel en agua con sal 20-25 minutos; pélalas y córtalas en rodajas gruesas (cachelos). Templa el pulpo en la misma agua 2 minutos y córtalo en rodajas con tijera. Monta el plato con la cama de cachelos y el pulpo encima, espolvorea los dos pimentones y la sal gruesa y riega generosamente con el aceite de oliva en crudo.', 'General', null, 'normal')
         ],
         liquids: [
           { name: 'Batido de avena y canela', value: 'Digestivo · Avena + Manzana + Canela' },
@@ -315,30 +808,30 @@ const menuData = {
       {
         breakfastOptions: [
           createRecipe('Porridge de avena con plátano', 320, 11, 8,
-            [{ name: 'Avena', qty: '45 g' }, { name: 'Leche de almendra', qty: '200 ml' }, { name: 'Plátano', qty: '1/2 unidad' }, { name: 'Canela', qty: '1 pizca' }],
-            'Cocina la avena con leche hasta que esté cremosa. Añade plátano en rodajas y canela.'),
+            [{ name: 'Copos de avena', qty: '90 g' }, { name: 'Leche de almendra', qty: '400 ml' }, { name: 'Plátano', qty: '1 unidad' }, { name: 'Canela', qty: '1 cucharadita' }, { name: 'Miel', qty: '1 cucharadita' }, { name: 'Semillas de chía', qty: '1 cucharada' }],
+            'Pon la avena con la leche de almendra en un cazo y cuece a fuego suave 5-7 minutos removiendo hasta que espese y quede cremosa. Retira del fuego y mezcla las semillas de chía. Sirve con el plátano en rodajas, la canela y un hilo de miel por encima.'),
           createRecipe('Smoothie tropical de mango', 320, 8, 12,
-            [{ name: 'Mango', qty: '120 g' }, { name: 'Plátano', qty: '1/2 unidad' }, { name: 'Leche de coco', qty: '150 ml' }, { name: 'Semillas de chía', qty: '1 cucharada' }],
-            'Licúa todo hasta obtener una textura cremosa. Sirve frío.', 'Bebida', 'Energético'),
+            [{ name: 'Mango', qty: '250 g' }, { name: 'Plátano', qty: '1 unidad' }, { name: 'Leche de coco', qty: '300 ml' }, { name: 'Semillas de chía', qty: '2 cucharadas' }, { name: 'Zumo de lima', qty: '1 cucharada' }],
+            'Pela y trocea el mango y el plátano (si los congelas antes, el batido queda como un sorbete). Tritura con la leche de coco y el zumo de lima 1 minuto hasta que quede sedoso. Reparte en dos vasos, añade las semillas de chía, remueve y deja reposar 5 minutos para que hidraten.', 'Bebida', 'Energético'),
           createRecipe('Bocadillo de tortilla', 450, 18, 22,
-            [{ name: 'Pan tipo baguette', qty: '1/2 unidad' }, { name: 'Huevo', qty: '2 unidades' }, { name: 'Patata', qty: '80 g' }, { name: 'Aceite de oliva', qty: '1 cucharada' }],
-            'Rellena el pan con una tortilla de patata jugosa.', 'General', null, 'normal')
+            [{ name: 'Pan tipo baguette', qty: '1 unidad' }, { name: 'Huevo', qty: '3 unidades' }, { name: 'Patata', qty: '200 g' }, { name: 'Cebolla', qty: '1/2 unidad' }, { name: 'Aceite de oliva', qty: '150 ml' }, { name: 'Sal', qty: 'al gusto' }],
+            'Corta la patata en láminas finas y póchala con la cebolla en el aceite a fuego medio 15 minutos; escurre bien. Mezcla con los huevos batidos y sal y cuaja una tortilla jugosa, 2-3 minutos por cada lado. Abre la baguette, rellénala con la tortilla recién hecha y córtala en dos bocadillos.', 'General', null, 'normal')
         ],
         lunchOptions: [
           createRecipe('Pisto manchego con huevo', 440, 16, 22,
-            [{ name: 'Calabacín', qty: '100 g' }, { name: 'Pimiento', qty: '1 unidad' }, { name: 'Tomate triturado', qty: '150 g' }, { name: 'Huevo', qty: '1 unidad' }],
-            'Sofríe las verduras con tomate hasta espesar y corona con un huevo a la plancha.'),
+            [{ name: 'Calabacín', qty: '1 unidad' }, { name: 'Pimiento rojo', qty: '1 unidad' }, { name: 'Pimiento verde', qty: '1 unidad' }, { name: 'Cebolla', qty: '1 unidad' }, { name: 'Tomate triturado', qty: '400 g' }, { name: 'Huevo', qty: '2 unidades' }, { name: 'Aceite de oliva', qty: '3 cucharadas' }, { name: 'Azúcar', qty: '1 pizca' }],
+            'Sofríe la cebolla y los pimientos en dados con el aceite 10 minutos a fuego medio. Añade el calabacín en dados y rehoga 10 minutos más. Incorpora el tomate triturado con la pizca de azúcar y sal y cocina destapado 20 minutos, removiendo, hasta que el agua se evapore y el pisto quede meloso. Corona con los huevos hechos a la plancha o escalfados sobre el propio pisto, tapando 3 minutos.'),
           createRecipe('Arroz a la cubana', 620, 16, 24,
-            [{ name: 'Arroz', qty: '100 g' }, { name: 'Huevo', qty: '2 unidades' }, { name: 'Tomate frito', qty: '100 g' }, { name: 'Plátano', qty: '1 unidad' }],
-            'Sirve el arroz blanco con tomate frito, huevos fritos y plátano frito.', 'General', null, 'normal')
+            [{ name: 'Arroz largo', qty: '180 g' }, { name: 'Huevo', qty: '2 unidades' }, { name: 'Tomate frito', qty: '200 g' }, { name: 'Plátano', qty: '1 unidad' }, { name: 'Ajo', qty: '1 diente' }, { name: 'Aceite de oliva', qty: '4 cucharadas' }, { name: 'Sal', qty: 'al gusto' }],
+            'Rehoga el ajo entero en una cucharada de aceite, añade el arroz, dale una vuelta y cuece con el doble de agua y sal 12 minutos; deja reposar tapado. Fríe el plátano cortado a lo largo hasta que esté dorado. Fríe los huevos en aceite bien caliente con puntilla. Desmolda el arroz con una taza, salsea con el tomate frito caliente y acompaña con el huevo y el plátano.', 'General', null, 'normal')
         ],
         dinnerOptions: [
           createRecipe('Crema de calabaza con jengibre', 360, 9, 12,
-            [{ name: 'Calabaza', qty: '220 g' }, { name: 'Jengibre', qty: '5 g' }, { name: 'Cebolla', qty: '1/4 unidad' }, { name: 'Caldo vegetal', qty: '200 ml' }],
-            'Cuece la calabaza con jengibre y cebolla. Tritura con caldo hasta obtener una crema suave.'),
+            [{ name: 'Calabaza', qty: '500 g' }, { name: 'Jengibre fresco', qty: '10 g' }, { name: 'Cebolla', qty: '1/2 unidad' }, { name: 'Puerro', qty: '1/2 unidad' }, { name: 'Caldo vegetal', qty: '400 ml' }, { name: 'Aceite de oliva', qty: '1 cucharada' }, { name: 'Pipas de calabaza', qty: '1 cucharada' }],
+            'Sofríe la cebolla y el puerro picados con el aceite 5 minutos sin que tomen color. Añade la calabaza en dados y el jengibre rallado, rehoga 2 minutos y cubre con el caldo. Cuece 20 minutos hasta que la calabaza esté tierna y tritura hasta obtener una crema fina; ajusta de sal y de espesor con más caldo si hace falta. Sirve con las pipas tostadas por encima.'),
           createRecipe('Sepia a la plancha con alioli', 430, 30, 20,
-            [{ name: 'Sepia', qty: '180 g' }, { name: 'Ajo', qty: '1 diente' }, { name: 'Alioli', qty: '1 cucharada' }, { name: 'Perejil', qty: 'al gusto' }],
-            'Marca la sepia a la plancha con ajo y perejil, sirve con un toque de alioli.', 'General', null, 'normal')
+            [{ name: 'Sepia limpia', qty: '400 g' }, { name: 'Ajo', qty: '2 dientes' }, { name: 'Alioli', qty: '2 cucharadas' }, { name: 'Perejil picado', qty: '2 cucharadas' }, { name: 'Aceite de oliva', qty: '2 cucharadas' }, { name: 'Limón', qty: '1/2 unidad' }],
+            'Seca muy bien la sepia y haz unos cortes superficiales en rejilla por la parte interior para que no se encoja. Plancha o sartén muy caliente con el aceite: marca la sepia 2-3 minutos por cada lado hasta que esté dorada y tierna. Mezcla el ajo y el perejil picados y repártelos por encima con un chorrito de limón; sirve con el alioli aparte.', 'General', null, 'normal')
         ],
         liquids: [
           { name: 'Smoothie de pepino y menta', value: 'Digestivo · Pepino + Menta + Limón' },
@@ -350,30 +843,30 @@ const menuData = {
       {
         breakfastOptions: [
           createRecipe('Tostada con queso fresco y mermelada', 330, 12, 12,
-            [{ name: 'Pan integral', qty: '1 rebanada' }, { name: 'Queso fresco', qty: '50 g' }, { name: 'Mermelada', qty: '1 cucharada' }],
-            'Unta el queso fresco sobre el pan y añade una capa fina de mermelada.'),
+            [{ name: 'Pan integral', qty: '2 rebanadas' }, { name: 'Queso fresco', qty: '100 g' }, { name: 'Mermelada', qty: '2 cucharadas' }, { name: 'Nueces', qty: '10 g' }],
+            'Tuesta el pan hasta que esté crujiente. Corta el queso fresco en láminas gruesas y repártelo sobre las tostadas. Cubre con una capa fina de mermelada y termina con unas nueces troceadas para dar un toque crujiente.'),
           createRecipe('Bowl de yogur y granola', 340, 14, 10,
-            [{ name: 'Yogur natural', qty: '150 g' }, { name: 'Granola', qty: '40 g' }, { name: 'Fruta fresca', qty: '60 g' }],
-            'Sirve el yogur con granola crujiente y fruta troceada.'),
+            [{ name: 'Yogur natural', qty: '300 g' }, { name: 'Granola', qty: '80 g' }, { name: 'Fruta fresca', qty: '150 g' }, { name: 'Miel', qty: '1 cucharadita' }],
+            'Reparte el yogur en dos cuencos fríos. Trocea la fruta de temporada (plátano, fresas, kiwi o lo que tengas) y colócala por encima. Añade la granola en el último momento para que no se ablande y termina con un hilo de miel.'),
           createRecipe('Churros con chocolate', 440, 7, 20,
-            [{ name: 'Churros', qty: '5 unidades' }, { name: 'Chocolate a la taza', qty: '150 ml' }],
-            'Fríe los churros y sirve con chocolate caliente y espeso para mojar.', 'General', null, 'normal')
+            [{ name: 'Harina', qty: '125 g' }, { name: 'Agua', qty: '250 ml' }, { name: 'Sal', qty: '1 pizca' }, { name: 'Aceite para freír', qty: '400 ml' }, { name: 'Chocolate negro', qty: '100 g' }, { name: 'Leche', qty: '200 ml' }, { name: 'Maicena', qty: '1 cucharadita' }, { name: 'Azúcar', qty: '2 cucharadas' }],
+            'Hierve el agua con la sal, añade la harina de golpe fuera del fuego y remueve hasta lograr una masa lisa; pásala a una manga con boquilla rizada. Fríe tiras de masa en aceite a 180 °C hasta dorarlas, escurre y reboza en azúcar. Para el chocolate, calienta la leche con la maicena disuelta, añade el chocolate troceado y remueve a fuego suave hasta que espese. Sirve los churros recién hechos con el chocolate bien caliente.', 'General', null, 'normal')
         ],
         lunchOptions: [
           createRecipe('Salmón a la plancha con espárragos', 520, 34, 20,
-            [{ name: 'Salmón', qty: '170 g' }, { name: 'Espárragos', qty: '80 g' }, { name: 'Lechuga', qty: '1/2 unidad' }, { name: 'Limón', qty: '1/2 unidad' }],
-            'Cocina el salmón a la plancha y sirve con espárragos y ensalada.'),
+            [{ name: 'Lomos de salmón', qty: '350 g' }, { name: 'Espárragos verdes', qty: '12 unidades' }, { name: 'Lechuga', qty: '1/2 unidad' }, { name: 'Limón', qty: '1/2 unidad' }, { name: 'Aceite de oliva', qty: '2 cucharadas' }, { name: 'Eneldo', qty: 'al gusto' }],
+            'Saca el salmón de la nevera 15 minutos antes y sécalo bien. Plancha caliente con una cucharada de aceite: cocina los lomos 4 minutos por el lado de la piel y 2 por el otro, salpimentando; deben quedar jugosos por dentro. Saltea los espárragos en la misma plancha 5 minutos. Sirve con la lechuga aliñada, el limón y eneldo por encima.'),
           createRecipe('Macarrones con chorizo', 640, 24, 28,
-            [{ name: 'Macarrones', qty: '100 g' }, { name: 'Chorizo', qty: '60 g' }, { name: 'Tomate triturado', qty: '150 g' }, { name: 'Cebolla', qty: '1/2 unidad' }],
-            'Cocina la pasta y mezcla con una salsa de tomate, cebolla y chorizo. Gratina al gusto.', 'General', null, 'normal')
+            [{ name: 'Macarrones', qty: '200 g' }, { name: 'Chorizo', qty: '120 g' }, { name: 'Tomate triturado', qty: '400 g' }, { name: 'Cebolla', qty: '1/2 unidad' }, { name: 'Ajo', qty: '1 diente' }, { name: 'Queso rallado', qty: '40 g' }, { name: 'Aceite de oliva', qty: '1 cucharada' }, { name: 'Orégano', qty: '1 cucharadita' }],
+            'Sofríe la cebolla y el ajo picados con el aceite, añade el chorizo en rodajas y dóralo 3 minutos. Incorpora el tomate triturado con una pizca de azúcar y sal y cocina 15 minutos a fuego suave. Cuece los macarrones en agua con sal 1 minuto menos de lo que diga el paquete, escúrrelos y mézclalos con la salsa. Pasa a una fuente, cubre con el queso y el orégano y gratina 5 minutos hasta que burbujee.', 'General', null, 'normal')
         ],
         dinnerOptions: [
           createRecipe('Ensalada mediterránea con ventresca', 390, 28, 20,
-            [{ name: 'Lechuga', qty: '1/2 unidad' }, { name: 'Tomate', qty: '1 unidad' }, { name: 'Ventresca de atún', qty: '80 g' }, { name: 'Aceitunas', qty: '10 unidades' }],
-            'Mezcla los ingredientes con aceite de oliva y vinagre. Sirve fresca.'),
+            [{ name: 'Lechuga', qty: '1/2 unidad' }, { name: 'Tomate', qty: '2 unidades' }, { name: 'Ventresca de atún', qty: '160 g' }, { name: 'Aceitunas negras', qty: '20 unidades' }, { name: 'Cebolleta', qty: '1/4 unidad' }, { name: 'Huevo cocido', qty: '1 unidad' }, { name: 'Aceite de oliva virgen extra', qty: '2 cucharadas' }, { name: 'Vinagre de jerez', qty: '1 cucharadita' }],
+            'Lava y trocea la lechuga y corta los tomates en gajos. Monta la ensalada con la cebolleta en aros finos, las aceitunas, el huevo cocido en cuartos y la ventresca desmenuzada en lascas grandes con su aceite. Aliña con el vinagre, una pizca de sal (poca, la ventresca ya aporta) y el aceite de oliva en el último momento.'),
           createRecipe('Albóndigas en salsa', 560, 28, 30,
-            [{ name: 'Carne picada', qty: '150 g' }, { name: 'Tomate triturado', qty: '150 g' }, { name: 'Cebolla', qty: '1/2 unidad' }, { name: 'Pan rallado', qty: '20 g' }],
-            'Forma las albóndigas, dóralas y cocínalas en salsa de tomate y cebolla.', 'General', null, 'normal')
+            [{ name: 'Carne picada mixta', qty: '300 g' }, { name: 'Pan rallado', qty: '30 g' }, { name: 'Leche', qty: '50 ml' }, { name: 'Huevo', qty: '1 unidad' }, { name: 'Ajo', qty: '1 diente' }, { name: 'Perejil', qty: '2 cucharadas' }, { name: 'Harina', qty: '2 cucharadas' }, { name: 'Cebolla', qty: '1 unidad' }, { name: 'Tomate triturado', qty: '300 g' }, { name: 'Caldo de carne', qty: '100 ml' }, { name: 'Aceite de oliva', qty: '3 cucharadas' }],
+            'Mezcla la carne con el pan rallado remojado en la leche, el huevo, el ajo y el perejil picados, sal y pimienta; forma albóndigas y enharínalas. Dóralas en el aceite por tandas y resérvalas. En el mismo aceite sofríe la cebolla picada 8 minutos, añade el tomate y cocina 10 minutos; tritura la salsa si la quieres fina. Devuelve las albóndigas a la salsa con el caldo y cuece tapado a fuego suave 15 minutos. Sirve con arroz blanco o patatas.', 'General', null, 'normal')
         ],
         liquids: [
           { name: 'Batido de pera y manzana', value: 'Digestivo · Pera + Manzana + Miel' },
@@ -385,30 +878,30 @@ const menuData = {
       {
         breakfastOptions: [
           createRecipe('Tostada integral con aguacate', 350, 9, 18,
-            [{ name: 'Pan integral', qty: '1 rebanada' }, { name: 'Aguacate', qty: '1/2 unidad' }, { name: 'Tomate', qty: '1/2 unidad' }, { name: 'Limón', qty: '1 rodaja' }],
-            'Machaca el aguacate con limón, extiéndelo sobre el pan y corona con tomate.'),
+            [{ name: 'Pan integral', qty: '2 rebanadas' }, { name: 'Aguacate', qty: '1 unidad' }, { name: 'Tomate cherry', qty: '6 unidades' }, { name: 'Limón', qty: '1/2 unidad' }, { name: 'Aceite de oliva', qty: '1 cucharadita' }, { name: 'Sal en escamas', qty: '1 pizca' }],
+            'Machaca el aguacate con un tenedor junto al zumo de limón y una pizca de sal, dejando algún trozo entero. Tuesta el pan y extiende la crema de aguacate generosamente. Corona con los tomates cherry partidos, la sal en escamas y un hilo de aceite de oliva.'),
           createRecipe('Zumo de naranja natural', 160, 3, 1,
-            [{ name: 'Naranja', qty: '3 unidades' }],
-            'Exprime las naranjas y sirve el zumo recién hecho.', 'Bebida', 'Inmunidad'),
+            [{ name: 'Naranja de zumo', qty: '6 unidades' }],
+            'Parte las naranjas por la mitad y exprímelas justo antes de tomar el zumo, sin colarlo del todo para conservar la pulpa y su fibra. Sírvelo al momento: la vitamina C se degrada con el tiempo y la luz.', 'Bebida', 'Inmunidad'),
           createRecipe('Tortitas con fruta y miel', 420, 12, 14,
-            [{ name: 'Harina', qty: '60 g' }, { name: 'Huevo', qty: '1 unidad' }, { name: 'Leche', qty: '120 ml' }, { name: 'Miel', qty: '1 cucharada' }],
-            'Prepara la masa y cuaja las tortitas. Sirve con fruta y un hilo de miel.', 'General', null, 'normal')
+            [{ name: 'Harina', qty: '120 g' }, { name: 'Levadura química', qty: '6 g' }, { name: 'Huevo', qty: '1 unidad' }, { name: 'Leche', qty: '150 ml' }, { name: 'Mantequilla', qty: '20 g' }, { name: 'Miel', qty: '2 cucharadas' }, { name: 'Fruta fresca', qty: '150 g' }, { name: 'Sal', qty: '1 pizca' }],
+            'Mezcla la harina con la levadura y la sal; aparte bate el huevo con la leche y la mantequilla fundida y une ambas sin trabajar demasiado la masa. Deja reposar 10 minutos. Cuaja las tortitas en sartén antiadherente a fuego medio: vierte un cucharón, espera a que salgan burbujas y dale la vuelta 1 minuto más. Apila con la fruta troceada y la miel por encima.', 'General', null, 'normal')
         ],
         lunchOptions: [
           createRecipe('Ensalada templada de garbanzos', 480, 20, 16,
-            [{ name: 'Garbanzos cocidos', qty: '150 g' }, { name: 'Espinacas', qty: '60 g' }, { name: 'Pimiento rojo', qty: '1/2 unidad' }, { name: 'Pimentón', qty: '1 cucharadita' }],
-            'Saltea las espinacas y el pimiento, mezcla con los garbanzos y condimenta con pimentón.'),
+            [{ name: 'Garbanzos cocidos', qty: '300 g' }, { name: 'Espinacas', qty: '100 g' }, { name: 'Pimiento rojo', qty: '1/2 unidad' }, { name: 'Ajo', qty: '1 diente' }, { name: 'Pimentón dulce', qty: '1 cucharadita' }, { name: 'Comino molido', qty: '1/2 cucharadita' }, { name: 'Aceite de oliva', qty: '2 cucharadas' }, { name: 'Vinagre de jerez', qty: '1 cucharadita' }],
+            'Saltea el pimiento en tiras con una cucharada de aceite 5 minutos, añade el ajo laminado y, cuando huela, las espinacas hasta que se ablanden. Incorpora los garbanzos escurridos, el pimentón y el comino y saltea 3-4 minutos para que se templen y tomen sabor. Apaga, aliña con el vinagre y el resto del aceite y sirve templado.'),
           createRecipe('Paella de marisco', 620, 30, 18,
-            [{ name: 'Arroz', qty: '100 g' }, { name: 'Gambas', qty: '80 g' }, { name: 'Mejillones', qty: '80 g' }, { name: 'Calamar', qty: '60 g' }],
-            'Sofríe el marisco, añade el arroz y el caldo de pescado y cocina hasta el punto.', 'General', null, 'normal')
+            [{ name: 'Arroz redondo', qty: '180 g' }, { name: 'Gambas', qty: '8 unidades' }, { name: 'Mejillones', qty: '250 g' }, { name: 'Calamar', qty: '150 g' }, { name: 'Caldo de pescado', qty: '500 ml' }, { name: 'Tomate rallado', qty: '1 unidad' }, { name: 'Ajo', qty: '2 dientes' }, { name: 'Pimentón dulce', qty: '1 cucharadita' }, { name: 'Azafrán', qty: '1 pizca' }, { name: 'Aceite de oliva', qty: '3 cucharadas' }, { name: 'Limón', qty: '1/2 unidad' }],
+            'Abre los mejillones al vapor y reserva su agua colada junto al caldo. Marca las gambas en la paella con el aceite y resérvalas; sofríe el calamar en anillas 3 minutos, añade el ajo, el tomate y el pimentón y cocina 2 minutos. Incorpora el arroz, dale una vuelta, vierte el caldo caliente con el azafrán y cuece 10 minutos a fuego fuerte y 7 a fuego suave sin remover. Coloca encima las gambas y los mejillones, reposa 5 minutos tapado con un paño y sirve con limón.', 'General', null, 'normal')
         ],
         dinnerOptions: [
           createRecipe('Pimientos rellenos de bacalao', 430, 28, 14,
-            [{ name: 'Pimiento rojo', qty: '1 unidad' }, { name: 'Bacalao desalado', qty: '100 g' }, { name: 'Cebolla', qty: '1/2 unidad' }, { name: 'Tomate triturado', qty: '50 g' }],
-            'Rellena el pimiento con la mezcla de bacalao y cebolla. Hornea 20 minutos a 180 °C.'),
+            [{ name: 'Pimientos del piquillo', qty: '8 unidades' }, { name: 'Bacalao desalado', qty: '200 g' }, { name: 'Cebolla', qty: '1/2 unidad' }, { name: 'Harina', qty: '1 cucharada' }, { name: 'Leche', qty: '200 ml' }, { name: 'Tomate triturado', qty: '100 g' }, { name: 'Aceite de oliva', qty: '2 cucharadas' }],
+            'Sofríe media cebolla picada, añade el bacalao desmigado y dale una vuelta. Agrega la harina, cocina 1 minuto y vierte la leche poco a poco hasta obtener una bechamel espesa con el bacalao; deja templar. Rellena los piquillos con la mezcla, colócalos en una fuente, salséalos con el tomate triturado sofrito con el resto de la cebolla y hornea 15 minutos a 180 °C.'),
           createRecipe('Hamburguesa casera con patatas', 720, 32, 38,
-            [{ name: 'Carne de ternera', qty: '150 g' }, { name: 'Pan de hamburguesa', qty: '1 unidad' }, { name: 'Patata', qty: '150 g' }, { name: 'Queso', qty: '30 g' }],
-            'Haz la hamburguesa a la plancha, monta con queso y verduras y acompaña con patatas al horno.', 'General', null, 'normal')
+            [{ name: 'Carne de ternera picada', qty: '300 g' }, { name: 'Pan de hamburguesa', qty: '2 unidades' }, { name: 'Queso', qty: '2 lonchas' }, { name: 'Tomate', qty: '1 unidad' }, { name: 'Lechuga', qty: '2 hojas' }, { name: 'Cebolla roja', qty: '1/2 unidad' }, { name: 'Patata', qty: '300 g' }, { name: 'Aceite de oliva', qty: '2 cucharadas' }, { name: 'Sal y pimienta', qty: 'al gusto' }],
+            'Corta las patatas en bastones, sécalas, mézclalas con una cucharada de aceite y sal y hornéalas a 200 °C unos 30 minutos, dándoles la vuelta a mitad. Amasa apenas la carne con sal y pimienta y forma dos hamburguesas sin apretarlas. Hazlas a la plancha 3 minutos por lado, poniendo el queso encima al final para que funda. Monta el pan tostado con lechuga, tomate, cebolla y la carne, y acompaña con las patatas.', 'General', null, 'normal')
         ],
         liquids: [
           { name: 'Smoothie tropical premium', value: 'Energético · Mango + Plátano + Coco' },
@@ -420,30 +913,30 @@ const menuData = {
       {
         breakfastOptions: [
           createRecipe('Huevos revueltos con champiñones', 330, 19, 20,
-            [{ name: 'Huevo', qty: '2 unidades' }, { name: 'Champiñones', qty: '80 g' }, { name: 'Cebollino', qty: 'al gusto' }, { name: 'Aceite de oliva', qty: '1 cucharadita' }],
-            'Saltea los champiñones, añade los huevos batidos y remueve hasta que cuajen cremosos.'),
+            [{ name: 'Huevo', qty: '4 unidades' }, { name: 'Champiñones', qty: '150 g' }, { name: 'Mantequilla', qty: '15 g' }, { name: 'Cebollino', qty: 'al gusto' }, { name: 'Sal y pimienta', qty: 'al gusto' }],
+            'Lamina los champiñones y saltéalos a fuego vivo hasta que pierdan el agua y se doren. Baja el fuego, añade la mantequilla y los huevos apenas batidos con sal y remueve constantemente con espátula, retirando la sartén del fuego a ratos, hasta que cuajen en grumos cremosos. Sirve al momento con cebollino picado y pimienta.'),
           createRecipe('Batido de frutos rojos', 290, 6, 4,
-            [{ name: 'Frutos rojos', qty: '120 g' }, { name: 'Yogur griego', qty: '100 g' }, { name: 'Miel', qty: '1 cucharadita' }],
-            'Licúa los frutos rojos con yogur y miel hasta obtener un batido cremoso.', 'Bebida', 'Antioxidante'),
+            [{ name: 'Frutos rojos', qty: '200 g' }, { name: 'Yogur griego', qty: '200 g' }, { name: 'Leche', qty: '100 ml' }, { name: 'Miel', qty: '2 cucharaditas' }],
+            'Pon los frutos rojos (frescos o congelados) en la batidora con el yogur, la leche y la miel. Tritura 1 minuto hasta que quede homogéneo y cremoso; con fruta congelada tendrá textura de sorbete. Sirve frío, recién hecho.', 'Bebida', 'Antioxidante'),
           createRecipe('Tostada francesa (torrija)', 420, 12, 18,
-            [{ name: 'Pan', qty: '2 rebanadas' }, { name: 'Huevo', qty: '1 unidad' }, { name: 'Leche', qty: '120 ml' }, { name: 'Canela', qty: '1 cucharadita' }],
-            'Empapa el pan en leche y huevo, fríe y espolvorea azúcar y canela.', 'General', null, 'normal')
+            [{ name: 'Pan brioche', qty: '4 rebanadas' }, { name: 'Huevo', qty: '2 unidades' }, { name: 'Leche', qty: '250 ml' }, { name: 'Azúcar', qty: '40 g' }, { name: 'Canela', qty: '1 cucharadita' }, { name: 'Mantequilla', qty: '20 g' }],
+            'Calienta la leche con la mitad del azúcar y deja templar. Empapa bien las rebanadas de pan en la leche y pásalas después por el huevo batido. Dóralas en sartén con la mantequilla 2 minutos por cada lado y rebózalas en la mezcla del resto de azúcar con la canela. Sírvelas templadas.', 'General', null, 'normal')
         ],
         lunchOptions: [
           createRecipe('Bowl de quinoa, pollo y verduras', 520, 34, 14,
-            [{ name: 'Quinoa cocida', qty: '100 g' }, { name: 'Pechuga de pollo', qty: '120 g' }, { name: 'Tomate cherry', qty: '6 unidades' }, { name: 'Aguacate', qty: '1/4 unidad' }],
-            'Combina la quinoa con pollo a la plancha, tomate cherry y aguacate. Aliña al gusto.'),
+            [{ name: 'Quinoa', qty: '120 g' }, { name: 'Pechuga de pollo', qty: '250 g' }, { name: 'Tomate cherry', qty: '10 unidades' }, { name: 'Aguacate', qty: '1/2 unidad' }, { name: 'Calabacín', qty: '1/2 unidad' }, { name: 'Zumo de limón', qty: '1 cucharada' }, { name: 'Aceite de oliva', qty: '2 cucharadas' }, { name: 'Comino molido', qty: '1/2 cucharadita' }],
+            'Lava y cuece la quinoa en el doble de agua con sal 15 minutos; escurre y reserva. Salpimienta la pechuga, úntala con comino y una cucharada de aceite y hazla a la plancha 4-5 minutos por lado; déjala reposar y córtala en tiras. Saltea el calabacín en medias lunas 4 minutos. Monta los bowls con la quinoa de base, el pollo, el calabacín, los cherry y el aguacate, y aliña con limón y el resto del aceite.'),
           createRecipe('Cordero asado con patatas', 760, 38, 42,
-            [{ name: 'Pierna de cordero', qty: '200 g' }, { name: 'Patata', qty: '180 g' }, { name: 'Ajo', qty: '3 dientes' }, { name: 'Romero', qty: 'al gusto' }],
-            'Asa el cordero con patatas, ajo y romero a 180 °C hasta que esté tierno y dorado.', 'General', null, 'normal')
+            [{ name: 'Paletilla de cordero', qty: '800 g' }, { name: 'Patata', qty: '400 g' }, { name: 'Ajo', qty: '4 dientes' }, { name: 'Romero', qty: '2 ramas' }, { name: 'Vino blanco', qty: '100 ml' }, { name: 'Agua', qty: '100 ml' }, { name: 'Aceite de oliva', qty: '2 cucharadas' }, { name: 'Sal', qty: 'al gusto' }],
+            'Saca el cordero de la nevera 1 hora antes y precalienta el horno a 180 °C. Unta la paletilla con aceite, sal y los ajos machacados y colócala sobre una cama de patatas en rodajas gruesas con el romero. Vierte el vino y el agua en la fuente y asa 60-75 minutos, dando la vuelta a mitad y regando con su jugo cada 20 minutos; si se queda seca, añade un poco más de agua. Debe quedar dorada por fuera y tierna hasta el hueso; deja reposar 10 minutos antes de servir.', 'General', null, 'normal')
         ],
         dinnerOptions: [
           createRecipe('Crema de verduras de temporada', 300, 10, 10,
-            [{ name: 'Calabacín', qty: '100 g' }, { name: 'Puerro', qty: '1 unidad' }, { name: 'Zanahoria', qty: '1 unidad' }, { name: 'Caldo vegetal', qty: '250 ml' }],
-            'Cuece las verduras y tritura con caldo hasta obtener una crema suave.'),
+            [{ name: 'Calabacín', qty: '1 unidad' }, { name: 'Puerro', qty: '1 unidad' }, { name: 'Zanahoria', qty: '2 unidades' }, { name: 'Patata', qty: '1 unidad' }, { name: 'Caldo vegetal', qty: '500 ml' }, { name: 'Aceite de oliva', qty: '1 cucharada' }, { name: 'Sal y pimienta', qty: 'al gusto' }],
+            'Sofríe el puerro en rodajas con el aceite 3 minutos. Añade la zanahoria, la patata y el calabacín troceados, rehoga 5 minutos y cubre con el caldo. Cuece 20-25 minutos hasta que todo esté tierno y tritura hasta lograr una crema fina; salpimienta. Sirve con un hilo de aceite en crudo o unos picatostes.'),
           createRecipe('Tosta de salmón ahumado', 380, 22, 18,
-            [{ name: 'Pan integral', qty: '1 rebanada' }, { name: 'Salmón ahumado', qty: '70 g' }, { name: 'Queso crema', qty: '30 g' }, { name: 'Eneldo', qty: 'al gusto' }],
-            'Unta el queso crema sobre el pan, añade el salmón ahumado y decora con eneldo.')
+            [{ name: 'Pan integral', qty: '2 rebanadas' }, { name: 'Salmón ahumado', qty: '120 g' }, { name: 'Queso crema', qty: '60 g' }, { name: 'Alcaparras', qty: '1 cucharada' }, { name: 'Eneldo', qty: 'al gusto' }, { name: 'Limón', qty: '1/4 unidad' }],
+            'Tuesta el pan hasta que esté crujiente y deja templar un minuto. Unta una capa generosa de queso crema y reparte el salmón ahumado en ondas. Termina con las alcaparras, el eneldo y unas gotas de limón con un toque de pimienta recién molida.')
         ],
         liquids: [
           { name: 'Smoothie de recuperación', value: 'Recuperación muscular · Plátano + Proteína + Almendra' },
@@ -463,27 +956,27 @@ const menuData = {
       {
         breakfastOptions: [
           createRecipe('Iaurt cu nuci și miere', 320, 12, 14,
-            [{ name: 'Iaurt', qty: '150 g' }, { name: 'Nuci', qty: '15 g' }, { name: 'Miere', qty: '1 linguriță' }],
-            'Servește iaurtul cu nuci tocate și un strop de miere.'),
+            [{ name: 'Iaurt grecesc', qty: '300 g' }, { name: 'Nuci', qty: '40 g' }, { name: 'Miere', qty: '2 lingurițe' }, { name: 'Scorțișoară', qty: '1 praf' }],
+            'Împarte iaurtul în două boluri reci. Rupe nucile în bucăți și rumenește-le 2 minute într-o tigaie uscată ca să își intensifice aroma. Presară nucile peste iaurt, adaugă mierea în fir subțire și termină cu un praf de scorțișoară.'),
           createRecipe('Omletă cu brânză și roșii', 350, 18, 22,
-            [{ name: 'Ouă', qty: '2 bucăți' }, { name: 'Brânză', qty: '40 g' }, { name: 'Roșii', qty: '1 unitate' }],
-            'Bate ouăle, adaugă brânza și roșiile și gătește omleta la foc mediu.', 'General', null, 'normal')
+            [{ name: 'Ouă', qty: '4 bucăți' }, { name: 'Brânză telemea', qty: '80 g' }, { name: 'Roșii', qty: '1 unitate' }, { name: 'Ceapă verde', qty: '2 fire' }, { name: 'Unt', qty: '15 g' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Taie roșia cubulețe și las-o 5 minute într-o sită să se scurgă. Bate ouăle cu piper și foarte puțină sare (telemeaua e sărată). Încinge untul la foc mediu, toarnă ouăle și, când încep să se închege, presară brânza sfărâmată, roșia și ceapa verde. Pliază omleta în două și mai las-o 1 minut, să rămână cremoasă la mijloc.', 'General', null, 'normal')
         ],
         lunchOptions: [
           createRecipe('Ciorbă de burtă', 420, 22, 18,
-            [{ name: 'Burtă de vită', qty: '150 g' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Smântână', qty: '1 lingură' }, { name: 'Usturoi', qty: '2 căței' }],
-            'Fierbe burta cu legume, drege cu smântână și servește cu usturoi.', 'General', null, 'normal'),
+            [{ name: 'Burtă de vită', qty: '500 g' }, { name: 'Os de vită cu măduvă', qty: '1 bucată' }, { name: 'Morcov', qty: '2 bucăți' }, { name: 'Țelină', qty: '50 g' }, { name: 'Smântână', qty: '150 g' }, { name: 'Gălbenușuri', qty: '2 bucăți' }, { name: 'Usturoi', qty: '4 căței' }, { name: 'Oțet', qty: '2 linguri' }, { name: 'Foi de dafin', qty: '2 bucăți' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Spală bine burta și fierbe-o cu osul, morcovii, țelina și foile de dafin în apă cu sare circa 3 ore (sau 1 oră la oala sub presiune), spumând des. Scoate burta și taie-o fâșii subțiri; strecoară zeama și pune fâșiile înapoi. Bate smântâna cu gălbenușurile, subțiază cu câteva polonice de zeamă caldă și toarnă în ciorba luată de pe foc, amestecând. Adaugă usturoiul pisat frecat cu oțetul, potrivește de sare și servește fierbinte, cu ardei iute după gust.', 'General', null, 'normal'),
           createRecipe('Sarmale cu mămăligă', 620, 26, 30,
-            [{ name: 'Carne tocată', qty: '150 g' }, { name: 'Varză murată', qty: '4 foi' }, { name: 'Orez', qty: '40 g' }, { name: 'Mămăligă', qty: '150 g' }],
-            'Învelește amestecul de carne și orez în foi de varză și fierbe încet. Servește cu mămăligă.', 'General', null, 'normal')
+            [{ name: 'Varză murată', qty: '1 bucată' }, { name: 'Carne tocată de porc', qty: '400 g' }, { name: 'Orez', qty: '60 g' }, { name: 'Ceapă', qty: '2 bucăți' }, { name: 'Costiță afumată', qty: '80 g' }, { name: 'Bulion', qty: '2 linguri' }, { name: 'Cimbru uscat', qty: '1 linguriță' }, { name: 'Foi de dafin', qty: '2 bucăți' }, { name: 'Mălai', qty: '200 g' }, { name: 'Apă', qty: '800 ml' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Călește ceapa tocată, amestec-o cu carnea, orezul crud, cimbrul, sare și piper. Desfă foile de varză, taie cotorul gros și învelește sarmale mici și strânse. Așază-le în oală pe un pat de varză tocată, cu costița și foile de dafin printre ele, acoperă cu apă și bulion și fierbe la foc mic 2-3 ore, până scade. Pentru mămăligă, fierbe apa cu sare, toarnă mălaiul în ploaie și amestecă 25 de minute. Servește sarmalele fierbinți cu mămăligă și smântână.', 'General', null, 'normal')
         ],
         dinnerOptions: [
           createRecipe('Salată de boeuf', 480, 14, 28,
-            [{ name: 'Cartofi', qty: '150 g' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Mazăre', qty: '60 g' }, { name: 'Maioneză', qty: '2 linguri' }],
-            'Fierbe legumele, taie-le cubulețe și amestecă cu maioneză. Servește rece.'),
+            [{ name: 'Carne de vită fiartă', qty: '150 g' }, { name: 'Cartofi', qty: '300 g' }, { name: 'Morcovi', qty: '2 bucăți' }, { name: 'Mazăre', qty: '100 g' }, { name: 'Castraveți murați', qty: '3 bucăți' }, { name: 'Maioneză', qty: '4 linguri' }, { name: 'Muștar', qty: '1 linguriță' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Fierbe cartofii și morcovii în coajă până sunt pătrunși, dar tari; lasă-i să se răcească complet. Taie cubulețe mici legumele, carnea fiartă și castraveții murați bine scurși. Amestecă totul cu mazărea, maioneza și muștarul și potrivește de sare și piper. Dă salata la rece cel puțin o oră înainte de servire și ornează cu maioneză și murături deasupra.'),
           createRecipe('Mici cu muștar', 560, 30, 38,
-            [{ name: 'Mici', qty: '4 bucăți' }, { name: 'Muștar', qty: '1 lingură' }, { name: 'Pâine', qty: '1 felie' }],
-            'Frige micii pe grătar și servește cu muștar și pâine.', 'General', null, 'normal')
+            [{ name: 'Carne tocată mixtă de vită și porc', qty: '500 g' }, { name: 'Bicarbonat de sodiu', qty: '1/2 linguriță' }, { name: 'Usturoi', qty: '3 căței' }, { name: 'Cimbru uscat', qty: '1 linguriță' }, { name: 'Boia dulce', qty: '1/2 linguriță' }, { name: 'Supă de oase rece', qty: '50 ml' }, { name: 'Muștar', qty: '2 linguri' }, { name: 'Pâine', qty: '2 felii' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Pisează usturoiul cu puțină sare și amestecă-l cu supa rece ca un mujdei subțire. Frământă bine carnea tocată cu bicarbonatul, cimbrul, boiaua, sarea, piperul și mujdeiul strecurat, 8-10 minute, până devine lipicioasă ca o pastă. Acoperă și lasă compoziția la frigider minimum 3 ore, ideal peste noapte, ca să se lege aromele. Cu mâinile umede formează mici de circa 8 cm și ține-i 20 de minute la temperatura camerei. Încinge bine grătarul sau o tigaie-grill și frige micii 4-5 minute pe fiecare parte, întorcându-i des cu cleștele, fără să îi înțepi, până fac crustă rumenă. Servește-i imediat, cu muștar din belșug și pâine.', 'General', null, 'normal')
         ],
         liquids: [
           { name: 'Compot de mere', value: 'Digestivo · Mere + Scorțișoară' },
@@ -494,27 +987,27 @@ const menuData = {
       {
         breakfastOptions: [
           createRecipe('Brânză proaspătă cu ridichi', 320, 14, 12,
-            [{ name: 'Brânză proaspătă', qty: '80 g' }, { name: 'Ridichi', qty: '3 bucăți' }, { name: 'Pâine integrală', qty: '1 felie' }],
-            'Servește brânza proaspătă cu ridichi feliate și pâine integrală.'),
+            [{ name: 'Brânză proaspătă de vaci', qty: '200 g' }, { name: 'Ridichi', qty: '6 bucăți' }, { name: 'Ceapă verde', qty: '2 fire' }, { name: 'Pâine integrală', qty: '2 felii' }, { name: 'Sare', qty: 'după gust' }],
+            'Amestecă brânza proaspătă cu ceapa verde tocată mărunt și puțină sare. Spală ridichile și taie-le felii subțiri. Servește brânza pe pâinea integrală proaspătă sau prăjită, cu feliile de ridiche deasupra și piper proaspăt măcinat.'),
           createRecipe('Smoothie cu spanac și măr', 300, 8, 10,
-            [{ name: 'Spanac', qty: '70 g' }, { name: 'Măr', qty: '1/2 unitate' }, { name: 'Banană', qty: '1/2 unitate' }],
-            'Mixează totul până devine cremos și servește rece.', 'Bebida', 'Depurativo')
+            [{ name: 'Spanac', qty: '100 g' }, { name: 'Măr verde', qty: '1 unitate' }, { name: 'Banană', qty: '1 unitate' }, { name: 'Apă rece', qty: '200 ml' }, { name: 'Zeamă de lămâie', qty: '1 lingură' }],
+            'Spală bine spanacul și taie mărul în bucăți, fără cotor. Pune toate ingredientele în blender și mixează 1 minut, până devine complet cremos, fără bucăți. Servește imediat, rece, ca să păstreze culoarea vie și vitaminele.', 'Bebida', 'Depurativo')
         ],
         lunchOptions: [
           createRecipe('Ciorbă de fasole cu afumătură', 480, 22, 18,
-            [{ name: 'Fasole', qty: '120 g' }, { name: 'Afumătură', qty: '60 g' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Ceapă', qty: '1/2 unitate' }],
-            'Fierbe fasolea cu afumătura și legumele până se leagă ciorba.', 'General', null, 'normal'),
+            [{ name: 'Fasole albă', qty: '250 g' }, { name: 'Ciolan afumat', qty: '300 g' }, { name: 'Morcov', qty: '2 bucăți' }, { name: 'Ceapă', qty: '2 bucăți' }, { name: 'Țelină', qty: '50 g' }, { name: 'Ardei gras', qty: '1 bucată' }, { name: 'Bulion', qty: '2 linguri' }, { name: 'Borș', qty: '200 ml' }, { name: 'Cimbru și leuștean', qty: 'după gust' }, { name: 'Sare', qty: 'după gust' }],
+            'Pune fasolea la înmuiat de seara. Fierbe ciolanul afumat 1 oră, apoi adaugă fasolea scursă și fierbe-le împreună până se înmoaie. Adaugă morcovul, ceapa, țelina și ardeiul tocate și mai fierbe 20 de minute. Pune bulionul și borșul fiert separat, lasă să dea câteva clocote și potrivește de sare. La final adaugă cimbrul și leușteanul tocat; servește cu carnea de pe ciolan desfăcută în bucăți.', 'General', null, 'normal'),
           createRecipe('Tochitură moldovenească', 700, 34, 40,
-            [{ name: 'Carne de porc', qty: '160 g' }, { name: 'Cârnați', qty: '60 g' }, { name: 'Mămăligă', qty: '150 g' }, { name: 'Ou', qty: '1 unitate' }],
-            'Călește carnea și cârnații în sos, servește cu mămăligă și ou ochi.', 'General', null, 'normal')
+            [{ name: 'Carne de porc', qty: '400 g' }, { name: 'Cârnați afumați', qty: '150 g' }, { name: 'Usturoi', qty: '4 căței' }, { name: 'Vin alb', qty: '100 ml' }, { name: 'Bulion', qty: '2 linguri' }, { name: 'Mălai', qty: '200 g' }, { name: 'Brânză de burduf', qty: '100 g' }, { name: 'Ouă', qty: '2 bucăți' }, { name: 'Cimbru', qty: '1 linguriță' }],
+            'Taie carnea cubulețe și rumenește-o în untură sau ulei la foc mare; adaugă cârnații în rondele și mai călește 5 minute. Stinge cu vinul, adaugă bulionul, usturoiul pisat și cimbrul și lasă să scadă la foc mic 20 de minute, până sosul leagă. Între timp fă mămăliga: apă cu sare, mălai în ploaie, amestecat 25 de minute. Servește tochitura lângă mămăligă, cu brânză de burduf rasă deasupra și câte un ou ochi pus în vârf.', 'General', null, 'normal')
         ],
         dinnerOptions: [
           createRecipe('Chifteluțe de pui la cuptor', 430, 28, 15,
-            [{ name: 'Pui tocat', qty: '120 g' }, { name: 'Ceapă', qty: '1/4 unitate' }, { name: 'Ou', qty: '1 unitate' }],
-            'Formează chifteluțe și coace-le la cuptor până sunt rumene.'),
+            [{ name: 'Piept de pui tocat', qty: '300 g' }, { name: 'Ceapă', qty: '1/2 bucată' }, { name: 'Usturoi', qty: '1 cățel' }, { name: 'Ou', qty: '1 bucată' }, { name: 'Pesmet', qty: '3 linguri' }, { name: 'Pătrunjel tocat', qty: '2 linguri' }, { name: 'Ulei', qty: '1 lingură' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Amestecă puiul tocat cu ceapa dată pe răzătoare și bine stoarsă, usturoiul pisat, oul, pesmetul și pătrunjelul; potrivește de sare și piper. Formează chifteluțe cu mâinile umede și așază-le pe o tavă cu hârtie de copt, unse cu ulei. Coace-le la 200 °C circa 20-25 de minute, întorcându-le la jumătate, până sunt rumene. Bune și calde, și reci, cu salată verde.'),
           createRecipe('Mâncare de praz cu măsline', 380, 10, 13,
-            [{ name: 'Praz', qty: '120 g' }, { name: 'Măsline', qty: '10 g' }, { name: 'Ulei de măsline', qty: '1 lingură' }],
-            'Gătește prazul în ulei și adaugă măsline la final. Servește cald.')
+            [{ name: 'Praz', qty: '3 fire' }, { name: 'Măsline negre', qty: '100 g' }, { name: 'Roșii cubulețe', qty: '200 g' }, { name: 'Bulion', qty: '2 linguri' }, { name: 'Ulei de măsline', qty: '3 linguri' }, { name: 'Foi de dafin', qty: '1 bucată' }, { name: 'Zahăr', qty: '1 praf' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Curăță prazul și taie-l rondele de două degete; călește-l în ulei la foc mediu până se înmoaie și prinde puțină culoare. Adaugă roșiile, bulionul, foaia de dafin, zahărul, sare și piper și un pahar de apă. Fierbe acoperit la foc mic 20 de minute, adaugă măslinele și mai lasă 10 minute să scadă sosul. Se servește caldă sau rece, cu pâine.')
         ],
         liquids: [
           { name: 'Suc de morcov', value: 'Energético · Morcov + Portocală' },
@@ -525,27 +1018,27 @@ const menuData = {
       {
         breakfastOptions: [
           createRecipe('Terci de ovăz cu fructe', 310, 10, 7,
-            [{ name: 'Ovăz', qty: '45 g' }, { name: 'Lapte', qty: '200 ml' }, { name: 'Fructe', qty: '70 g' }],
-            'Fierbe ovăzul cu lapte și adaugă fructe proaspete la final.'),
+            [{ name: 'Fulgi de ovăz', qty: '90 g' }, { name: 'Lapte', qty: '400 ml' }, { name: 'Fructe proaspete', qty: '150 g' }, { name: 'Miere', qty: '1 linguriță' }, { name: 'Scorțișoară', qty: '1 praf' }],
+            'Fierbe fulgii de ovăz cu laptele la foc mic 5-7 minute, amestecând des, până se îngroașă și devin cremoși. Toarnă în boluri și adaugă fructele proaspete tăiate (banane, fructe de pădure, măr), mierea în fir subțire și scorțișoara. Iarna e bun fierbinte, vara îl poți lăsa peste noapte la frigider.'),
           createRecipe('Papanași cu smântână', 520, 14, 26,
-            [{ name: 'Brânză de vaci', qty: '120 g' }, { name: 'Făină', qty: '50 g' }, { name: 'Smântână', qty: '2 linguri' }, { name: 'Dulceață', qty: '1 lingură' }],
-            'Prăjește papanașii și servește cu smântână și dulceață.', 'General', null, 'normal')
+            [{ name: 'Brânză de vaci', qty: '250 g' }, { name: 'Ou', qty: '1 bucată' }, { name: 'Făină', qty: '120 g' }, { name: 'Griș', qty: '1 lingură' }, { name: 'Zahăr', qty: '2 linguri' }, { name: 'Coajă de lămâie', qty: '1 bucată' }, { name: 'Bicarbonat', qty: '1/2 linguriță' }, { name: 'Smântână', qty: '100 g' }, { name: 'Dulceață de afine', qty: '4 linguri' }, { name: 'Ulei pentru prăjit', qty: '300 ml' }],
+            'Amestecă brânza de vaci bine scursă cu oul, zahărul, grișul, coaja de lămâie și bicarbonatul, apoi adaugă făina treptat până obții un aluat moale, ușor lipicios. Cu mâinile date prin făină formează două gogoși cu gaură la mijloc și două biluțe. Prăjește-le în ulei încins la foc mediu, 3-4 minute pe fiecare parte, până sunt rumene și pătrunse. Servește papanașii calzi, cu smântână din belșug și dulceață de afine deasupra.', 'General', null, 'normal')
         ],
         lunchOptions: [
           createRecipe('Iahnie de fasole', 460, 20, 12,
-            [{ name: 'Fasole', qty: '120 g' }, { name: 'Ceapă', qty: '1/2 unitate' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Bulion', qty: '100 g' }],
-            'Fierbe fasolea cu ceapă, morcov și bulion până se îngroașă.'),
+            [{ name: 'Fasole albă', qty: '250 g' }, { name: 'Ceapă', qty: '2 bucăți' }, { name: 'Morcov', qty: '1 bucată' }, { name: 'Usturoi', qty: '3 căței' }, { name: 'Bulion', qty: '3 linguri' }, { name: 'Foi de dafin', qty: '2 bucăți' }, { name: 'Boia dulce', qty: '1 linguriță' }, { name: 'Cimbru', qty: '1 linguriță' }, { name: 'Ulei', qty: '2 linguri' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Înmoaie fasolea de seara, apoi fierbe-o în două ape (prima se aruncă după 10 minute) cu o foaie de dafin, până se înmoaie. Călește ceapa tocată și morcovul rondele în ulei, adaugă usturoiul, boiaua și bulionul și stinge cu un polonic din zeama fasolei. Toarnă sosul peste fasolea scursă, adaugă cimbrul și fierbe totul împreună 15 minute, să se lege. Merge de minune cu murături sau ceapă roșie.'),
           createRecipe('Ardei umpluți', 540, 24, 22,
-            [{ name: 'Ardei', qty: '2 unități' }, { name: 'Carne tocată', qty: '120 g' }, { name: 'Orez', qty: '40 g' }, { name: 'Bulion', qty: '100 g' }],
-            'Umple ardeii cu carne și orez și fierbe în sos de roșii.', 'General', null, 'normal')
+            [{ name: 'Ardei gras', qty: '4 bucăți' }, { name: 'Carne tocată mixtă', qty: '300 g' }, { name: 'Orez', qty: '60 g' }, { name: 'Ceapă', qty: '1 bucată' }, { name: 'Bulion', qty: '400 ml' }, { name: 'Smântână', qty: '2 linguri' }, { name: 'Mărar și pătrunjel', qty: 'după gust' }, { name: 'Foi de dafin', qty: '1 bucată' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Taie capacele ardeilor și scoate semințele. Amestecă carnea cu orezul crud, ceapa călită, verdeața tocată, sare și piper și umple ardeii fără să îndeși. Așază-i în oală cu gura în sus, pune capacele, toarnă bulionul subțiat cu apă cât să îi acopere și foaia de dafin. Fierbe la foc mic, acoperit, 45-50 de minute. Servește cu smântână și mărar proaspăt.', 'General', null, 'normal')
         ],
         dinnerOptions: [
           createRecipe('Plachie de pește', 470, 30, 18,
-            [{ name: 'Pește', qty: '170 g' }, { name: 'Roșii', qty: '1 unitate' }, { name: 'Ardei', qty: '1/2 unitate' }, { name: 'Ceapă', qty: '1/2 unitate' }],
-            'Coace peștele cu roșii, ardei și ceapă la cuptor până devine fraged.'),
+            [{ name: 'Pește alb', qty: '400 g' }, { name: 'Ceapă', qty: '3 bucăți' }, { name: 'Roșii', qty: '2 bucăți' }, { name: 'Ardei gras', qty: '1 bucată' }, { name: 'Usturoi', qty: '3 căței' }, { name: 'Vin alb', qty: '50 ml' }, { name: 'Ulei', qty: '3 linguri' }, { name: 'Foi de dafin', qty: '2 bucăți' }, { name: 'Lămâie', qty: '1/2 bucată' }, { name: 'Pătrunjel', qty: 'după gust' }],
+            'Călește ceapa tăiată solzișori în ulei până devine aurie, adaugă ardeiul și usturoiul și mai lasă 3 minute. Așază jumătate din legume într-o tavă, pune peștele sărat și piperat deasupra și acoperă cu restul de legume și roșiile felii. Toarnă vinul, adaugă dafinul și coace la 180 °C circa 25-30 de minute, până peștele se desface în lamele. Servește cu lămâie și pătrunjel tocat.'),
           createRecipe('Zacuscă cu pâine', 320, 6, 16,
-            [{ name: 'Vinete', qty: '150 g' }, { name: 'Ardei copt', qty: '80 g' }, { name: 'Bulion', qty: '60 g' }, { name: 'Pâine', qty: '1 felie' }],
-            'Întinde zacusca pe pâine. Ideală rece sau caldă.')
+            [{ name: 'Vinete coapte', qty: '300 g' }, { name: 'Ardei copți', qty: '150 g' }, { name: 'Ceapă', qty: '1 bucată' }, { name: 'Bulion', qty: '80 g' }, { name: 'Ulei', qty: '3 linguri' }, { name: 'Foi de dafin', qty: '1 bucată' }, { name: 'Pâine', qty: '2 felii' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Coace vinetele și ardeii pe flacără sau la cuptor până se înmoaie, curăță-le și toacă-le mărunt. Călește ceapa tocată în ulei, adaugă vinetele, ardeii, bulionul, dafinul, sare și piper și fierbe la foc mic 30 de minute, amestecând des să nu se prindă. Las-o să se răcorească și întinde-o pe pâine proaspătă sau prăjită; e la fel de bună caldă sau rece.')
         ],
         liquids: [
           { name: 'Compot de prune', value: 'Digestivo · Prune + Scorțișoară' },
@@ -556,27 +1049,27 @@ const menuData = {
       {
         breakfastOptions: [
           createRecipe('Ouă ochiuri cu mămăligă', 360, 18, 20,
-            [{ name: 'Ouă', qty: '2 bucăți' }, { name: 'Mămăligă', qty: '120 g' }, { name: 'Brânză', qty: '30 g' }],
-            'Prăjește ouăle ochiuri și servește pe mămăligă caldă cu brânză.'),
+            [{ name: 'Ouă', qty: '4 bucăți' }, { name: 'Mălai', qty: '150 g' }, { name: 'Apă', qty: '600 ml' }, { name: 'Brânză telemea', qty: '60 g' }, { name: 'Unt', qty: '15 g' }, { name: 'Sare', qty: 'după gust' }],
+            'Fierbe apa cu sare, toarnă mălaiul în ploaie și amestecă la foc mic 20-25 de minute, până mămăliga se desprinde de pe pereți. Prăjește ouăle ochiuri în unt la foc mediu, cu albușul închegat și gălbenușul moale. Pune mămăligă fierbinte în farfurii, așază ouăle deasupra și presară brânza rasă, ca să se topească de la căldură.'),
           createRecipe('Clătite cu gem', 420, 10, 14,
-            [{ name: 'Făină', qty: '60 g' }, { name: 'Lapte', qty: '150 ml' }, { name: 'Ou', qty: '1 unitate' }, { name: 'Gem', qty: '2 linguri' }],
-            'Prepară aluatul, prăjește clătitele subțiri și umple-le cu gem.', 'General', null, 'normal')
+            [{ name: 'Făină', qty: '120 g' }, { name: 'Lapte', qty: '300 ml' }, { name: 'Ouă', qty: '2 bucăți' }, { name: 'Zahăr', qty: '1 lingură' }, { name: 'Esență de vanilie', qty: '1 linguriță' }, { name: 'Unt', qty: '20 g' }, { name: 'Gem', qty: '4 linguri' }, { name: 'Sare', qty: '1 praf' }],
+            'Bate ouăle cu zahărul, sarea și vanilia, adaugă laptele și apoi făina, amestecând până nu mai sunt cocoloașe; aluatul trebuie să fie subțire, ca o smântână lichidă. Lasă-l să se odihnească 15 minute. Unge o tigaie antiaderentă cu puțin unt și coace clătite subțiri, 1 minut pe o parte și 30 de secunde pe cealaltă. Umple-le cu gem, rulează-le și servește-le calde.', 'General', null, 'normal')
         ],
         lunchOptions: [
           createRecipe('Ciorbă de perișoare', 440, 22, 16,
-            [{ name: 'Carne tocată', qty: '120 g' }, { name: 'Orez', qty: '30 g' }, { name: 'Legume pentru supă', qty: '100 g' }, { name: 'Borș', qty: '100 ml' }],
-            'Fierbe perișoarele cu legume și acrește ciorba cu borș.'),
+            [{ name: 'Carne tocată mixtă', qty: '300 g' }, { name: 'Orez', qty: '40 g' }, { name: 'Ou', qty: '1 bucată' }, { name: 'Ceapă', qty: '2 bucăți' }, { name: 'Morcov', qty: '2 bucăți' }, { name: 'Țelină', qty: '50 g' }, { name: 'Ardei gras', qty: '1/2 bucată' }, { name: 'Borș', qty: '300 ml' }, { name: 'Bulion', qty: '2 linguri' }, { name: 'Leuștean', qty: 'după gust' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Fierbe legumele tocate mărunt în 2 litri de apă cu sare 15 minute. Amestecă între timp carnea cu orezul crud, oul, o ceapă rasă, sare și piper și formează perișoare mici cu mâinile umede. Pune-le pe rând în zeama clocotindă și fierbe-le la foc mic 25 de minute, spumând. Adaugă bulionul și borșul fiert separat, mai dă câteva clocote și termină cu leuștean tocat din belșug.'),
           createRecipe('Pilaf cu legume', 480, 12, 14,
-            [{ name: 'Orez', qty: '100 g' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Mazăre', qty: '60 g' }, { name: 'Ardei', qty: '1/2 unitate' }],
-            'Călește legumele, adaugă orezul și apa și fierbe până se absoarbe lichidul.')
+            [{ name: 'Orez', qty: '180 g' }, { name: 'Morcov', qty: '1 bucată' }, { name: 'Mazăre', qty: '100 g' }, { name: 'Ardei gras', qty: '1/2 bucată' }, { name: 'Ceapă', qty: '1 bucată' }, { name: 'Supă de legume', qty: '450 ml' }, { name: 'Ulei', qty: '2 linguri' }, { name: 'Pătrunjel', qty: 'după gust' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Călește ceapa tocată cu morcovul cubulețe și ardeiul în ulei 5 minute. Adaugă orezul spălat și amestecă 2 minute să se îmbrace în ulei. Toarnă supa fierbinte, adaugă mazărea, sare și piper, acoperă și fierbe la foc mic 15 minute fără să amesteci. Lasă pilaful acoperit încă 10 minute, afânează-l cu furculița și presară pătrunjel tocat.')
         ],
         dinnerOptions: [
           createRecipe('Salată de vinete', 360, 6, 24,
-            [{ name: 'Vinete', qty: '200 g' }, { name: 'Ceapă', qty: '1/4 unitate' }, { name: 'Ulei', qty: '2 linguri' }, { name: 'Pâine', qty: '1 felie' }],
-            'Coace vinetele, toacă-le și amestecă cu ceapă și ulei. Servește cu pâine.'),
+            [{ name: 'Vinete', qty: '600 g' }, { name: 'Ceapă', qty: '1/2 bucată' }, { name: 'Ulei de floarea-soarelui', qty: '4 linguri' }, { name: 'Roșii', qty: '1 bucată' }, { name: 'Pâine', qty: '2 felii' }, { name: 'Sare', qty: 'după gust' }],
+            'Coace vinetele pe flacără sau la grill, întorcându-le, până se înmoaie complet și coaja e arsă uniform. Curăță-le, lasă-le să se scurgă într-o sită 30 de minute, apoi toacă-le cu un cuțit de lemn sau de ceramică. Amestecă pasta cu uleiul turnat treptat, ca la maioneză, adaugă ceapa tocată mărunt și sare. Servește rece, cu felii de roșie și pâine proaspătă.'),
           createRecipe('Pui cu ciuperci', 460, 30, 20,
-            [{ name: 'Piept de pui', qty: '150 g' }, { name: 'Ciuperci', qty: '100 g' }, { name: 'Smântână', qty: '1 lingură' }, { name: 'Ceapă', qty: '1/2 unitate' }],
-            'Călește puiul cu ciuperci și ceapă, drege cu smântână și fierbe câteva minute.', 'General', null, 'normal')
+            [{ name: 'Piept de pui', qty: '300 g' }, { name: 'Ciuperci champignon', qty: '250 g' }, { name: 'Smântână', qty: '150 g' }, { name: 'Ceapă', qty: '1 bucată' }, { name: 'Usturoi', qty: '2 căței' }, { name: 'Mărar', qty: 'după gust' }, { name: 'Ulei', qty: '2 linguri' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Taie puiul cubulețe, sărează-l și rumenește-l în ulei la foc mare 5 minute; scoate-l deoparte. În aceeași tigaie călește ceapa, apoi ciupercile feliate până scade apa lăsată. Pune puiul înapoi, adaugă usturoiul pisat și smântâna, amestecă și fierbe la foc mic 10 minute, până sosul se leagă ușor. Termină cu mărar tocat; merge perfect cu mămăligă sau orez.', 'General', null, 'normal')
         ],
         liquids: [
           { name: 'Limonadă cu ghimbir', value: 'Energético · Lămâie + Ghimbir' },
@@ -587,27 +1080,27 @@ const menuData = {
       {
         breakfastOptions: [
           createRecipe('Tartine cu brânză și legume', 320, 14, 14,
-            [{ name: 'Pâine integrală', qty: '2 felii' }, { name: 'Brânză', qty: '50 g' }, { name: 'Castravete', qty: '1/2 unitate' }, { name: 'Roșii', qty: '1 unitate' }],
-            'Întinde brânza pe pâine și adaugă felii de legume proaspete.'),
+            [{ name: 'Pâine integrală', qty: '4 felii' }, { name: 'Brânză proaspătă', qty: '100 g' }, { name: 'Castravete', qty: '1/2 bucată' }, { name: 'Roșii', qty: '1 bucată' }, { name: 'Ridichi', qty: '4 bucăți' }, { name: 'Mărar', qty: 'după gust' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Amestecă brânza proaspătă cu mărarul tocat, sare și piper până devine cremoasă. Întinde-o pe feliile de pâine proaspătă sau prăjită. Acoperă cu felii subțiri de castravete, roșie și ridichi și termină cu piper proaspăt măcinat și încă puțin mărar.'),
           createRecipe('Smoothie cu banane și ovăz', 320, 10, 8,
-            [{ name: 'Banană', qty: '1 unitate' }, { name: 'Ovăz', qty: '30 g' }, { name: 'Lapte', qty: '200 ml' }],
-            'Mixează banana cu ovăzul și laptele până devine cremos.', 'Bebida', 'Energético')
+            [{ name: 'Banană', qty: '2 bucăți' }, { name: 'Fulgi de ovăz', qty: '60 g' }, { name: 'Lapte', qty: '400 ml' }, { name: 'Miere', qty: '1 linguriță' }, { name: 'Scorțișoară', qty: '1 praf' }],
+            'Pune fulgii de ovăz în blender și macină-i 10 secunde. Adaugă bananele rupte în bucăți, laptele, mierea și scorțișoara și mixează 1 minut până devine cremos. Lasă 5 minute să se hidrateze ovăzul și servește; e un mic dejun care ține de foame toată dimineața.', 'Bebida', 'Energético')
         ],
         lunchOptions: [
           createRecipe('Ghiveci de legume', 420, 12, 14,
-            [{ name: 'Cartofi', qty: '120 g' }, { name: 'Vinete', qty: '80 g' }, { name: 'Dovlecel', qty: '80 g' }, { name: 'Roșii', qty: '1 unitate' }],
-            'Coace legumele asortate la cuptor cu ulei până devin fragede.'),
+            [{ name: 'Cartofi', qty: '300 g' }, { name: 'Vinete', qty: '1/2 bucată' }, { name: 'Dovlecel', qty: '1 bucată' }, { name: 'Ardei gras', qty: '1 bucată' }, { name: 'Roșii', qty: '2 bucăți' }, { name: 'Ceapă', qty: '1 bucată' }, { name: 'Morcov', qty: '1 bucată' }, { name: 'Fasole verde', qty: '100 g' }, { name: 'Usturoi', qty: '3 căței' }, { name: 'Ulei', qty: '4 linguri' }, { name: 'Cimbru', qty: '1 linguriță' }],
+            'Taie toate legumele în bucăți potrivite și pune-le într-o tavă încăpătoare. Amestecă-le cu uleiul, usturoiul feliat, cimbrul, sare și piper. Coace la 190 °C circa 50 de minute, amestecând o dată la 20 de minute, până legumele sunt fragede și ușor caramelizate la margini. Presară pătrunjel tocat; bun cald sau rece, cu pâine.'),
           createRecipe('Friptură de porc cu cartofi', 700, 34, 40,
-            [{ name: 'Carne de porc', qty: '180 g' }, { name: 'Cartofi', qty: '180 g' }, { name: 'Usturoi', qty: '2 căței' }, { name: 'Cimbru', qty: 'după gust' }],
-            'Frige carnea cu cartofi, usturoi și cimbru la cuptor până se rumenesc.', 'General', null, 'normal')
+            [{ name: 'Ceafă de porc', qty: '400 g' }, { name: 'Cartofi', qty: '400 g' }, { name: 'Usturoi', qty: '4 căței' }, { name: 'Vin alb', qty: '100 ml' }, { name: 'Boia dulce', qty: '1 linguriță' }, { name: 'Cimbru', qty: '1 linguriță' }, { name: 'Ulei', qty: '2 linguri' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Freacă feliile de ceafă cu sare, piper, boia, cimbru și usturoi pisat și lasă-le la marinat măcar 30 de minute. Așază-le în tavă peste cartofii tăiați sferturi și amestecați cu ulei și sare, toarnă vinul și acoperă cu folie. Coace la 190 °C 30 de minute acoperit, apoi încă 20 de minute descoperit, până carnea și cartofii sunt rumeniți. Servește cu murături sau salată.', 'General', null, 'normal')
         ],
         dinnerOptions: [
           createRecipe('Supă cremă de dovleac', 320, 8, 12,
-            [{ name: 'Dovleac', qty: '220 g' }, { name: 'Cartof', qty: '1 unitate' }, { name: 'Ceapă', qty: '1/4 unitate' }, { name: 'Supă de legume', qty: '200 ml' }],
-            'Fierbe dovleacul cu cartof și ceapă și pasează cu supa până devine cremă.'),
+            [{ name: 'Dovleac', qty: '500 g' }, { name: 'Cartof', qty: '1 bucată' }, { name: 'Morcov', qty: '1 bucată' }, { name: 'Ceapă', qty: '1/2 bucată' }, { name: 'Supă de legume', qty: '400 ml' }, { name: 'Smântână', qty: '50 ml' }, { name: 'Semințe de dovleac', qty: '1 lingură' }, { name: 'Ulei', qty: '1 lingură' }],
+            'Călește ceapa în ulei 3 minute, adaugă dovleacul, cartoful și morcovul cubulețe și amestecă 2 minute. Toarnă supa cât să acopere legumele și fierbe 20 de minute, până sunt moi. Pasează totul cu blenderul până devine catifelat, potrivește de sare și adaugă smântâna. Servește cu semințele de dovleac rumenite deasupra.'),
           createRecipe('Salată de roșii cu brânză', 280, 10, 18,
-            [{ name: 'Roșii', qty: '2 unități' }, { name: 'Brânză telemea', qty: '60 g' }, { name: 'Ceapă', qty: '1/4 unitate' }, { name: 'Ulei de măsline', qty: '1 lingură' }],
-            'Taie roșiile, adaugă brânza și ceapa și stropește cu ulei de măsline.')
+            [{ name: 'Roșii', qty: '3 bucăți' }, { name: 'Brânză telemea', qty: '120 g' }, { name: 'Ceapă roșie', qty: '1/2 bucată' }, { name: 'Castravete', qty: '1/2 bucată' }, { name: 'Măsline', qty: '10 bucăți' }, { name: 'Ulei de măsline', qty: '2 linguri' }, { name: 'Busuioc sau pătrunjel', qty: 'după gust' }],
+            'Taie roșiile felii generoase și castravetele rondele și aranjează-le pe un platou. Adaugă ceapa roșie tăiată subțire, măslinele și brânza telemea în cuburi sau sfărâmată. Stropește cu uleiul de măsline, presară verdeața și piper; sarea adaug-o cu grijă, telemeaua e deja sărată.')
         ],
         liquids: [
           { name: 'Suc de sfeclă', value: 'Limpieza hígado · Sfeclă + Morcov' },
@@ -618,27 +1111,27 @@ const menuData = {
       {
         breakfastOptions: [
           createRecipe('Omletă cu ciuperci', 330, 18, 22,
-            [{ name: 'Ouă', qty: '2 bucăți' }, { name: 'Ciuperci', qty: '80 g' }, { name: 'Ceapă verde', qty: 'după gust' }],
-            'Călește ciupercile, adaugă ouăle bătute și gătește omleta cremoasă.'),
+            [{ name: 'Ouă', qty: '4 bucăți' }, { name: 'Ciuperci', qty: '150 g' }, { name: 'Ceapă verde', qty: '2 fire' }, { name: 'Unt', qty: '15 g' }, { name: 'Cașcaval ras', qty: '30 g' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Feliază ciupercile și călește-le la foc mare până scade toată apa și se rumenesc. Bate ouăle cu sare și piper, adaugă untul în tigaie și toarnă ouăle peste ciuperci. Gătește la foc mediu, trăgând marginile spre centru; presară cașcavalul și ceapa verde, pliază omleta și servește-o cât e cremoasă.'),
           createRecipe('Iaurt cu fructe de pădure', 280, 10, 6,
-            [{ name: 'Iaurt', qty: '150 g' }, { name: 'Fructe de pădure', qty: '90 g' }, { name: 'Miere', qty: '1 linguriță' }],
-            'Servește iaurtul cu fructe de pădure și miere.')
+            [{ name: 'Iaurt', qty: '300 g' }, { name: 'Fructe de pădure', qty: '180 g' }, { name: 'Miere', qty: '2 lingurițe' }, { name: 'Semințe de in', qty: '1 lingură' }],
+            'Împarte iaurtul rece în două boluri. Adaugă fructele de pădure proaspete sau decongelate lent în frigider, cu tot cu sucul lor. Termină cu mierea în fir subțire și semințele de in măcinate, care adaugă omega-3 și fibre.')
         ],
         lunchOptions: [
           createRecipe('Ciorbă de legume', 360, 10, 8,
-            [{ name: 'Cartof', qty: '1 unitate' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Țelină', qty: '40 g' }, { name: 'Borș', qty: '100 ml' }],
-            'Fierbe legumele și acrește ciorba cu borș. Servește cu verdeață.'),
+            [{ name: 'Cartof', qty: '2 bucăți' }, { name: 'Morcov', qty: '2 bucăți' }, { name: 'Țelină', qty: '50 g' }, { name: 'Ceapă', qty: '1 bucată' }, { name: 'Ardei gras', qty: '1/2 bucată' }, { name: 'Roșii', qty: '2 bucăți' }, { name: 'Fasole verde', qty: '100 g' }, { name: 'Mazăre', qty: '50 g' }, { name: 'Borș', qty: '200 ml' }, { name: 'Leuștean', qty: 'după gust' }, { name: 'Ulei', qty: '1 lingură' }],
+            'Călește ceapa, morcovul și țelina tocate în ulei 5 minute. Adaugă 1,5 litri de apă, cartofii cubulețe, ardeiul și fasolea verde și fierbe 15 minute. Pune roșiile tocate și mazărea și mai fierbe 10 minute, până legumele sunt fragede. Acrește cu borșul fiert separat, potrivește de sare și servește cu mult leuștean tocat.'),
           createRecipe('Mămăligă cu brânză și smântână', 520, 18, 24,
-            [{ name: 'Mălai', qty: '100 g' }, { name: 'Brânză', qty: '60 g' }, { name: 'Smântână', qty: '2 linguri' }],
-            'Fierbe mămăliga și servește în straturi cu brânză și smântână.', 'General', null, 'normal')
+            [{ name: 'Mălai', qty: '200 g' }, { name: 'Apă', qty: '800 ml' }, { name: 'Brânză telemea', qty: '150 g' }, { name: 'Smântână', qty: '150 g' }, { name: 'Unt', qty: '20 g' }, { name: 'Sare', qty: 'după gust' }],
+            'Fierbe apa cu sare, toarnă mălaiul în ploaie amestecând cu telul ca să nu facă cocoloașe și gătește la foc mic 25 de minute, amestecând des. Într-un vas termorezistent pune straturi de mămăligă, brânză rasă și unt, terminând cu brânză. Dă la cuptor 10 minute la 180 °C, să se topească brânza, și servește fierbinte cu smântână deasupra.', 'General', null, 'normal')
         ],
         dinnerOptions: [
           createRecipe('Pește la grătar cu salată', 410, 32, 16,
-            [{ name: 'Pește', qty: '170 g' }, { name: 'Salată verde', qty: '1/2 unitate' }, { name: 'Lămâie', qty: '1/2 unitate' }, { name: 'Ulei de măsline', qty: '1 lingură' }],
-            'Frige peștele pe grătar și servește cu salată verde și lămâie.'),
+            [{ name: 'File de pește', qty: '400 g' }, { name: 'Salată verde', qty: '1 bucată' }, { name: 'Roșii cherry', qty: '8 bucăți' }, { name: 'Castravete', qty: '1/2 bucată' }, { name: 'Lămâie', qty: '1 bucată' }, { name: 'Usturoi', qty: '2 căței' }, { name: 'Ulei de măsline', qty: '3 linguri' }, { name: 'Pătrunjel', qty: 'după gust' }],
+            'Unge peștele cu o lingură de ulei, sare și piper și lasă-l 10 minute. Încinge bine grătarul sau tigaia-grill și frige peștele 3-4 minute pe fiecare parte, fără să îl miști, ca să se desprindă singur. Pregătește un mujdei ușor din usturoi, zeamă de lămâie și restul de ulei. Servește peștele stropit cu mujdei, lângă salata verde cu roșii cherry și castravete.'),
           createRecipe('Tocăniță de ciuperci', 360, 10, 16,
-            [{ name: 'Ciuperci', qty: '200 g' }, { name: 'Ceapă', qty: '1 unitate' }, { name: 'Bulion', qty: '80 g' }, { name: 'Usturoi', qty: '2 căței' }],
-            'Călește ciupercile cu ceapă și bulion până scade sosul.')
+            [{ name: 'Ciuperci', qty: '400 g' }, { name: 'Ceapă', qty: '2 bucăți' }, { name: 'Usturoi', qty: '3 căței' }, { name: 'Bulion', qty: '100 g' }, { name: 'Ulei', qty: '3 linguri' }, { name: 'Cimbru', qty: '1 linguriță' }, { name: 'Mărar', qty: 'după gust' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Călește ceapa tocată în ulei până devine sticloasă. Adaugă ciupercile feliate și gătește la foc mare până scade apa lăsată de ele. Pune usturoiul pisat, bulionul, cimbrul și o jumătate de pahar de apă și fierbe la foc mic 15 minute, până sosul se îngroașă. Presară mărar tocat și servește cu mămăligă sau pâine.')
         ],
         liquids: [
           { name: 'Limonadă cu mentă', value: 'Refrescante · Lămâie + Mentă' },
@@ -649,27 +1142,27 @@ const menuData = {
       {
         breakfastOptions: [
           createRecipe('Terci de quinoa cu scorțișoară', 310, 9, 7,
-            [{ name: 'Quinoa', qty: '50 g' }, { name: 'Lapte de migdale', qty: '180 ml' }, { name: 'Scorțișoară', qty: '1 linguriță' }, { name: 'Măr', qty: '60 g' }],
-            'Fierbe quinoa cu laptele și scorțișoara, adaugă mărul ras și servește cald.'),
+            [{ name: 'Quinoa', qty: '100 g' }, { name: 'Lapte de migdale', qty: '350 ml' }, { name: 'Scorțișoară', qty: '1 linguriță' }, { name: 'Măr', qty: '1 bucată' }, { name: 'Miere', qty: '1 linguriță' }, { name: 'Stafide', qty: '20 g' }],
+            'Clătește quinoa sub jet de apă rece ca să nu fie amăruie. Fierbe-o cu laptele de migdale și scorțișoara la foc mic 15 minute, amestecând din când în când, până boabele se deschid și terciul se îngroașă. Adaugă mărul ras și stafidele, mai lasă 2 minute și servește cald, cu mierea deasupra.'),
           createRecipe('Cozonac cu cafea', 420, 8, 16,
-            [{ name: 'Cozonac', qty: '2 felii' }, { name: 'Cafea', qty: '1 cană' }, { name: 'Lapte', qty: '50 ml' }],
-            'Servește feliile de cozonac alături de o cafea caldă cu lapte.', 'General', null, 'normal')
+            [{ name: 'Cozonac', qty: '4 felii' }, { name: 'Cafea', qty: '2 cești' }, { name: 'Lapte', qty: '100 ml' }, { name: 'Zahăr', qty: 'după gust' }],
+            'Taie felii generoase de cozonac cu nucă sau mac; dacă e mai vechi de o zi, încălzește-le 20 de secunde la cuptor sau în tigaie, ca să își recapete aroma. Pregătește cafeaua proaspătă și încălzește laptele. Servește cozonacul lângă cafeaua cu lapte, îndulcită după gust.', 'General', null, 'normal')
         ],
         lunchOptions: [
           createRecipe('Sarmale de post', 480, 12, 16,
-            [{ name: 'Varză murată', qty: '4 foi' }, { name: 'Orez', qty: '60 g' }, { name: 'Ciuperci', qty: '60 g' }, { name: 'Morcov', qty: '1 unitate' }],
-            'Umple foile de varză cu orez și ciuperci și fierbe încet până sunt fragede.'),
+            [{ name: 'Varză murată', qty: '1 bucată' }, { name: 'Orez', qty: '150 g' }, { name: 'Ciuperci', qty: '200 g' }, { name: 'Morcov', qty: '2 bucăți' }, { name: 'Ceapă', qty: '2 bucăți' }, { name: 'Bulion', qty: '2 linguri' }, { name: 'Mărar și cimbru', qty: 'după gust' }, { name: 'Ulei', qty: '3 linguri' }, { name: 'Foi de dafin', qty: '2 bucăți' }, { name: 'Piper', qty: 'după gust' }],
+            'Călește ceapa tocată cu morcovul ras în ulei, adaugă ciupercile tocate mărunt și gătește până scade apa. Amestecă umplutura cu orezul crud, mărarul, cimbrul și piperul. Învelește sarmale mici în foile de varză murată și așază-le în oală pe un pat de varză tocată, cu foile de dafin. Acoperă cu apă și bulion și fierbe la foc mic 60-90 de minute, până orezul e pătruns. Cu mămăligă sunt și mai bune.'),
           createRecipe('Friptură de pui cu legume', 520, 36, 18,
-            [{ name: 'Pulpă de pui', qty: '180 g' }, { name: 'Cartofi', qty: '150 g' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Usturoi', qty: '2 căței' }],
-            'Frige puiul cu legume și usturoi la cuptor până se rumenește.', 'General', null, 'normal')
+            [{ name: 'Pulpe de pui', qty: '600 g' }, { name: 'Cartofi', qty: '300 g' }, { name: 'Morcov', qty: '2 bucăți' }, { name: 'Ceapă', qty: '1 bucată' }, { name: 'Usturoi', qty: '4 căței' }, { name: 'Boia dulce', qty: '1 linguriță' }, { name: 'Cimbru', qty: '1 linguriță' }, { name: 'Supă sau apă', qty: '100 ml' }, { name: 'Ulei', qty: '2 linguri' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Freacă pulpele cu sare, piper, boia, cimbru și usturoi pisat. Pune în tavă cartofii sferturi, morcovul rondele și ceapa felii, amestecate cu ulei și sare, și așază pulpele deasupra cu pielea în sus. Toarnă supa, acoperă cu folie și coace la 200 °C 25 de minute; descoperă și mai coace 20-25 de minute, până pielea e rumenă și crocantă, iar legumele fragede.', 'General', null, 'normal')
         ],
         dinnerOptions: [
           createRecipe('Salată orientală', 420, 12, 22,
-            [{ name: 'Cartofi', qty: '180 g' }, { name: 'Ceapă roșie', qty: '1/2 unitate' }, { name: 'Măsline', qty: '10 g' }, { name: 'Ulei de măsline', qty: '2 linguri' }],
-            'Fierbe cartofii, taie-i felii și amestecă cu ceapă, măsline și ulei.'),
+            [{ name: 'Cartofi', qty: '400 g' }, { name: 'Ouă', qty: '2 bucăți' }, { name: 'Ceapă roșie', qty: '1 bucată' }, { name: 'Măsline negre', qty: '60 g' }, { name: 'Castraveți murați', qty: '2 bucăți' }, { name: 'Ulei', qty: '3 linguri' }, { name: 'Oțet', qty: '1 lingură' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Fierbe cartofii în coajă 20-25 de minute, până intră ușor furculița în ei; fierbe și ouăle tari, 10 minute. Curăță și taie cartofii felii groase, ouăle sferturi și ceapa roșie pește subțire. Amestecă blând cu măslinele, castraveții murați feliați, uleiul, oțetul, sare și piper. E mai gustoasă după o jumătate de oră la rece.'),
           createRecipe('Supă de pui cu tăiței', 360, 24, 12,
-            [{ name: 'Piept de pui', qty: '120 g' }, { name: 'Tăiței', qty: '60 g' }, { name: 'Morcov', qty: '1 unitate' }, { name: 'Țelină', qty: '40 g' }],
-            'Fierbe puiul cu legume, adaugă tăițeii și servește fierbinte.')
+            [{ name: 'Pui cu os', qty: '400 g' }, { name: 'Tăiței', qty: '80 g' }, { name: 'Morcov', qty: '2 bucăți' }, { name: 'Țelină', qty: '50 g' }, { name: 'Ceapă', qty: '1 bucată' }, { name: 'Păstârnac', qty: '1/2 bucată' }, { name: 'Pătrunjel verde', qty: 'după gust' }, { name: 'Sare și piper', qty: 'după gust' }],
+            'Pune puiul în 2 litri de apă rece cu sare, adu la fierbere și spumează bine. Adaugă ceapa întreagă, morcovii, țelina și păstârnacul și fierbe la foc mic 50 de minute, până carnea se desprinde de pe os. Strecoară supa, pune înapoi carnea dezosată și morcovul rondele și fierbe tăițeii în supă 5 minute. Servește fierbinte, cu pătrunjel verde tocat.')
         ],
         liquids: [
           { name: 'Compot de mere', value: 'Digestivo · Mere + Scorțișoară' },
@@ -680,50 +1173,87 @@ const menuData = {
   }
 };
 
+// Reglas de sustitución de ingredientes (en español Y rumano, con el
+// reemplazo en el idioma activo). Se aplican solo cuando ninguna de las
+// opciones del día es compatible con la dieta/exclusiones elegidas.
+// Cada regla tiene el patrón para los textos ES/RO (find) y otro para los
+// textos ya traducidos al inglés (findEn), con la sustitución en los 3 idiomas.
 const dietRules = {
   vegana: [
-    { find: /Pechuga de pollo|Pulpă de pui|Piept de pui|Pui tocat/gi, replace: 'Tofu ahumado' },
-    { find: /Pescado|Mero|Merluza|Pește/gi, replace: 'Tofu marinado' },
-    { find: /Jamón serrano|Jamón/gi, replace: 'Champiñones asados' },
-    { find: /Yogur|Iaurt/gi, replace: 'Yogur vegetal' }
+    { find: /pechuga de pollo|muslo de pollo|piept de pui|pulpă de pui|pui tocat|pollo|\bpui\b/gi, findEn: /chicken breast|chicken thighs?|minced chicken|chicken/gi, replace: { es: 'tofu firme', ro: 'tofu ferm', en: 'firm tofu' } },
+    { find: /carne picada|carne tocată/gi, findEn: /minced meat|ground meat|minced beef|ground beef/gi, replace: { es: 'soja texturizada', ro: 'soia texturată', en: 'textured soy protein' } },
+    { find: /morcillo de ternera|pierna de cordero|carne de ternera|carne de porc|carne de vită|cordero|ternera|cerdo|porc\b|vită/gi, findEn: /beef shank|leg of lamb|\bveal\b|\bbeef\b|\blamb\b|\bpork\b/gi, replace: { es: 'seitán', ro: 'seitan', en: 'seitan' } },
+    { find: /jamón serrano|jamón|chorizo|morcilla|panceta|cârnați|\bmici\b|afumătură|burtă de vită/gi, findEn: /serrano ham|\bham\b|chorizo|black pudding|blood sausage|\bbacon\b|sausages?|beef tripe|\btripe\b/gi, replace: { es: 'setas ahumadas', ro: 'ciuperci afumate', en: 'smoked mushrooms' } },
+    { find: /filete de pescado blanco|pescado blanco|pescado|merluza|bacalao desalado|bacalao|salmón ahumado|salmón|ventresca de atún|sepia|pulpo cocido|pulpo|calamar|gambas|mejillones|pește|somon/gi, findEn: /white fish fillet|white fish|\bfish\b|\bhake\b|salt cod|\bcod\b|smoked salmon|salmon|tuna belly|\btuna\b|cuttlefish|octopus|squid|king prawns?|prawns?|shrimps?|mussels?/gi, replace: { es: 'tofu marinado', ro: 'tofu marinat', en: 'marinated tofu' } },
+    { find: /huevos?|\bouă\b|\bou\b/gi, findEn: /\beggs?\b/gi, replace: { es: 'tofu revuelto', ro: 'tofu scrob', en: 'scrambled tofu' } },
+    { find: /yogur griego|yogur natural|yogur|iaurt/gi, findEn: /greek yogh?urt|natural yogh?urt|plain yogh?urt|yogh?urt/gi, replace: { es: 'yogur de soja', ro: 'iaurt de soia', en: 'soy yogurt' } },
+    { find: /queso fresco|queso crema|queso|brânză proaspătă|brânză telemea|brânză de vaci|brânză/gi, findEn: /fresh cheese|cream cheese|cottage cheese|cheese/gi, replace: { es: 'queso vegetal', ro: 'brânză vegetală', en: 'plant-based cheese' } },
+    { find: /leche(?! de coco| de almendra| vegetal)|lapte(?! de migdale| de cocos| vegetal)/gi, findEn: /(?<!almond |coconut |soy |oat |rice )milk\b/gi, replace: { es: 'bebida de avena', ro: 'lapte de ovăz', en: 'oat milk' } },
+    { find: /\bnata\b|smântână/gi, findEn: /(?<!coconut )cream\b/gi, replace: { es: 'nata vegetal', ro: 'smântână vegetală', en: 'plant-based cream' } },
+    { find: /mantequilla|\bunt\b/gi, findEn: /(?<!peanut |cocoa )butter\b/gi, replace: { es: 'margarina', ro: 'margarină', en: 'margarine' } },
+    { find: /mayonesa|maioneză|alioli/gi, findEn: /mayonnaise|aioli/gi, replace: { es: 'veganesa', ro: 'maioneză vegană', en: 'vegan mayo' } },
+    { find: /\bmiel\b|miere/gi, findEn: /honey/gi, replace: { es: 'sirope de agave', ro: 'sirop de agave', en: 'agave syrup' } }
   ],
   vegetariana: [
-    { find: /Pechuga de pollo|Pulpă de pui|Piept de pui/gi, replace: 'Hamburguesa vegetal' },
-    { find: /Pescado|Mero|Merluza|Pește/gi, replace: 'Berenjena al horno' }
+    { find: /pechuga de pollo|muslo de pollo|piept de pui|pulpă de pui|pui tocat|pollo|\bpui\b/gi, findEn: /chicken breast|chicken thighs?|minced chicken|chicken/gi, replace: { es: 'seitán', ro: 'seitan', en: 'seitan' } },
+    { find: /carne picada|carne tocată/gi, findEn: /minced meat|ground meat|minced beef|ground beef/gi, replace: { es: 'soja texturizada', ro: 'soia texturată', en: 'textured soy protein' } },
+    { find: /morcillo de ternera|pierna de cordero|carne de ternera|carne de porc|carne de vită|cordero|ternera|cerdo|porc\b|vită|burtă de vită/gi, findEn: /beef shank|leg of lamb|\bveal\b|\bbeef\b|\blamb\b|\bpork\b|beef tripe|\btripe\b/gi, replace: { es: 'seitán', ro: 'seitan', en: 'seitan' } },
+    { find: /jamón serrano|jamón|chorizo|morcilla|panceta|cârnați|\bmici\b|afumătură/gi, findEn: /serrano ham|\bham\b|chorizo|black pudding|blood sausage|\bbacon\b|sausages?/gi, replace: { es: 'setas ahumadas', ro: 'ciuperci afumate', en: 'smoked mushrooms' } },
+    { find: /filete de pescado blanco|pescado blanco|pescado|merluza|bacalao desalado|bacalao|salmón ahumado|salmón|ventresca de atún|sepia|pulpo cocido|pulpo|calamar|gambas|mejillones|pește|somon/gi, findEn: /white fish fillet|white fish|\bfish\b|\bhake\b|salt cod|\bcod\b|smoked salmon|salmon|tuna belly|\btuna\b|cuttlefish|octopus|squid|king prawns?|prawns?|shrimps?|mussels?/gi, replace: { es: 'berenjena asada', ro: 'vinete coapte', en: 'roasted aubergine' } }
   ],
   keto: [
-    { find: /Arroz integral|Arroz/gi, replace: 'Arroz de coliflor' },
-    { find: /Pan integral|tostada|Tostada/gi, replace: 'Tortilla de espinacas' },
-    { find: /Garbanzos|Lentejas/gi, replace: 'Ensalada de aguacate' }
+    { find: /arroz integral|arroz|orez/gi, findEn: /brown rice|\brice\b/gi, replace: { es: 'arroz de coliflor', ro: 'orez de conopidă', en: 'cauliflower rice' } },
+    { find: /pan integral|pan de hamburguesa|pan tipo baguette|\bpan\b|pâine integrală|pâine/gi, findEn: /wholemeal bread|whole wheat bread|burger buns?|baguette|\bbread\b/gi, replace: { es: 'pan keto de almendra', ro: 'pâine keto de migdale', en: 'keto almond bread' } },
+    { find: /macarrones|fideos|tăiței|pasta/gi, findEn: /macaroni|noodles|spaghetti|\bpasta\b/gi, replace: { es: 'espirales de calabacín', ro: 'spirale de dovlecel', en: 'courgette spirals' } },
+    { find: /patatas|patata|cartofi|cartof/gi, findEn: /potato(?:es)?/gi, replace: { es: 'calabacín', ro: 'dovlecel', en: 'courgette' } },
+    { find: /harina|făină/gi, findEn: /\bflour\b/gi, replace: { es: 'harina de almendra', ro: 'făină de migdale', en: 'almond flour' } },
+    { find: /azúcar|zahăr|\bmiel\b|miere|mermelada|dulceață|\bgem\b/gi, findEn: /sugar|honey|\bjam\b|marmalade/gi, replace: { es: 'eritritol', ro: 'eritritol', en: 'erythritol' } },
+    { find: /garbanzos cocidos|garbanzos|lentejas|fabes|alubias|fasole|năut|linte/gi, findEn: /chickpeas?|lentils?|(?<!green )beans\b/gi, replace: { es: 'brócoli', ro: 'broccoli', en: 'broccoli' } },
+    { find: /plátano|banană/gi, findEn: /bananas?\b/gi, replace: { es: 'aguacate', ro: 'avocado', en: 'avocado' } },
+    { find: /mămăligă|mălai/gi, findEn: /polenta|cornmeal/gi, replace: { es: 'puré de coliflor', ro: 'piure de conopidă', en: 'cauliflower mash' } },
+    { find: /avena|ovăz/gi, findEn: /\boats\b|oatmeal|oat flakes/gi, replace: { es: 'semillas de chía', ro: 'semințe de chia', en: 'chia seeds' } },
+    { find: /quinoa cocida|quinoa/gi, findEn: /cooked quinoa|quinoa/gi, replace: { es: 'coliflor', ro: 'conopidă', en: 'cauliflower' } }
   ],
-  'baja en carbohidratos': [
-    { find: /Arroz integral|Arroz/gi, replace: 'Arroz de coliflor' },
-    { find: /Garbanzos|Lentejas/gi, replace: 'Ensalada de hojas verdes' },
-    { find: /Pan integral|tostada|Tostada/gi, replace: 'Bowl de semillas' }
-  ],
-  mediterránea: []
+  mediterranea: []
 };
+dietRules.baja = dietRules.keto;
 
 const allergyRules = {
   gluten: [
-    { find: /Pan integral|tostada|Tostada|Pâine integrală/gi, replace: 'Bowl de quinoa' }
+    { find: /pan integral|pan de hamburguesa|pan tipo baguette|\bpan\b|pâine integrală|pâine/gi, findEn: /wholemeal bread|whole wheat bread|burger buns?|baguette|\bbread\b/gi, replace: { es: 'pan sin gluten', ro: 'pâine fără gluten', en: 'gluten-free bread' } },
+    { find: /macarrones|fideos|tăiței|pasta/gi, findEn: /macaroni|noodles|spaghetti|\bpasta\b/gi, replace: { es: 'pasta sin gluten', ro: 'paste fără gluten', en: 'gluten-free pasta' } },
+    { find: /harina|făină/gi, findEn: /\bflour\b/gi, replace: { es: 'harina de arroz', ro: 'făină de orez', en: 'rice flour' } },
+    { find: /avena|ovăz/gi, findEn: /\boats\b|oatmeal|oat flakes/gi, replace: { es: 'avena sin gluten', ro: 'ovăz fără gluten', en: 'gluten-free oats' } },
+    { find: /churros|magdalenas|galletas/gi, findEn: /churros|muffins|cookies|biscuits/gi, replace: { es: 'tortitas de arroz', ro: 'rondele de orez', en: 'rice cakes' } },
+    { find: /croquetas de jamón|croquetas/gi, findEn: /ham croquettes|croquettes/gi, replace: { es: 'croquetas sin gluten', ro: 'crochete fără gluten', en: 'gluten-free croquettes' } },
+    { find: /cuscús/gi, findEn: /couscous/gi, replace: { es: 'quinoa', ro: 'quinoa', en: 'quinoa' } },
+    { find: /borș/gi, findEn: /bor[șs]\b|borscht/gi, replace: { es: 'borș sin gluten', ro: 'borș fără gluten', en: 'gluten-free borș' } }
   ],
   lactosa: [
-    { find: /Yogur|Iaurt|Queso|brânză|Brânză/gi, replace: 'Yogur vegetal' }
+    { find: /leche(?! de coco| de almendra| vegetal)|lapte(?! de migdale| de cocos| vegetal)/gi, findEn: /(?<!almond |coconut |soy |oat |rice )milk\b/gi, replace: { es: 'bebida de avena', ro: 'lapte vegetal', en: 'oat milk' } },
+    { find: /yogur griego|yogur natural|yogur|iaurt/gi, findEn: /greek yogh?urt|natural yogh?urt|plain yogh?urt|yogh?urt/gi, replace: { es: 'yogur sin lactosa', ro: 'iaurt fără lactoză', en: 'lactose-free yogurt' } },
+    { find: /queso fresco|queso crema|queso|brânză proaspătă|brânză telemea|brânză de vaci|brânză|telemea|cașcaval/gi, findEn: /fresh cheese|cream cheese|cottage cheese|cheese/gi, replace: { es: 'queso sin lactosa', ro: 'brânză fără lactoză', en: 'lactose-free cheese' } },
+    { find: /\bnata\b|smântână/gi, findEn: /(?<!coconut )cream\b/gi, replace: { es: 'nata vegetal', ro: 'smântână vegetală', en: 'plant-based cream' } },
+    { find: /mantequilla|\bunt\b/gi, findEn: /(?<!peanut |cocoa )butter\b/gi, replace: { es: 'margarina', ro: 'margarină', en: 'margarine' } }
   ],
   frutos: [
-    { find: /Frutos secos|nueces|nuci|Nuci/gi, replace: 'Semillas de girasol' }
+    { find: /leche de almendra|lapte de migdale/gi, findEn: /almond milk/gi, replace: { es: 'bebida de avena', ro: 'lapte de ovăz', en: 'oat milk' } },
+    { find: /frutos secos|nueces picadas|nueces|nuez|\bnuci\b|almendras|migdale|avellanas|pistachos|anacardos/gi, findEn: /chopped walnuts|walnuts?|almonds?|hazelnuts?|pistachios?|cashews?|\bnuts\b/gi, replace: { es: 'semillas de girasol', ro: 'semințe de floarea-soarelui', en: 'sunflower seeds' } }
   ],
   marisco: [
-    { find: /Pescado|Mero|Merluza|Pește/gi, replace: 'Tofu marinado' }
+    { find: /gambas|langostinos|mejillones|calamar|pulpo cocido|pulpo|sepia|midii|creveți/gi, findEn: /king prawns?|prawns?|shrimps?|mussels?|squid|octopus|cuttlefish|calamari/gi, replace: { es: 'pollo', ro: 'pui', en: 'chicken' } }
   ]
 };
 
 function getMealOptionsForDay(dayIndex, meal) {
   const dayData = menuData[currentOrigin].days[menuDayFor(dayIndex)];
   const options = dayData[`${meal}Options`];
-  const filtered = options.filter(option => option.style === currentMenuStyle);
-  return filtered.length > 0 ? filtered : options;
+  let pool = options.filter(option => option.style === currentMenuStyle);
+  if (pool.length === 0) pool = options;
+  // Prioriza platos compatibles con la dieta y las exclusiones alérgicas;
+  // si ninguno encaja, se mantienen y luego se adaptan por sustitución.
+  const compatible = pool.filter(option => !optionNeedsAdaptation(option));
+  return compatible.length > 0 ? compatible : pool;
 }
 
 function getMealOptions(meal) {
@@ -731,21 +1261,26 @@ function getMealOptions(meal) {
 }
 
 function getStyleLabel(style) {
-  return style === 'normal' ? 'Normal' : 'Saludable';
+  return style === 'normal' ? t('style_normal') : t('style_saludable');
 }
 
 function adaptRecipeText(text) {
   let adapted = text;
-  const dietRulesSet = dietRules[currentDiet] || [];
-  dietRulesSet.forEach(rule => {
-    adapted = adapted.replace(rule.find, rule.replace);
-  });
+  const applyRules = (rules) => {
+    rules.forEach(rule => {
+      // En inglés se usa el patrón inglés (los textos llegan ya traducidos).
+      const find = currentLang === 'en' ? rule.findEn : rule.find;
+      if (!find) return;
+      const replacement = typeof rule.replace === 'string'
+        ? rule.replace
+        : (rule.replace[currentLang] || rule.replace.es);
+      adapted = adapted.replace(find, replacement);
+    });
+  };
+  applyRules(dietRules[currentDiet] || []);
   Object.keys(currentIntolerances).forEach(intolerance => {
     if (currentIntolerances[intolerance]) {
-      const allergyRulesSet = allergyRules[intolerance] || [];
-      allergyRulesSet.forEach(rule => {
-        adapted = adapted.replace(rule.find, rule.replace);
-      });
+      applyRules(allergyRules[intolerance] || []);
     }
   });
   return adapted;
@@ -753,24 +1288,19 @@ function adaptRecipeText(text) {
 
 function getAdaptationNote() {
   const activeIntolerances = Object.keys(currentIntolerances).filter(key => currentIntolerances[key]);
-  if (activeIntolerances.length === 0 && currentDiet === 'mediterránea') {
-    return 'Productos de Temporada';
+  if (activeIntolerances.length === 0 && currentDiet === 'mediterranea') {
+    return t('season_products');
   }
 
   const labels = [];
-  if (currentDiet && currentDiet !== 'mediterránea') {
-    labels.push(currentDiet);
+  if (currentDiet && currentDiet !== 'mediterranea') {
+    labels.push(t('diet_' + currentDiet).toLowerCase());
   }
+  const labelMap = { gluten: 'no_gluten', lactosa: 'no_lactose', frutos: 'no_nuts', marisco: 'no_seafood' };
   activeIntolerances.forEach(key => {
-    const labelMap = {
-      gluten: 'sin gluten',
-      lactosa: 'sin lactosa',
-      frutos: 'sin frutos secos',
-      marisco: 'sin marisco'
-    };
-    labels.push(labelMap[key]);
+    labels.push(t(labelMap[key]).toLowerCase());
   });
-  return `Adaptado: ${labels.join(' · ')}`;
+  return `${t('adapted')}: ${labels.join(' · ')}`;
 }
 
 let currentOrigin = 'es';
@@ -778,7 +1308,7 @@ let currentDayIndex = 0;
 let currentServings = 2;
 let currentMealServings = { breakfast: 2, lunch: 2, dinner: 2 };
 let shoppingMode = 'daily';
-let currentDiet = 'mediterránea';
+let currentDiet = 'mediterranea';
 let currentMenuStyle = 'saludable';
 let currentIntolerances = {
   gluten: false,
@@ -810,7 +1340,12 @@ function restoreState() {
   if (typeof s.currentServings === 'number') currentServings = s.currentServings;
   if (s.currentMealServings) currentMealServings = s.currentMealServings;
   if (s.shoppingMode) shoppingMode = s.shoppingMode;
-  if (s.currentDiet) currentDiet = s.currentDiet;
+  if (s.currentDiet) {
+    // Nombres antiguos guardados -> identificadores nuevos sin acentos.
+    const dietAliases = { 'mediterránea': 'mediterranea', 'baja en carbohidratos': 'baja' };
+    currentDiet = dietAliases[s.currentDiet] || s.currentDiet;
+    if (!(currentDiet in dietRules)) currentDiet = 'mediterranea';
+  }
   if (s.currentMenuStyle) currentMenuStyle = s.currentMenuStyle;
   if (s.currentIntolerances) currentIntolerances = s.currentIntolerances;
   if (typeof s.catalogServings === 'number') catalogServings = s.catalogServings;
@@ -822,6 +1357,9 @@ function restoreState() {
 
 function initSystem() {
   restoreState();
+  document.documentElement.lang = currentLang;
+  weekDates = getCurrentWeekDates();
+  applyStaticTranslations();
   applyDarkModeButton();
   const catalogServingsEl = document.getElementById('catalog-servings');
   if (catalogServingsEl) catalogServingsEl.innerText = catalogServings;
@@ -834,6 +1372,53 @@ function initSystem() {
   renderShoppingList();
   loadVisitCounter();
   switchView('plan');
+  // Cuando llegan las traducciones de recetas, repinta con el idioma activo.
+  dishTrReady.then(() => {
+    loadDayDetails();
+    renderShoppingList();
+  });
+}
+
+// --- Cambio de idioma de TODA la app (interfaz + recetas) ------------------
+function setLang(lang) {
+  if (!APP_LANGS.includes(lang)) return;
+  if (lang === currentLang) return;
+  currentLang = lang;
+  try { localStorage.setItem('nutriplan-lang', lang); } catch (e) {}
+  document.documentElement.lang = lang;
+  weekDates = getCurrentWeekDates();
+  applyStaticTranslations();
+  applyDarkModeButton();
+  renderWeeks();
+  renderOriginFilters();
+  renderDietSelection();
+  renderMenuStyleSelection();
+  renderIntolerances();
+  loadDayDetails();
+  ensureCatalogTr().then(() => renderCatalog());
+  showToast(t('toast_lang'));
+}
+function toggleLang() {
+  const next = APP_LANGS[(APP_LANGS.indexOf(currentLang) + 1) % APP_LANGS.length];
+  setLang(next);
+}
+
+// Aplica el idioma a todos los textos fijos del HTML (marcados con data-i18n).
+function applyStaticTranslations() {
+  document.title = t('app_title');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.innerText = t(el.getAttribute('data-i18n'));
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    el.setAttribute('placeholder', t(el.getAttribute('data-i18n-ph')));
+  });
+  // El botón de la cabecera muestra el idioma actual y rota ES -> RO -> EN.
+  const headerToggle = document.getElementById('lang-toggle');
+  if (headerToggle) headerToggle.innerText = currentLang.toUpperCase();
+  APP_LANGS.forEach(l => {
+    const btn = document.getElementById('lang-' + l);
+    if (btn) btn.classList.toggle('active-lang', currentLang === l);
+  });
 }
 
 function toggleDarkMode() {
@@ -843,7 +1428,7 @@ function toggleDarkMode() {
 }
 function applyDarkModeButton() {
   const btn = document.getElementById('dark-toggle');
-  if (btn) btn.innerText = document.documentElement.classList.contains('dark') ? 'Desactivar' : 'Activar';
+  if (btn) btn.innerText = document.documentElement.classList.contains('dark') ? t('deactivate') : t('activate');
 }
 
 // Contador de visitas (servicio gratuito). Cuenta una vez por navegador.
@@ -861,7 +1446,7 @@ async function loadVisitCounter() {
       try { localStorage.setItem('nutriplan-visited', '1'); } catch (e) {}
     }
     if (el && typeof data.value === 'number') {
-      el.innerText = data.value.toLocaleString('es-ES');
+      el.innerText = data.value.toLocaleString({ es: 'es-ES', ro: 'ro-RO', en: 'en-GB' }[currentLang] || 'es-ES');
     }
   } catch (e) {
     if (el) el.innerText = '—';
@@ -905,9 +1490,9 @@ function renderWeeks() {
       </button>
     `;
   });
-  document.getElementById('badge-origin').innerText = current.badge;
-  document.getElementById('language-label').innerText = `Idioma: ${current.language}`;
-  document.getElementById('season-label').innerText = `Temporada: ${current.season}`;
+  document.getElementById('badge-origin').innerText = t('badge_' + currentOrigin);
+  document.getElementById('language-label').innerText = t('lang_label');
+  document.getElementById('season-label').innerText = `${t('season')}: ${t('season_' + currentOrigin + '_menu')}`;
   document.getElementById('season-icon').innerText = current.seasonIcon;
 }
 
@@ -932,13 +1517,16 @@ function getSelectedOption(meal) {
   return options[selectedIndex];
 }
 
+// Plato listo para mostrar: primero traducido al idioma activo y después
+// adaptado a la dieta/exclusiones (sustitución de ingredientes si hace falta).
 function adaptOption(option) {
+  const tr = trDish(option.title);
   return {
-    title: adaptRecipeText(option.title),
-    instructions: adaptRecipeText(option.instructions),
-    ingredients: option.ingredients.map(item => ({
-      name: adaptRecipeText(item.name),
-      qty: item.qty
+    title: cap(adaptRecipeText(tr ? tr.t : option.title)),
+    instructions: adaptRecipeText(tr && tr.s ? tr.s : option.instructions),
+    ingredients: option.ingredients.map((item, idx) => ({
+      name: cap(adaptRecipeText(tr && tr.i && tr.i[idx] ? tr.i[idx] : item.name)),
+      qty: trQty(item.qty)
     })),
     nutrition: option.nutrition
   };
@@ -984,6 +1572,39 @@ function getNutritionScore(totals) {
   return 'B+';
 }
 
+// Preparación en PASOS NUMERADOS: divide las instrucciones por saltos de
+// línea o por final de frase seguido de mayúscula (vale para ES, RO y EN).
+function instructionStepsHTML(text) {
+  const steps = String(text)
+    .split(/\n+|(?<=\.)\s+(?=[A-ZÁÉÍÓÚÜÑĂÂÎȘȚ0-9])/)
+    .map(s => s.trim())
+    .filter(s => s.length > 2);
+  if (steps.length <= 1) {
+    return `<p class="mt-2 text-body-md text-on-surface">${escapeHtml(text)}</p>`;
+  }
+  return `<ol class="mt-2 space-y-2 text-body-md text-on-surface">${steps.map((step, i) => `
+    <li class="flex gap-2.5">
+      <span class="shrink-0 w-6 h-6 mt-0.5 rounded-full bg-primary-container text-on-primary-container text-xs font-bold flex items-center justify-center">${i + 1}</span>
+      <span>${escapeHtml(step)}</span>
+    </li>`).join('')}</ol>`;
+}
+
+// Enlace a los vídeos MÁS VISTOS de la receta en YouTube (búsqueda ordenada
+// por número de visualizaciones, sp=CAMSAhAB). Se busca por el título
+// original del plato, que es como lo conocen los cocineros en los vídeos.
+const VIDEO_WORD = { es: 'receta', ro: 'rețetă', en: 'recipe' };
+function videoSearchURL(title) {
+  const query = encodeURIComponent(`${title} ${VIDEO_WORD[currentLang] || 'receta'}`);
+  return `https://www.youtube.com/results?search_query=${query}&sp=CAMSAhAB`;
+}
+function videoLinkHTML(title) {
+  return `
+    <a href="${videoSearchURL(title)}" target="_blank" rel="noopener"
+       class="mt-3 inline-flex items-center gap-2 text-label-md font-semibold text-primary hover:underline underline-offset-2">
+      <span class="material-symbols-outlined" style="font-size:18px;">play_circle</span>${t('video_link')}
+    </a>`;
+}
+
 function renderMealCard(meal, label, badgeClass) {
   const selection = getCurrentSelection();
   const options = getMealOptions(meal);
@@ -995,6 +1616,9 @@ function renderMealCard(meal, label, badgeClass) {
   const scaledIngredients = scaleIngredients(adapted.ingredients, scaleFactor);
   const isFavorite = favoriteRecipes.has(option.title);
   const otherOptions = options.filter((_, index) => index !== selectedIndex);
+  // Alérgenos del plato TAL COMO SE VA A COMER (después de adaptarlo).
+  const allergens = allergensOfText(ingredientsText(adapted.ingredients));
+  const wasAdapted = optionNeedsAdaptation(option);
 
   return `
     <div class="p-4 bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container">
@@ -1003,16 +1627,17 @@ function renderMealCard(meal, label, badgeClass) {
           <p class="text-xs font-bold uppercase ${badgeClass}">${label}</p>
           <h4 class="font-headline-sm text-on-surface mt-2">${adapted.title}</h4>
           <div class="mt-1 space-y-1">
-            <p class="text-label-sm text-on-surface-variant">Categoría: ${option.category}</p>
-            ${option.drinkType ? `<p class="text-label-sm text-secondary font-semibold">Beneficio: ${option.drinkType}</p>` : ''}
+            <p class="text-label-sm text-on-surface-variant">${t('category')}: ${tCat(option.category)}</p>
+            ${option.drinkType ? `<p class="text-label-sm text-secondary font-semibold">${t('benefit')}: ${tBenefit(option.drinkType)}</p>` : ''}
+            ${wasAdapted ? `<p class="text-label-sm font-semibold text-tertiary">⚙ ${t('adapted_badge')} · ${getAdaptationNote().replace(/^[^:]+: /, '')}</p>` : ''}
           </div>
         </div>
         <div class="flex flex-col items-end gap-2">
           <button onclick="toggleFavorite('${meal}')" class="px-3 py-2 rounded-full border ${isFavorite ? 'bg-secondary text-white border-secondary' : 'bg-white text-primary border-primary'} text-xs font-semibold transition-all">
-            ${isFavorite ? 'Favorito ♥' : 'Favorito'}
+            ${isFavorite ? t('favorite_active') : t('favorite')}
           </button>
           <button onclick="refreshMeal('${meal}')" class="px-3 py-2 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold border border-surface-container hover:bg-surface-container-low transition-all">
-            No me gusta
+            ${t('dislike')}
           </button>
         </div>
       </div>
@@ -1020,20 +1645,22 @@ function renderMealCard(meal, label, badgeClass) {
         ${dishImageHTML({ title: option.title, image: null })}
       </div>
       <div class="mt-4 text-label-md text-on-surface-variant">
-        <p class="font-semibold">Ingredientes</p>
+        <p class="font-semibold">${t('ingredients')}</p>
         <ul class="list-disc list-inside mt-2 space-y-1">
           ${scaledIngredients.map(i => `<li>${i.qty} ${i.name}</li>`).join('')}
         </ul>
-        <p class="font-semibold mt-4">Modo de cocinar</p>
-        <p class="mt-2 text-body-md text-on-surface">${adapted.instructions}</p>
+        <p class="font-semibold mt-4">${t('cook_mode')}</p>
+        ${instructionStepsHTML(adapted.instructions)}
+        ${videoLinkHTML(option.title)}
       </div>
       <div class="mt-4 text-label-md text-on-surface-variant">
-        ${mealServings === 0 ? 'Esta comida está saltada.' : `Nutrición por receta: ${option.nutrition.calories} kcal · ${option.nutrition.protein}g proteína · ${option.nutrition.fats}g grasa`}
-        <p class="text-xs text-on-surface-variant mt-1">Cantidades ajustadas según porciones.</p>
+        ${mealServings === 0 ? t('meal_skipped') : `${t('nutrition_label')}: ${option.nutrition.calories} kcal · ${option.nutrition.protein}g ${t('protein_word')} · ${option.nutrition.fats}g ${t('fat_word')}`}
+        <p class="text-xs text-on-surface-variant mt-1">${t('qty_adjusted')}</p>
       </div>
-      <div class="mt-2 text-label-sm text-on-surface-variant">Estilo: ${getStyleLabel(option.style)}</div>
+      <div class="mt-2 text-label-sm text-on-surface-variant">${t('style')}: ${getStyleLabel(option.style)}</div>
+      ${allergenFooterHTML(allergens)}
       <div class="mt-4 flex items-center justify-between gap-3">
-        <span class="text-label-md text-on-surface-variant">Porciones</span>
+        <span class="text-label-md text-on-surface-variant">${t('portions')}</span>
         <div class="inline-flex items-center rounded-full bg-surface-container-high border border-surface-container overflow-hidden">
           <button onclick="adjustMealServings('${meal}', -1)" class="px-3 py-2 text-primary hover:bg-surface-container-low transition-colors">-</button>
           <span class="px-4 py-2 text-on-surface">${mealServings}</span>
@@ -1042,13 +1669,15 @@ function renderMealCard(meal, label, badgeClass) {
       </div>
       ${otherOptions.length > 0 ? `
         <div class="mt-4 p-3 rounded-3xl bg-surface-container-low">
-          <p class="font-semibold text-on-surface">Otras opciones</p>
+          <p class="font-semibold text-on-surface">${t('other_options')}</p>
           <div class="mt-3 grid gap-2">
-            ${otherOptions.map(other => `
+            ${otherOptions.map(other => {
+              const otherTr = trDish(other.title);
+              return `
               <button onclick="selectRecipeOption('${meal}', ${options.indexOf(other)})" class="w-full text-left p-3 rounded-2xl bg-white border border-surface-container hover:border-primary transition-all text-sm">
-                ${adaptRecipeText(other.title)}
-              </button>
-            `).join('')}
+                ${cap(adaptRecipeText(otherTr ? otherTr.t : other.title))}
+              </button>`;
+            }).join('')}
           </div>
         </div>
       ` : ''}
@@ -1077,7 +1706,7 @@ function loadDayDetails() {
   }
   const menuStyleNoteEl = document.getElementById('menu-style-note');
   if (menuStyleNoteEl) {
-    menuStyleNoteEl.innerText = `Menú actual: ${menuStyleLabel}`;
+    menuStyleNoteEl.innerText = `${t('current_menu')}: ${menuStyleLabel}`;
   }
   document.getElementById('day-calories').innerText = `${totals.calories} kcal`;
   document.getElementById('day-score').innerText = score;
@@ -1086,18 +1715,21 @@ function loadDayDetails() {
   document.getElementById('servings-display').innerText = currentServings;
 
   const liquidsContainer = document.getElementById('liquids-container');
-  liquidsContainer.innerHTML = getCurrentDayData().liquids.map(liquid => `
+  liquidsContainer.innerHTML = getCurrentDayData().liquids.map(liquid => {
+    const tr = trDish(liquid.name);
+    return `
     <div class="rounded-3xl bg-surface-container-low p-4">
-      <p class="font-label-md text-label-md text-on-surface-variant">${liquid.name}</p>
-      <p class="font-body-md text-body-md text-on-surface mt-1">${liquid.value}</p>
+      <p class="font-label-md text-label-md text-on-surface-variant">${cap(tr ? tr.t : liquid.name)}</p>
+      <p class="font-body-md text-body-md text-on-surface mt-1">${tr && tr.v ? tr.v : liquid.value}</p>
     </div>
-  `).join('');
+  `;
+  }).join('');
 
   const recipesContainer = document.getElementById('recipes-list-container');
   recipesContainer.innerHTML = `
-    ${renderMealCard('breakfast', 'Desayuno', 'text-primary')}
-    ${renderMealCard('lunch', 'Almuerzo', 'text-secondary')}
-    ${renderMealCard('dinner', 'Cena', 'text-tertiary')}
+    ${renderMealCard('breakfast', t('breakfast'), 'text-primary')}
+    ${renderMealCard('lunch', t('lunch'), 'text-secondary')}
+    ${renderMealCard('dinner', t('dinner'), 'text-tertiary')}
   `;
   hydrateLazyImages(recipesContainer);
 
@@ -1121,29 +1753,22 @@ function adjustMealServings(meal, amount) {
 }
 
 function setDiet(type) {
-  currentDiet = type;
+  // Identificadores sin acentos ('mediterranea', 'baja'); admite valores antiguos.
+  const dietAliases = { 'mediterránea': 'mediterranea', 'baja en carbohidratos': 'baja' };
+  currentDiet = dietAliases[type] || type;
   renderDietSelection();
   loadDayDetails();
 }
 
 function renderDietSelection() {
-  const diets = ['vegana', 'vegetariana', 'keto', 'mediterránea', 'baja en carbohidratos'];
+  const diets = ['vegana', 'vegetariana', 'keto', 'mediterranea', 'baja'];
   diets.forEach(diet => {
-    const normalizedSlug = diet
-      .normalize('NFD')
-      .replace(/[̀-ͯ]/g, '')
-      .replace(/\s+/g, '-')
-      .toLowerCase();
-    const button = document.getElementById(`diet-${normalizedSlug}`);
+    const button = document.getElementById(`diet-${diet}`);
     if (button) {
-      if (diet === currentDiet) {
-        button.classList.add('active-diet');
-      } else {
-        button.classList.remove('active-diet');
-      }
+      button.classList.toggle('active-diet', diet === currentDiet);
     }
   });
-  document.getElementById('diet-summary').innerText = `Dieta activa: ${currentDiet}`;
+  document.getElementById('diet-summary').innerText = `${t('diet_active')}: ${t('diet_' + currentDiet)}`;
 }
 
 function setMenuStyle(style) {
@@ -1162,7 +1787,7 @@ function renderMenuStyleSelection() {
   });
   const summary = document.getElementById('menu-style-summary');
   if (summary) {
-    summary.innerText = `Menú activo: ${getStyleLabel(currentMenuStyle)}`;
+    summary.innerText = `${t('menu_active')}: ${getStyleLabel(currentMenuStyle)}`;
   }
 }
 
@@ -1233,15 +1858,15 @@ function collectShoppingFoods() {
 }
 
 function buildShoppingText() {
-  const lines = ['🛒 Lista de la compra · NutriPlan', ''];
+  const lines = [t('list_header'), ''];
   const foods = collectShoppingFoods();
   if (foods.size) {
-    lines.push('— Del menú —');
+    lines.push(t('from_menu'));
     foods.forEach(item => lines.push(`• ${item.name}: ${item.qty}`));
     lines.push('');
   }
   if (extraShoppingItems.size) {
-    lines.push('— Añadido por ti —');
+    lines.push(`— ${t('added_by_you')} —`);
     extraShoppingItems.forEach(item => lines.push(`• ${item.name}${item.qty ? ': ' + item.qty : ''}`));
   }
   return lines.join('\n').trim();
@@ -1250,9 +1875,9 @@ function buildShoppingText() {
 function copyShoppingList() {
   const text = buildShoppingText();
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(() => showToast('Lista copiada al portapapeles')).catch(() => showToast('No se pudo copiar'));
+    navigator.clipboard.writeText(text).then(() => showToast(t('copied'))).catch(() => showToast(t('copy_fail')));
   } else {
-    showToast('Tu navegador no permite copiar');
+    showToast(t('copy_unsupported'));
   }
 }
 
@@ -1264,7 +1889,7 @@ function renderShoppingList() {
   persistState();
   const container = document.getElementById('shopping-list-sections');
   const foods = collectShoppingFoods();
-  const modeLabel = shoppingMode === 'weekly' ? 'semana' : 'día';
+  const modeLabel = shoppingMode === 'weekly' ? t('for_week') : t('for_day');
   document.getElementById('shopping-mode-daily')?.classList.toggle('active-shopping', shoppingMode === 'daily');
   document.getElementById('shopping-mode-weekly')?.classList.toggle('active-shopping', shoppingMode === 'weekly');
 
@@ -1275,7 +1900,7 @@ function renderShoppingList() {
       <section class="space-y-3">
         <div class="flex items-center gap-2 text-primary">
           <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">inventory_2</span>
-          <h3 class="font-label-lg text-label-lg tracking-wider">Ingredientes del menú</h3>
+          <h3 class="font-label-lg text-label-lg tracking-wider">${t('menu_ings')}</h3>
         </div>
         <div class="bg-surface-container-lowest rounded-3xl shadow-sm overflow-hidden">
           ${Array.from(foods.values()).map(item => `
@@ -1283,7 +1908,7 @@ function renderShoppingList() {
               <input type="checkbox" class="w-6 h-6 rounded-full border-2 border-outline text-primary focus:ring-primary-container cursor-pointer" />
               <div class="flex-1">
                 <p class="item-text font-body-md text-on-surface">${item.name}</p>
-                <p class="text-label-md text-on-surface-variant">${item.qty} · para ${modeLabel}</p>
+                <p class="text-label-md text-on-surface-variant">${item.qty} · ${modeLabel}</p>
               </div>
               <span class="material-symbols-outlined text-outline-variant">checklist_rtl</span>
             </div>
@@ -1299,9 +1924,9 @@ function renderShoppingList() {
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2 text-secondary">
             <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">add_shopping_cart</span>
-            <h3 class="font-label-lg text-label-lg tracking-wider">Añadido por ti</h3>
+            <h3 class="font-label-lg text-label-lg tracking-wider">${t('added_by_you')}</h3>
           </div>
-          <button data-clear-extras="1" class="text-label-md text-secondary font-semibold px-3 py-1 rounded-full hover:bg-surface-container-high transition-all">Vaciar</button>
+          <button data-clear-extras="1" class="text-label-md text-secondary font-semibold px-3 py-1 rounded-full hover:bg-surface-container-high transition-all">${t('clear')}</button>
         </div>
         <div class="bg-surface-container-lowest rounded-3xl shadow-sm overflow-hidden">
           ${Array.from(extraShoppingItems.entries()).map(([key, item]) => `
@@ -1324,7 +1949,7 @@ function renderShoppingList() {
   if (!sections.length) {
     container.innerHTML = `
       <div class="rounded-3xl bg-surface-container-low p-6 text-center text-on-surface-variant">
-        Lista de la compra adaptada: selecciona un menú o añade recetas desde la pestaña Recetas.
+        ${t('empty_list')}
       </div>
     `;
     return;
@@ -1566,23 +2191,19 @@ async function addRecipeToShopping(title) {
   const recipe = catalogData.find(r => r.title === title);
   if (!recipe) return;
   if (!recipe.ingredients.length) {
-    showToast('Esta receta no tiene cantidades detalladas');
+    showToast(t('no_qty_toast'));
     return;
   }
   const factor = catalogServings / catalogBaseServings(recipe);
-  let lines;
-  if (hasPlainIngredients(recipe)) {
-    lines = ingredientLinesES(recipe).map(line => scaleLine(line, factor));
-  } else {
-    lines = scaleIngredients(recipe.ingredients, factor).map(i => `${i.qty} ${i.name}`.trim());
-  }
+  const lines = displayIngredientLines(recipe, factor);
   lines.forEach(line => {
     const key = line.toLowerCase();
     if (!extraShoppingItems.has(key)) extraShoppingItems.set(key, { name: line, qty: '' });
   });
   persistState();
   renderShoppingList();
-  showToast(`Añadido a la lista (${catalogServings} comensales): ${title}`);
+  const tr = trCatalogRecipe(recipe);
+  showToast(`${t('added_list_toast')} (${catalogServings} ${t('diners')}): ${tr ? cap(tr.t) : title}`);
 }
 
 function handleExtraItemKey(event) {
@@ -1595,7 +2216,7 @@ function handleExtraItemKey(event) {
   }
   event.target.value = '';
   renderShoppingList();
-  showToast(`Añadido: ${value}`);
+  showToast(`${t('added_toast')}: ${value}`);
   switchView('cart');
 }
 
@@ -1633,6 +2254,7 @@ async function ensureCatalogData() {
     const FIX_CAT = { 'Guarnicion': 'Guarnición', 'Cabra': 'Carne' };
     if (dbRes && dbRes.ok) {
       dbMeals = (await dbRes.json()).map(r => ({
+        id: r.id,
         title: fixTitleES(r.title || ''),
         titleEN: r.titleEN || '',
         category: FIX_CAT[r.category] || r.category || 'Varios',
@@ -1701,8 +2323,32 @@ async function ensureCatalogData() {
 
 async function openCatalog() {
   renderCatalog();
-  await ensureCatalogData();
+  await Promise.all([ensureCatalogData(), ensureCatalogTr()]);
   renderCatalog();
+}
+
+// Traducción de una receta del catálogo para el idioma activo (o null si no hay).
+function trCatalogRecipe(recipe) {
+  if (recipe.source === 'juice' || recipe.source === 'local') return trDish(recipe.title);
+  const table = catalogTrByLang[currentLang];
+  if (!table) return null;
+  if (recipe.source === 'db' && recipe.id) return table['db:' + recipe.id] || null;
+  if (recipe.source === 'world') return table['w:' + recipe.title] || null;
+  return null;
+}
+
+// Líneas de ingredientes que se MUESTRAN (idioma activo), listas para escalar.
+function displayIngredientLines(recipe, factor) {
+  const tr = trCatalogRecipe(recipe);
+  if (hasPlainIngredients(recipe)) {
+    const base = (tr && tr.i && tr.i.length === recipe.ingredients.length) ? tr.i : ingredientLinesES(recipe);
+    return base.map(line => scaleLine(line, factor));
+  }
+  // Recetas con pares {name, qty} (menú local).
+  return recipe.ingredients.map((item, idx) => {
+    const name = tr && tr.i && tr.i[idx] ? tr.i[idx] : item.name;
+    return `${scaleLine(trQty(item.qty), factor)} ${name}`.replace(/\s+/g, ' ').trim();
+  });
 }
 
 // Orden lógico de las categorías en los chips (desayuno -> platos -> dulces).
@@ -1723,6 +2369,31 @@ function catalogCategories() {
 function normalizeText(text) {
   return text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 }
+
+// ---------------------------------------------------------------------------
+// TOP MUNDIAL: los platos más famosos y reconocidos de la cocina internacional
+// presentes en el recetario (selección curada, en orden de fama; títulos
+// normalizados sin acentos). Se muestran con el chip "⭐ Top mundial".
+// ---------------------------------------------------------------------------
+const FAMOUS_DISHES = [
+  'pizza margarita', 'sushi', 'hamburguesa', 'paella', 'tacos al pastor', 'spaghetti carbonara',
+  'ramen', 'pho', 'pad thai', 'pollo tikka masala', 'lasana', 'risotto', 'tiramisu', 'croissant',
+  'creme brulee', 'ratatouille', 'boeuf bourguignon', 'biryani', 'pollo a la mantequilla', 'naan',
+  'hummus', 'falafel', 'shawarma', 'doner kebab', 'baklava', 'musaca', 'gyros', 'tzatziki',
+  'bibimbap', 'kimchi', 'bulgogi', 'dim sum', 'pato laqueado de pekin', 'gyoza', 'tempura',
+  'tom yum', 'curry verde tailandes', 'rendang', 'nasi goreng', 'laksa', 'satay', 'borscht',
+  'pierogi', 'gulash', 'schnitzel', 'pretzel', 'strudel de manzana', 'feijoada', 'picanha',
+  'asado', 'empanadas', 'milanesa', 'ceviche', 'lomo saltado', 'arepa', 'poutine', 'pavlova',
+  'pastel de nata', 'churros', 'crema catalana', 'tortilla de patatas', 'gazpacho',
+  'pulpo a la gallega', 'gambas al ajillo', 'jamon iberico', 'guacamole', 'mole poblano',
+  'quesadilla', 'burrito', 'pozole', 'salmorejo', 'mapo tofu', 'dal', 'samosa', 'dosa',
+  'beef wellington', 'fish and chips', 'albondigas suecas', 'fondue de queso', 'raclette',
+  'wiener schnitzel', 'tarta sacher', 'gravlax', 'adobo filipino', 'jollof rice', 'koshari',
+  'banh mi', 'som tam', 'onigiri', 'tonkatsu', 'katsudon', 'sopa de miso', 'mochi',
+  'okonomiyaki', 'shakshuka', 'cuscus', 'tarta de queso', 'brownie', 'tres leches', 'flan',
+  'macaron', 'sarmale cu mamaliga'
+];
+const FAMOUS_RANK = new Map(FAMOUS_DISHES.map((title, index) => [title, index]));
 // Sinónimos español -> inglés para buscar ingredientes también en recetas de la API.
 const SEARCH_SYNONYMS = {
   pollo: 'chicken', ternera: 'beef', vaca: 'beef', cerdo: 'pork', cordero: 'lamb', pavo: 'turkey',
@@ -1734,7 +2405,26 @@ const SEARCH_SYNONYMS = {
   limon: 'lemon', lima: 'lime', naranja: 'orange', manzana: 'apple', platano: 'banana', fresa: 'strawberry',
   chocolate: 'chocolate', harina: 'flour', azucar: 'sugar', aceite: 'oil', pan: 'bread', miel: 'honey',
   jengibre: 'ginger', curry: 'curry', coco: 'coconut', maiz: 'corn', calabacin: 'courgette', berenjena: 'aubergine',
-  pimiento: 'pepper', chile: 'chilli', vino: 'wine'
+  pimiento: 'pepper', chile: 'chilli', vino: 'wine',
+  // Rumano -> español (los textos de búsqueda están en español/inglés).
+  pui: 'pollo', porc: 'cerdo', vita: 'ternera', peste: 'pescado', somon: 'salmon', creveti: 'gamba',
+  orez: 'arroz', paste: 'pasta', taitei: 'fideos', oua: 'huevo', branza: 'queso', lapte: 'leche',
+  smantana: 'nata', iaurt: 'yogur', rosii: 'tomate', ceapa: 'cebolla', usturoi: 'ajo',
+  cartofi: 'patata', cartof: 'patata', morcov: 'zanahoria', ciuperci: 'champinon', spanac: 'espinaca',
+  mazare: 'guisantes', naut: 'garbanzo', linte: 'lenteja', fasole: 'alubia', lamaie: 'limon',
+  portocala: 'naranja', banana: 'platano', capsuni: 'fresa', ciocolata: 'chocolate', faina: 'harina',
+  zahar: 'azucar', ulei: 'aceite', paine: 'pan', miere: 'miel', ghimbir: 'jengibre', porumb: 'maiz',
+  dovlecel: 'calabacin', vinete: 'berenjena', ardei: 'pimiento', supa: 'sopa', salata: 'ensalada',
+  // Inglés -> español (para buscar en inglés: los ingredientes están en español).
+  chicken: 'pollo', beef: 'ternera', pork: 'cerdo', lamb: 'cordero', turkey: 'pavo', fish: 'pescado',
+  cod: 'bacalao', prawn: 'gamba', shrimp: 'gamba', seafood: 'marisco', rice: 'arroz', noodle: 'fideos',
+  egg: 'huevo', eggs: 'huevo', cheese: 'queso', milk: 'leche', cream: 'nata', butter: 'mantequilla',
+  yogurt: 'yogur', tomato: 'tomate', onion: 'cebolla', garlic: 'ajo', potato: 'patata', carrot: 'zanahoria',
+  mushroom: 'champinon', spinach: 'espinacas', pea: 'guisantes', chickpea: 'garbanzo', lentil: 'lenteja',
+  bean: 'alubia', beans: 'alubia', lemon: 'limon', apple: 'manzana', strawberry: 'fresa',
+  flour: 'harina', sugar: 'azucar', oil: 'aceite', bread: 'pan', honey: 'miel', ginger: 'jengibre',
+  coconut: 'coco', corn: 'maiz', courgette: 'calabacin', zucchini: 'calabacin', aubergine: 'berenjena',
+  eggplant: 'berenjena', soup: 'sopa', salad: 'ensalada', dessert: 'postre'
 };
 // Texto donde se busca (todo en minúsculas y sin acentos): título ES + EN,
 // país, categoría e ingredientes ya en español. Se calcula una sola vez por receta.
@@ -1762,6 +2452,12 @@ function getFilteredCatalog() {
   catalogData.forEach((recipe, index) => {
     if (catalogFilter.category === 'fav') {
       if (!favoriteRecipes.has(recipe.title)) return;
+    } else if (catalogFilter.category === 'top') {
+      const rank = FAMOUS_RANK.get(normalizeText(recipe.title));
+      if (rank === undefined) return;
+      // Mantiene el orden de fama dentro del Top mundial.
+      scored.push({ recipe, score: (FAMOUS_DISHES.length - rank) / 1000, index: -1 });
+      return;
     } else if (catalogFilter.category !== 'all' && recipe.category !== catalogFilter.category) {
       return;
     }
@@ -1793,48 +2489,53 @@ function getFilteredCatalog() {
 
 function renderCatalogCard(recipe) {
   const isFavorite = favoriteRecipes.has(recipe.title);
-  const title = escapeHtml(recipe.title);
-  const area = escapeHtml(recipe.source === 'juice' ? recipe.type : (recipe.area || 'Internacional'));
-  const category = escapeHtml(recipe.category);
+  const tr = trCatalogRecipe(recipe);
+  const title = escapeHtml(recipe.title); // clave interna (favoritos, fotos, lista)
+  const displayTitle = escapeHtml(tr && tr.t ? cap(tr.t) : recipe.title);
+  const area = escapeHtml(recipe.source === 'juice' ? tType(recipe.type) : tArea(recipe.area || 'Internacional'));
+  const category = escapeHtml(tCat(recipe.category));
   const base = catalogBaseServings(recipe);
   const factor = catalogServings / base;
   const hasIngredients = recipe.ingredients.length > 0;
   let ingredientsHTML;
   if (!hasIngredients) {
-    ingredientsHTML = `<p class="mt-1">Plato típico de ${area}.</p>`;
-  } else if (hasPlainIngredients(recipe)) {
-    // Ingredientes ya en español (recetario o zumos); solo se escalan.
-    const lines = ingredientLinesES(recipe).map(line => scaleLine(line, factor));
-    ingredientsHTML = `<ul class="list-disc list-inside mt-1 space-y-1">${lines.map(line => `<li>${escapeHtml(line)}</li>`).join('')}</ul>`;
+    ingredientsHTML = `<p class="mt-1">${t('typical_dish')} ${area}.</p>`;
   } else {
-    const scaled = scaleIngredients(recipe.ingredients, factor);
-    ingredientsHTML = `<ul class="list-disc list-inside mt-1 space-y-1">${scaled.slice(0, 14).map(i => `<li>${escapeHtml(`${i.qty} ${i.name}`.trim())}</li>`).join('')}</ul>`;
+    const lines = displayIngredientLines(recipe, factor).slice(0, hasPlainIngredients(recipe) ? undefined : 14);
+    ingredientsHTML = `<ul class="list-disc list-inside mt-1 space-y-1">${lines.map(line => `<li>${escapeHtml(line)}</li>`).join('')}</ul>`;
   }
-  const fullInstr = recipe.instructions || `Receta tradicional de ${recipe.area || 'la cocina internacional'}.`;
-  const titleEl = `<h4 class="font-headline-sm text-on-surface">${title}</h4>`;
-  // Recetas largas: se muestran resumidas con botón "Ver receta completa".
+  const fullInstr = (tr && tr.s) || recipe.instructions || `${t('traditional_recipe')} ${tArea(recipe.area || 'Internacional')}.`;
+  const titleEl = `<h4 class="font-headline-sm text-on-surface">${displayTitle}</h4>`;
+  const hasRealInstr = !!((tr && tr.s) || recipe.instructions);
+  // Recetas largas: resumidas con botón "Ver receta completa"; la receta
+  // completa se muestra en pasos numerados.
   let instrEl;
   if (fullInstr.length > 320) {
     const shortText = `${fullInstr.slice(0, 280).trim()}…`;
     instrEl = `
-      <p class="mt-1 text-body-md text-on-surface instr-short">${escapeHtml(shortText)}
-        <button onclick="toggleInstr(this, true)" class="text-primary font-semibold underline-offset-2 underline">Ver receta completa</button>
-      </p>
-      <p class="mt-1 text-body-md text-on-surface instr-full hidden" style="white-space:pre-line">${escapeHtml(fullInstr)}
-        <button onclick="toggleInstr(this, false)" class="text-primary font-semibold underline-offset-2 underline">Ver menos</button>
-      </p>`;
+      <div class="instr-wrap">
+        <p class="mt-1 text-body-md text-on-surface instr-short">${escapeHtml(shortText)}
+          <button onclick="toggleInstr(this, true)" class="text-primary font-semibold underline-offset-2 underline">${t('full_recipe')}</button>
+        </p>
+        <div class="instr-full hidden">
+          ${instructionStepsHTML(fullInstr)}
+          <button onclick="toggleInstr(this, false)" class="mt-2 text-primary text-body-md font-semibold underline-offset-2 underline">${t('see_less')}</button>
+        </div>
+      </div>`;
   } else {
-    instrEl = `<p class="mt-1 text-body-md text-on-surface" style="white-space:pre-line">${escapeHtml(fullInstr)}</p>`;
+    instrEl = instructionStepsHTML(fullInstr);
   }
   // Zumos y batidos: beneficios destacados con su explicación.
   const benefitsEl = recipe.benefits ? `
         <div class="text-label-md">
           <div class="flex flex-wrap gap-1.5">
-            ${recipe.benefits.map(b => `<span class="bg-primary-fixed text-on-primary-fixed text-xs font-semibold px-2 py-1 rounded-full">✦ ${escapeHtml(b)}</span>`).join('')}
+            ${recipe.benefits.map(b => `<span class="bg-primary-fixed text-on-primary-fixed text-xs font-semibold px-2 py-1 rounded-full">✦ ${escapeHtml(tBenefit(b))}</span>`).join('')}
           </div>
-          <p class="mt-2 text-on-surface-variant">${escapeHtml(recipe.benefitsText || '')}</p>
+          <p class="mt-2 text-on-surface-variant">${escapeHtml((tr && tr.b) || recipe.benefitsText || '')}</p>
         </div>` : '';
-  const servingsLabel = recipe.source === 'juice' ? 'vasos' : 'comensales';
+  const servingsLabel = recipe.source === 'juice' ? t('glasses') : t('diners');
+  // Alérgenos detectados sobre los ingredientes originales del plato.
+  const allergens = allergensOfText(ingredientsText(recipe.ingredients));
 
   return `
     <div class="bg-surface-container-lowest rounded-3xl shadow-sm border border-surface-container overflow-hidden flex flex-col">
@@ -1852,16 +2553,18 @@ function renderCatalogCard(recipe) {
         ${titleEl}
         ${benefitsEl}
         <div class="text-label-md text-on-surface-variant">
-          <p class="font-semibold text-on-surface">Ingredientes <span class="text-primary">· ${catalogServings} ${servingsLabel}</span></p>
+          <p class="font-semibold text-on-surface">${t('ingredients')} <span class="text-primary">· ${catalogServings} ${servingsLabel}</span></p>
           ${ingredientsHTML}
         </div>
         <div class="text-label-md text-on-surface-variant">
-          <p class="font-semibold text-on-surface">${recipe.source === 'juice' ? 'Preparación' : 'Modo de cocinar'}</p>
+          <p class="font-semibold text-on-surface">${recipe.source === 'juice' ? t('preparation') : t('cook_mode')}</p>
           ${instrEl}
+          ${hasRealInstr && recipe.source !== 'juice' ? videoLinkHTML(recipe.titleEN || recipe.title) : ''}
         </div>
+        ${hasIngredients ? allergenFooterHTML(allergens) : ''}
         <button data-add="${title}" class="mt-auto w-full flex items-center justify-center gap-2 ${hasIngredients ? 'bg-primary-container text-on-primary-container' : 'bg-surface-container-high text-on-surface-variant'} font-semibold py-3 rounded-2xl active:scale-[0.98] transition-all">
           <span class="material-symbols-outlined" style="font-size:20px;">add_shopping_cart</span>
-          Añadir a la lista
+          ${t('add_to_list')}
         </button>
       </div>
     </div>
@@ -1880,16 +2583,16 @@ function renderCatalog() {
     grid.innerHTML = `
       <div class="col-span-full rounded-3xl bg-surface-container-low p-10 text-center text-on-surface-variant">
         <span class="material-symbols-outlined animate-spin text-primary" style="font-size:40px;">progress_activity</span>
-        <p class="mt-3">Cargando recetas de todo el mundo…</p>
+        <p class="mt-3">${t('loading_catalog')}</p>
       </div>
     `;
     return;
   }
 
   if (chipsContainer) {
-    const chips = [{ id: 'all', label: 'Todos' }]
-      .concat(catalogCategories().map(c => ({ id: c, label: c === JUICE_CATEGORY ? '🥤 ' + c : c })))
-      .concat([{ id: 'fav', label: 'Favoritos ♥' }]);
+    const chips = [{ id: 'all', label: t('chip_all') }, { id: 'top', label: t('chip_top') }]
+      .concat(catalogCategories().map(c => ({ id: c, label: c === JUICE_CATEGORY ? '🥤 ' + tCat(c) : tCat(c) })))
+      .concat([{ id: 'fav', label: t('chip_fav') }]);
     let html = chips.map(chip => `
       <button onclick="setCatalogCategory('${chip.id.replace(/'/g, "\\'")}')" class="px-4 py-2 rounded-full font-label-lg text-label-lg whitespace-nowrap border border-surface-container transition-all ${catalogFilter.category === chip.id ? 'active-catalog' : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-variant'}">${escapeHtml(chip.label)}</button>
     `).join('');
@@ -1897,21 +2600,25 @@ function renderCatalog() {
     if (catalogFilter.category === JUICE_CATEGORY) {
       const benefits = Array.from(new Set(juiceData.flatMap(j => j.benefits))).sort((a, b) => a.localeCompare(b, 'es'));
       html += `<div class="w-full flex gap-2 overflow-x-auto pt-2">` +
-        [{ id: 'all', label: 'Todos los beneficios' }].concat(benefits.map(b => ({ id: b, label: b })))
+        [{ id: 'all', label: t('all_benefits') }].concat(benefits.map(b => ({ id: b, label: tBenefit(b) })))
           .map(chip => `
             <button onclick="setCatalogBenefit('${chip.id.replace(/'/g, "\\'")}')" class="px-3 py-1.5 rounded-full text-label-md whitespace-nowrap border transition-all ${catalogFilter.benefit === chip.id ? 'bg-secondary text-white border-secondary' : 'bg-surface-container-low text-on-surface-variant border-surface-container hover:bg-surface-variant'}">${escapeHtml(chip.label)}</button>
           `).join('') + `</div>`;
+    }
+    // Nota explicativa del Top mundial.
+    if (catalogFilter.category === 'top') {
+      html += `<div class="w-full pt-2 text-label-md text-on-surface-variant">${t('top_note')}</div>`;
     }
     chipsContainer.innerHTML = html;
   }
 
   const filtered = getFilteredCatalog();
-  if (countEl) countEl.innerText = `${filtered.length} platos`;
+  if (countEl) countEl.innerText = `${filtered.length} ${t('dishes_count')}`;
 
   if (filtered.length === 0) {
     grid.innerHTML = `
       <div class="col-span-full rounded-3xl bg-surface-container-low p-6 text-center text-on-surface-variant">
-        No hay platos que coincidan con tu búsqueda.
+        ${t('no_results')}
       </div>
     `;
     return;
@@ -1921,7 +2628,7 @@ function renderCatalog() {
   const moreCount = filtered.length - visible.length;
   grid.innerHTML = visible.map(renderCatalogCard).join('')
     + (moreCount > 0
-      ? `<div class="col-span-full flex justify-center pt-2"><button onclick="catalogMore()" class="px-6 py-3 rounded-full bg-primary text-on-primary font-semibold shadow-sm active:scale-95 transition-all">Ver más platos (${moreCount})</button></div>`
+      ? `<div class="col-span-full flex justify-center pt-2"><button onclick="catalogMore()" class="px-6 py-3 rounded-full bg-primary text-on-primary font-semibold shadow-sm active:scale-95 transition-all">${t('see_more')} (${moreCount})</button></div>`
       : '');
 
   grid.onclick = (event) => {
@@ -1965,7 +2672,8 @@ function catalogMore() {
 
 // Despliega o pliega la receta completa dentro de una tarjeta.
 function toggleInstr(btn, expand) {
-  const card = btn.closest('div');
+  const card = btn.closest('.instr-wrap');
+  if (!card) return;
   const short = card.querySelector('.instr-short');
   const full = card.querySelector('.instr-full');
   if (!short || !full) return;
