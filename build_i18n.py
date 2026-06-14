@@ -68,6 +68,17 @@ def translate_block(text, sl, tl):
         out.append(t if t is not None else c)
     return '\n'.join(out)
 
+def translate_liquid(d, sl, tl):
+    """Traduce un líquido del menú con todo su detalle: {t,v,i,s,b}."""
+    det = LIQ_DETAILS.get(d['name'], {})
+    ings = det.get('ingredients', [])
+    prep = det.get('prep', '')
+    btext = det.get('benefitsText', '')
+    lines = translate_lines([d['name'], d['value']] + ings + [prep, btext], sl, tl)
+    n = len(ings)
+    return {'t': lines[0], 'v': lines[1], 'i': lines[2:2 + n],
+            's': lines[2 + n], 'b': lines[3 + n]}
+
 # --------------------------------------------------------------------------
 # Extracción de datos de app.js
 # --------------------------------------------------------------------------
@@ -137,6 +148,12 @@ for m in re.finditer(r"\{ name: '((?:[^'\\]|\\.)*)', value: '((?:[^'\\]|\\.)*)' 
     origin = 'ro' if (m.start() + menu_start) > ro_start else 'es'
     liquids[origin].append({'name': unq("'%s'" % m.group(1)), 'value': unq("'%s'" % m.group(2))})
 
+# Detalle de los líquidos (LIQUID_DETAILS es JSON válido dentro de app.js).
+_ld_start = SRC.find('const LIQUID_DETAILS = ')
+_ld_brace = SRC.find('{', _ld_start)
+_ld_end = SRC.find('\n};', _ld_brace)
+LIQ_DETAILS = json.loads(SRC[_ld_brace:_ld_end] + '}')
+
 juice_start = SRC.find('const juiceData = [')
 juice_end = SRC.find('].map(', juice_start)
 juices = []
@@ -172,8 +189,7 @@ if '--menu' in sys.argv:
             if n % 10 == 0:
                 print('%s platos %d/%d' % (target, n, len(dish_list)), flush=True)
         for d in liq_list:
-            lines = translate_lines([d['name'], d['value']], sl, tl)
-            out[d['name']] = {'t': lines[0], 'v': lines[1]}
+            out[d['name']] = translate_liquid(d, sl, tl)
         for n, j in enumerate(juice_list, 1):
             lines = translate_lines([j['title']] + j['ings'] + [j['instr'], j['b']], sl, tl)
             out[j['title']] = {'t': lines[0], 'i': lines[1:-2], 's': lines[-2], 'b': lines[-1]}
@@ -196,8 +212,7 @@ if '--menu-en' in sys.argv:
             if n % 10 == 0:
                 print('i18n_en.json platos %s %d/%d' % (sl, n, len(dish_list)), flush=True)
         for d in liq_list:
-            lines = translate_lines([d['name'], d['value']], sl, 'en')
-            out[d['name']] = {'t': lines[0], 'v': lines[1]}
+            out[d['name']] = translate_liquid(d, sl, 'en')
         for n, j in enumerate(juice_list, 1):
             lines = translate_lines([j['title']] + j['ings'] + [j['instr'], j['b']], sl, 'en')
             out[j['title']] = {'t': lines[0], 'i': lines[1:-2], 's': lines[-2], 'b': lines[-1]}

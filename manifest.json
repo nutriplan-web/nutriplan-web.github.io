@@ -1,6 +1,6 @@
 {
-  "name": "NutriPlan — Menú semanal y recetario",
-  "short_name": "NutriPlan",
+  "name": "Recetario 365 — Menú semanal y recetario",
+  "short_name": "Recetario 365",
   "description": "Menú semanal, recetario mundial con +1000 platos en español y lista de la compra automática.",
   "id": "nutriplan",
   "start_url": "./",

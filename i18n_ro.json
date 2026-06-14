@@ -641,87 +641,264 @@
 },
 "Jugo de remolacha y jengibre": {
 "t": "Suc de sfeclă și ghimbir",
-"v": "Curatarea ficatului · Sfecla + Ghimbir + Portocala"
+"v": "Curatarea ficatului · Sfecla + Ghimbir + Portocala",
+"i": [
+"1 sfeclă crudă decojită",
+"1 portocală",
+"1 bucată (2 cm) de ghimbir",
+"150 ml apă"
+],
+"s": "Se toaca sfecla, se amesteca cu ghimbirul si se amesteca cu sucul de portocale si apa. Se strecoară și se servește rece.",
+"b": "Nitrații din sfeclă îmbunătățesc circulația și susțin funcția de purificare a ficatului."
 },
 "Batido Verde Detox": {
 "t": "Smoothie verde de detoxifiere",
-"v": "Curatarea ficatului · Spanac + Ananas + Ghimbir"
+"v": "Curatarea ficatului · Spanac + Ananas + Ghimbir",
+"i": [
+"100 g spanac proaspăt",
+"200 g ananas",
+"1 bucată (1 cm) de ghimbir",
+"250 ml apă de cocos",
+"suc de 1/2 lămâie"
+],
+"s": "Spanacul se spala, se toaca ananasul si se bate totul cu apa de cocos, ghimbir si lamaie timp de 1 minut.",
+"b": "Clorofila din spanac și bromelaina din ananas susțin curățarea și digestia ficatului."
 },
 "Smoothie de cúrcuma dorada": {
 "t": "Smoothie cu turmeric auriu",
-"v": "Antiinflamator · Turmeric + Lapte de Cocos"
+"v": "Antiinflamator · Turmeric + Lapte de Cocos",
+"i": [
+"1 mâner",
+"1 lingurita turmeric",
+"un praf de piper negru",
+"250 ml lapte de cocos",
+"1 lingurita miere"
+],
+"s": "Decojiți și tăiați mango și bateți-l cu laptele de cocos, turmericul, piper și miere până devine mătăsos.",
+"b": "Versiunea tropicală a „laptelui de aur”: turmeric antiinflamator cu vitamina A din mango și grăsimi sănătoase din nucă de cocos."
 },
 "Smoothie de frutos rojos": {
 "t": "Smoothie cu fructe roșii",
-"v": "Antiinflamator · Afine + Zmeura + Miere"
+"v": "Antiinflamator · Afine + Zmeura + Miere",
+"i": [
+"200 g fructe roșii",
+"1 iaurt natural",
+"1 lingura miere",
+"100 ml lapte"
+],
+"s": "Bate fructele roșii cu iaurtul, laptele și mierea. Cu fructe congelate este ca un sorbet cremos.",
+"b": "Antocianinele din fructele rosii au efecte antiinflamatorii si antioxidante; Iaurtul oferă probiotice florei."
 },
 "Agua infusionada menta": {
 "t": "Apa infuzata cu menta",
-"v": "Digestive · Castraveți + Mentă + Lămâie"
+"v": "Digestive · Castraveți + Mentă + Lămâie",
+"i": [
+"1/2 castravete feliat",
+"10 frunze de mentă",
+"1/2 lămâie feliată",
+"1 litru de apă rece"
+],
+"s": "Se amestecă castravetele, menta și lămâia într-un vas cu apă rece și se lasă să stea 1 oră. Serviți cu gheață.",
+"b": "Castravetele hidrateaza cu foarte putine calorii iar menta calmeaza stomacul si faciliteaza digestia."
 },
 "Jugo verde depurativo": {
 "t": "Suc verde purificator",
-"v": "Drenaj limfatic · Măr + Țelină + Pătrunjel"
+"v": "Drenaj limfatic · Măr + Țelină + Pătrunjel",
+"i": [
+"1 mar verde",
+"2 bețișoare de țelină",
+"1 mână de pătrunjel",
+"1/2 castravete",
+"200 ml apă rece"
+],
+"s": "Spălați și tocați totul și amestecați sau macinați cu apă. Se strecoară și se bea imediat.",
+"b": "Telina si patrunjelul au un efect diuretic natural care ajuta la eliminarea lichidelor retinute si la purificarea organismului."
 },
 "Batido de avena y canela": {
 "t": "Smoothie cu fulgi de ovaz si scortisoara",
-"v": "Digestive · Făină de ovăz + măr + scorțișoară"
+"v": "Digestive · Făină de ovăz + măr + scorțișoară",
+"i": [
+"4 linguri de ovăz rulat",
+"1 măr",
+"300 ml de lapte sau băutură vegetală",
+"1 lingurita scortisoara",
+"1 lingurita miere"
+],
+"s": "Bateți ovăzul cu mărul tocat, laptele, scorțișoara și mierea timp de 1 minut. Se lasa sa se odihneasca 5 minute sa se ingroase.",
+"b": "Fibra de beta-glucan din ovăz reglează tranzitul și satură; Scorțișoara ajută la controlul zahărului din sânge."
 },
 "Jugo de manzana verde": {
 "t": "suc de mere verzi",
-"v": "Digestive · Măr + Ghimbir"
+"v": "Digestive · Măr + Ghimbir",
+"i": [
+"2 mere verzi",
+"1 bucată (1 cm) de ghimbir",
+"suc de 1/2 lămâie",
+"150 ml apă"
+],
+"s": "Se toacă merele și se amestecă cu ghimbirul, apa și lămâia. Bea proaspat pentru a profita de enzime.",
+"b": "Mărul verde este bogat în fibre și sărac în zahăr; Cu ghimbir favorizează digestia ușoară."
 },
 "Smoothie antiinflamatorio": {
 "t": "Smoothie antiinflamator",
-"v": "Antiinflamator · Turmeric + Lapte de cocos"
+"v": "Antiinflamator · Turmeric + Lapte de cocos",
+"i": [
+"1 banană",
+"1 lingurita turmeric",
+"un praf de piper negru",
+"250 ml lapte de cocos",
+"1 lingurita miere"
+],
+"s": "Bate totul timp de 1 minut. Praful de piper nu se observa dar multiplica absorbtia turmericului.",
+"b": "Curcumina din turmeric este unul dintre cele mai studiate antiinflamatoare naturale; Cu grasime si piper se absoarbe mult mai bine."
 },
 "Smoothie de pepino y menta": {
 "t": "Smoothie de castraveți și mentă",
-"v": "Digestive · Castraveți + Mentă + Lămâie"
+"v": "Digestive · Castraveți + Mentă + Lămâie",
+"i": [
+"1/2 castravete",
+"10 frunze de mentă",
+"suc de 1/2 lămâie",
+"1 iaurt natural",
+"150 ml apă rece"
+],
+"s": "Amestecați castravetele cu menta, lămâia, iaurtul și apă până când sunt netede și răcoritoare. Se serveste foarte rece.",
+"b": "Castravetele hidratează și împrospătează, iar menta calmează stomacul: ideal după mese grele."
 },
 "Agua de limón detox": {
 "t": "apa de detoxifiere cu lamaie",
-"v": "Curatarea ficatului · Lamaie + Ghimbir + Miere"
+"v": "Curatarea ficatului · Lamaie + Ghimbir + Miere",
+"i": [
+"1 lamaie (sucul ei)",
+"300 ml apă caldă",
+"1 bucată (1 cm) de ghimbir ras",
+"1 lingurita miere"
+],
+"s": "Stoarceți lămâia în apă caldă, adăugați ghimbirul ras și mierea și amestecați bine. Luați-l pe stomacul gol pentru a activa ficatul și digestia.",
+"b": "Lămâia pe stomacul gol stimulează producția de bilă și oferă vitamina C; Ghimbirul ajută digestia, iar mierea înmoaie aroma."
 },
 "Jugo de granada y moras": {
 "t": "Suc de rodie și mure",
-"v": "Antioxidant · Rodie + Mure + Lămâie"
+"v": "Antioxidant · Rodie + Mure + Lămâie",
+"i": [
+"1 rodie (boabele sale)",
+"100 g mure",
+"suc de 1/2 lămâie",
+"100 ml apă"
+],
+"s": "Se pasează rodia și murele cu apa și lămâia și se strecoară pentru a îndepărta semințele. Se serveste rece.",
+"b": "Combinație foarte bogată de polifenoli antioxidanti care ajută la protejarea inimii și la combaterea îmbătrânirii celulare."
 },
 "Batido de pera y manzana": {
 "t": "Smoothie cu pere și mere",
-"v": "Digestive · Para + Măr + Miere"
+"v": "Digestive · Para + Măr + Miere",
+"i": [
+"1 para coapta",
+"1 măr",
+"200 ml apă sau lapte vegetal",
+"1 lingurita miere",
+"suc de 1/2 lămâie"
+],
+"s": "Curățați și tocați perele și merele și le bateți cu apa, mierea și lămâia până se omogenizează.",
+"b": "Pera și mărul furnizează fibre solubile (pectină) care are grijă de flora intestinală și înmoaie digestia."
 },
 "Jugo cítrico energético": {
 "t": "Suc de citrice energizant",
-"v": "Energetic · Portocală + Lămâie + Ghimbir"
+"v": "Energetic · Portocală + Lămâie + Ghimbir",
+"i": [
+"2 portocale",
+"1 lămâie",
+"1 bucată (1 cm) de ghimbir",
+"1 lingurita miere"
+],
+"s": "Stoarceți portocalele și lămâia, adăugați ghimbirul ras și mierea și amestecați. Luați-l proaspăt făcut dimineața.",
+"b": "Aport triplu de vitamina C care reduce oboseala, cu ghimbir care activeaza circulatia si da un plus de energie."
 },
 "Jugo de kale y espinaca": {
 "t": "Suc de varză și spanac",
-"v": "Imunitate · Kale + Spanac + Lămâie"
+"v": "Imunitate · Kale + Spanac + Lămâie",
+"i": [
+"50 g varză",
+"50 g spanac",
+"1 mar verde",
+"suc de 1 lămâie",
+"200 ml apă rece"
+],
+"s": "Spălați bine frunzele, tocați mărul și amestecați sau amestecați totul cu apa și lămâia. Strecurați dacă îl preferați mai fin.",
+"b": "Varza varza si spanacul furnizeaza fier, folati si vitaminele A, C si K care intaresc apararea si sanatatea sangelui."
 },
 "Smoothie tropical premium": {
 "t": "Smoothie tropical premium",
-"v": "Energetic · Mango + Banana + Cocos"
+"v": "Energetic · Mango + Banana + Cocos",
+"i": [
+"150 g mango",
+"1 banană",
+"200 ml lapte de cocos",
+"1 lingura de seminte de chia",
+"suc de 1/2 lime"
+],
+"s": "Bateți mango și banana cu laptele de cocos și lime timp de 1 minut. Se adauga chia, se amesteca si se lasa sa se odihneasca 5 minute.",
+"b": "Mango și banana oferă energie și potasiu, iar chia adaugă fibre și omega-3 pentru un impuls complet."
 },
 "Jugo de zanahoria": {
 "t": "suc de morcovi",
-"v": "Energetic · Morcov + Portocală"
+"v": "Energetic · Morcov + Portocală",
+"i": [
+"4 morcovi",
+"1 portocală",
+"1 bucată (1 cm) de ghimbir (opțional)"
+],
+"s": "Se amestecă morcovii și se amestecă cu sucul de portocale. Adaugă ghimbir dacă vrei o notă picant. Se serveste rece.",
+"b": "Beta-carotenul din morcov este transformat în vitamina A (ochi și piele), iar portocala oferă energie și vitamina C."
 },
 "Jugo antioxidante": {
 "t": "suc antioxidant",
-"v": "Antioxidant · Afine + Rodie"
+"v": "Antioxidant · Afine + Rodie",
+"i": [
+"100 g afine",
+"1/2 rodie (boabele sale)",
+"150 ml apă",
+"suc de 1/2 lămâie"
+],
+"s": "Se amestecă afinele și rodiile cu apa și lămâia și se strecoară. Bebeluș proaspăt făcut.",
+"b": "Afinele și rodiile sunt printre fructele cu cele mai multe antociani, antioxidanți care protejează celulele și inima."
 },
 "Smoothie de recuperación": {
 "t": "Smoothie de recuperare",
-"v": "Recuperare musculară · Banană + Proteine + Migdale"
+"v": "Recuperare musculară · Banană + Proteine + Migdale",
+"i": [
+"1 banană",
+"1 lingura de proteine sau crema de migdale",
+"250 ml de lapte sau băutură de migdale",
+"1 lingura cacao pura (optional)",
+"gheata"
+],
+"s": "Bateți banana cu proteinele (sau crema de migdale), laptele și gheața până devine cremoasă. Luați-l după antrenament.",
+"b": "Proteine ​​pentru repararea mușchilor și potasiul din banane pentru a înlocui sărurile pierdute după efort."
 },
 "Agua infusionada limón": {
 "t": "Apă infuzată cu lămâie",
-"v": "Curățarea ficatului · Lămâie + Ghimbir"
+"v": "Curățarea ficatului · Lămâie + Ghimbir",
+"i": [
+"1 lămâie feliată",
+"1 litru de apă",
+"1 bucată (2 cm) de ghimbir feliat"
+],
+"s": "Puneti feliile de lamaie si ghimbirul intr-un vas cu apa si lasati 2 ore la infuzat la frigider. Bea pe tot parcursul zilei.",
+"b": "O modalitate blândă de hidratare cu un plus de vitamina C și antioxidanți care promovează purificarea ficatului."
 },
 "Batido de coco y jengibre": {
 "t": "Smoothie cu nucă de cocos și ghimbir",
-"v": "Antiinflamator · Cocos + Ghimbir + Scorțișoară"
+"v": "Antiinflamator · Cocos + Ghimbir + Scorțișoară",
+"i": [
+"200 ml lapte de cocos",
+"1 banană",
+"1 bucată (1 cm) de ghimbir",
+"1 lingurita scortisoara",
+"gheata"
+],
+"s": "Bateți laptele de cocos cu banana, ghimbirul decojit și scorțișoara până devine cremos. Serviți cu gheață.",
+"b": "Ghimbirul și scorțișoara au efect antiinflamator, iar grăsimile de cocos oferă energie stabilă."
 },
 "Zumo verde detox": {
 "t": "Suc verde detox",

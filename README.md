@@ -1,4 +1,4 @@
-# NutriPlan
+# Recetario 365
 
 Planificador de menú semanal con recetario mundial (+1100 platos en español
 con receta completa), cantidades por comensales y lista de la compra automática.

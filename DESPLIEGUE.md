@@ -1,4 +1,4 @@
-# Publicar y mantener NutriPlan (GitHub Pages)
+# Publicar y mantener Recetario 365 (GitHub Pages)
 
 La app está publicada en **https://nutriplan-web.github.io/** desde el
 repositorio `nutriplan-web/nutriplan-web.github.io` (la URL es

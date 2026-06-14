@@ -1,6 +1,6 @@
-// Service Worker de NutriPlan: instala la app completa (incluidos los datos de
+// Service Worker de Recetario 365: instala la app completa (incluidos los datos de
 // recetas y fotos) para que funcione rápida, estable y sin conexión.
-const CACHE = 'nutriplan-v7';
+const CACHE = 'recetario365-v11';
 const ASSETS = [
   './', './index.html', './app.js', './styles.css', './icon.svg', './manifest.json',
   './icon-192.png', './icon-512.png',

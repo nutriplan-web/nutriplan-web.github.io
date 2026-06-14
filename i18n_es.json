@@ -581,50 +581,143 @@
 },
 "Compot de mere": {
 "t": "compota de manzana",
-"v": "Digestivo · Manzanas + Canela"
+"v": "Digestivo · Manzanas + Canela",
+"i": [
+"4 manzanas",
+"1 litro de agua",
+"1 rama de canela",
+"2 cucharadas de azúcar o miel"
+],
+"s": "Cortar las manzanas en rodajas, hervirlas en agua con canela durante 15 minutos, endulzarlas al final y dejar enfriar.",
+"b": "Bebida ligera tradicional con fibra de manzana y canela para ayudar con la digestión y el equilibrio del azúcar en sangre."
 },
 "Limonadă cu mentă": {
 "t": "Limonada con menta",
-"v": "Refrescante · Limón + Menta"
+"v": "Refrescante · Limón + Menta",
+"i": [
+"2 limones (jugo)",
+"500 ml de agua fría",
+"10 hojas de menta",
+"1 cucharada de miel",
+"hielo"
+],
+"s": "Mezclar jugo de limón con agua y miel, agregar menta ligeramente triturada y hielo. Servir frío.",
+"b": "Refrescante e hidratante, con vitamina C del limón y menta que calma el estómago."
 },
 "Suc de morcov": {
 "t": "jugo de zanahoria",
-"v": "Energético · Zanahoria + Naranja"
+"v": "Energético · Zanahoria + Naranja",
+"i": [
+"4 zanahorias",
+"1 naranja",
+"un poco de jengibre (opcional)"
+],
+"s": "Exprime las zanahorias y mezcla con el jugo de naranja. Agregue jengibre para darle más sabor. Servir frío.",
+"b": "Rica fuente de betacaroteno (vitamina A) para la visión y la piel, con energía naranja."
 },
 "Ceai de tei": {
 "t": "Té de lima",
-"v": "Relajante · Lima + Miel"
+"v": "Relajante · Lima + Miel",
+"i": [
+"2 cucharaditas de flores de tilo",
+"250 ml de agua caliente",
+"1 cucharadita de miel"
+],
+"s": "Infundir flores de tilo en agua caliente durante 7 a 10 minutos, tapado. Colar y beber tibio antes de acostarse.",
+"b": "La lima tiene un efecto calmante y ayuda a conciliar un sueño tranquilo; También suda un poco cuando estás resfriado."
 },
 "Compot de prune": {
 "t": "Compota de ciruela",
-"v": "Digestivo · Ciruela + Canela"
+"v": "Digestivo · Ciruela + Canela",
+"i": [
+"400 g de ciruelas",
+"1 litro de agua",
+"1 rama de canela",
+"2 cucharadas de azúcar"
+],
+"s": "Hervir las ciruelas enteras en agua con canela durante 15-20 minutos, endulzar y dejar enfriar.",
+"b": "Las ciruelas son conocidas por su suave efecto laxante y su riqueza en fibra que regula el tránsito intestinal."
 },
 "Suc verde": {
 "t": "jugo verde",
-"v": "Depurativo · Espinacas + Manzana + Limón"
+"v": "Depurativo · Espinacas + Manzana + Limón",
+"i": [
+"un puñado de espinacas",
+"1 manzana verde",
+"el jugo de 1 limón",
+"200 ml de agua fría"
+],
+"s": "Lavar las espinacas, cortar la manzana y hacer puré todo con agua y limón. Cuela si lo prefieres más suave y bebe inmediatamente.",
+"b": "La clorofila de las espinacas y la vitamina C del limón ayudan a desintoxicar el organismo y aportan una buena dosis de minerales."
 },
 "Limonadă cu ghimbir": {
 "t": "limonada de jengibre",
-"v": "Energético · Limón + Jengibre"
+"v": "Energético · Limón + Jengibre",
+"i": [
+"2 limones (jugo)",
+"500 ml de agua fría",
+"1 trozo (2 cm) de jengibre rallado",
+"1 cucharada de miel",
+"hielo"
+],
+"s": "Mezclar el jugo de limón con agua, jengibre rallado y miel hasta disolver. Servir con hielo.",
+"b": "La vitamina C del limón y el jengibre activa la circulación y da energía sin el azúcar de las bebidas gaseosas."
 },
 "Compot de vișine": {
 "t": "Compota de cerezas",
-"v": "Antioxidantes · Cerezas + Miel"
+"v": "Antioxidantes · Cerezas + Miel",
+"i": [
+"400 g de guindas",
+"1 litro de agua",
+"2-3 cucharadas de azúcar o miel"
+],
+"s": "Hervir las cerezas en agua durante 10-15 minutos, endulzar al gusto y enfriar bien antes de servir.",
+"b": "Las cerezas son ricas en antocianinas, antioxidantes que reducen la inflamación y favorecen el sueño a través de la melatonina natural."
 },
 "Suc de sfeclă": {
 "t": "Jugo de remolacha",
-"v": "Limpia hígado · Remolacha + Zanahoria"
+"v": "Limpia hígado · Remolacha + Zanahoria",
+"i": [
+"1 remolacha cruda pelada",
+"2 zanahorias",
+"un poco de jugo de limon",
+"150 mililitros de agua"
+],
+"s": "Cortar las remolachas y las zanahorias, pasarlas por una exprimidora o licuadora con agua, agregar el limón y colar.",
+"b": "Los nitratos de la remolacha mejoran la circulación y apoyan al hígado en el proceso de desintoxicación."
 },
 "Ceai de mușețel": {
 "t": "té de manzanilla",
-"v": "Digestivo · Manzanilla + Miel"
+"v": "Digestivo · Manzanilla + Miel",
+"i": [
+"2 cucharaditas de flores de manzanilla",
+"250 ml de agua caliente",
+"1 cucharadita de miel"
+],
+"s": "Escaldar las flores de manzanilla con agua caliente y dejar tapadas durante 5-7 minutos. Colar y beber tibio, posiblemente con miel.",
+"b": "La manzanilla calma el estómago y reduce la hinchazón; También es ligeramente relajante, adecuado para la noche."
 },
 "Suc de mere și morcov": {
 "t": "Jugo de manzana y zanahoria",
-"v": "Energético · Manzana + Zanahoria"
+"v": "Energético · Manzana + Zanahoria",
+"i": [
+"2 manzanas",
+"3 zanahorias",
+"un poco de jugo de limon",
+"100 ml de agua"
+],
+"s": "Pasar las manzanas y las zanahorias por el exprimidor o licuadora con el agua, agregar el limón y colar. Beber fresco.",
+"b": "El betacaroteno de las zanahorias y la fibra de las manzanas proporcionan energía y apoyan la visión y la piel."
 },
 "Ceai de cătină": {
 "t": "Té de espino amarillo",
-"v": "Inmunidad · Espino amarillo + Miel"
+"v": "Inmunidad · Espino amarillo + Miel",
+"i": [
+"2 cucharadas de espino amarillo (fruta o polvo)",
+"300 ml de agua caliente",
+"1 cucharadita de miel"
+],
+"s": "Triture el espino amarillo, vierta agua caliente (sin hervir, para no destruir la vitamina C) y déjelo en infusión durante 10 minutos. Colar y endulzar con miel.",
+"b": "El espino amarillo tiene varias veces más vitamina C que los cítricos y fortalece el sistema inmunológico, especialmente en invierno."
 }
 }

@@ -641,87 +641,264 @@
 },
 "Jugo de remolacha y jengibre": {
 "t": "Beet and ginger juice",
-"v": "Liver cleansing · Beet + Ginger + Orange"
+"v": "Liver cleansing · Beet + Ginger + Orange",
+"i": [
+"1 peeled raw beet",
+"1 orange",
+"1 piece (2 cm) ginger",
+"150 ml of water"
+],
+"s": "Chop the beet, blend with the ginger and mix with the orange juice and water. Strain and serve cold.",
+"b": "The nitrates in beets improve circulation and support the liver's function in purification."
 },
 "Batido Verde Detox": {
 "t": "Green Detox Smoothie",
-"v": "Liver cleansing · Spinach + Pineapple + Ginger"
+"v": "Liver cleansing · Spinach + Pineapple + Ginger",
+"i": [
+"100 g fresh spinach",
+"200 g pineapple",
+"1 piece (1 cm) of ginger",
+"250 ml coconut water",
+"juice of 1/2 lemon"
+],
+"s": "Wash the spinach, chop the pineapple and beat everything with the coconut water, ginger and lemon for 1 minute.",
+"b": "The chlorophyll in spinach and bromelain in pineapple support liver cleansing and digestion."
 },
 "Smoothie de cúrcuma dorada": {
 "t": "Golden Turmeric Smoothie",
-"v": "Anti-inflammatory · Turmeric + Coconut Milk"
+"v": "Anti-inflammatory · Turmeric + Coconut Milk",
+"i": [
+"1 handle",
+"1 teaspoon turmeric",
+"a pinch of black pepper",
+"250 ml coconut milk",
+"1 teaspoon honey"
+],
+"s": "Peel and chop the mango and beat with the coconut milk, turmeric, pepper and honey until silky.",
+"b": "Tropical version of 'golden milk': anti-inflammatory turmeric with vitamin A from mango and healthy fats from coconut."
 },
 "Smoothie de frutos rojos": {
 "t": "Red fruit smoothie",
-"v": "Anti-inflammatory · Blueberries + Raspberry + Honey"
+"v": "Anti-inflammatory · Blueberries + Raspberry + Honey",
+"i": [
+"200 g of red fruits",
+"1 natural yogurt",
+"1 tablespoon honey",
+"100ml milk"
+],
+"s": "Beat the red berries with the yogurt, milk and honey. With frozen fruit it is like a creamy sorbet.",
+"b": "The anthocyanins in red fruits have anti-inflammatory and antioxidant effects; Yogurt provides probiotics for the flora."
 },
 "Agua infusionada menta": {
 "t": "Mint infused water",
-"v": "Digestive · Cucumber + Mint + Lemon"
+"v": "Digestive · Cucumber + Mint + Lemon",
+"i": [
+"1/2 cucumber sliced",
+"10 mint leaves",
+"1/2 lemon sliced",
+"1 liter of cold water"
+],
+"s": "Mix the cucumber, mint and lemon in a jug with cold water and let sit for 1 hour. Serve with ice.",
+"b": "Cucumber hydrates with very few calories and mint calms the stomach and facilitates digestion."
 },
 "Jugo verde depurativo": {
 "t": "Purifying green juice",
-"v": "Lymphatic drainage · Apple + Celery + Parsley"
+"v": "Lymphatic drainage · Apple + Celery + Parsley",
+"i": [
+"1 green apple",
+"2 sticks of celery",
+"1 handful of parsley",
+"1/2 cucumber",
+"200 ml cold water"
+],
+"s": "Wash and chop everything and blend or grind with water. Strain and drink immediately.",
+"b": "Celery and parsley have a natural diuretic effect that helps eliminate retained fluids and purify the body."
 },
 "Batido de avena y canela": {
 "t": "Oatmeal and cinnamon smoothie",
-"v": "Digestive · Oatmeal + Apple + Cinnamon"
+"v": "Digestive · Oatmeal + Apple + Cinnamon",
+"i": [
+"4 tablespoons rolled oats",
+"1 apple",
+"300 ml of milk or vegetable drink",
+"1 teaspoon cinnamon",
+"1 teaspoon honey"
+],
+"s": "Beat the oats with the chopped apple, milk, cinnamon and honey for 1 minute. Let it rest for 5 minutes to thicken.",
+"b": "The beta-glucan fiber in oats regulates transit and satiates; Cinnamon helps control blood sugar."
 },
 "Jugo de manzana verde": {
 "t": "green apple juice",
-"v": "Digestive · Apple + Ginger"
+"v": "Digestive · Apple + Ginger",
+"i": [
+"2 green apples",
+"1 piece (1 cm) of ginger",
+"juice of 1/2 lemon",
+"150 ml of water"
+],
+"s": "Chop the apples and blend with the ginger, water and lemon. Drink freshly to take advantage of the enzymes.",
+"b": "The green apple is rich in fiber and low in sugar; With ginger it promotes light digestion."
 },
 "Smoothie antiinflamatorio": {
 "t": "Anti-inflammatory smoothie",
-"v": "Anti-inflammatory · Turmeric + Coconut milk"
+"v": "Anti-inflammatory · Turmeric + Coconut milk",
+"i": [
+"1 banana",
+"1 teaspoon turmeric",
+"a pinch of black pepper",
+"250 ml coconut milk",
+"1 teaspoon honey"
+],
+"s": "Beat everything for 1 minute. The pinch of pepper is not noticeable but it multiplies the absorption of turmeric.",
+"b": "Curcumin from turmeric is one of the most studied natural anti-inflammatories; With fat and pepper it is absorbed much better."
 },
 "Smoothie de pepino y menta": {
 "t": "Cucumber and mint smoothie",
-"v": "Digestive · Cucumber + Mint + Lemon"
+"v": "Digestive · Cucumber + Mint + Lemon",
+"i": [
+"1/2 cucumber",
+"10 mint leaves",
+"juice of 1/2 lemon",
+"1 natural yogurt",
+"150 ml cold water"
+],
+"s": "Blend the cucumber with mint, lemon, yogurt and water until smooth and refreshing. Serve very cold.",
+"b": "Cucumber hydrates and refreshes and mint calms the stomach: ideal after heavy meals."
 },
 "Agua de limón detox": {
 "t": "detox lemon water",
-"v": "Liver cleansing · Lemon + Ginger + Honey"
+"v": "Liver cleansing · Lemon + Ginger + Honey",
+"i": [
+"1 lemon (its juice)",
+"300 ml of warm water",
+"1 piece (1 cm) of grated ginger",
+"1 teaspoon honey"
+],
+"s": "Squeeze the lemon into the warm water, add the grated ginger and honey and stir well. Take it on an empty stomach to activate the liver and digestion.",
+"b": "Lemon on an empty stomach stimulates the production of bile and provides vitamin C; Ginger helps digestion and honey softens the flavor."
 },
 "Jugo de granada y moras": {
 "t": "Pomegranate and blackberry juice",
-"v": "Antioxidant · Pomegranate + Blackberries + Lemon"
+"v": "Antioxidant · Pomegranate + Blackberries + Lemon",
+"i": [
+"1 pomegranate (its grains)",
+"100 g blackberries",
+"juice of 1/2 lemon",
+"100 ml of water"
+],
+"s": "Mash the pomegranate and blackberries with the water and lemon and strain to remove the seeds. Serve cold.",
+"b": "Very rich combination of antioxidant polyphenols that help protect the heart and combat cellular aging."
 },
 "Batido de pera y manzana": {
 "t": "Pear and apple smoothie",
-"v": "Digestive · Pear + Apple + Honey"
+"v": "Digestive · Pear + Apple + Honey",
+"i": [
+"1 ripe pear",
+"1 apple",
+"200 ml of water or vegetable milk",
+"1 teaspoon honey",
+"juice of 1/2 lemon"
+],
+"s": "Peel and chop the pear and apple and beat with the water, honey and lemon until smooth.",
+"b": "Pear and apple provide soluble fiber (pectin) that takes care of the intestinal flora and softens digestion."
 },
 "Jugo cítrico energético": {
 "t": "Energetic citrus juice",
-"v": "Energetic · Orange + Lemon + Ginger"
+"v": "Energetic · Orange + Lemon + Ginger",
+"i": [
+"2 oranges",
+"1 lemon",
+"1 piece (1 cm) of ginger",
+"1 teaspoon honey"
+],
+"s": "Squeeze the oranges and lemon, add the grated ginger and honey and stir. Have it freshly made in the morning.",
+"b": "Triple contribution of vitamin C that reduces fatigue, with ginger that activates circulation and gives a boost of energy."
 },
 "Jugo de kale y espinaca": {
 "t": "Kale and spinach juice",
-"v": "Immunity · Kale + Spinach + Lemon"
+"v": "Immunity · Kale + Spinach + Lemon",
+"i": [
+"50 g kale",
+"50g spinach",
+"1 green apple",
+"juice of 1 lemon",
+"200 ml cold water"
+],
+"s": "Wash the leaves well, chop the apple and blend or blend everything with the water and lemon. Strain if you prefer it finer.",
+"b": "Kale and spinach provide iron, folates and vitamins A, C and K that strengthen defenses and blood health."
 },
 "Smoothie tropical premium": {
 "t": "Premium Tropical Smoothie",
-"v": "Energetic · Mango + Banana + Coconut"
+"v": "Energetic · Mango + Banana + Coconut",
+"i": [
+"150g mango",
+"1 banana",
+"200 ml coconut milk",
+"1 tablespoon chia seeds",
+"juice of 1/2 lime"
+],
+"s": "Beat the mango and banana with the coconut milk and lime for 1 minute. Add the chia, stir and let it rest for 5 minutes.",
+"b": "Mango and banana provide energy and potassium and chia adds fiber and omega-3 for a complete boost."
 },
 "Jugo de zanahoria": {
 "t": "carrot juice",
-"v": "Energetic · Carrot + Orange"
+"v": "Energetic · Carrot + Orange",
+"i": [
+"4 carrots",
+"1 orange",
+"1 piece (1 cm) of ginger (optional)"
+],
+"s": "Blend the carrots and mix with the orange juice. Add ginger if you want a spicy touch. Serve cold.",
+"b": "The beta-carotene in the carrot is converted into vitamin A (eye and skin) and the orange provides energy and vitamin C."
 },
 "Jugo antioxidante": {
 "t": "antioxidant juice",
-"v": "Antioxidant · Blueberries + Pomegranate"
+"v": "Antioxidant · Blueberries + Pomegranate",
+"i": [
+"100g blueberries",
+"1/2 pomegranate (its grains)",
+"150 ml of water",
+"juice of 1/2 lemon"
+],
+"s": "Blend the blueberries and pomegranate with the water and lemon and strain. Freshly made baby.",
+"b": "Blueberries and pomegranate are among the fruits with the most anthocyanins, antioxidants that protect cells and the heart."
 },
 "Smoothie de recuperación": {
 "t": "Recovery Smoothie",
-"v": "Muscle recovery · Banana + Protein + Almond"
+"v": "Muscle recovery · Banana + Protein + Almond",
+"i": [
+"1 banana",
+"1 tablespoon of protein or almond cream",
+"250 ml of milk or almond drink",
+"1 tablespoon pure cocoa (optional)",
+"ice"
+],
+"s": "Beat the banana with the protein (or almond cream), milk and ice until creamy. Take it after training.",
+"b": "Protein to repair muscle and potassium from banana to replace salts lost after exercise."
 },
 "Agua infusionada limón": {
 "t": "Lemon infused water",
-"v": "Liver cleansing · Lemon + Ginger"
+"v": "Liver cleansing · Lemon + Ginger",
+"i": [
+"1 lemon sliced",
+"1 liter of water",
+"1 piece (2 cm) sliced ginger"
+],
+"s": "Put the lemon slices and ginger in a jug with the water and let it infuse for 2 hours in the refrigerator. Drink throughout the day.",
+"b": "A gentle way to hydrate with extra vitamin C and antioxidants that promote liver purification."
 },
 "Batido de coco y jengibre": {
 "t": "Coconut and ginger smoothie",
-"v": "Anti-inflammatory · Coconut + Ginger + Cinnamon"
+"v": "Anti-inflammatory · Coconut + Ginger + Cinnamon",
+"i": [
+"200 ml coconut milk",
+"1 banana",
+"1 piece (1 cm) of ginger",
+"1 teaspoon cinnamon",
+"ice"
+],
+"s": "Beat the coconut milk with the banana, peeled ginger and cinnamon until creamy. Serve with ice.",
+"b": "Ginger and cinnamon have an anti-inflammatory effect and coconut fats provide stable energy."
 },
 "Zumo verde detox": {
 "t": "Green detox juice",
@@ -1098,7 +1275,7 @@
 "s": "Boil potatoes and carrots in their skins until tender but firm; let them cool completely. Cut vegetables, boiled meat and well-drained pickles into small cubes. Mix everything with the peas, mayonnaise and mustard and season with salt and pepper. Refrigerate the salad at least an hour before serving and garnish with mayonnaise and pickles on top."
 },
 "Mici cu muștar": {
-"t": "Mici (Romanian grilled rolls) with mustard",
+"t": "Small with mustard",
 "i": [
 "Mixed minced meat of beef and pork",
 "Sodium bicarbonate",
@@ -1487,7 +1664,7 @@
 "s": "Sauté chopped onion, carrot and celery in oil for 5 minutes. Add 1.5 liters of water, diced potatoes, pepper and green beans and boil for 15 minutes. Add the chopped tomatoes and peas and cook for another 10 minutes, until the vegetables are tender. Add the separately cooked borscht, season with salt and serve with plenty of chopped leustean."
 },
 "Mămăligă cu brânză și smântână": {
-"t": "Mămăligă with cheese and sour cream",
+"t": "Polenta with cheese and cream",
 "i": [
 "Malai",
 "Water",
@@ -1610,50 +1787,143 @@
 },
 "Compot de mere": {
 "t": "Apple compote",
-"v": "Digestive · Apples + Cinnamon"
+"v": "Digestive · Apples + Cinnamon",
+"i": [
+"4 apples",
+"1 liter of water",
+"1 cinnamon stick",
+"2 tablespoons of sugar or honey"
+],
+"s": "Cut the apples into slices, boil them in water with cinnamon for 15 minutes, sweeten them at the end and let them cool.",
+"b": "Traditional light drink with fiber from apples and cinnamon to help with digestion and blood sugar balance."
 },
 "Limonadă cu mentă": {
 "t": "Lemonade with mint",
-"v": "Refreshing · Lemon + Mint"
+"v": "Refreshing · Lemon + Mint",
+"i": [
+"2 lemons (juice)",
+"500 ml cold water",
+"10 mint leaves",
+"1 tablespoon of honey",
+"ice"
+],
+"s": "Mix lemon juice with water and honey, add lightly crushed mint and ice. Serve cold.",
+"b": "Refreshing and hydrating, with vitamin C from lemon and stomach-soothing mint."
 },
 "Suc de morcov": {
 "t": "Carrot juice",
-"v": "Energético · Carrot + Orange"
+"v": "Energético · Carrot + Orange",
+"i": [
+"4 carrots",
+"1 orange",
+"a little ginger (optional)"
+],
+"s": "Squeeze the carrots and mix with the orange juice. Add ginger for extra flavor. Serve cold.",
+"b": "Rich source of beta-carotene (vitamin A) for vision and skin, with orange energy."
 },
 "Ceai de tei": {
 "t": "Lime tea",
-"v": "Relaxing · Lime + Honey"
+"v": "Relaxing · Lime + Honey",
+"i": [
+"2 teaspoons of linden flowers",
+"250 ml hot water",
+"1 teaspoon of honey"
+],
+"s": "Infuse linden flowers in hot water for 7-10 minutes, covered. Strain and drink warm before bed.",
+"b": "Lime has a calming effect and helps with a peaceful sleep; it is also slightly sweaty when you have a cold."
 },
 "Compot de prune": {
 "t": "Plum compote",
-"v": "Digestive · Plum + Cinnamon"
+"v": "Digestive · Plum + Cinnamon",
+"i": [
+"400 g of plums",
+"1 liter of water",
+"1 cinnamon stick",
+"2 spoons of sugar"
+],
+"s": "Boil whole plums in water with cinnamon for 15-20 minutes, sweeten and leave to cool.",
+"b": "Plums are known for their mild laxative effect and the richness in fiber that regulates intestinal transit."
 },
 "Suc verde": {
 "t": "Green juice",
-"v": "Depurativo · Spinach + Apple + Lemon"
+"v": "Depurativo · Spinach + Apple + Lemon",
+"i": [
+"a handful of spinach",
+"1 green apple",
+"the juice of 1 lemon",
+"200 ml cold water"
+],
+"s": "Wash the spinach, cut the apple and puree everything with water and lemon. Strain if you prefer smoother and drink immediately.",
+"b": "Chlorophyll from spinach and vitamin C from lemon help to detoxify the body and give a good dose of minerals."
 },
 "Limonadă cu ghimbir": {
 "t": "Ginger lemonade",
-"v": "Energético · Lemon + Ginger"
+"v": "Energético · Lemon + Ginger",
+"i": [
+"2 lemons (juice)",
+"500 ml cold water",
+"1 piece (2 cm) of grated ginger",
+"1 tablespoon of honey",
+"ice"
+],
+"s": "Mix the lemon juice with water, grated ginger and honey until dissolved. Serve with ice.",
+"b": "Vitamin C in lemon and ginger activates circulation and gives energy without the sugar in fizzy drinks."
 },
 "Compot de vișine": {
 "t": "Cherry compote",
-"v": "Antioxidants · Cherries + Honey"
+"v": "Antioxidants · Cherries + Honey",
+"i": [
+"400 g of sour cherries",
+"1 liter of water",
+"2-3 spoons of sugar or honey"
+],
+"s": "Boil the cherries in water for 10-15 minutes, sweeten to taste and cool well before serving.",
+"b": "Cherries are rich in anthocyanins, antioxidants that reduce inflammation and support sleep through natural melatonin."
 },
 "Suc de sfeclă": {
 "t": "Beet juice",
-"v": "Cleanses hígado · Beetroot + Carrot"
+"v": "Cleanses hígado · Beetroot + Carrot",
+"i": [
+"1 peeled raw beet",
+"2 carrots",
+"a little lemon juice",
+"150 ml of water"
+],
+"s": "Cut the beets and carrots, put them through a juicer or blender with water, add the lemon and strain.",
+"b": "Nitrates in beets improve circulation and support the liver in the detoxification process."
 },
 "Ceai de mușețel": {
 "t": "Chamomile tea",
-"v": "Digestive · Chamomile + Honey"
+"v": "Digestive · Chamomile + Honey",
+"i": [
+"2 teaspoons of chamomile flowers",
+"250 ml hot water",
+"1 teaspoon of honey"
+],
+"s": "Scald chamomile flowers with hot water and leave covered for 5-7 minutes. Strain and drink warm, possibly with honey.",
+"b": "Chamomile soothes the stomach and reduces bloating; it is also slightly relaxing, suitable for the evening."
 },
 "Suc de mere și morcov": {
 "t": "Apple and carrot juice",
-"v": "Energético · Apple + Carrot"
+"v": "Energético · Apple + Carrot",
+"i": [
+"2 apples",
+"3 carrots",
+"a little lemon juice",
+"100 ml of water"
+],
+"s": "Put the apples and carrots through the juicer or blender with the water, add the lemon and strain. Drink fresh.",
+"b": "Beta-carotene in carrots and fiber in apples provide energy and support vision and skin."
 },
 "Ceai de cătină": {
 "t": "Sea buckthorn tea",
-"v": "Immunity · Sea buckthorn + Honey"
+"v": "Immunity · Sea buckthorn + Honey",
+"i": [
+"2 tablespoons sea buckthorn (fruit or powder)",
+"300 ml hot water",
+"1 teaspoon of honey"
+],
+"s": "Crush the sea buckthorn, pour hot water (not boiling, so as not to destroy vitamin C) and let it infuse for 10 minutes. Strain and sweeten with honey.",
+"b": "Sea buckthorn has several times more vitamin C than citrus fruits and strengthens immunity, especially in winter."
 }
 }

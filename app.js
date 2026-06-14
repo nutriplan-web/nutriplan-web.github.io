@@ -15,7 +15,7 @@ let currentLang = (() => {
 
 const I18N = {
   es: {
-    app_title: 'NutriPlan — Menú semanal, +1000 recetas del mundo y lista de la compra',
+    app_title: 'Recetario 365 — Menú semanal, +1000 recetas del mundo y lista de la compra',
     nav_plan: 'Plan', nav_day: 'Día', nav_recipes: 'Recetas', nav_cart: 'Lista', nav_profile: 'Perfil',
     cuisine_es: 'Comida Española', cuisine_ro: 'Comida Rumana',
     weekly_menu: 'Menú Semanal', change_menu: 'Cambiar menú',
@@ -53,14 +53,15 @@ const I18N = {
     cart_title: 'Lista de la Compra', cart_sub: 'Sugerencias inteligentes basadas en tu plan semanal.',
     extra_ph: 'Añadir algo extra y pulsa Enter...', shop_mode: 'Modo de compra', shop_mode_sub: 'Diaria o semanal',
     daily: 'Diaria', weekly: 'Semanal', copy_btn: 'Copiar',
-    list_header: '🛒 Lista de la compra · NutriPlan', from_menu: '— Del menú —', added_by_you: 'Añadido por ti',
+    list_header: '🛒 Lista de la compra · Recetario 365', from_menu: '— Del menú —', added_by_you: 'Añadido por ti',
     clear: 'Vaciar', for_day: 'para día', for_week: 'para semana',
     empty_list: 'Lista de la compra adaptada: selecciona un menú o añade recetas desde la pestaña Recetas.',
     copied: 'Lista copiada al portapapeles', copy_fail: 'No se pudo copiar', copy_unsupported: 'Tu navegador no permite copiar',
     menu_ings: 'Ingredientes del menú',
     profile_title: 'Configuración Nutricional', profile_sub: 'Ajustes directos del motor adaptativo.',
     diet_title: 'Tipo de Dieta Primaria', diet_vegana: 'Vegana', diet_vegetariana: 'Vegetariana', diet_keto: 'Keto',
-    diet_mediterranea: 'Mediterránea', diet_baja: 'Baja en carbohidratos', diet_active: 'Dieta activa',
+    diet_mediterranea: 'Mediterránea', diet_baja: 'Baja en carbohidratos', diet_active: 'Dieta activa', diet_none: 'Ninguna',
+    diet_sub: 'Vegetariana: sin carne ni pescado (sí huevo y lácteos). Vegana: sin ningún producto animal (tampoco huevo, lácteos ni miel).',
     menu_style_title: 'Estilo de Menú', menu_active: 'Menú activo', allergy_title: 'Exclusiones Alérgicas',
     no_gluten: 'Sin gluten', no_gluten_sub: 'Adapta automáticamente el menú',
     no_lactose: 'Sin lactosa', no_lactose_sub: 'Sin lácteos en recetas',
@@ -73,9 +74,9 @@ const I18N = {
     lang_title: 'Idioma / Limbă / Language', lang_sub: 'Toda la app en español, rumano o inglés',
     appearance: 'Apariencia', dark_mode: 'Modo oscuro', dark_sub: 'Cambia el aspecto de la app',
     activate: 'Activar', deactivate: 'Desactivar', print_btn: 'Imprimir / Guardar como PDF',
-    about: 'Acerca de NutriPlan', visits: 'Visitas a la página', visits_sub: 'Personas que han abierto la app',
+    about: 'Acerca de Recetario 365', visits: 'Visitas a la página', visits_sub: 'Personas que han abierto la app',
     legal: 'Aviso legal',
-    legal_text: 'NutriPlan es una aplicación gratuita de uso personal y orientativo. El contenido se ofrece "tal cual", sin garantías. El responsable de la web no se hace responsable del uso que se haga de la información ni de errores u omisiones en recetas, cantidades o datos nutricionales.',
+    legal_text: 'Recetario 365 es una aplicación gratuita de uso personal y orientativo. El contenido se ofrece "tal cual", sin garantías. El responsable de la web no se hace responsable del uso que se haga de la información ni de errores u omisiones en recetas, cantidades o datos nutricionales.',
     privacy: 'Privacidad y datos',
     privacy_t1: 'No se solicita registro ni datos personales. Tus preferencias (dieta, comensales, lista de la compra, favoritos) se guardan solo en tu navegador (localStorage) y no se envían a ningún servidor propio.',
     privacy_t2: 'Para mostrar recetas, fotos y traducciones, la app consulta servicios externos gratuitos (ver Créditos). El contador de visitas guarda únicamente un número total y anónimo, sin identificarte.',
@@ -83,10 +84,10 @@ const I18N = {
     nutri_text: 'La información nutricional, los alérgenos detectados y las adaptaciones por dieta o alergias son orientativos y no sustituyen el consejo de un médico o dietista-nutricionista. Si tienes alergias o intolerancias, verifica siempre los ingredientes de cada producto antes de consumirlo.',
     credits: 'Créditos de datos',
     credits_text: 'Recetas e imágenes: TheMealDB y Wikimedia/Wikipedia. Traducciones: servicios de traducción gratuitos. Iconos: Material Symbols (Google). Contador: abacus.jasoncameron.dev. Cada servicio pertenece a sus respectivos propietarios.',
-    footer: 'NutriPlan · Hecho con 💚 · Uso personal'
+    footer: 'Recetario 365 · Hecho con 💚'
   },
   ro: {
-    app_title: 'NutriPlan — Meniu săptămânal, +1000 de rețete din lume și listă de cumpărături',
+    app_title: 'Recetario 365 — Meniu săptămânal, +1000 de rețete din lume și listă de cumpărături',
     nav_plan: 'Plan', nav_day: 'Azi', nav_recipes: 'Rețete', nav_cart: 'Listă', nav_profile: 'Profil',
     cuisine_es: 'Mâncare Spaniolă', cuisine_ro: 'Mâncare Românească',
     weekly_menu: 'Meniu Săptămânal', change_menu: 'Schimbă meniul',
@@ -124,14 +125,15 @@ const I18N = {
     cart_title: 'Listă de Cumpărături', cart_sub: 'Sugestii inteligente bazate pe planul tău săptămânal.',
     extra_ph: 'Adaugă ceva extra și apasă Enter...', shop_mode: 'Mod de cumpărături', shop_mode_sub: 'Zilnic sau săptămânal',
     daily: 'Zilnic', weekly: 'Săptămânal', copy_btn: 'Copiază',
-    list_header: '🛒 Listă de cumpărături · NutriPlan', from_menu: '— Din meniu —', added_by_you: 'Adăugat de tine',
+    list_header: '🛒 Listă de cumpărături · Recetario 365', from_menu: '— Din meniu —', added_by_you: 'Adăugat de tine',
     clear: 'Golește', for_day: 'pentru o zi', for_week: 'pentru o săptămână',
     empty_list: 'Listă de cumpărături adaptată: alege un meniu sau adaugă rețete din fila Rețete.',
     copied: 'Listă copiată în clipboard', copy_fail: 'Nu s-a putut copia', copy_unsupported: 'Browserul tău nu permite copierea',
     menu_ings: 'Ingredientele meniului',
     profile_title: 'Configurare Nutrițională', profile_sub: 'Setări directe ale motorului adaptiv.',
     diet_title: 'Tip de Dietă Principală', diet_vegana: 'Vegană', diet_vegetariana: 'Vegetariană', diet_keto: 'Keto',
-    diet_mediterranea: 'Mediteraneană', diet_baja: 'Săracă în carbohidrați', diet_active: 'Dietă activă',
+    diet_mediterranea: 'Mediteraneană', diet_baja: 'Săracă în carbohidrați', diet_active: 'Dietă activă', diet_none: 'Niciuna',
+    diet_sub: 'Vegetariană: fără carne și pește (dar cu ouă și lactate). Vegană: fără niciun produs animal (fără ouă, lactate sau miere).',
     menu_style_title: 'Stil de Meniu', menu_active: 'Meniu activ', allergy_title: 'Excluderi Alergice',
     no_gluten: 'Fără gluten', no_gluten_sub: 'Adaptează automat meniul',
     no_lactose: 'Fără lactoză', no_lactose_sub: 'Fără lactate în rețete',
@@ -144,9 +146,9 @@ const I18N = {
     lang_title: 'Limbă / Idioma / Language', lang_sub: 'Toată aplicația în spaniolă, română sau engleză',
     appearance: 'Aspect', dark_mode: 'Mod întunecat', dark_sub: 'Schimbă aspectul aplicației',
     activate: 'Activează', deactivate: 'Dezactivează', print_btn: 'Tipărește / Salvează ca PDF',
-    about: 'Despre NutriPlan', visits: 'Vizite pe pagină', visits_sub: 'Persoane care au deschis aplicația',
+    about: 'Despre Recetario 365', visits: 'Vizite pe pagină', visits_sub: 'Persoane care au deschis aplicația',
     legal: 'Aviz legal',
-    legal_text: 'NutriPlan este o aplicație gratuită de uz personal și orientativ. Conținutul este oferit "ca atare", fără garanții. Responsabilul site-ului nu răspunde pentru folosirea informațiilor și nici pentru erori sau omisiuni în rețete, cantități sau date nutriționale.',
+    legal_text: 'Recetario 365 este o aplicație gratuită de uz personal și orientativ. Conținutul este oferit "ca atare", fără garanții. Responsabilul site-ului nu răspunde pentru folosirea informațiilor și nici pentru erori sau omisiuni în rețete, cantități sau date nutriționale.',
     privacy: 'Confidențialitate și date',
     privacy_t1: 'Nu se cere înregistrare și nici date personale. Preferințele tale (dietă, persoane, listă de cumpărături, favorite) se salvează doar în browserul tău (localStorage) și nu se trimit către niciun server propriu.',
     privacy_t2: 'Pentru a afișa rețete, fotografii și traduceri, aplicația folosește servicii externe gratuite (vezi Credite). Contorul de vizite păstrează doar un număr total și anonim, fără să te identifice.',
@@ -154,10 +156,10 @@ const I18N = {
     nutri_text: 'Informațiile nutriționale, alergenii detectați și adaptările pentru diete sau alergii sunt orientative și nu înlocuiesc sfatul unui medic sau dietetician-nutriționist. Dacă ai alergii sau intoleranțe, verifică întotdeauna ingredientele fiecărui produs înainte de a-l consuma.',
     credits: 'Credite de date',
     credits_text: 'Rețete și imagini: TheMealDB și Wikimedia/Wikipedia. Traduceri: servicii gratuite de traducere. Pictograme: Material Symbols (Google). Contor: abacus.jasoncameron.dev. Fiecare serviciu aparține proprietarilor săi.',
-    footer: 'NutriPlan · Făcut cu 💚 · Uz personal'
+    footer: 'Recetario 365 · Făcut cu 💚'
   },
   en: {
-    app_title: 'NutriPlan — Weekly menu, 1000+ world recipes and shopping list',
+    app_title: 'Recetario 365 — Weekly menu, 1000+ world recipes and shopping list',
     nav_plan: 'Plan', nav_day: 'Today', nav_recipes: 'Recipes', nav_cart: 'List', nav_profile: 'Profile',
     cuisine_es: 'Spanish Food', cuisine_ro: 'Romanian Food',
     weekly_menu: 'Weekly Menu', change_menu: 'Change menu',
@@ -195,14 +197,15 @@ const I18N = {
     cart_title: 'Shopping List', cart_sub: 'Smart suggestions based on your weekly plan.',
     extra_ph: 'Add something extra and press Enter...', shop_mode: 'Shopping mode', shop_mode_sub: 'Daily or weekly',
     daily: 'Daily', weekly: 'Weekly', copy_btn: 'Copy',
-    list_header: '🛒 Shopping list · NutriPlan', from_menu: '— From the menu —', added_by_you: 'Added by you',
+    list_header: '🛒 Shopping list · Recetario 365', from_menu: '— From the menu —', added_by_you: 'Added by you',
     clear: 'Clear', for_day: 'for one day', for_week: 'for one week',
     empty_list: 'Adaptive shopping list: pick a menu or add recipes from the Recipes tab.',
     copied: 'List copied to clipboard', copy_fail: 'Could not copy', copy_unsupported: 'Your browser does not allow copying',
     menu_ings: 'Menu ingredients',
     profile_title: 'Nutrition Settings', profile_sub: 'Direct controls of the adaptive engine.',
     diet_title: 'Primary Diet Type', diet_vegana: 'Vegan', diet_vegetariana: 'Vegetarian', diet_keto: 'Keto',
-    diet_mediterranea: 'Mediterranean', diet_baja: 'Low carb', diet_active: 'Active diet',
+    diet_mediterranea: 'Mediterranean', diet_baja: 'Low carb', diet_active: 'Active diet', diet_none: 'None',
+    diet_sub: 'Vegetarian: no meat or fish (eggs and dairy are fine). Vegan: no animal products at all (no eggs, dairy or honey).',
     menu_style_title: 'Menu Style', menu_active: 'Active menu', allergy_title: 'Allergy Exclusions',
     no_gluten: 'Gluten free', no_gluten_sub: 'Adapts the menu automatically',
     no_lactose: 'Lactose free', no_lactose_sub: 'No dairy in recipes',
@@ -215,9 +218,9 @@ const I18N = {
     lang_title: 'Language / Idioma / Limbă', lang_sub: 'The whole app in Spanish, Romanian or English',
     appearance: 'Appearance', dark_mode: 'Dark mode', dark_sub: 'Changes the look of the app',
     activate: 'Turn on', deactivate: 'Turn off', print_btn: 'Print / Save as PDF',
-    about: 'About NutriPlan', visits: 'Page visits', visits_sub: 'People who have opened the app',
+    about: 'About Recetario 365', visits: 'Page visits', visits_sub: 'People who have opened the app',
     legal: 'Legal notice',
-    legal_text: 'NutriPlan is a free app for personal, informational use. The content is provided "as is", without warranties. The site owner is not responsible for the use of this information or for errors or omissions in recipes, quantities or nutrition data.',
+    legal_text: 'Recetario 365 is a free app for personal, informational use. The content is provided "as is", without warranties. The site owner is not responsible for the use of this information or for errors or omissions in recipes, quantities or nutrition data.',
     privacy: 'Privacy and data',
     privacy_t1: 'No sign-up or personal data is requested. Your preferences (diet, diners, shopping list, favourites) are stored only in your browser (localStorage) and are never sent to any server of our own.',
     privacy_t2: 'To show recipes, photos and translations, the app uses free external services (see Credits). The visit counter stores only an anonymous total number, without identifying you.',
@@ -225,7 +228,7 @@ const I18N = {
     nutri_text: 'Nutrition information, detected allergens and diet or allergy adaptations are indicative and do not replace the advice of a doctor or registered dietitian. If you have allergies or intolerances, always check the ingredients of every product before eating it.',
     credits: 'Data credits',
     credits_text: 'Recipes and images: TheMealDB and Wikimedia/Wikipedia. Translations: free translation services. Icons: Material Symbols (Google). Counter: abacus.jasoncameron.dev. Each service belongs to its respective owners.',
-    footer: 'NutriPlan · Made with 💚 · Personal use'
+    footer: 'Recetario 365 · Made with 💚'
   }
 };
 
@@ -623,7 +626,152 @@ function hydrateLazyImages(root) {
 const JUICE_LOOK = {
   Zumo: { emoji: '🍊', bg: 'linear-gradient(135deg,#ffe0b2,#ffb74d)' },
   Batido: { emoji: '🥤', bg: 'linear-gradient(135deg,#f8bbd0,#f48fb1)' },
-  Smoothie: { emoji: '🍓', bg: 'linear-gradient(135deg,#c8e6c9,#81c784)' }
+  Smoothie: { emoji: '🍓', bg: 'linear-gradient(135deg,#c8e6c9,#81c784)' },
+  Agua: { emoji: '💧', bg: 'linear-gradient(135deg,#b3e5fc,#4fc3f7)' },
+  Verde: { emoji: '🥬', bg: 'linear-gradient(135deg,#dcedc8,#9ccc65)' },
+  Te: { emoji: '🍵', bg: 'linear-gradient(135deg,#ffe0b2,#ffcc80)' },
+  Compota: { emoji: '🍎', bg: 'linear-gradient(135deg,#ffcdd2,#e57373)' },
+  Limonada: { emoji: '🍋', bg: 'linear-gradient(135deg,#fff9c4,#fff176)' }
+};
+
+// Detalle completo de cada líquido nutritivo del menú (ingredientes con
+// cantidades, preparación y beneficios). La clave es el nombre original tal
+// como aparece en menuData; el contenido está en su idioma de origen (español
+// para los platos del menú ES, rumano para los del menú RO) y build_i18n.py lo
+// traduce a los demás idiomas. ES JSON válido (lo lee también build_i18n.py).
+const LIQUID_DETAILS = {
+  "Agua de limón detox": { "type": "Agua",
+    "ingredients": ["1 limón (su zumo)", "300 ml de agua templada", "1 trozo (1 cm) de jengibre rallado", "1 cucharadita de miel"],
+    "prep": "Exprime el limón en el agua templada, añade el jengibre rallado y la miel y remueve bien. Tómala en ayunas para activar el hígado y la digestión.",
+    "benefitsText": "El limón en ayunas estimula la producción de bilis y aporta vitamina C; el jengibre ayuda a la digestión y la miel suaviza el sabor." },
+  "Agua infusionada limón": { "type": "Agua",
+    "ingredients": ["1 limón en rodajas", "1 litro de agua", "1 trozo (2 cm) de jengibre en láminas"],
+    "prep": "Pon las rodajas de limón y el jengibre en una jarra con el agua y deja infusionar 2 horas en la nevera. Bebe a lo largo del día.",
+    "benefitsText": "Una forma suave de hidratarse con un extra de vitamina C y antioxidantes que favorecen la depuración del hígado." },
+  "Agua infusionada menta": { "type": "Agua",
+    "ingredients": ["1/2 pepino en rodajas", "10 hojas de menta", "1/2 limón en rodajas", "1 litro de agua fría"],
+    "prep": "Mezcla el pepino, la menta y el limón en una jarra con agua fría y deja reposar 1 hora. Sirve con hielo.",
+    "benefitsText": "El pepino hidrata con muy pocas calorías y la menta calma el estómago y facilita la digestión." },
+  "Batido de avena y canela": { "type": "Batido",
+    "ingredients": ["4 cucharadas de copos de avena", "1 manzana", "300 ml de leche o bebida vegetal", "1 cucharadita de canela", "1 cucharadita de miel"],
+    "prep": "Bate la avena con la manzana troceada, la leche, la canela y la miel 1 minuto. Deja reposar 5 minutos para que espese.",
+    "benefitsText": "La fibra beta-glucano de la avena regula el tránsito y sacia; la canela ayuda a controlar el azúcar en sangre." },
+  "Batido de coco y jengibre": { "type": "Batido",
+    "ingredients": ["200 ml de leche de coco", "1 plátano", "1 trozo (1 cm) de jengibre", "1 cucharadita de canela", "hielo"],
+    "prep": "Bate la leche de coco con el plátano, el jengibre pelado y la canela hasta que quede cremoso. Sirve con hielo.",
+    "benefitsText": "El jengibre y la canela tienen efecto antiinflamatorio y las grasas del coco aportan energía estable." },
+  "Batido de pera y manzana": { "type": "Batido",
+    "ingredients": ["1 pera madura", "1 manzana", "200 ml de agua o leche vegetal", "1 cucharadita de miel", "zumo de 1/2 limón"],
+    "prep": "Pela y trocea la pera y la manzana y bate con el agua, la miel y el limón hasta que quede fino.",
+    "benefitsText": "La pera y la manzana aportan fibra soluble (pectina) que cuida la flora intestinal y suaviza la digestión." },
+  "Batido Verde Detox": { "type": "Batido",
+    "ingredients": ["100 g de espinacas frescas", "200 g de piña", "1 trozo (1 cm) de jengibre", "250 ml de agua de coco", "zumo de 1/2 limón"],
+    "prep": "Lava las espinacas, trocea la piña y bate todo con el agua de coco, el jengibre y el limón 1 minuto.",
+    "benefitsText": "La clorofila de la espinaca y la bromelina de la piña apoyan la depuración del hígado y la digestión." },
+  "Jugo antioxidante": { "type": "Zumo",
+    "ingredients": ["100 g de arándanos", "1/2 granada (sus granos)", "150 ml de agua", "zumo de 1/2 limón"],
+    "prep": "Tritura los arándanos y la granada con el agua y el limón y cuela. Bebe recién hecho.",
+    "benefitsText": "Arándanos y granada están entre las frutas con más antocianinas, antioxidantes que protegen las células y el corazón." },
+  "Jugo cítrico energético": { "type": "Zumo",
+    "ingredients": ["2 naranjas", "1 limón", "1 trozo (1 cm) de jengibre", "1 cucharadita de miel"],
+    "prep": "Exprime las naranjas y el limón, añade el jengibre rallado y la miel y remueve. Tómalo recién hecho por la mañana.",
+    "benefitsText": "Triple aporte de vitamina C que reduce el cansancio, con jengibre que activa la circulación y da un empujón de energía." },
+  "Jugo de granada y moras": { "type": "Zumo",
+    "ingredients": ["1 granada (sus granos)", "100 g de moras", "zumo de 1/2 limón", "100 ml de agua"],
+    "prep": "Tritura la granada y las moras con el agua y el limón y cuela para retirar las pepitas. Sirve frío.",
+    "benefitsText": "Combinación muy rica en polifenoles antioxidantes que ayudan a proteger el corazón y combatir el envejecimiento celular." },
+  "Jugo de kale y espinaca": { "type": "Verde",
+    "ingredients": ["50 g de kale", "50 g de espinacas", "1 manzana verde", "zumo de 1 limón", "200 ml de agua fría"],
+    "prep": "Lava bien las hojas, trocea la manzana y licúa o tritura todo con el agua y el limón. Cuela si lo prefieres más fino.",
+    "benefitsText": "Kale y espinaca aportan hierro, folatos y vitaminas A, C y K que refuerzan las defensas y la salud de la sangre." },
+  "Jugo de manzana verde": { "type": "Verde",
+    "ingredients": ["2 manzanas verdes", "1 trozo (1 cm) de jengibre", "zumo de 1/2 limón", "150 ml de agua"],
+    "prep": "Trocea las manzanas y licúa con el jengibre, el agua y el limón. Bebe recién hecho para aprovechar las enzimas.",
+    "benefitsText": "La manzana verde es rica en fibra y baja en azúcar; con el jengibre favorece una digestión ligera." },
+  "Jugo de remolacha y jengibre": { "type": "Zumo",
+    "ingredients": ["1 remolacha cruda pelada", "1 naranja", "1 trozo (2 cm) de jengibre", "150 ml de agua"],
+    "prep": "Trocea la remolacha, licúa con el jengibre y mezcla con el zumo de la naranja y el agua. Cuela y sirve frío.",
+    "benefitsText": "Los nitratos de la remolacha mejoran la circulación y apoyan la función del hígado en la depuración." },
+  "Jugo de zanahoria": { "type": "Zumo",
+    "ingredients": ["4 zanahorias", "1 naranja", "1 trozo (1 cm) de jengibre (opcional)"],
+    "prep": "Licúa las zanahorias y mezcla con el zumo de la naranja. Añade jengibre si quieres un toque picante. Sirve frío.",
+    "benefitsText": "El betacaroteno de la zanahoria se convierte en vitamina A (vista y piel) y la naranja aporta energía y vitamina C." },
+  "Jugo verde depurativo": { "type": "Verde",
+    "ingredients": ["1 manzana verde", "2 ramas de apio", "1 puñado de perejil", "1/2 pepino", "200 ml de agua fría"],
+    "prep": "Lava y trocea todo y licúa o tritura con el agua. Cuela y bebe en el momento.",
+    "benefitsText": "Apio y perejil tienen un efecto diurético natural que ayuda a eliminar líquidos retenidos y a depurar el organismo." },
+  "Smoothie antiinflamatorio": { "type": "Smoothie",
+    "ingredients": ["1 plátano", "1 cucharadita de cúrcuma", "una pizca de pimienta negra", "250 ml de leche de coco", "1 cucharadita de miel"],
+    "prep": "Bate todo 1 minuto. La pizca de pimienta no se nota pero multiplica la absorción de la cúrcuma.",
+    "benefitsText": "La curcumina de la cúrcuma es uno de los antiinflamatorios naturales más estudiados; con grasa y pimienta se absorbe mucho mejor." },
+  "Smoothie de cúrcuma dorada": { "type": "Smoothie",
+    "ingredients": ["1 mango", "1 cucharadita de cúrcuma", "una pizca de pimienta negra", "250 ml de leche de coco", "1 cucharadita de miel"],
+    "prep": "Pela y trocea el mango y bate con la leche de coco, la cúrcuma, la pimienta y la miel hasta que quede sedoso.",
+    "benefitsText": "Versión tropical del 'golden milk': cúrcuma antiinflamatoria con la vitamina A del mango y las grasas saludables del coco." },
+  "Smoothie de frutos rojos": { "type": "Smoothie",
+    "ingredients": ["200 g de frutos rojos", "1 yogur natural", "1 cucharada de miel", "100 ml de leche"],
+    "prep": "Bate los frutos rojos con el yogur, la leche y la miel. Con fruta congelada queda como un sorbete cremoso.",
+    "benefitsText": "Las antocianinas de los frutos rojos tienen efecto antiinflamatorio y antioxidante; el yogur aporta probióticos para la flora." },
+  "Smoothie de pepino y menta": { "type": "Smoothie",
+    "ingredients": ["1/2 pepino", "10 hojas de menta", "zumo de 1/2 limón", "1 yogur natural", "150 ml de agua fría"],
+    "prep": "Bate el pepino con la menta, el limón, el yogur y el agua hasta que quede fino y refrescante. Sirve muy frío.",
+    "benefitsText": "El pepino hidrata y refresca y la menta calma el estómago: ideal después de las comidas pesadas." },
+  "Smoothie de recuperación": { "type": "Smoothie",
+    "ingredients": ["1 plátano", "1 cucharada de proteína o crema de almendra", "250 ml de leche o bebida de almendras", "1 cucharada de cacao puro (opcional)", "hielo"],
+    "prep": "Bate el plátano con la proteína (o la crema de almendra), la leche y el hielo hasta que quede cremoso. Tómalo tras entrenar.",
+    "benefitsText": "Proteína para reparar el músculo y potasio del plátano para reponer las sales perdidas tras el ejercicio." },
+  "Smoothie tropical premium": { "type": "Smoothie",
+    "ingredients": ["150 g de mango", "1 plátano", "200 ml de leche de coco", "1 cucharada de semillas de chía", "zumo de 1/2 lima"],
+    "prep": "Bate el mango y el plátano con la leche de coco y la lima 1 minuto. Añade la chía, remueve y deja reposar 5 minutos.",
+    "benefitsText": "Mango y plátano aportan energía y potasio y la chía suma fibra y omega-3 para un empujón completo." },
+  "Ceai de cătină": { "type": "Te",
+    "ingredients": ["2 linguri de cătină (fructe sau pulbere)", "300 ml apă fierbinte", "1 linguriță de miere"],
+    "prep": "Zdrobește cătina, toarnă apa fierbinte (nu clocotită, ca să nu distrugă vitamina C) și lasă la infuzat 10 minute. Strecoară și îndulcește cu miere.",
+    "benefitsText": "Cătina are de câteva ori mai multă vitamina C decât citricele și întărește imunitatea, mai ales iarna." },
+  "Ceai de mușețel": { "type": "Te",
+    "ingredients": ["2 lingurițe de flori de mușețel", "250 ml apă fierbinte", "1 linguriță de miere"],
+    "prep": "Opărește florile de mușețel cu apa fierbinte și lasă acoperit 5-7 minute. Strecoară și bea cald, eventual cu miere.",
+    "benefitsText": "Mușețelul calmează stomacul și reduce balonarea; este și ușor relaxant, potrivit seara." },
+  "Ceai de tei": { "type": "Te",
+    "ingredients": ["2 lingurițe de flori de tei", "250 ml apă fierbinte", "1 linguriță de miere"],
+    "prep": "Infuzează florile de tei în apa fierbinte 7-10 minute, acoperit. Strecoară și bea cald înainte de culcare.",
+    "benefitsText": "Teiul are efect calmant și ajută la un somn liniștit; este și ușor sudorific când ești răcit." },
+  "Compot de mere": { "type": "Compota",
+    "ingredients": ["4 mere", "1 litru de apă", "1 baton de scorțișoară", "2 linguri de zahăr sau miere"],
+    "prep": "Taie merele felii, fierbe-le în apă cu scorțișoara 15 minute, îndulcește la final și lasă să se răcească.",
+    "benefitsText": "Băutură tradițională ușoară, cu fibre din mere și scorțișoară care ajută digestia și echilibrul glicemiei." },
+  "Compot de prune": { "type": "Compota",
+    "ingredients": ["400 g de prune", "1 litru de apă", "1 baton de scorțișoară", "2 linguri de zahăr"],
+    "prep": "Fierbe prunele întregi în apă cu scorțișoara 15-20 de minute, îndulcește și lasă la rece.",
+    "benefitsText": "Prunele sunt cunoscute pentru efectul lor ușor laxativ și bogăția în fibre care reglează tranzitul intestinal." },
+  "Compot de vișine": { "type": "Compota",
+    "ingredients": ["400 g de vișine", "1 litru de apă", "2-3 linguri de zahăr sau miere"],
+    "prep": "Fierbe vișinele în apă 10-15 minute, îndulcește după gust și răcește bine înainte de servire.",
+    "benefitsText": "Vișinele sunt bogate în antociani, antioxidanți care reduc inflamația și susțin somnul prin melatonina naturală." },
+  "Limonadă cu ghimbir": { "type": "Limonada",
+    "ingredients": ["2 lămâi (sucul lor)", "500 ml apă rece", "1 bucată (2 cm) de ghimbir ras", "1 lingură de miere", "gheață"],
+    "prep": "Amestecă sucul de lămâie cu apa, ghimbirul ras și mierea până se dizolvă. Servește cu gheață.",
+    "benefitsText": "Vitamina C din lămâie și ghimbirul activează circulația și dau energie, fără zahărul din sucurile carbogazoase." },
+  "Limonadă cu mentă": { "type": "Limonada",
+    "ingredients": ["2 lămâi (sucul lor)", "500 ml apă rece", "10 frunze de mentă", "1 lingură de miere", "gheață"],
+    "prep": "Amestecă sucul de lămâie cu apa și mierea, adaugă menta zdrobită ușor și gheața. Servește rece.",
+    "benefitsText": "Răcoritoare și hidratantă, cu vitamina C din lămâie și menta care calmează stomacul." },
+  "Suc de mere și morcov": { "type": "Zumo",
+    "ingredients": ["2 mere", "3 morcovi", "puțin suc de lămâie", "100 ml apă"],
+    "prep": "Dă merele și morcovii prin storcător sau blender cu apa, adaugă lămâia și strecoară. Bea proaspăt.",
+    "benefitsText": "Betacarotenul din morcov și fibrele din mere oferă energie și susțin vederea și pielea." },
+  "Suc de morcov": { "type": "Zumo",
+    "ingredients": ["4 morcovi", "1 portocală", "puțin ghimbir (opțional)"],
+    "prep": "Stoarce morcovii și amestecă cu sucul de portocală. Adaugă ghimbir pentru un plus de aromă. Servește rece.",
+    "benefitsText": "Sursă bogată de betacaroten (vitamina A) pentru vedere și piele, cu energie din portocală." },
+  "Suc de sfeclă": { "type": "Zumo",
+    "ingredients": ["1 sfeclă crudă curățată", "2 morcovi", "puțin suc de lămâie", "150 ml apă"],
+    "prep": "Taie sfecla și morcovii, dă-le prin storcător sau blender cu apa, adaugă lămâia și strecoară.",
+    "benefitsText": "Nitrații din sfeclă îmbunătățesc circulația și susțin ficatul în procesul de detoxifiere." },
+  "Suc verde": { "type": "Verde",
+    "ingredients": ["un pumn de spanac", "1 măr verde", "sucul de la 1 lămâie", "200 ml apă rece"],
+    "prep": "Spală spanacul, taie mărul și pasează totul cu apa și lămâia. Strecoară dacă preferi mai fin și bea imediat.",
+    "benefitsText": "Clorofila din spanac și vitamina C din lămâie ajută la depurarea organismului și dau o doză bună de minerale." }
 };
 
 // HTML de la foto de un plato. Si trae `image` la usa directa; si no, carga diferida.
@@ -1288,7 +1436,8 @@ function adaptRecipeText(text) {
 
 function getAdaptationNote() {
   const activeIntolerances = Object.keys(currentIntolerances).filter(key => currentIntolerances[key]);
-  if (activeIntolerances.length === 0 && currentDiet === 'mediterranea') {
+  // Sin dieta (null) o Mediterránea = sin restricciones: nota neutra de temporada.
+  if (activeIntolerances.length === 0 && (!currentDiet || currentDiet === 'mediterranea')) {
     return t('season_products');
   }
 
@@ -1340,11 +1489,16 @@ function restoreState() {
   if (typeof s.currentServings === 'number') currentServings = s.currentServings;
   if (s.currentMealServings) currentMealServings = s.currentMealServings;
   if (s.shoppingMode) shoppingMode = s.shoppingMode;
-  if (s.currentDiet) {
-    // Nombres antiguos guardados -> identificadores nuevos sin acentos.
-    const dietAliases = { 'mediterránea': 'mediterranea', 'baja en carbohidratos': 'baja' };
-    currentDiet = dietAliases[s.currentDiet] || s.currentDiet;
-    if (!(currentDiet in dietRules)) currentDiet = 'mediterranea';
+  if ('currentDiet' in s) {
+    if (!s.currentDiet) {
+      // Dieta deseleccionada (null/none): se respeta y no se fuerza una por defecto.
+      currentDiet = null;
+    } else {
+      // Nombres antiguos guardados -> identificadores nuevos sin acentos.
+      const dietAliases = { 'mediterránea': 'mediterranea', 'baja en carbohidratos': 'baja' };
+      currentDiet = dietAliases[s.currentDiet] || s.currentDiet;
+      if (!(currentDiet in dietRules)) currentDiet = 'mediterranea';
+    }
   }
   if (s.currentMenuStyle) currentMenuStyle = s.currentMenuStyle;
   if (s.currentIntolerances) currentIntolerances = s.currentIntolerances;
@@ -1460,6 +1614,11 @@ function switchView(viewId) {
   document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active-nav'));
   const activeBtn = document.getElementById(`nav-${viewId}`);
   if (activeBtn) activeBtn.classList.add('active-nav');
+
+  // Sube al principio: si se pulsa un botón situado al final de una vista (p. ej.
+  // "Ver menú del día"), la nueva sección debe verse desde arriba y no dejar la
+  // página desplazada en una zona vacía (parecía que el botón no hacía nada).
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 
   if (viewId === 'catalog') openCatalog();
 }
@@ -1717,10 +1876,41 @@ function loadDayDetails() {
   const liquidsContainer = document.getElementById('liquids-container');
   liquidsContainer.innerHTML = getCurrentDayData().liquids.map(liquid => {
     const tr = trDish(liquid.name);
+    const det = LIQUID_DETAILS[liquid.name] || {};
+    const title = cap(tr ? tr.t : liquid.name);
+    const value = tr && tr.v ? tr.v : liquid.value;
+    // Detalle traducido si existe; si no, el de origen en LIQUID_DETAILS.
+    const ingredients = tr && tr.i && tr.i.length ? tr.i : (det.ingredients || []);
+    const prep = tr && tr.s ? tr.s : (det.prep || '');
+    const benefitsText = tr && tr.b ? tr.b : (det.benefitsText || '');
+    const look = JUICE_LOOK[det.type] || JUICE_LOOK.Zumo;
     return `
     <div class="rounded-3xl bg-surface-container-low p-4">
-      <p class="font-label-md text-label-md text-on-surface-variant">${cap(tr ? tr.t : liquid.name)}</p>
-      <p class="font-body-md text-body-md text-on-surface mt-1">${tr && tr.v ? tr.v : liquid.value}</p>
+      <div class="flex items-start gap-3">
+        <div class="shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center" style="background:${look.bg};"><span style="font-size:26px;">${look.emoji}</span></div>
+        <div class="min-w-0">
+          <p class="font-label-md text-label-md text-on-surface-variant">${title}</p>
+          <p class="font-body-md text-body-md text-on-surface mt-1">${value}</p>
+        </div>
+      </div>
+      ${ingredients.length ? `
+        <div class="mt-3 text-label-md text-on-surface-variant">
+          <p class="font-semibold">${t('ingredients')}</p>
+          <ul class="list-disc list-inside mt-1 space-y-1">
+            ${ingredients.map(i => `<li>${escapeHtml(i)}</li>`).join('')}
+          </ul>
+        </div>` : ''}
+      ${prep ? `
+        <div class="mt-3 text-label-md text-on-surface-variant">
+          <p class="font-semibold">${t('preparation')}</p>
+          ${instructionStepsHTML(prep)}
+        </div>` : ''}
+      ${benefitsText ? `
+        <div class="mt-3 p-3 rounded-2xl bg-secondary-container">
+          <p class="text-label-sm font-semibold text-on-secondary-container">${t('benefit')}</p>
+          <p class="text-body-md text-on-secondary-container mt-1">${escapeHtml(benefitsText)}</p>
+        </div>` : ''}
+      ${det.type ? videoLinkHTML(liquid.name) : ''}
     </div>
   `;
   }).join('');
@@ -1768,11 +1958,17 @@ function renderDietSelection() {
       button.classList.toggle('active-diet', diet === currentDiet);
     }
   });
-  document.getElementById('diet-summary').innerText = `${t('diet_active')}: ${t('diet_' + currentDiet)}`;
+  const dietLabel = currentDiet ? t('diet_' + currentDiet) : t('diet_none');
+  document.getElementById('diet-summary').innerText = `${t('diet_active')}: ${dietLabel}`;
 }
 
 function setMenuStyle(style) {
   currentMenuStyle = style;
+  // Al elegir un estilo de menú (Saludable o Normal) se deselecciona la dieta
+  // primaria: el estilo ya define las pautas y mantener además una dieta concreta
+  // resulta redundante y confuso. El usuario puede volver a elegir una dieta si quiere.
+  currentDiet = null;
+  renderDietSelection();
   renderMenuStyleSelection();
   loadDayDetails();
 }
