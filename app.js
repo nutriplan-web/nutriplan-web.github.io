@@ -17,7 +17,7 @@ const I18N = {
   es: {
     app_title: 'Recetario 365 — Menú semanal, +1000 recetas del mundo y lista de la compra',
     nav_plan: 'Plan', nav_day: 'Día', nav_recipes: 'Recetas', nav_cart: 'Lista', nav_profile: 'Perfil',
-    nav_secciones: 'Colecciones', nav_inicio: 'Inicio', nav_hosteleria: 'Hostelería',
+    nav_secciones: 'Colecciones', nav_inicio: 'Inicio', nav_hosteleria: 'Hostelería', nav_fridge: 'Nevera',
     inicio_hero_title: '¿Qué cocinamos hoy?',
     inicio_hero_sub: 'Más de 1100 recetas, menú semanal y tus colecciones, todo en un sitio.',
     inicio_search_ph: 'Busca cualquier plato o ingrediente: pollo, gazpacho, lentejas...',
@@ -36,6 +36,7 @@ const I18N = {
     fridge_clear: 'Vaciar', fridge_empty: 'Añade ingredientes de tu nevera para ver recetas que puedes hacer.',
     fridge_none: 'No encontramos recetas con esos ingredientes. Prueba con otros más comunes.',
     fridge_missing: 'Te falta', fridge_match: 'coincidencia', fridge_have_all: '¡Tienes todo!',
+    fridge_pantry: 'Tengo lo básico (sal, aceite, agua…)', fridge_quick: 'Añade rápido:', fridge_surprise: 'Sorpréndeme', fridge_can_make: '✓ ¡Puedes hacerlo ya!',
     hosteleria_title: 'Ideas para hostelería',
     hosteleria_sub: 'Tapas, aperitivos, sopas y ensaladas para tu carta. Toca una colección para ver recetas y cantidades.',
     hosteleria_note: 'Las cantidades de cada receta se ajustan por raciones en su ficha. Contenido orientativo.',
@@ -125,7 +126,7 @@ const I18N = {
   ro: {
     app_title: 'Recetario 365 — Meniu săptămânal, +1000 de rețete din lume și listă de cumpărături',
     nav_plan: 'Plan', nav_day: 'Azi', nav_recipes: 'Rețete', nav_cart: 'Listă', nav_profile: 'Profil',
-    nav_secciones: 'Colecții', nav_inicio: 'Acasă', nav_hosteleria: 'HoReCa',
+    nav_secciones: 'Colecții', nav_inicio: 'Acasă', nav_hosteleria: 'HoReCa', nav_fridge: 'Frigider',
     inicio_hero_title: 'Ce gătim azi?',
     inicio_hero_sub: 'Peste 1100 de rețete, meniu săptămânal și colecțiile tale, totul într-un loc.',
     inicio_search_ph: 'Caută orice fel sau ingredient: pui, gazpacho, linte...',
@@ -144,6 +145,7 @@ const I18N = {
     fridge_clear: 'Golește', fridge_empty: 'Adaugă ingrediente din frigider ca să vezi rețete pe care le poți face.',
     fridge_none: 'Nu am găsit rețete cu acele ingrediente. Încearcă altele mai comune.',
     fridge_missing: 'Îți lipsește', fridge_match: 'potrivire', fridge_have_all: 'Ai tot ce trebuie!',
+    fridge_pantry: 'Am baza (sare, ulei, apă…)', fridge_quick: 'Adaugă rapid:', fridge_surprise: 'Surprinde-mă', fridge_can_make: '✓ Îl poți face acum!',
     hosteleria_title: 'Idei pentru HoReCa',
     hosteleria_sub: 'Tapas, aperitive, supe și salate pentru meniul tău. Atinge o colecție pentru rețete și cantități.',
     hosteleria_note: 'Cantitățile fiecărei rețete se ajustează pe porții în fișă. Conținut orientativ.',
@@ -233,7 +235,7 @@ const I18N = {
   en: {
     app_title: 'Recetario 365 — Weekly menu, 1000+ world recipes and shopping list',
     nav_plan: 'Plan', nav_day: 'Today', nav_recipes: 'Recipes', nav_cart: 'List', nav_profile: 'Profile',
-    nav_secciones: 'Collections', nav_inicio: 'Home', nav_hosteleria: 'Catering',
+    nav_secciones: 'Collections', nav_inicio: 'Home', nav_hosteleria: 'Catering', nav_fridge: 'Fridge',
     inicio_hero_title: 'What shall we cook today?',
     inicio_hero_sub: 'Over 1100 recipes, a weekly menu and your collections, all in one place.',
     inicio_search_ph: 'Search any dish or ingredient: chicken, gazpacho, lentils...',
@@ -252,6 +254,7 @@ const I18N = {
     fridge_clear: 'Clear', fridge_empty: 'Add ingredients from your fridge to see recipes you can make.',
     fridge_none: 'No recipes found with those ingredients. Try more common ones.',
     fridge_missing: 'Missing', fridge_match: 'match', fridge_have_all: 'You have it all!',
+    fridge_pantry: 'I have the basics (salt, oil, water…)', fridge_quick: 'Quick add:', fridge_surprise: 'Surprise me', fridge_can_make: '✓ You can make it now!',
     hosteleria_title: 'Catering ideas',
     hosteleria_sub: 'Tapas, appetizers, soups and salads for your menu. Tap a collection for recipes and quantities.',
     hosteleria_note: 'Each recipe scales by servings on its card. Indicative content.',
@@ -1806,6 +1809,30 @@ function renderInicio() {
 
 // --- Cocina con lo que tengo (nevera) --------------------------------------
 let fridgeItems = [];
+let fridgePantry = true;        // se asume despensa básica (sal, aceite, agua…)
+let fridgeLastResults = [];     // memoria para "Sorpréndeme"
+
+// Ingredientes comunes para añadir con un toque (sin teclear).
+const FRIDGE_QUICK = ['Huevos', 'Pollo', 'Arroz', 'Pasta', 'Patata', 'Tomate', 'Cebolla', 'Ajo', 'Queso', 'Atún', 'Leche', 'Harina', 'Zanahoria', 'Pimiento', 'Garbanzos', 'Champiñones'];
+// Básicos de despensa: cuando el toggle está activo, no cuentan como "te falta".
+const FRIDGE_PANTRY = ['sal', 'aceite', 'agua', 'pimienta', 'azucar', 'vinagre', 'especias'];
+const FRIDGE_UNITS = /\b(g|kg|gr|gramos?|ml|l|cl|dl|litros?|cucharad[ao]s?|cucharadit[ao]s?|cda|cdta|taz[ao]s?|vasos?|pizcas?|punad[oa]s?|dientes?|rodajas?|rebanadas?|lonchas?|latas?|botes?|sobres?|ramas?|hojas?|unidades?|ud|uds|piezas?)\b/g;
+
+// Nombre "limpio" de un ingrediente: sin cantidades, unidades ni conectores.
+function ingredientCoreName(line) {
+  let s = normalizeText(typeof line === 'string' ? line : (line && line.name ? line.name : ''));
+  s = s.replace(/\([^)]*\)/g, ' ').replace(/[0-9]+([.,/][0-9]+)?/g, ' ').replace(FRIDGE_UNITS, ' ');
+  s = s.replace(/\b(de|del|la|el|los|las|un|una|unos|unas|al|gusto|para|servir|picad[oa]s?|rallad[oa]s?|en|y|o|con|sin|fresc[oa]s?|madur[oa]s?|grandes?|pequen[oa]s?|virgen|extra)\b/g, ' ');
+  return s.replace(/\s+/g, ' ').trim();
+}
+function recipeCores(recipe) { return ingredientLinesES(recipe).map(ingredientCoreName).filter(Boolean); }
+function isPantryCore(core) { return FRIDGE_PANTRY.some(b => core.includes(b)); }
+function coveredByHave(core, have) {
+  if (!core) return true;
+  const words = core.split(' ').filter(w => w.length >= 3);
+  return have.some(h => words.some(w => h.includes(w) || w.includes(h)));
+}
+
 function fridgeAdd(value) {
   const v = (value || '').trim();
   if (!v) return;
@@ -1815,58 +1842,86 @@ function fridgeAdd(value) {
 }
 function fridgeRemove(idx) { fridgeItems.splice(idx, 1); renderFridge(); }
 function fridgeClear() { fridgeItems = []; renderFridge(); }
-
-// Líneas de ingredientes de una receta, normalizadas y robustas ante objetos.
-function recipeHaystack(recipe) {
-  return ingredientLinesES(recipe)
-    .map(l => normalizeText(typeof l === 'string' ? l : (l && l.name ? l.name : '')))
-    .filter(Boolean);
+function fridgeTogglePantry(on) { fridgePantry = on; renderFridge(); }
+function fridgeQuickToggle(name) {
+  const n = normalizeText(name);
+  const i = fridgeItems.findIndex(x => normalizeText(x) === n);
+  if (i >= 0) fridgeItems.splice(i, 1); else fridgeItems.push(name);
+  renderFridge();
+}
+function fridgeSurprise() {
+  const pool = fridgeLastResults.filter(s => s.missCount <= 1);
+  const list = pool.length ? pool : fridgeLastResults;
+  if (!list.length) return;
+  const pick = list[Math.floor(Math.random() * Math.min(list.length, 10))];
+  const tr = trCatalogRecipe(pick.r);
+  inicioSearch(cap(tr && tr.t ? tr.t : pick.r.title));
 }
 
-function renderFridge() {
+function renderFridgeControls() {
   const chips = document.getElementById('fridge-chips');
   if (chips) {
     chips.innerHTML = fridgeItems.map((it, i) =>
-      `<span class="inline-flex items-center gap-1 bg-primary-container/50 text-on-primary-container px-3 py-1.5 rounded-full font-label-md text-label-md">${escapeHtml(it)}<button onclick="fridgeRemove(${i})" class="material-symbols-outlined leading-none" style="font-size:16px;">close</button></span>`
+      `<span class="inline-flex items-center gap-1 bg-primary-container/60 text-on-primary-container px-3 py-1.5 rounded-full font-label-md text-label-md">${escapeHtml(it)}<button onclick="fridgeRemove(${i})" class="material-symbols-outlined leading-none" style="font-size:16px;">close</button></span>`
     ).join('');
   }
+  const quick = document.getElementById('fridge-quick');
+  if (quick) {
+    quick.innerHTML = FRIDGE_QUICK.map(name => {
+      const active = fridgeItems.some(x => normalizeText(x) === normalizeText(name));
+      return `<button onclick="fridgeQuickToggle('${name}')" class="px-3 py-1.5 rounded-full text-label-md whitespace-nowrap border transition-all ${active ? 'bg-primary text-on-primary border-primary' : 'bg-surface-container-low text-on-surface-variant border-surface-container hover:bg-surface-variant'}">${active ? '✓ ' : '+ '}${escapeHtml(name)}</button>`;
+    }).join('');
+  }
+  const pantry = document.getElementById('fridge-pantry');
+  if (pantry) pantry.checked = fridgePantry;
+}
+
+function renderFridge() {
+  renderFridgeControls();
   const out = document.getElementById('fridge-results');
   if (!out) return;
-  if (!fridgeItems.length) { out.innerHTML = `<p class="text-on-surface-variant col-span-full">${t('fridge_empty')}</p>`; return; }
+  if (!fridgeItems.length) { fridgeLastResults = []; out.innerHTML = `<p class="text-on-surface-variant col-span-full">${t('fridge_empty')}</p>`; return; }
   ensureCatalogData().then(() => {
     const have = fridgeItems.map(normalizeText).filter(Boolean);
-    const scored = [];
+    const results = [];
     (catalogData || []).forEach(r => {
-      const lines = recipeHaystack(r);
-      if (!lines.length) return;
+      // Respeta la dieta activa: no ofrece platos no aptos.
+      try { if (currentDiet && currentDiet !== 'mediterranea' && optionNeedsAdaptation(r)) return; } catch (e) {}
+      const cores = recipeCores(r);
+      if (cores.length < 2) return;
       let matched = 0; const missing = [];
-      lines.forEach(line => {
-        if (have.some(h => line.includes(h))) matched++;
-        else missing.push(line);
+      cores.forEach(c => {
+        if (fridgePantry && isPantryCore(c)) return;       // básico: ni cuenta ni falta
+        if (coveredByHave(c, have)) matched++;
+        else missing.push(c);
       });
-      if (matched > 0) scored.push({ r, matched, total: lines.length, missing, score: matched / lines.length });
+      if (matched === 0) return;                            // necesita al menos 1 ingrediente tuyo
+      results.push({ r, missing, missCount: missing.length, total: cores.length, matched });
     });
-    scored.sort((a, b) => b.matched - a.matched || b.score - a.score);
-    if (!scored.length) { out.innerHTML = `<p class="text-on-surface-variant col-span-full">${t('fridge_none')}</p>`; return; }
-    out.innerHTML = scored.slice(0, 36).map(s => {
+    results.sort((a, b) => a.missCount - b.missCount || (b.matched / b.total) - (a.matched / a.total));
+    fridgeLastResults = results;
+    if (!results.length) { out.innerHTML = `<p class="text-on-surface-variant col-span-full">${t('fridge_none')}</p>`; return; }
+    out.innerHTML = results.slice(0, 36).map(s => {
       const tr = trCatalogRecipe(s.r);
       const title = cap(tr && tr.t ? tr.t : s.r.title);
       const safe = title.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-      const pct = Math.round(s.score * 100);
-      const missTxt = s.missing.length
-        ? `${t('fridge_missing')}: ${s.missing.slice(0, 4).map(cap).join(', ')}${s.missing.length > 4 ? '…' : ''}`
-        : t('fridge_have_all');
+      let badge, badgeClass;
+      if (s.missCount === 0) { badge = t('fridge_can_make'); badgeClass = 'bg-primary text-on-primary'; }
+      else {
+        badge = `${t('fridge_missing')}: ${s.missing.slice(0, 3).map(cap).join(', ')}${s.missing.length > 3 ? '…' : ''}`;
+        badgeClass = s.missCount <= 2 ? 'bg-tertiary-container text-on-tertiary-container' : 'bg-surface-container-high text-on-surface-variant';
+      }
       const media = s.r.image
-        ? `<div class="h-32 w-full"><img class="w-full h-full object-cover" src="${s.r.image}" alt="${title}" loading="lazy"/></div>`
+        ? `<div class="h-32 w-full"><img class="w-full h-full object-cover" src="${s.r.image}" alt="${escapeHtml(title)}" loading="lazy"/></div>`
         : `<div class="h-32 w-full bg-primary-container/30 flex items-center justify-center"><span class="material-symbols-outlined text-primary">restaurant</span></div>`;
       return `<button onclick="inicioSearch('${safe}')" class="text-left bg-surface-container-lowest rounded-2xl overflow-hidden border border-surface-variant/40 hover:border-primary transition-all">
         ${media}
-        <div class="p-3">
+        <div class="p-3 space-y-1.5">
           <div class="flex items-center justify-between gap-2">
             <span class="font-label-lg text-label-lg text-on-surface">${escapeHtml(title)}</span>
-            <span class="shrink-0 text-label-md font-semibold ${pct >= 70 ? 'text-primary' : 'text-tertiary'}">${s.matched}/${s.total}</span>
+            <span class="shrink-0 text-label-md font-semibold text-on-surface-variant">${s.matched}/${s.total}</span>
           </div>
-          <p class="text-body-sm text-on-surface-variant mt-1">${escapeHtml(missTxt)}</p>
+          <span class="inline-block text-xs font-semibold px-2 py-0.5 rounded-full ${badgeClass}">${escapeHtml(badge)}</span>
         </div>
       </button>`;
     }).join('');

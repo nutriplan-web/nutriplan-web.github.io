@@ -183,6 +183,15 @@
                 <input onkeydown="if(event.key==='Enter')inicioSearch(this.value)" data-i18n-ph="inicio_search_ph" class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary text-body-md placeholder:text-outline-variant transition-all" placeholder="Busca cualquier plato o ingrediente..." type="text"/>
             </div>
 
+            <button onclick="switchView('fridge')" class="w-full text-left rounded-[24px] overflow-hidden bg-gradient-to-br from-primary to-primary-container text-on-primary p-5 flex items-center gap-4 active:scale-[0.99] transition-all shadow-sm">
+                <span class="material-symbols-outlined shrink-0" style="font-size:40px;">kitchen</span>
+                <span class="flex flex-col">
+                    <span class="font-headline-sm text-headline-sm" data-i18n="inicio_tile_fridge">Cocina con lo que tengo</span>
+                    <span class="font-body-sm text-body-sm opacity-90" data-i18n="inicio_tile_fridge_sub">Dinos qué hay en tu nevera</span>
+                </span>
+                <span class="material-symbols-outlined ml-auto shrink-0">arrow_forward</span>
+            </button>
+
             <section class="space-y-stack-sm">
                 <div class="flex items-center justify-between">
                     <h3 class="font-headline-sm text-headline-sm text-on-surface" data-i18n="inicio_reco_title">Recomendado de hoy</h3>
@@ -215,11 +224,11 @@
                             <span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="inicio_tile_secciones_sub">Tapas, sopas, ensaladas, zumos</span>
                         </span>
                     </button>
-                    <button onclick="switchView('fridge')" class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-2xl border border-surface-variant/40 text-left active:scale-[0.98] transition-all hover:border-primary">
-                        <span class="material-symbols-outlined text-primary">kitchen</span>
+                    <button onclick="switchView('profile')" class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-2xl border border-surface-variant/40 text-left active:scale-[0.98] transition-all hover:border-primary">
+                        <span class="material-symbols-outlined text-primary">person</span>
                         <span class="flex flex-col">
-                            <span class="font-label-lg text-label-lg text-on-surface" data-i18n="inicio_tile_fridge">Cocina con lo que tengo</span>
-                            <span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="inicio_tile_fridge_sub">Dinos qué hay en tu nevera</span>
+                            <span class="font-label-lg text-label-lg text-on-surface" data-i18n="inicio_tile_profile">Tu perfil</span>
+                            <span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="inicio_tile_profile_sub">Dieta, alergias, idioma</span>
                         </span>
                     </button>
                     <button onclick="switchView('hosteleria')" class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-2xl border border-surface-variant/40 text-left active:scale-[0.98] transition-all hover:border-primary">
@@ -412,11 +421,27 @@
                 <input id="fridge-input" onkeydown="if(event.key==='Enter'){fridgeAdd(this.value);this.value='';}" data-i18n-ph="fridge_ph" class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary text-body-md placeholder:text-outline-variant transition-all" placeholder="Añade un ingrediente y pulsa Enter..." type="text"/>
             </div>
 
+            <div class="space-y-2">
+                <p class="font-label-md text-label-md text-on-surface-variant" data-i18n="fridge_quick">Añade rápido:</p>
+                <div id="fridge-quick" class="flex gap-2 overflow-x-auto scroll-hide py-1"></div>
+            </div>
+
             <div class="flex items-center justify-between gap-3">
                 <div id="fridge-chips" class="flex flex-wrap gap-2"></div>
                 <button onclick="fridgeClear()" class="shrink-0 flex items-center gap-1.5 text-on-surface-variant hover:text-error font-label-lg text-label-lg px-3 py-1.5 rounded-full transition-all">
                     <span class="material-symbols-outlined" style="font-size:18px;">delete_sweep</span>
                     <span data-i18n="fridge_clear">Vaciar</span>
+                </button>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-surface-container-low p-3">
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input id="fridge-pantry" type="checkbox" checked onchange="fridgeTogglePantry(this.checked)" class="w-5 h-5 accent-primary"/>
+                    <span class="font-label-lg text-label-lg text-on-surface" data-i18n="fridge_pantry">Tengo lo básico (sal, aceite, agua…)</span>
+                </label>
+                <button onclick="fridgeSurprise()" class="flex items-center gap-1.5 bg-tertiary-container text-on-tertiary-container font-semibold px-4 py-2 rounded-full active:scale-95 transition-all">
+                    <span class="material-symbols-outlined" style="font-size:18px;">casino</span>
+                    <span data-i18n="fridge_surprise">Sorpréndeme</span>
                 </button>
             </div>
 
@@ -694,27 +719,31 @@
 
     <!-- GLOBAL BOTTOM NAVIGATION BAR -->
     <nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-gutter py-2 pb-safe bg-surface dark:bg-surface-container shadow-[0px_-4px_20px_0px_rgba(65,103,67,0.04)] rounded-t-xl">
-        <button id="nav-inicio" onclick="switchView('inicio')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
+        <button id="nav-inicio" onclick="switchView('inicio')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-2 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">home</span>
             <span class="font-label-md text-label-md" data-i18n="nav_inicio">Inicio</span>
         </button>
-        <button id="nav-plan" onclick="switchView('plan')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
+        <button id="nav-plan" onclick="switchView('plan')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-2 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">calendar_month</span>
             <span class="font-label-md text-label-md" data-i18n="nav_plan">Plan</span>
         </button>
-        <button id="nav-catalog" onclick="switchView('catalog')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
+        <button id="nav-catalog" onclick="switchView('catalog')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-2 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">restaurant_menu</span>
             <span class="font-label-md text-label-md" data-i18n="nav_recipes">Recetas</span>
         </button>
-        <button id="nav-secciones" onclick="switchView('secciones')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
+        <button id="nav-secciones" onclick="switchView('secciones')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-2 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">category</span>
             <span class="font-label-md text-label-md" data-i18n="nav_secciones">Colecciones</span>
         </button>
-        <button id="nav-cart" onclick="switchView('cart')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
+        <button id="nav-fridge" onclick="switchView('fridge')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-2 py-1 transition-all duration-200">
+            <span class="material-symbols-outlined">kitchen</span>
+            <span class="font-label-md text-label-md" data-i18n="nav_fridge">Nevera</span>
+        </button>
+        <button id="nav-cart" onclick="switchView('cart')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-2 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">shopping_cart</span>
             <span class="font-label-md text-label-md" data-i18n="nav_cart">Lista</span>
         </button>
-        <button id="nav-profile" onclick="switchView('profile')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
+        <button id="nav-profile" onclick="switchView('profile')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-2 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">person</span>
             <span class="font-label-md text-label-md" data-i18n="nav_profile">Perfil</span>
         </button>
