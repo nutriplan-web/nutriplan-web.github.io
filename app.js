@@ -17,7 +17,28 @@ const I18N = {
   es: {
     app_title: 'Recetario 365 — Menú semanal, +1000 recetas del mundo y lista de la compra',
     nav_plan: 'Plan', nav_day: 'Día', nav_recipes: 'Recetas', nav_cart: 'Lista', nav_profile: 'Perfil',
-    nav_secciones: 'Colecciones',
+    nav_secciones: 'Colecciones', nav_inicio: 'Inicio', nav_hosteleria: 'Hostelería',
+    inicio_hero_title: '¿Qué cocinamos hoy?',
+    inicio_hero_sub: 'Más de 1100 recetas, menú semanal y tus colecciones, todo en un sitio.',
+    inicio_search_ph: 'Busca cualquier plato o ingrediente: pollo, gazpacho, lentejas...',
+    inicio_reco_title: 'Recomendado de hoy', inicio_reco_sub: 'Cambia cada día', inicio_see_recipe: 'Ver receta',
+    inicio_explore: 'Explora la app', inicio_quick: 'Ideas rápidas',
+    inicio_tile_plan: 'Menú semanal', inicio_tile_plan_sub: 'Tu plan para los 7 días',
+    inicio_tile_catalog: 'Recetario', inicio_tile_catalog_sub: '+1100 platos del mundo',
+    inicio_tile_secciones: 'Colecciones', inicio_tile_secciones_sub: 'Tapas, sopas, ensaladas, zumos',
+    inicio_tile_fridge: 'Cocina con lo que tengo', inicio_tile_fridge_sub: 'Dinos qué hay en tu nevera',
+    inicio_tile_cart: 'Lista de la compra', inicio_tile_cart_sub: 'Generada de tu menú',
+    inicio_tile_profile: 'Tu perfil', inicio_tile_profile_sub: 'Dieta, alergias, idioma',
+    inicio_tile_hosteleria: 'Hostelería', inicio_tile_hosteleria_sub: 'Ideas de carta y tapas',
+    fridge_title: 'Cocina con lo que tengo',
+    fridge_sub: 'Escribe los ingredientes que tienes y te decimos qué puedes cocinar ya.',
+    fridge_ph: 'Añade un ingrediente y pulsa Enter: huevos, arroz, tomate...',
+    fridge_clear: 'Vaciar', fridge_empty: 'Añade ingredientes de tu nevera para ver recetas que puedes hacer.',
+    fridge_none: 'No encontramos recetas con esos ingredientes. Prueba con otros más comunes.',
+    fridge_missing: 'Te falta', fridge_match: 'coincidencia', fridge_have_all: '¡Tienes todo!',
+    hosteleria_title: 'Ideas para hostelería',
+    hosteleria_sub: 'Tapas, aperitivos, sopas y ensaladas para tu carta. Toca una colección para ver recetas y cantidades.',
+    hosteleria_note: 'Las cantidades de cada receta se ajustan por raciones en su ficha. Contenido orientativo.',
     sec_title: 'Colecciones por secciones',
     sec_sub: 'Sopas frías, tapas, ensaladas, smoothies, salsas y más, organizados por tipo.',
     sec_all: 'Todas', sec_for: 'para 2 raciones',
@@ -104,7 +125,28 @@ const I18N = {
   ro: {
     app_title: 'Recetario 365 — Meniu săptămânal, +1000 de rețete din lume și listă de cumpărături',
     nav_plan: 'Plan', nav_day: 'Azi', nav_recipes: 'Rețete', nav_cart: 'Listă', nav_profile: 'Profil',
-    nav_secciones: 'Colecții',
+    nav_secciones: 'Colecții', nav_inicio: 'Acasă', nav_hosteleria: 'HoReCa',
+    inicio_hero_title: 'Ce gătim azi?',
+    inicio_hero_sub: 'Peste 1100 de rețete, meniu săptămânal și colecțiile tale, totul într-un loc.',
+    inicio_search_ph: 'Caută orice fel sau ingredient: pui, gazpacho, linte...',
+    inicio_reco_title: 'Recomandarea zilei', inicio_reco_sub: 'Se schimbă în fiecare zi', inicio_see_recipe: 'Vezi rețeta',
+    inicio_explore: 'Explorează aplicația', inicio_quick: 'Idei rapide',
+    inicio_tile_plan: 'Meniu săptămânal', inicio_tile_plan_sub: 'Planul tău pe 7 zile',
+    inicio_tile_catalog: 'Rețetar', inicio_tile_catalog_sub: '+1100 feluri din lume',
+    inicio_tile_secciones: 'Colecții', inicio_tile_secciones_sub: 'Tapas, supe, salate, sucuri',
+    inicio_tile_fridge: 'Gătește cu ce ai', inicio_tile_fridge_sub: 'Spune-ne ce ai în frigider',
+    inicio_tile_cart: 'Listă de cumpărături', inicio_tile_cart_sub: 'Generată din meniul tău',
+    inicio_tile_profile: 'Profilul tău', inicio_tile_profile_sub: 'Dietă, alergii, limbă',
+    inicio_tile_hosteleria: 'HoReCa', inicio_tile_hosteleria_sub: 'Idei de meniu și tapas',
+    fridge_title: 'Gătește cu ce ai',
+    fridge_sub: 'Scrie ingredientele pe care le ai și îți spunem ce poți găti acum.',
+    fridge_ph: 'Adaugă un ingredient și apasă Enter: ouă, orez, roșii...',
+    fridge_clear: 'Golește', fridge_empty: 'Adaugă ingrediente din frigider ca să vezi rețete pe care le poți face.',
+    fridge_none: 'Nu am găsit rețete cu acele ingrediente. Încearcă altele mai comune.',
+    fridge_missing: 'Îți lipsește', fridge_match: 'potrivire', fridge_have_all: 'Ai tot ce trebuie!',
+    hosteleria_title: 'Idei pentru HoReCa',
+    hosteleria_sub: 'Tapas, aperitive, supe și salate pentru meniul tău. Atinge o colecție pentru rețete și cantități.',
+    hosteleria_note: 'Cantitățile fiecărei rețete se ajustează pe porții în fișă. Conținut orientativ.',
     sec_title: 'Colecții pe secțiuni',
     sec_sub: 'Supe reci, tapas, salate, smoothie-uri, sosuri și altele, organizate pe tipuri.',
     sec_all: 'Toate', sec_for: 'pentru 2 porții',
@@ -191,7 +233,28 @@ const I18N = {
   en: {
     app_title: 'Recetario 365 — Weekly menu, 1000+ world recipes and shopping list',
     nav_plan: 'Plan', nav_day: 'Today', nav_recipes: 'Recipes', nav_cart: 'List', nav_profile: 'Profile',
-    nav_secciones: 'Collections',
+    nav_secciones: 'Collections', nav_inicio: 'Home', nav_hosteleria: 'Catering',
+    inicio_hero_title: 'What shall we cook today?',
+    inicio_hero_sub: 'Over 1100 recipes, a weekly menu and your collections, all in one place.',
+    inicio_search_ph: 'Search any dish or ingredient: chicken, gazpacho, lentils...',
+    inicio_reco_title: "Today's pick", inicio_reco_sub: 'Changes every day', inicio_see_recipe: 'View recipe',
+    inicio_explore: 'Explore the app', inicio_quick: 'Quick ideas',
+    inicio_tile_plan: 'Weekly menu', inicio_tile_plan_sub: 'Your 7-day plan',
+    inicio_tile_catalog: 'Recipe book', inicio_tile_catalog_sub: '1100+ world dishes',
+    inicio_tile_secciones: 'Collections', inicio_tile_secciones_sub: 'Tapas, soups, salads, juices',
+    inicio_tile_fridge: 'Cook with what I have', inicio_tile_fridge_sub: 'Tell us what is in your fridge',
+    inicio_tile_cart: 'Shopping list', inicio_tile_cart_sub: 'Built from your menu',
+    inicio_tile_profile: 'Your profile', inicio_tile_profile_sub: 'Diet, allergies, language',
+    inicio_tile_hosteleria: 'Catering', inicio_tile_hosteleria_sub: 'Menu & tapas ideas',
+    fridge_title: 'Cook with what I have',
+    fridge_sub: 'Type the ingredients you have and we tell you what you can cook right now.',
+    fridge_ph: 'Add an ingredient and press Enter: eggs, rice, tomato...',
+    fridge_clear: 'Clear', fridge_empty: 'Add ingredients from your fridge to see recipes you can make.',
+    fridge_none: 'No recipes found with those ingredients. Try more common ones.',
+    fridge_missing: 'Missing', fridge_match: 'match', fridge_have_all: 'You have it all!',
+    hosteleria_title: 'Catering ideas',
+    hosteleria_sub: 'Tapas, appetizers, soups and salads for your menu. Tap a collection for recipes and quantities.',
+    hosteleria_note: 'Each recipe scales by servings on its card. Indicative content.',
     sec_title: 'Collections by section',
     sec_sub: 'Cold soups, tapas, salads, smoothies, sauces and more, organised by type.',
     sec_all: 'All', sec_for: 'for 2 servings',
@@ -1589,7 +1652,7 @@ function initSystem() {
   loadDayDetails();
   renderShoppingList();
   loadVisitCounter();
-  switchView('plan');
+  switchView('inicio');
   // Cuando llegan las traducciones de recetas, repinta con el idioma activo.
   dishTrReady.then(() => {
     loadDayDetails();
@@ -1673,8 +1736,10 @@ async function loadVisitCounter() {
 }
 
 function switchView(viewId) {
+  const target = document.getElementById(`view-${viewId}`);
+  if (!target) return; // vista aún no disponible: no romper la navegación
   document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
-  document.getElementById(`view-${viewId}`).classList.remove('hidden');
+  target.classList.remove('hidden');
 
   document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active-nav'));
   const activeBtn = document.getElementById(`nav-${viewId}`);
@@ -1685,8 +1750,155 @@ function switchView(viewId) {
   // página desplazada en una zona vacía (parecía que el botón no hacía nada).
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
+  if (viewId === 'inicio') renderInicio();
   if (viewId === 'catalog') openCatalog();
   if (viewId === 'secciones') renderSecciones();
+  if (viewId === 'fridge') renderFridge();
+  if (viewId === 'hosteleria') renderHosteleria();
+}
+
+// --- Inicio / Descubrir ----------------------------------------------------
+// La búsqueda de Inicio reutiliza el recetario completo: salta a Recetas con
+// el término ya aplicado, para que "buscar" sea lo primero y más accesible.
+function inicioSearch(value) {
+  const q = (value || '').trim();
+  switchView('catalog');
+  const input = document.querySelector('#view-catalog input[oninput]');
+  if (input) input.value = q;
+  catalogSearch(q);
+}
+
+// Semilla determinista por fecha: el recomendado rota cada día sin repetir
+// dentro del mismo día (todos ven lo mismo "hoy").
+function dailySeed() {
+  const d = new Date();
+  return d.getFullYear() * 366 + d.getMonth() * 31 + d.getDate();
+}
+
+function renderInicio() {
+  const reco = document.getElementById('inicio-reco');
+  if (!reco) return;
+  ensureCatalogData().then(() => {
+    if (!catalogData || !catalogData.length) return;
+    // Preferimos un plato con foto real para el destacado del día.
+    const withImg = catalogData.filter(r => r.image);
+    const pool = withImg.length ? withImg : catalogData;
+    const pick = pool[dailySeed() % pool.length];
+    const tr = trCatalogRecipe(pick);
+    const title = cap(tr && tr.t ? tr.t : pick.title);
+    const safe = title.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    const media = pick.image
+      ? `<div class="h-44 w-full"><img class="w-full h-full object-cover" src="${pick.image}" alt="${title}" loading="lazy"/></div>`
+      : `<div class="h-44 w-full bg-primary-container/40 flex items-center justify-center"><span class="material-symbols-outlined text-primary" style="font-size:48px;">restaurant</span></div>`;
+    reco.innerHTML = `
+      <div class="bg-surface-container-lowest rounded-[24px] overflow-hidden shadow-sm border border-surface-variant/30">
+        ${media}
+        <div class="p-5">
+          <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">${pick.area || ''}</p>
+          <h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">${title}</h3>
+          <button onclick="inicioSearch('${safe}')" class="mt-3 inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-semibold px-5 py-2.5 rounded-full active:scale-95 transition-all">
+            <span>${t('inicio_see_recipe')}</span><span class="material-symbols-outlined" style="font-size:18px;">arrow_forward</span>
+          </button>
+        </div>
+      </div>`;
+  });
+}
+
+// --- Cocina con lo que tengo (nevera) --------------------------------------
+let fridgeItems = [];
+function fridgeAdd(value) {
+  const v = (value || '').trim();
+  if (!v) return;
+  const n = normalizeText(v);
+  if (!fridgeItems.some(x => normalizeText(x) === n)) fridgeItems.push(v);
+  renderFridge();
+}
+function fridgeRemove(idx) { fridgeItems.splice(idx, 1); renderFridge(); }
+function fridgeClear() { fridgeItems = []; renderFridge(); }
+
+// Líneas de ingredientes de una receta, normalizadas y robustas ante objetos.
+function recipeHaystack(recipe) {
+  return ingredientLinesES(recipe)
+    .map(l => normalizeText(typeof l === 'string' ? l : (l && l.name ? l.name : '')))
+    .filter(Boolean);
+}
+
+function renderFridge() {
+  const chips = document.getElementById('fridge-chips');
+  if (chips) {
+    chips.innerHTML = fridgeItems.map((it, i) =>
+      `<span class="inline-flex items-center gap-1 bg-primary-container/50 text-on-primary-container px-3 py-1.5 rounded-full font-label-md text-label-md">${escapeHtml(it)}<button onclick="fridgeRemove(${i})" class="material-symbols-outlined leading-none" style="font-size:16px;">close</button></span>`
+    ).join('');
+  }
+  const out = document.getElementById('fridge-results');
+  if (!out) return;
+  if (!fridgeItems.length) { out.innerHTML = `<p class="text-on-surface-variant col-span-full">${t('fridge_empty')}</p>`; return; }
+  ensureCatalogData().then(() => {
+    const have = fridgeItems.map(normalizeText).filter(Boolean);
+    const scored = [];
+    (catalogData || []).forEach(r => {
+      const lines = recipeHaystack(r);
+      if (!lines.length) return;
+      let matched = 0; const missing = [];
+      lines.forEach(line => {
+        if (have.some(h => line.includes(h))) matched++;
+        else missing.push(line);
+      });
+      if (matched > 0) scored.push({ r, matched, total: lines.length, missing, score: matched / lines.length });
+    });
+    scored.sort((a, b) => b.matched - a.matched || b.score - a.score);
+    if (!scored.length) { out.innerHTML = `<p class="text-on-surface-variant col-span-full">${t('fridge_none')}</p>`; return; }
+    out.innerHTML = scored.slice(0, 36).map(s => {
+      const tr = trCatalogRecipe(s.r);
+      const title = cap(tr && tr.t ? tr.t : s.r.title);
+      const safe = title.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+      const pct = Math.round(s.score * 100);
+      const missTxt = s.missing.length
+        ? `${t('fridge_missing')}: ${s.missing.slice(0, 4).map(cap).join(', ')}${s.missing.length > 4 ? '…' : ''}`
+        : t('fridge_have_all');
+      const media = s.r.image
+        ? `<div class="h-32 w-full"><img class="w-full h-full object-cover" src="${s.r.image}" alt="${title}" loading="lazy"/></div>`
+        : `<div class="h-32 w-full bg-primary-container/30 flex items-center justify-center"><span class="material-symbols-outlined text-primary">restaurant</span></div>`;
+      return `<button onclick="inicioSearch('${safe}')" class="text-left bg-surface-container-lowest rounded-2xl overflow-hidden border border-surface-variant/40 hover:border-primary transition-all">
+        ${media}
+        <div class="p-3">
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-label-lg text-label-lg text-on-surface">${escapeHtml(title)}</span>
+            <span class="shrink-0 text-label-md font-semibold ${pct >= 70 ? 'text-primary' : 'text-tertiary'}">${s.matched}/${s.total}</span>
+          </div>
+          <p class="text-body-sm text-on-surface-variant mt-1">${escapeHtml(missTxt)}</p>
+        </div>
+      </button>`;
+    }).join('');
+  });
+}
+
+// --- Hostelería: colecciones de ideas para carta ---------------------------
+function openSeccion(id) {
+  switchView('secciones');
+  setSeccionSection(id);
+}
+function renderHosteleria() {
+  const grid = document.getElementById('hosteleria-grid');
+  if (!grid) return;
+  seccionesPromise.then(() => {
+    if (!seccionesData || !seccionesData.length) { grid.innerHTML = ''; return; }
+    grid.innerHTML = seccionesData.map(s => {
+      const title = trSeccionTitle(s);
+      const dishes = s.platos || [];
+      const sample = dishes.slice(0, 6).map(d =>
+        `<span class="inline-block bg-surface-container-high text-on-surface-variant text-label-md px-2.5 py-1 rounded-full m-0.5">${escapeHtml(cap(d.title || ''))}</span>`
+      ).join('');
+      return `<button onclick="openSeccion('${String(s.id).replace(/'/g, "\\'")}')" class="text-left p-4 bg-surface-container-lowest rounded-2xl border border-surface-variant/40 hover:border-primary transition-all">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="material-symbols-outlined text-primary">${s.icon || 'restaurant'}</span>
+          <span class="font-headline-sm text-on-surface">${escapeHtml(title)}</span>
+          <span class="text-label-md text-on-surface-variant">· ${dishes.length}</span>
+        </div>
+        <div>${sample}</div>
+      </button>`;
+    }).join('');
+  });
 }
 
 function filterOrigin(origin) {
@@ -2011,7 +2223,7 @@ function adjustMealServings(meal, amount) {
 function setDiet(type) {
   // Identificadores sin acentos ('mediterranea', 'baja'); admite valores antiguos.
   const dietAliases = { 'mediterránea': 'mediterranea', 'baja en carbohidratos': 'baja' };
-  currentDiet = dietAliases[type] || type;
+  currentDiet = (type === '' || type == null) ? null : (dietAliases[type] || type);
   renderDietSelection();
   loadDayDetails();
 }
@@ -2024,6 +2236,8 @@ function renderDietSelection() {
       button.classList.toggle('active-diet', diet === currentDiet);
     }
   });
+  const sel = document.getElementById('diet-select');
+  if (sel) sel.value = currentDiet || '';
   const dietLabel = currentDiet ? t('diet_' + currentDiet) : t('diet_none');
   document.getElementById('diet-summary').innerText = `${t('diet_active')}: ${dietLabel}`;
   // Recuadro informativo con guía clínica citada para dietas médicas.
