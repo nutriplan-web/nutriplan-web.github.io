@@ -257,3 +257,48 @@ for flag, out_path, tl in (('--catalog', 'catalog_ro.json', 'ro'), ('--catalog-e
             print('catálogo %s %d/%d  fallos:%d' % (tl, len(done), len(jobs), fails), flush=True)
     json.dump(done, open(out_path, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
     print('LISTO catálogo %s: %d entradas, %d fallos' % (tl, len(done), fails), flush=True)
+
+# --------------------------------------------------------------------------
+# Colecciones por secciones: secciones_ro.json / secciones_en.json, reanudables.
+# Estructura: { "sec:<id>": "<título>", "<dish.id>": {t,i,s} }
+#   python3 build_i18n.py --secciones      (a rumano)
+#   python3 build_i18n.py --secciones-en   (a inglés)
+# --------------------------------------------------------------------------
+for flag, out_path, tl in (('--secciones', 'secciones_ro.json', 'ro'), ('--secciones-en', 'secciones_en.json', 'en')):
+    if flag not in sys.argv:
+        continue
+    done = {}
+    if os.path.exists(out_path):
+        try:
+            done = json.load(open(out_path, encoding='utf-8'))
+        except Exception:
+            done = {}
+    data = json.load(open('secciones.json', encoding='utf-8'))['secciones']
+    jobs = []
+    for s in data:
+        jobs.append(('sec:' + s['id'], None, s['titulo'], None))  # título de sección
+        for d in s['platos']:
+            jobs.append((d['id'], d['title'], None, (d.get('ingredients') or [], d.get('instructions') or '')))
+    total = len(jobs)
+    print('Secciones -> %s: %d entradas (%d ya hechas)' % (tl, total, len(done)), flush=True)
+    fails = 0
+    for n, (key, title, sectitle, body) in enumerate(jobs, 1):
+        if key in done:
+            continue
+        try:
+            if sectitle is not None:          # título de sección
+                done[key] = translate(sectitle, 'es', tl) or sectitle
+                time.sleep(0.25)
+            else:                              # plato: {t,i,s}
+                ings, instr = body
+                lines = translate_lines([title] + ings, 'es', tl)
+                s_out = translate_block(instr, 'es', tl) if instr else ''
+                done[key] = {'t': lines[0], 'i': lines[1:], 's': s_out}
+        except Exception as e:
+            fails += 1
+            print('FALLO %s: %s' % (key, e), flush=True)
+        if n % 10 == 0 or n == total:
+            json.dump(done, open(out_path, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
+            print('secciones %s %d/%d  fallos:%d' % (tl, len(done), total, fails), flush=True)
+    json.dump(done, open(out_path, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
+    print('LISTO secciones %s: %d entradas, %d fallos' % (tl, len(done), fails), flush=True)

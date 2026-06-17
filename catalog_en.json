@@ -5884,7 +5884,7 @@
 "8 chicken thighs",
 "1 handful of parsley"
 ],
-"s": "step 1\r\nHeat the oven to 200C/180C fan/gas 6. Heat the olive oil in a large oven-safe frying pan over a medium heat and fry the onion, chorizo and peppers along with a pinch of salt and pepper for 15 minutes until the vegetables have softened and the chorizo has released its oil. Add the paprika and garlic and cook for a few more minutes until fragrant.\r\n\r\nstep 2\r\nAdd the chopped tomatoes, olives and beans, stir to combine and season. Place the chicken thighs and season well. Transfer to the oven and bake for 40 minutes until the chicken skin is crispy and the meat is cooked through and tender. Sprinkle with the parsley and serve.\r\n\r\nWatch after ad (0.04):\r\n3 inexpensive ideas for eggs"
+"s": "step 1\r\nHeat the oven to 200C/180C fan/gas 6. Heat the olive oil in a large oven-safe frying pan over a medium heat and fry the onion, chorizo and peppers along with a pinch of salt and pepper for 15 minutes until the vegetables have softened and the chorizo has released its oil. Add the paprika and garlic and cook for a few more minutes until fragrant.\r\n\r\nstep 2\r\nAdd the chopped tomatoes, olives and beans, stir to combine and season. Place the chicken thighs and season well. Transfer to the oven and bake for 40 minutes until the chicken skin is crispy and the meat is cooked through and tender. Sprinkle with the parsley and serve."
 },
 "db:53144": {
 "t": "Gambas al ajillo",
@@ -7177,7 +7177,7 @@
 "1 teaspoon black pepper",
 "1 teaspoon sugar"
 ],
-"s": "1\r\nHeat the pan and add a little oil. Fry the mashed garlic and ginger first and then add in the minced meat and all seasoning. When the meat is cooked, let it cool.\r\n2\r\nGet another large bowl. Add the egg, chopped tomato, chopped spring onion and minced meat.\r\n3\r\nGet 2 sheets of phyllo dough or 1 sheet of spring roll wrapper. Spread with a little butter and then put some filling in the middle. Fold the dough and spread more butter on the seal part.\r\n4\r\nHeat a frying pan and add a little oil to cook the packet until both sides and all 4 edges are golden brown. (Or spread melted butter all over the package and bake in the oven at 180°C for 10-15 minutes)\r\n5\r\nenjoy"
+"s": "1\r\nHeat the pan and add a little oil. Fry the mashed garlic and ginger first and then add in the minced meat and all seasoning. When the meat is cooked, let it cool.\r\n2\r\nGet another large bowl. Add the egg, chopped tomato, chopped spring onion and minced meat.\r\n3\r\nGet 2 sheets of phyllo dough or 1 sheet of spring roll wrapper. Spread with a little butter and then put some filling in the middle. Fold the dough and spread more butter on the seal part.\r\n4\r\nHeat a frying pan and add a little oil to cook the packet until both sides and all 4 edges are golden brown. (Or spread melted butter all over the package and bake in the oven at 180°C for 10-15 minutes)\nEnjoy."
 },
 "db:53224": {
 "t": "Pistachio Kunafa Chocolate Cake and Cupcakes",
@@ -15592,5 +15592,306 @@
 "fartons to dip (the long buns: official couple)"
 ],
 "s": "The tigernut horchata from Valencia, with designation of origin and summer incorporated.\nSoak the tiger nuts for 24-48 hours, changing the water: from hard to tender.\nBlend them with the liter of cold water for 3 minutes at maximum power, with the cinnamon and lemon infused separately if you want nuance.\nThe key step: strain through a fine strainer + cheesecloth or vegetable milk bag, SQUEEZING every last white drop.\nSweeten, stir and VERY cold (refrigerator 2 hours; better half-frozen 'slushie').\nWith fartons to dip: 'Xufa, or blanc' — white gold, as they say there."
+},
+"w:Sarmale": {
+"t": "Sarmale",
+"i": [
+"1 whole sour cabbage (varză murată) or 1 large fresh cabbage",
+"600 g minced pork (or half pork and half beef)",
+"120 g round grain rice",
+"2 large onions, finely chopped",
+"150 g smoked pancetta or bacon",
+"3 tablespoons sunflower oil",
+"2 tablespoons tomato paste (or 200 ml crushed tomato)",
+"1 teaspoon dried thyme",
+"1 teaspoon sweet paprika",
+"2 bay leaves",
+"10 black peppercorns",
+"a bunch of dill (optional)",
+"salt to taste",
+"smântână (sour cream) and mămăligă to serve"
+],
+"s": "If you use sauerkraut, separate the leaves carefully, rinse them if they are too salty, and trim any thick veins. If you use fresh cabbage, core it and blanch it whole in salted water until the leaves fall off soft.\nSauté the onion in the oil over low heat for 8-10 minutes without it taking on color. Reserve half. Mix the other half with the minced meat, raw rice, paprika, thyme, salt and pepper until you have a homogeneous filling.\nCut each leaf into palm-sized pieces. Place a tablespoon of filling on the edge, fold the sides inward and roll tightly into a small cylinder.\nChop the leftover cabbage. Cover the bottom of a heavy pot with a layer of chopped cabbage and a few strips of bacon. Place the rolls tightly together in layers, alternating bacon, bay leaf and pepper. Finish with chopped cabbage on top.\nDilute the tomato paste and reserved onion in water (or sauerkraut juice) and pour until almost covered. Cover and cook over very low heat for 2.5-3 hours, or in the oven at 160°C, until tender and melty. Rest before serving with a spoonful of smântână and hot mămăligă."
+},
+"w:Mămăligă cu brânză și smântână": {
+"t": "Mămăligă cu brânză și smântână",
+"i": [
+"200 g corn flour (fine or medium semolina)",
+"750 ml of water",
+"1 teaspoon salt",
+"20 g butter (optional)",
+"150 g grated Telemea or Brânză cheese",
+"150 g smântână (sour cream)"
+],
+"s": "Bring the water and salt to a boil in a heavy-bottomed saucepan. When it comes to a boil, lower the heat to medium and add the corn flour in a stream while stirring with a whisk so that lumps do not form.\nSwitch to a wooden spoon and cook, stirring often, for 25-30 minutes, until the dough thickens, comes away from the walls and bubbles like a volcano. If it is too hard, add a little hot water.\nOff the heat, add the butter. Pour the mămăligă onto a board or distribute it onto plates.\nServe it very hot with the grated cheese on top and a good spoonful of smântână. It is the classic accompaniment to sarmale, tochitură and many Romanian stews."
+},
+"w:Mici (Mititei)": {
+"t": "Mici (Mititei)",
+"i": [
+"500 g minced beef",
+"250 g minced pork",
+"250 g minced lamb (or more beef)",
+"4 cloves of garlic, crushed with a little water",
+"1 teaspoon baking soda",
+"1 teaspoon ground cumin",
+"1 teaspoon ground coriander",
+"1/2 teaspoon dried thyme",
+"1/2 teaspoon black pepper",
+"a pinch of ground allspice",
+"100 ml cold meat broth or sparkling water",
+"1.5 teaspoons salt",
+"mustard and bread to serve"
+],
+"s": "Mix the three meats with all the spices, salt, baking soda and garlic water. Knead vigorously for several minutes until you obtain a sticky and homogeneous paste; Add the cold broth little by little so that it is juicy.\nCover and let it rest in the refrigerator for at least 6 hours, preferably overnight: this is how the flavor and characteristic elastic texture develop.\nWith wet hands, form thick cylinders of about 7-8 cm, like sausages without skin. A piping bag without a tip helps shape them evenly.\nGrill the mici on a very hot grill (charcoal is traditional), turning often, for 8-10 minutes, until golden on the outside and juicy on the inside. Serve them hot with mustard, fresh bread and, if you like, pickles."
+},
+"w:Ciorbă de burtă": {
+"t": "Ciorbă de burtă",
+"i": [
+"600 g of cleaned beef tripe",
+"1 beef bone with marrow",
+"2 carrots",
+"1 small celery root",
+"1 onion",
+"1 red pepper",
+"4 cloves of garlic",
+"2 egg yolks",
+"200 g smântână (sour cream)",
+"2-3 tablespoons wine vinegar (or to taste)",
+"salt and pepper",
+"chilli and crushed garlic to accompany"
+],
+"s": "Boil the tripe with the bone in plenty of salted water, foaming well, until they are very tender (2.5-3 hours, or 45 minutes in a pressure cooker). Reserve the strained broth.\nCook the carrot, celery, onion and pepper whole or in large pieces in this broth for 30 minutes to perfume it; remove them. Cut the tripe into thin strips and return them to the pot.\nMash the garlic with a little salt and water and add it to the soup. Adjust salt and pepper.\nBeat the yolks with the smântână in a bowl. Temper the mixture by gradually adding a few ladles of hot broth while continuing to whisk, and then pour it into the pot with the heat at minimum, without boiling again so that it does not become curdled.\nSour to taste with vinegar. Serve very hot, with chilli and more crushed garlic on the side, as tradition dictates."
+},
+"w:Ciorbă de perișoare": {
+"t": "Ciorbă de perișoare",
+"i": [
+"400 g minced pork (or mix with beef)",
+"3 tablespoons of rice",
+"1 egg",
+"2 carrots, diced",
+"1 small celery root, diced",
+"1 onion chopped",
+"1 red pepper, diced",
+"2 grated tomatoes (or 1 tablespoon tomato paste)",
+"500 ml borș (sour whey) or the juice of 1 lemon",
+"a good bunch of lovage (leuștean) and parsley",
+"salt and pepper",
+"smântână to serve (optional)"
+],
+"s": "Mix the minced meat with the raw rice, the egg, salt, pepper and a little finely chopped onion. With wet hands, form small meatballs (perișoare) the size of a walnut.\nIn a pot, sauté the onion, carrot, celery and pepper for 5 minutes. Cover with 2 liters of water, add the tomato and bring to a gentle boil.\nAdd the meatballs one by one to the boiling broth; When they are raw with rice, they will release a little foam: remove it. Cook for 25-30 minutes over medium heat until the rice is done and floats.\nSour the soup with the borș boiled separately or with lemon juice, and adjust the salt. Turn off the heat and add plenty of chopped lovage and parsley, which give it its unmistakable aroma. Serve with a spoonful of smântână if you like."
+},
+"w:Ciorbă rădăuțeană": {
+"t": "Ciorbă rădăuțeană",
+"i": [
+"500 g chicken breast and thighs",
+"2 carrots",
+"1 small celery root",
+"1 red pepper",
+"1 onion",
+"4 cloves of garlic",
+"2 egg yolks",
+"200 g smântână (sour cream)",
+"2 tablespoons wine vinegar (or to taste)",
+"salt and pepper",
+"chopped parsley"
+],
+"s": "Cook the chicken with the whole onion, carrots, celery and pepper in 2 liters of salted water, skimming, until the meat is tender (about 40 minutes). Strain and reserve the broth.\nShred the meat into thin strips and cut the carrots into julienne strips. Return them to the strained broth and bring to a gentle boil.\nMash the garlic with salt and a little water and add it to the soup.\nBeat the yolks with the smântână, temper the mixture with several ladles of hot broth, stirring, and pour it into the pot over low heat without letting it boil, to bind the soup without cutting it.\nSour with vinegar to taste, adjust the salt and finish with parsley. It is the \"white\" and mild version of burtă ciorbă, very popular throughout Romania. Served with chilli and garlic on the side."
+},
+"w:Tochitură moldovenească": {
+"t": "Tochitură moldovenească",
+"i": [
+"600 g of pork (shoulder or leg) diced",
+"200 g smoked bacon in strips",
+"2 fresh sausages (cârnați) sliced",
+"1 onion chopped",
+"4 cloves of garlic",
+"2 tablespoons tomato paste",
+"100 ml red wine",
+"1 teaspoon paprika",
+"1 bay leaf",
+"salt and pepper",
+"to serve: mămăligă, 1 fried egg per person and grated Telemea cheese"
+],
+"s": "Brown the bacon in a saucepan until its fat is released. Add the diced pork and sear it on all sides over high heat.\nAdd the onion and sauté until soft. Add the paprika, tomato paste and bay leaf, stir a few times and pour in the wine. Let the alcohol evaporate.\nCover with a little hot water, season with salt and pepper and cook covered over low heat for 1-1.5 hours, until the meat is very tender and the sauce thickens.\nAdd the sausage slices and crushed garlic in the last 15 minutes.\nServe the tochitură on a portion of mămăligă, top it with a fried egg and sprinkle grated cheese on top. It is a typical hearty dish from Moldova, ideal for winter."
+},
+"w:Papanași": {
+"t": "Papanași",
+"i": [
+"500 g fresh cottage cheese (brânză de vaci), well drained",
+"2 eggs",
+"200-250 g of flour (approx.)",
+"3 tablespoons fine semolina",
+"3 tablespoons of sugar",
+"1 teaspoon baking powder",
+"zest of 1 lemon",
+"a pinch of salt",
+"plenty of oil for frying",
+"200 g smântână (sour cream)",
+"blueberry or sour cherry jam to serve"
+],
+"s": "Mix the fresh cheese with the eggs, sugar, semolina, lemon zest and salt. Add the flour with the yeast little by little until you obtain a soft and manageable dough that barely sticks; Don't overwork it.\nWith floured hands, form balls and flatten them a little, making a hole in the center like a doughnut; Reserve a little dough to make the small balls that top each papanaș.\nHeat plenty of oil to 160-170°C (no more, so that they cook inside). Fry the papanași, turning, until golden brown and puffed, about 3-4 minutes. Drain them on paper.\nServe them hot: place the donut, a generous spoonful of smântână on top, the ball in the center and finish with the blueberry jam. They are the most beloved Romanian dessert on terraces."
+},
+"w:Cozonac": {
+"t": "Cozonac",
+"i": [
+"600 g strong flour",
+"250 ml warm milk",
+"25 g fresh yeast (or 8 g dry)",
+"150g sugar",
+"4 egg yolks",
+"100 g soft butter",
+"zest of 1 lemon and 1 orange",
+"1 teaspoon vanilla extract",
+"1 tablespoon of rum",
+"1/2 teaspoon salt",
+"Filling: 250 g of ground walnuts, 100 g of sugar, 2 tablespoons of cocoa, 100 ml of milk, 2 egg whites, rum essence",
+"1 beaten egg to brush"
+],
+"s": "Activate the yeast with warm milk and a tablespoon of sugar and flour; let it foam for 10 minutes. Mix with the rest of the flour, the sugar, the yolks, the zest, the vanilla, the rum and the salt. Knead until integrated and add the softened butter little by little; Knead vigorously for 15 minutes until a smooth and elastic dough. Let it rise in a warm place for 1.5-2 hours, until doubled.\nPrepare the filling: heat the milk with the sugar and cocoa, mix it with the ground walnuts and let it cool; Whip the egg whites until stiff and mix them gently.\nDivide the dough into portions, stretch each one into a rectangle, distribute the filling and roll. Braid the rolls two at a time and place them in lined oblong molds, filling them halfway. Let rise another 40-60 minutes.\nBrush with beaten egg and bake at 170°C for 40-45 minutes, until golden and sound hollow; If it roasts too soon, cover it with paper. Unmold and let it cool lying down. It is the sweet Christmas and Easter bread par excellence in Romania."
+},
+"w:Salată de boeuf": {
+"t": "Salată de boeuf",
+"i": [
+"300 g cooked beef (or chicken breast)",
+"3 medium potatoes",
+"3 carrots",
+"1 parsley or celery root (optional)",
+"200 g cooked peas",
+"150 g pickled gherkins",
+"150 g roasted peppers in vinegar (gogoșari)",
+"1 tablespoon mustard",
+"250 g mayonnaise",
+"salt and pepper",
+"to decorate: olives, boiled egg and more pickles"
+],
+"s": "Cook the meat in salted water until very tender; reserve the broth for another recipe. In the same water or separately, cook the potatoes and carrots with their skin until they are done but firm. Let everything cool completely, preferably overnight.\nCut the meat, potatoes, carrots, gherkins and roasted peppers into very small, regular cubes; That fine cut is the key to a good salată de boeuf.\nMix everything in a large bowl with the peas. Add the mustard and mayonnaise, season with salt and pepper and stir carefully until creamy and homogeneous.\nSpread it on a platter, smooth it and decorate it with mayonnaise, egg slices, olives and pepper strips. Refrigerate a few hours before serving. It is not missing from any Romanian party table."
+},
+"w:Zacuscă": {
+"t": "Zacusca",
+"i": [
+"1 kg of eggplants",
+"1 kg fleshy red peppers (gogoșari)",
+"500 g chopped onion",
+"500 g crushed tomato (or 4 tablespoons tomato paste)",
+"250 ml sunflower oil",
+"2 bay leaves",
+"1 teaspoon ground black pepper",
+"salt to taste",
+"chilli to taste (optional)"
+],
+"s": "Roast whole eggplants and peppers in the oven or on a grill until the skin is charred. Put them in a closed bag so that they sweat, peel them, remove the seeds and chop them finely or crush them lightly.\nIn a large, thick-bottomed saucepan, sauté the onion in the oil over low heat for 15-20 minutes, until it is very soft and sweet without taking on color.\nAdd the roasted pepper and eggplant, tomato, bay leaf, pepper and salt. Cook over low heat, stirring often, for 45-60 minutes, until thickened, reduced and the oil rises to the surface.\nAdjust salt. If you are going to preserve it, pack it very hot in sterilized jars, close them and let them cool upside down, covered with a blanket. It is eaten spread on bread, as an aperitif or light dinner, throughout the year."
+},
+"w:Drob de miel": {
+"t": "Lamb Drob",
+"i": [
+"500 g lamb offal (liver, heart and lung) and lean meat",
+"1 bunch of spring onions",
+"1 bunch of young garlic",
+"1 good bunch of dill and parsley",
+"5 eggs (2 for the raw dough, 3 cooked)",
+"2 slices of bread soaked in milk",
+"lamb caul (prapăr) or baking paper",
+"salt and pepper",
+"1 teaspoon paprika"
+],
+"s": "Clean and boil the lamb offal for about 10 minutes; Drain it and chop it finely with a knife or in a coarse chopper along with the lean meat.\nSauté the chives and chopped garlic until they soften. Mix them with the offal, the drained bread, the chopped dill and parsley, the 2 raw eggs, salt, pepper and paprika. It should be a juicy but bound dough.\nLine an elongated mold with the caulking (or baking paper). Put half of the dough, place the 3 peeled boiled eggs in a row in the center and cover with the rest, pressing so that they remain inside when cutting.\nClose with the caul on top and bake at 180°C for about 50-60 minutes, until golden and set. Let it cool before unmolding and cutting into slices. It is the essential dish of Romanian Easter, served cold."
+},
+"w:Plăcintă cu brânză": {
+"t": "Plăcintă cu brânză",
+"i": [
+"1 package of filo dough (or homemade dough stretched thin)",
+"500 g fresh cottage cheese (brânză de vaci)",
+"100 g crumbled telemea or feta cheese",
+"3 eggs",
+"4 tablespoons sugar (or salt if you want it salty)",
+"2 tablespoons semolina",
+"lemon zest",
+"a handful of raisins (optional)",
+"100 g melted butter or oil",
+"icing sugar to serve"
+],
+"s": "Mix the two cheeses in a bowl with the eggs, sugar, semolina, lemon zest and raisins. The semolina absorbs the whey and prevents the filling from being runny.\nPlace a sheet of filo dough, brush it with melted butter and overlap another. Spread part of the filling along one edge and roll into a cylinder, or fold into packets; Repeat until the dough and filling are finished.\nPlace the placinte on a lined tray (you can spirally roll them in a round mold) and brush the surface with more butter and a little beaten egg.\nBake at 180°C for 30-35 minutes, until golden and crispy. They can also be made in a frying pan with a little oil. Serve them warm, sprinkled with icing sugar. It is one of the most typical stuffed doughs in Romania."
+},
+"w:Ardei umpluți": {
+"t": "Ardei umpluți",
+"i": [
+"6 peppers to stuff",
+"500 g minced pork (or mix)",
+"100 g of rice",
+"2 onions chopped",
+"1 grated carrot",
+"2 tablespoons tomato paste",
+"500 ml crushed tomato",
+"1 teaspoon paprika",
+"a bunch of dill and parsley",
+"salt and pepper",
+"smântână to serve"
+],
+"s": "Sauté the onion and carrot in a little oil until soft; let it cool. Mix them with the minced meat, raw rice, a tablespoon of tomato paste, paprika, chopped dill and parsley, salt and pepper.\nWash the peppers, cut off the tops and remove the seeds, leaving them whole like cups. Fill them with the mixture without pressing too much, because the rice will rise.\nPlace them upright and close together in a pot. Dilute the rest of the tomato paste and the crushed tomato in water, season with salt and pepper and pour until the peppers are almost completely covered.\nCover and cook over low heat for 1-1.5 hours (or in the oven at 180°C), until the peppers are tender and the rice is done. Serve each pepper with its tomato sauce and a spoonful of smântână on top."
+},
+"w:Varză à la Cluj": {
+"t": "Varză à la Cluj",
+"i": [
+"1 large fresh cabbage (or half fresh and half sour)",
+"500 g minced pork",
+"150g rice",
+"2 onions chopped",
+"150 g smoked bacon",
+"400 g crushed tomato",
+"1 teaspoon paprika",
+"1 teaspoon thyme",
+"2 bay leaves",
+"salt and pepper",
+"smântână to serve"
+],
+"s": "Cut the cabbage into wide julienne strips and blanch it for a few minutes in salted water; drain it well. Sauté the onion, add the minced meat and brown it, crumbling it; Add the rice, paprika, thyme, salt and pepper and sauté for a couple of minutes.\nSeparately brown the bacon cut into strips.\nIn a deep greased dish, assemble layers like a lasagna: a layer of cabbage, one of the meat mixture with rice, a little tomato and bacon; repeat, finishing with cabbage and tomato on top. Distribute the bay leaf between the layers.\nCover with aluminum foil and bake at 180°C for about 60 minutes; uncover the last 15 so that it browns. Rest before serving, with a spoonful of smântână. It is the \"deconstructed\" version of the sarmale, typical of Transylvania."
+},
+"w:Ciorbă de fasole cu afumătură": {
+"t": "Ciorbă de fasole cu afumătură",
+"i": [
+"300 g dried white beans (soaked the day before)",
+"400 g smoked pork ribs or knuckles",
+"2 carrots, diced",
+"1 small celery root, diced",
+"1 onion chopped",
+"1 red pepper, diced",
+"2 grated tomatoes (or 1 tablespoon tomato paste)",
+"1 teaspoon paprika",
+"borș or the juice of 1 lemon to sour",
+"a bunch of lovage (leuștean) and parsley",
+"salt and pepper"
+],
+"s": "Drain the soaked beans, cover them with cold water, bring them to a boil and change the water once or twice so they don't repeat themselves. Add the smoked meat and cook over low heat until the beans begin to become tender (1-1.5 hours).\nIn another pan, sauté the onion, carrot, celery and pepper with the paprika and tomatoes. Add this sauce to the pot of beans and continue cooking until everything is tender.\nTake out the meat, bone it, cut it and return it to the soup. Adjust salt and pepper.\nSour to taste with borș boiled separately or with lemon juice, and finish with plenty of chopped lovage and parsley. Serve very hot; In Transylvania it is typical to serve it inside a hollowed out loaf of bread (ciorbă în pâine)."
+},
+"w:Gomboți (găluște cu prune)": {
+"t": "Gomboți (găluște cu prune)",
+"i": [
+"500 g floury potatoes",
+"200 g of flour (approx.)",
+"1 egg",
+"20g butter",
+"a pinch of salt",
+"12 small plums (fresh or soaked raisins)",
+"12 sugar cubes (or sugar for the gap)",
+"100 g breadcrumbs",
+"3 tablespoons of sugar and cinnamon",
+"50 g of butter for the batter"
+],
+"s": "Cook the potatoes with their skin on, peel them and mash them; let cool. Mix them with the egg, butter, salt and flour necessary to obtain a soft and manageable dough that does not stick. Don't overwork it or it will be hard.\nPit the plums, being careful to leave them whole, and put a sugar cube (or a little sugar) in their place.\nDivide the dough into portions, flatten them in your hand, wrap each plum, closing the dough tightly around it and forming smooth balls without cracks.\nCook them in plenty of salted water over low heat; They will be ready when they float and a couple more minutes have passed, about 8-10 minutes.\nMeanwhile, toast the breadcrumbs in the butter with the sugar until golden. Coat the drained balls in that mixture and sprinkle with cinnamon. They are served hot; It is a very beloved dessert in Transylvania and Banat."
+},
+"w:Mucenici moldovenești": {
+"t": "Moldovan Mucenici",
+"i": [
+"500 g strong flour",
+"200 ml of warm milk",
+"20 g fresh yeast",
+"60g sugar",
+"1 egg",
+"40g butter",
+"lemon zest",
+"1/2 teaspoon salt",
+"To decorate: honey, 150 g of chopped walnuts and 1 egg to brush"
+],
+"s": "Activate the yeast with warm milk and a tablespoon of sugar; let it foam for 10 minutes. Mix with the flour, sugar, egg, zest and salt, and add the butter. Knead until you have a smooth and elastic dough and let it rise until doubled, 1-1.5 hours.\nDivide the dough into thin cords and form each one into an eight (the traditional shape that remembers the 40 martyrs celebrated on March 9). Place them on a lined tray, separated, and let them rise for 30 minutes.\nBrush with beaten egg and bake at 180°C for 15-20 minutes, until golden.\nWhile still warm, brush them with honey diluted in a little hot water and sprinkle generously with the chopped walnuts. This is the Moldovan version, baked; in southern Romania they are made small and served in a sweet broth with walnuts and cinnamon."
 }
 }

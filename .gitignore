@@ -3,3 +3,7 @@ __pycache__/
 .claude/
 .sixth/
 *.log
+# Infografías de terceros con marca de agua: NO republicar (solo fuente interna)
+imagenes comida/
+# Documentos internos de planificación (no van a la web)
+inventario_imagenes.md

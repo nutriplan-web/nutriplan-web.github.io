@@ -1,0 +1,487 @@
+# -*- coding: utf-8 -*-
+# Genera secciones.json (maestro en ESPAÑOL) a partir del contenido curado de las
+# infografías de la carpeta "imagenes comida/". Los platos que solo traían nombre
+# o ingredientes se han completado con preparación paso a paso (conocimiento
+# culinario estándar; cantidades orientativas para 2 raciones).
+#
+# El esquema es deliberadamente simple: {id, title, ingredients[], instructions}.
+# La app calcula alérgenos y compatibilidad de dieta a partir del texto de los
+# ingredientes con el MISMO motor que el resto del recetario (allergensOfText /
+# DIET_BLOCKERS en app.js), así no hay etiquetas duplicadas que mantener.
+#
+# Uso:  python3 build_secciones.py   ->  escribe secciones.json
+import json
+
+SECCIONES = []
+
+def seccion(sid, titulo, icon, descripcion, platos):
+    SECCIONES.append({
+        "id": sid, "titulo": titulo, "icon": icon,
+        "descripcion": descripcion, "platos": platos,
+    })
+
+def p(pid, title, ingredients, instructions, **extra):
+    d = {"id": pid, "title": title, "ingredients": ingredients, "instructions": instructions}
+    d.update(extra)
+    return d
+
+# ===========================================================================
+# 1) SOPAS FRÍAS ESPAÑOLAS  (img 8 — traían ingredientes)
+# ===========================================================================
+seccion("sopas-frias", "Sopas frías españolas", "ac_unit",
+    "Seis clásicos refrescantes para el verano, listos en la batidora.", [
+    p("sf-gazpacho-andaluz", "Gazpacho andaluz",
+      ["1 kg de tomates maduros", "1/2 pepino", "1 pimiento verde italiano",
+       "1 diente de ajo", "50 g de pan del día anterior", "50 ml de aceite de oliva virgen extra",
+       "1 cucharada de vinagre de vino", "sal al gusto"],
+      "Trocea los tomates, el pepino y el pimiento y ponlos en el vaso de la batidora con el ajo y el pan remojado. Tritura hasta que quede fino y, con la máquina en marcha, añade el aceite en hilo para que emulsione. Ajusta de vinagre y sal, cuela si lo quieres muy fino y enfría al menos 2 horas antes de servir."),
+    p("sf-salmorejo-cordobes", "Salmorejo cordobés",
+      ["1 kg de tomates maduros", "150 g de pan blanco del día anterior", "1 diente de ajo",
+       "100 ml de aceite de oliva virgen extra", "sal al gusto",
+       "2 huevos duros y 50 g de jamón serrano para servir"],
+      "Tritura los tomates con el ajo y la sal, añade el pan en trozos y deja que se hidrate un par de minutos. Vuelve a triturar incorporando el aceite poco a poco hasta lograr una crema espesa y anaranjada. Enfría y sirve con huevo duro picado y jamón por encima."),
+    p("sf-ajoblanco-malagueno", "Ajoblanco malagueño",
+      ["150 g de almendras crudas peladas", "1 diente de ajo", "50 g de pan del día anterior",
+       "60 ml de aceite de oliva virgen extra", "1 cucharada de vinagre", "750 ml de agua fría",
+       "sal al gusto", "uvas o melón para servir"],
+      "Remoja el pan y tritúralo con las almendras, el ajo y un poco de agua hasta obtener una pasta. Añade el resto del agua, el vinagre y la sal, y emulsiona con el aceite en hilo hasta que quede sedoso. Sirve muy frío con unas uvas partidas por encima."),
+    p("sf-porra-antequerana", "Porra antequerana",
+      ["1 kg de tomates maduros", "200 g de pan del día anterior", "1 diente de ajo",
+       "1 pimiento verde pequeño", "120 ml de aceite de oliva virgen extra", "sal al gusto",
+       "huevo duro y jamón para servir"],
+      "Tritura los tomates con el ajo, el pimiento y la sal, incorpora el pan remojado y deja reposar. Bate de nuevo emulsionando con el aceite hasta una crema más espesa que el gazpacho. Sirve fría con huevo duro y taquitos de jamón."),
+    p("sf-gazpacho-verde", "Gazpacho verde",
+      ["1 pepino", "1 pimiento verde", "1 manzana verde", "1/2 aguacate", "1 puñado de espinacas",
+       "40 ml de aceite de oliva virgen extra", "el zumo de 1 lima", "200 ml de agua fría", "sal al gusto"],
+      "Pela y trocea el pepino, la manzana y el aguacate y ponlos en la batidora con el pimiento y las espinacas. Tritura con el agua y la lima hasta que quede una crema verde y fina, emulsionando con el aceite. Rectifica de sal y sirve bien frío."),
+    p("sf-gazpacho-sandia", "Gazpacho de sandía",
+      ["500 g de sandía sin pepitas", "2 tomates maduros", "1/2 pepino",
+       "30 ml de aceite de oliva virgen extra", "1 cucharadita de vinagre", "unas hojas de menta", "sal al gusto"],
+      "Tritura la sandía con el tomate y el pepino hasta que quede líquido. Emulsiona con el aceite y el vinagre, añade unas hojas de menta y sal, y vuelve a batir. Cuela y sirve muy frío; queda dulce y refrescante."),
+])
+
+# ===========================================================================
+# 2) SALSAS CASERAS  (img 6 — traían ingredientes)
+# ===========================================================================
+seccion("salsas", "Salsas caseras", "blender",
+    "Seis salsas para acompañar carnes, verduras, ensaladas y picoteo.", [
+    p("salsa-ranch", "Salsa ranch",
+      ["4 cucharadas de mayonesa", "3 cucharadas de yogur natural o nata agria", "2 cucharadas de leche",
+       "1/2 cucharadita de ajo en polvo", "1/2 cucharadita de cebolla en polvo", "1 cucharada de cebollino picado",
+       "1 cucharadita de eneldo", "sal y pimienta"],
+      "Mezcla la mayonesa con el yogur y la leche hasta que quede una crema fluida. Añade el ajo y la cebolla en polvo, el cebollino y el eneldo, y salpimienta. Deja reposar 30 minutos en frío para que se integren los sabores."),
+    p("salsa-bufalo", "Salsa búfalo",
+      ["120 ml de salsa picante tipo cayena (hot sauce)", "60 g de mantequilla",
+       "1 cucharadita de vinagre", "1/2 cucharadita de ajo en polvo", "una pizca de sal"],
+      "Derrite la mantequilla a fuego suave y retírala del fuego. Añade la salsa picante, el vinagre y el ajo en polvo y bate hasta que emulsione y quede brillante. Úsala templada sobre alitas o coliflor asada."),
+    p("salsa-tartara", "Salsa tártara",
+      ["6 cucharadas de mayonesa", "2 pepinillos en vinagre picados", "1 cucharada de alcaparras picadas",
+       "1/2 cebolla pequeña muy picada", "1 cucharada de perejil", "1 cucharadita de mostaza", "unas gotas de limón"],
+      "Pica muy finos los pepinillos, las alcaparras y la cebolla. Mézclalos con la mayonesa, la mostaza, el perejil y el limón. Enfría antes de servir; acompaña pescados y frituras."),
+    p("salsa-alfredo", "Salsa alfredo",
+      ["250 ml de nata para cocinar", "50 g de mantequilla", "80 g de queso parmesano rallado",
+       "1 diente de ajo", "una pizca de nuez moscada", "sal y pimienta"],
+      "Funde la mantequilla con el ajo picado sin que se dore. Añade la nata y calienta sin que hierva, incorpora el parmesano poco a poco removiendo hasta que espese. Sazona con nuez moscada, sal y pimienta y usa enseguida sobre pasta."),
+    p("salsa-chipotle", "Salsa de chipotle",
+      ["6 cucharadas de mayonesa", "2 chiles chipotle en adobo", "1 cucharada de la salsa de adobo",
+       "el zumo de 1/2 lima", "1/2 diente de ajo", "sal"],
+      "Tritura los chipotles con su adobo, el ajo y la lima hasta obtener una pasta. Mézclala con la mayonesa hasta lograr el punto de picante que prefieras. Refrigera; va bien con tacos, hamburguesas y patatas."),
+    p("salsa-yogur-pepino", "Salsa de yogur y pepino (tzatziki)",
+      ["250 g de yogur griego", "1/2 pepino rallado y escurrido", "1 diente de ajo",
+       "1 cucharada de aceite de oliva", "unas hojas de menta o eneldo", "el zumo de 1/2 limón", "sal"],
+      "Ralla el pepino, sálalo y escúrrelo bien para quitar el agua. Mézclalo con el yogur, el ajo machacado, el aceite, el limón y la hierba picada. Enfría 1 hora; refresca carnes a la parrilla y verduras."),
+])
+
+# ===========================================================================
+# 3) BEBIDAS SALUDABLES / SMOOTHIES  (img 3 — RO, traían ingredientes)
+# ===========================================================================
+seccion("smoothies", "Bebidas saludables y smoothies", "local_bar",
+    "Diez batidos nutritivos para el desayuno o la merienda. Tritura todo bien frío.", [
+    p("sm-arandanos", "Smoothie de arándanos",
+      ["150 g de arándanos", "1 plátano", "200 ml de leche o bebida vegetal",
+       "1 cucharada de copos de avena", "1 cucharadita de miel"],
+      "Pon todos los ingredientes en la batidora. Tritura hasta que quede homogéneo y cremoso. Sirve al momento; si lo quieres más líquido añade un poco más de leche."),
+    p("sm-chocolate", "Smoothie de chocolate",
+      ["1 plátano congelado", "200 ml de leche o bebida vegetal", "1 cucharada de cacao puro en polvo",
+       "1 cucharada de mantequilla de cacahuete", "1 dátil opcional"],
+      "Tritura el plátano con la leche, el cacao y la mantequilla de cacahuete. Bate hasta que quede espeso y sin grumos. Endulza con el dátil si lo necesitas."),
+    p("sm-melocoton", "Smoothie de melocotón",
+      ["2 melocotones maduros", "150 g de yogur natural", "150 ml de leche", "1 cucharadita de miel"],
+      "Pela y trocea los melocotones. Tritúralos con el yogur, la leche y la miel hasta que quede suave. Sirve frío."),
+    p("sm-vainilla", "Smoothie de vainilla",
+      ["1 plátano", "200 ml de leche", "150 g de yogur", "1/2 cucharadita de extracto de vainilla",
+       "1 cucharadita de miel"],
+      "Bate el plátano con el yogur, la leche, la vainilla y la miel. Tritura hasta lograr una textura de batido cremoso. Sirve enseguida."),
+    p("sm-verde", "Smoothie verde",
+      ["1 puñado de espinacas", "1 manzana verde", "1 plátano", "200 ml de agua o bebida vegetal",
+       "un trocito de jengibre", "el zumo de 1/2 limón"],
+      "Lava las espinacas y trocea la fruta. Tritura todo con el agua, el jengibre y el limón hasta que quede fino y sin hebras. Bebe recién hecho para aprovechar las vitaminas."),
+    p("sm-fresa", "Smoothie de fresa",
+      ["200 g de fresas", "150 g de yogur", "150 ml de leche", "1 cucharadita de miel"],
+      "Lava y despunta las fresas. Tritúralas con el yogur, la leche y la miel hasta que quede rosado y espumoso. Sirve frío."),
+    p("sm-platano", "Smoothie de plátano y avena",
+      ["2 plátanos", "250 ml de leche o bebida vegetal", "2 cucharadas de copos de avena",
+       "1/2 cucharadita de canela", "1 cucharadita de miel"],
+      "Tritura los plátanos con la leche, la avena y la canela. Bate bien hasta que la avena se integre y quede cremoso. Es saciante, ideal antes de entrenar."),
+    p("sm-mango", "Smoothie de mango",
+      ["1 mango maduro", "150 g de yogur", "100 ml de zumo de naranja", "1 cucharadita de miel"],
+      "Pela y trocea el mango. Tritúralo con el yogur, el zumo de naranja y la miel hasta que quede tropical y suave. Sirve muy frío."),
+    p("sm-sandia", "Smoothie de sandía",
+      ["400 g de sandía sin pepitas", "100 g de fresas", "el zumo de 1 lima", "unas hojas de menta", "hielo"],
+      "Tritura la sandía con las fresas, la lima y la menta. Añade hielo y bate hasta que quede granizado. Muy refrescante y bajo en calorías."),
+    p("sm-pina", "Smoothie de piña y coco",
+      ["200 g de piña", "1 plátano", "150 ml de leche de coco", "100 ml de agua"],
+      "Trocea la piña y el plátano. Tritúralos con la leche de coco y el agua hasta que quede una bebida tipo piña colada sin alcohol. Sirve con hielo."),
+])
+
+# ===========================================================================
+# 4) COMIDAS PROTEICAS PARA LLEVAR  (img 1 — NutriGlow, con macros)
+# ===========================================================================
+seccion("comidas-proteicas", "Comidas proteicas para llevar", "fitness_center",
+    "Cinco fiambreras frescas y altas en proteína, ideales para la playa o la oficina.", [
+    p("pl-ensalada-atun-garbanzos", "Ensalada de atún y garbanzos",
+      ["1 lata grande de atún al natural", "250 g de garbanzos cocidos", "1 tomate",
+       "1/2 cebolla roja", "1 huevo duro", "perejil", "aceite de oliva, vinagre y sal"],
+      "Escurre los garbanzos y el atún y mézclalos con el tomate y la cebolla picados. Aliña con aceite, vinagre, sal y perejil, y corona con el huevo duro en gajos. Aguanta perfectamente en fiambrera. Aporta unos 32 g de proteína."),
+    p("pl-wrap-pollo-aguacate", "Wrap de pollo y aguacate",
+      ["1 tortilla de trigo grande", "150 g de pollo a la plancha en tiras", "1/2 aguacate",
+       "hojas de lechuga", "1 tomate en rodajas", "1 cucharada de yogur o salsa ligera"],
+      "Unta la tortilla con el yogur y reparte la lechuga, el tomate, el aguacate laminado y el pollo. Enrolla apretando bien y envuelve en papel para transportarlo. Aporta unos 38 g de proteína."),
+    p("pl-pasta-pollo-pesto", "Pasta fría con pollo y pesto",
+      ["180 g de pasta corta", "150 g de pollo cocido", "2 cucharadas de pesto",
+       "8 tomates cherry", "30 g de queso parmesano", "rúcula"],
+      "Cuece la pasta al dente y enfríala bajo el grifo. Mézclala con el pesto, el pollo desmenuzado, los cherry partidos y la rúcula, y reparte el parmesano. Se come fría y aporta unos 36 g de proteína."),
+    p("pl-bowl-quinoa-salmon", "Bowl de quinoa y salmón",
+      ["120 g de quinoa", "150 g de salmón cocido o a la plancha", "1/2 aguacate", "1 zanahoria rallada",
+       "un puñado de edamame", "salsa de soja y sésamo"],
+      "Cuece la quinoa y déjala enfriar. Móntala en el bowl con el salmón, el aguacate, la zanahoria y el edamame, y aliña con soja y sésamo. Aporta unos 29 g de proteína."),
+    p("pl-hummus-verduras-huevo", "Hummus con verduras y huevo",
+      ["150 g de hummus", "1 zanahoria en bastones", "1/2 pepino en bastones",
+       "1 pimiento en tiras", "2 huevos duros", "picos de pan integral"],
+      "Coloca el hummus en el centro y reparte alrededor las verduras crudas en bastones. Añade los huevos duros partidos y unos picos para mojar. Aporta unos 22 g de proteína."),
+])
+
+# ===========================================================================
+# 5) TAPAS Y PINTXOS VASCOS  (img 1 pintxos — solo nombres, preparación redactada)
+# ===========================================================================
+seccion("pintxos", "Pintxos vascos", "tapas",
+    "Quince pintxos clásicos del norte: bocados pequeños de gran sabor.", [
+    p("px-gilda", "Gilda clásica",
+      ["3 aceitunas verdes sin hueso", "2 anchoas en aceite", "2 guindillas en vinagre (piparras)",
+       "aceite de oliva virgen extra"],
+      "Ensarta en un palillo una aceituna, una guindilla enrollada y una anchoa, repitiendo hasta montar el pintxo. Riega con un hilo de aceite de oliva. Se sirve frío como aperitivo salado y picante."),
+    p("px-tortilla-cremosa", "Tortilla cremosa de patata",
+      ["3 huevos", "2 patatas medianas", "1/2 cebolla", "aceite de oliva", "sal", "pan en rebanadas"],
+      "Fríe a fuego suave las patatas y la cebolla en láminas hasta que estén tiernas y escúrrelas. Mézclalas con los huevos batidos y cuaja la tortilla dejándola jugosa por dentro. Sirve un trozo sobre pan."),
+    p("px-anchoa-piparra", "Anchoa y piparra",
+      ["2 anchoas en aceite", "2 piparras en vinagre", "1 rebanada de pan", "tomate rallado", "aceite de oliva"],
+      "Unta el pan con un poco de tomate rallado y aceite. Coloca encima las anchoas y acompaña con las piparras. Bocado salino y fresco a la vez."),
+    p("px-bacalao-pilpil", "Bacalao al pil pil",
+      ["200 g de bacalao desalado", "3 dientes de ajo", "1 guindilla", "100 ml de aceite de oliva", "pan"],
+      "Confita los ajos y la guindilla en el aceite y retíralos. Cocina el bacalao a fuego muy suave por el lado de la piel y, fuera del fuego, mueve la cazuela en círculos para ligar el pil pil con la gelatina del pescado. Sirve sobre pan."),
+    p("px-jamon-brie", "Jamón ibérico y brie",
+      ["50 g de jamón ibérico", "50 g de queso brie", "1 rebanada de pan", "mermelada o membrillo"],
+      "Tuesta ligeramente el pan y coloca una loncha de brie. Pon encima el jamón ibérico y un toque de mermelada. El contraste de salado y dulce es la clave."),
+    p("px-pulpo-gallega", "Pulpo a la gallega",
+      ["200 g de pulpo cocido", "1 patata cocida", "pimentón dulce y picante", "sal en escamas", "aceite de oliva"],
+      "Corta el pulpo en rodajas y colócalo sobre una rodaja de patata cocida. Espolvorea pimentón y sal en escamas y riega con aceite de oliva. Sirve templado."),
+    p("px-txaka", "Txaka (ensaladilla de surimi)",
+      ["150 g de surimi", "3 cucharadas de mayonesa", "1 cucharada de tomate frito", "unas gotas de brandy", "pan"],
+      "Desmenuza el surimi y mézclalo con la mayonesa y el tomate frito hasta lograr una crema rosada. Añade unas gotas de brandy. Sirve sobre pan o en tartaleta."),
+    p("px-croquetas", "Croquetas caseras de jamón",
+      ["50 g de jamón serrano", "40 g de mantequilla", "40 g de harina", "400 ml de leche",
+       "1 huevo", "pan rallado", "aceite para freír", "nuez moscada y sal"],
+      "Haz una bechamel espesa con la mantequilla, la harina y la leche, añade el jamón picado y la nuez moscada y deja enfriar. Forma las croquetas, pásalas por huevo y pan rallado y fríelas en aceite caliente hasta dorar."),
+    p("px-boqueron-donostiarra", "Boquerones en vinagre",
+      ["200 g de boquerones limpios", "vinagre de vino", "2 dientes de ajo", "perejil", "aceite de oliva", "sal"],
+      "Cubre los boquerones abiertos con vinagre y sal y déjalos macerar unas horas en frío hasta que blanqueen. Escúrrelos y alíñalos con ajo y perejil picados y abundante aceite de oliva. Sirve muy fríos sobre pan."),
+    p("px-solomillo-foie", "Solomillo y foie",
+      ["150 g de solomillo de ternera", "50 g de foie", "1 rebanada de pan", "reducción de Pedro Ximénez", "sal y pimienta"],
+      "Marca el solomillo a la plancha al punto y salpiméntalo. Sella el foie unos segundos por cada lado y móntalo sobre el solomillo y el pan. Termina con un hilo de reducción de Pedro Ximénez."),
+    p("px-txangurro", "Txangurro gratinado",
+      ["200 g de carne de centollo o cangrejo", "1/2 cebolla", "1 tomate", "un chorrito de brandy",
+       "pan rallado", "mantequilla"],
+      "Pocha la cebolla y el tomate, añade la carne de centollo y el brandy y deja reducir. Rellena las conchas o cazuelitas, espolvorea pan rallado con unas láminas de mantequilla y gratina hasta dorar."),
+    p("px-atun-cebolla", "Atún rojo y cebolla confitada",
+      ["150 g de atún rojo", "1 cebolla", "1 cucharada de azúcar moreno", "vinagre", "aceite de oliva", "sal"],
+      "Confita la cebolla en juliana a fuego lento con un poco de azúcar y vinagre hasta caramelizar. Marca el atún por fuera dejándolo crudo en el centro y córtalo en tacos. Sirve sobre la cebolla y pan."),
+    p("px-morcilla-piquillos", "Morcilla y piquillos",
+      ["150 g de morcilla de Burgos", "2 pimientos del piquillo", "1 rebanada de pan", "aceite de oliva"],
+      "Fríe la morcilla desmenuzada hasta que quede suelta y crujiente. Calienta los piquillos en la misma sartén. Monta sobre el pan la morcilla y los piquillos encima."),
+    p("px-salmon-ahumado", "Salmón ahumado y queso crema",
+      ["80 g de salmón ahumado", "2 cucharadas de queso crema", "1 rebanada de pan", "eneldo", "alcaparras"],
+      "Unta el pan con el queso crema y coloca el salmón ahumado en pliegues. Decora con eneldo y unas alcaparras. Pintxo fresco que no necesita cocción."),
+    p("px-cangrejos-vino", "Cangrejos al vino (changurro)",
+      ["200 g de carne de cangrejo", "1/2 cebolla", "1 tomate", "100 ml de vino blanco",
+       "aceite de oliva", "perejil", "sal"],
+      "Sofríe la cebolla y el tomate, añade la carne de cangrejo y riega con el vino blanco. Deja reducir hasta que el sofrito quede meloso y reparte perejil. Sirve caliente en cazuelita o sobre pan."),
+])
+
+# ===========================================================================
+# 6) TOSTAS Y TARTINES SALADAS  (img 2 — FR, solo nombres, preparación redactada)
+# ===========================================================================
+seccion("tostas", "Tostas y tartines saladas", "lunch_dining",
+    "Veinticinco ideas de tostas saladas, fáciles y rápidas de montar sobre buen pan.", [
+    p("ts-aguacate-huevo", "Tosta de aguacate y huevo poché",
+      ["1 rebanada de pan rústico", "1/2 aguacate", "1 huevo", "vinagre", "sal en escamas", "pimienta"],
+      "Tuesta el pan y aplasta encima el aguacate con sal. Escalfa el huevo en agua con un chorro de vinagre 3 minutos y colócalo sobre el aguacate. Termina con sal en escamas y pimienta."),
+    p("ts-jamon-burrata", "Tosta de jamón crudo, burrata y tomate",
+      ["1 rebanada de pan", "1/2 burrata", "2 lonchas de jamón serrano", "1 tomate", "albahaca", "aceite de oliva"],
+      "Coloca la burrata abierta sobre el pan y reparte el tomate en rodajas. Añade el jamón y unas hojas de albahaca y riega con aceite. Sirve enseguida para que la burrata esté cremosa."),
+    p("ts-salmon-aguacate", "Tosta de salmón ahumado y aguacate",
+      ["1 rebanada de pan", "1/2 aguacate", "60 g de salmón ahumado", "queso crema", "eneldo", "limón"],
+      "Unta el pan con queso crema y extiende el aguacate laminado. Coloca el salmón en pliegues y termina con eneldo y unas gotas de limón."),
+    p("ts-cabra-miel", "Tosta de queso de cabra y miel",
+      ["1 rebanada de pan", "1 rodaja de rulo de cabra", "1 cucharadita de miel", "nueces", "tomillo"],
+      "Coloca el queso sobre el pan y gratínalo unos minutos hasta que se dore. Riega con miel y reparte nueces troceadas y tomillo. Sirve templado."),
+    p("ts-atun-rabano", "Tosta de atún, mayonesa y rábano",
+      ["1 rebanada de pan", "1 lata de atún", "1 cucharada de mayonesa", "2 rábanos", "cebollino"],
+      "Mezcla el atún escurrido con la mayonesa y extiéndelo sobre el pan. Cubre con rábanos en láminas finas y cebollino picado."),
+    p("ts-caprese", "Tosta caprese",
+      ["1 rebanada de pan", "1/2 bola de mozzarella", "1 tomate", "albahaca", "aceite de oliva", "sal"],
+      "Reparte sobre el pan rodajas de mozzarella y tomate alternadas. Añade hojas de albahaca, sal y un hilo de aceite. Fresca y mediterránea."),
+    p("ts-salmon-eneldo", "Tosta de salmón y eneldo",
+      ["1 rebanada de pan de centeno", "60 g de salmón ahumado", "queso crema", "eneldo", "pepino"],
+      "Unta el pan de centeno con queso crema y coloca láminas de pepino. Añade el salmón y abundante eneldo fresco."),
+    p("ts-jamon-emmental", "Tosta de jamón cocido y emmental",
+      ["1 rebanada de pan", "2 lonchas de jamón cocido", "2 lonchas de emmental", "mostaza suave"],
+      "Unta el pan con mostaza y coloca el jamón cocido y el emmental. Hornea o gratina hasta que el queso se funda."),
+    p("ts-chorizo-manchego", "Tosta de chorizo y queso manchego",
+      ["1 rebanada de pan", "4 rodajas de chorizo", "2 lonchas de queso manchego", "aceite de oliva"],
+      "Fríe ligeramente el chorizo para que suelte su grasa. Móntalo sobre el pan con el manchego y un hilo de aceite. Calienta hasta que el queso empiece a fundirse."),
+    p("ts-guacamole-gambas", "Tosta de guacamole y gambas",
+      ["1 rebanada de pan", "1/2 aguacate", "6 gambas peladas", "lima", "cilantro", "ajo"],
+      "Machaca el aguacate con lima, sal y cilantro y extiéndelo sobre el pan. Saltea las gambas con un poco de ajo y colócalas encima."),
+    p("ts-pate-pepinillos", "Tosta de paté y pepinillos",
+      ["1 rebanada de pan", "50 g de paté", "2 pepinillos", "cebolla encurtida"],
+      "Unta el pan con el paté. Cubre con pepinillos en láminas y un poco de cebolla encurtida para cortar la grasa."),
+    p("ts-queso-fresco-pepino", "Tosta de queso fresco, pepino y eneldo",
+      ["1 rebanada de pan", "3 cucharadas de queso fresco batido", "1/2 pepino", "eneldo", "sal"],
+      "Extiende el queso fresco sobre el pan. Cubre con láminas de pepino, eneldo y una pizca de sal. Ligera y refrescante."),
+    p("ts-brie-pera-nueces", "Tosta de brie, pera y nueces",
+      ["1 rebanada de pan", "2 lonchas de brie", "1/2 pera", "nueces", "miel"],
+      "Coloca el brie sobre el pan y la pera laminada encima. Reparte nueces y un hilo de miel y gratina ligeramente."),
+    p("ts-hummus-verduras", "Tosta de hummus y verduras asadas",
+      ["1 rebanada de pan", "3 cucharadas de hummus", "calabacín y pimiento asados", "sésamo"],
+      "Unta el pan con hummus generosamente. Coloca encima las verduras asadas templadas y espolvorea sésamo."),
+    p("ts-sardinas-tomate", "Tosta de sardinas y tomate",
+      ["1 rebanada de pan", "1 lata de sardinas", "tomate rallado", "aceite de oliva", "sal"],
+      "Unta el pan con tomate rallado y aceite. Coloca las sardinas escurridas encima y una pizca de sal."),
+    p("ts-ricotta-miel-nueces", "Tosta de ricotta, miel y nueces",
+      ["1 rebanada de pan", "3 cucharadas de ricotta", "1 cucharadita de miel", "nueces", "canela"],
+      "Extiende la ricotta sobre el pan tostado. Riega con miel y reparte nueces y un toque de canela. Dulce y salada a la vez."),
+    p("ts-pavo-mostaza", "Tosta de pavo, lechuga y mostaza",
+      ["1 rebanada de pan", "2 lonchas de pechuga de pavo", "hojas de lechuga", "mostaza", "tomate"],
+      "Unta el pan con mostaza y coloca la lechuga, el tomate y el pavo. Opción ligera y rápida para media mañana."),
+    p("ts-azul-higo", "Tosta de queso azul, higo y nueces",
+      ["1 rebanada de pan", "30 g de queso azul", "1 higo", "nueces", "miel"],
+      "Reparte el queso azul desmenuzado sobre el pan. Añade el higo en gajos, nueces y un hilo de miel para equilibrar el sabor fuerte del queso."),
+    p("ts-pan-tumaca", "Pan con tomate (pa amb tomàquet)",
+      ["1 rebanada de pan", "1 tomate maduro", "1 diente de ajo", "aceite de oliva virgen extra", "sal"],
+      "Tuesta el pan y frótalo con el ajo y luego con el tomate partido. Riega con buen aceite y sal. La base del picoteo mediterráneo."),
+    p("ts-boquerones-pimiento", "Tosta de boquerones y pimiento asado",
+      ["1 rebanada de pan", "3 boquerones en vinagre", "1/2 pimiento rojo asado", "aceite de oliva"],
+      "Coloca tiras de pimiento asado sobre el pan. Añade los boquerones en vinagre y un hilo de aceite."),
+    p("ts-queso-crema-salmon", "Tosta de queso crema y salmón",
+      ["1 rebanada de pan", "2 cucharadas de queso crema", "60 g de salmón ahumado", "alcaparras", "cebolla roja"],
+      "Unta el queso crema y coloca el salmón. Termina con alcaparras y cebolla roja en aros finos."),
+    p("ts-revuelto-champinones", "Tosta de revuelto de champiñones",
+      ["1 rebanada de pan", "100 g de champiñones", "1 huevo", "ajo", "perejil", "aceite"],
+      "Saltea los champiñones laminados con ajo hasta dorar y añade el huevo para hacer un revuelto jugoso. Reparte sobre el pan con perejil."),
+    p("ts-berenjena-feta", "Tosta de berenjena asada y feta",
+      ["1 rebanada de pan", "1/2 berenjena", "40 g de queso feta", "menta", "aceite de oliva"],
+      "Asa la berenjena en rodajas con aceite hasta que esté tierna. Colócala sobre el pan con feta desmenuzado y menta."),
+    p("ts-anchoas-mantequilla", "Tosta de anchoas y mantequilla",
+      ["1 rebanada de pan", "3 anchoas en aceite", "mantequilla", "cebollino"],
+      "Unta el pan con una capa de mantequilla. Coloca las anchoas encima y espolvorea cebollino. Un clásico francés sencillo."),
+    p("ts-tortilla-jamon", "Tosta de tortilla francesa y jamón",
+      ["1 rebanada de pan", "2 huevos", "2 lonchas de jamón cocido", "aceite", "sal"],
+      "Haz una tortilla francesa jugosa y dóblala sobre el pan. Añade el jamón y una pizca de sal."),
+])
+
+# ===========================================================================
+# 7) APERITIVOS SIMPLES  (img 5 — FR, solo nombres, preparación redactada)
+# ===========================================================================
+seccion("aperitivos", "Aperitivos para picar", "celebration",
+    "Veinte aperitivos sencillos que siempre triunfan en una reunión.", [
+    p("ap-brocheta-caprese", "Brochetas de tomate y mozzarella",
+      ["12 tomates cherry", "12 mini mozzarellas", "albahaca", "aceite de oliva", "vinagre balsámico"],
+      "Ensarta en palillos un cherry, una hoja de albahaca y una mozzarella. Aliña con aceite y un toque de balsámico. Listo en minutos."),
+    p("ap-rollitos-calabacin", "Rollitos de calabacín y queso crema",
+      ["1 calabacín", "100 g de queso crema", "menta", "aceite de oliva", "sal"],
+      "Corta el calabacín en láminas finas a lo largo y márcalas en la plancha. Unta con queso crema y menta, enrolla y sujeta con un palillo."),
+    p("ap-huevos-rellenos", "Huevos rellenos",
+      ["4 huevos duros", "1 lata de atún", "2 cucharadas de mayonesa", "tomate frito", "aceitunas"],
+      "Parte los huevos por la mitad y mezcla las yemas con el atún y la mayonesa. Rellena las claras con la pasta y decora con un poco de tomate frito y aceituna."),
+    p("ap-mini-quiches", "Mini quiches de verduras",
+      ["1 lámina de masa quebrada", "2 huevos", "100 ml de nata", "puerro y espinacas", "queso rallado", "sal"],
+      "Forra moldes de magdalena con la masa. Rellena con la verdura pochada y la mezcla de huevo, nata y queso, y hornea a 180 °C unos 20 minutos."),
+    p("ap-tartaletas-tomate", "Tartaletas de tomate y queso",
+      ["8 tartaletas", "tomate frito", "queso rallado", "orégano"],
+      "Rellena las tartaletas con tomate y queso. Gratina hasta que el queso se funda y espolvorea orégano."),
+    p("ap-brocheta-melon-jamon", "Brochetas de melón y jamón",
+      ["1/4 de melón", "8 lonchas de jamón serrano", "menta"],
+      "Corta el melón en dados y envuélvelos con media loncha de jamón. Ensarta en palillos con una hoja de menta. Dulce y salado."),
+    p("ap-palmeritas-pesto", "Palmeritas de hojaldre y pesto",
+      ["1 lámina de hojaldre", "3 cucharadas de pesto", "queso parmesano"],
+      "Extiende el pesto sobre el hojaldre y enrolla los dos lados hacia el centro. Corta en rodajas, espolvorea parmesano y hornea hasta dorar."),
+    p("ap-champinones-rellenos", "Champiñones rellenos",
+      ["12 champiñones grandes", "100 g de queso crema", "ajo", "perejil", "pan rallado"],
+      "Retira los pies de los champiñones y pícalos. Mézclalos con queso crema, ajo y perejil, rellena los sombreros, espolvorea pan rallado y hornea 15 minutos."),
+    p("ap-bolitas-queso", "Bolitas de queso y hierbas",
+      ["200 g de queso crema", "50 g de queso rallado", "hierbas frescas", "frutos secos picados"],
+      "Mezcla los quesos y forma bolitas con las manos. Rebózalas en hierbas y frutos secos picados y enfría hasta servir."),
+    p("ap-brocheta-pollo-pina", "Brochetas de pollo y piña",
+      ["1 pechuga de pollo", "200 g de piña", "salsa de soja", "miel", "sésamo"],
+      "Marina el pollo en dados con soja y miel. Ensártalo alternando con piña y cocínalo a la plancha; espolvorea sésamo."),
+    p("ap-cherry-atun", "Tomates cherry rellenos de atún",
+      ["16 tomates cherry grandes", "1 lata de atún", "2 cucharadas de mayonesa", "cebollino"],
+      "Vacía los cherry con cuidado. Rellénalos con atún mezclado con mayonesa y termina con cebollino."),
+    p("ap-rollitos-salmon", "Rollitos de salmón y queso",
+      ["100 g de salmón ahumado", "100 g de queso crema", "eneldo"],
+      "Extiende las lonchas de salmón, unta queso crema con eneldo y enróllalas. Corta en rodajas tipo sushi."),
+    p("ap-crackers-pate", "Crackers con paté y pepinillo",
+      ["12 crackers", "100 g de paté", "pepinillos"],
+      "Unta cada cracker con paté. Corona con una lámina de pepinillo. Rápido y resultón."),
+    p("ap-datiles-bacon", "Dátiles envueltos en bacon",
+      ["12 dátiles sin hueso", "6 lonchas de bacon", "almendras"],
+      "Rellena cada dátil con una almendra y envuélvelo con media loncha de bacon. Hornea hasta que el bacon esté crujiente."),
+    p("ap-bruschetta-tomate", "Mini bruschettas de tomate",
+      ["1 baguette", "2 tomates", "albahaca", "ajo", "aceite de oliva", "sal"],
+      "Tuesta rodajas de baguette y frótalas con ajo. Cubre con tomate picado aliñado con albahaca, aceite y sal."),
+    p("ap-pinchos-caprese", "Pinchos caprese",
+      ["12 tomates cherry", "12 bolitas de mozzarella", "albahaca", "balsámico"],
+      "Alterna en cada palillo cherry, albahaca y mozzarella. Riega con una reducción de balsámico."),
+    p("ap-pepino-feta", "Pinchos de pepino y feta",
+      ["1 pepino", "100 g de queso feta", "aceitunas negras", "orégano"],
+      "Corta el pepino en rodajas gruesas y coloca encima un dado de feta y media aceituna. Sujeta con palillo y espolvorea orégano."),
+    p("ap-croquetas-jamon", "Croquetas de jamón",
+      ["bechamel espesa con 50 g de jamón", "huevo", "pan rallado", "aceite para freír"],
+      "Forma las croquetas con la masa de bechamel y jamón ya fría. Rebózalas en huevo y pan rallado y fríelas hasta dorar."),
+    p("ap-aceitunas-marinadas", "Aceitunas marinadas",
+      ["250 g de aceitunas", "ajo", "piel de limón y naranja", "tomillo", "aceite de oliva"],
+      "Mezcla las aceitunas con ajo laminado, pieles de cítrico, tomillo y aceite. Deja marinar al menos un día en la nevera."),
+    p("ap-hummus-cruidites", "Hummus con crudités",
+      ["200 g de hummus", "zanahoria, apio y pimiento", "picos de pan"],
+      "Sirve el hummus en un bol en el centro. Acompaña con bastones de verdura cruda y picos para mojar."),
+])
+
+# ===========================================================================
+# 8) ENSALADAS  (img 4 + img 7 — agrupadas por subcategoría, preparación redactada)
+# ===========================================================================
+seccion("ensaladas", "Ensaladas frescas", "eco",
+    "Veintidós ensaladas organizadas por tipo: de verduras, de féculas, gourmet y de temporada.", [
+    # --- de verduras ---
+    p("en-griega", "Ensalada griega", ["2 tomates", "1 pepino", "1/2 cebolla roja", "100 g de feta",
+       "aceitunas negras", "orégano", "aceite de oliva"],
+      "Trocea el tomate, el pepino y la cebolla en trozos grandes. Añade el feta en dados y las aceitunas, y aliña con aceite y orégano. No lleva lechuga.", subcategoria="De verduras"),
+    p("en-col", "Ensalada de col (coleslaw)", ["1/4 de col", "2 zanahorias", "3 cucharadas de mayonesa",
+       "1 cucharada de vinagre", "1 cucharadita de mostaza", "sal"],
+      "Corta la col y la zanahoria en juliana muy fina. Mezcla la mayonesa con el vinagre y la mostaza y alíñala. Deja reposar para que ablande.", subcategoria="De verduras"),
+    p("en-tomate-cebolla", "Ensalada de tomate y cebolla", ["3 tomates", "1/2 cebolla dulce",
+       "aceite de oliva", "vinagre", "sal", "orégano"],
+      "Corta los tomates en rodajas y la cebolla en pluma. Aliña con aceite, vinagre y sal y espolvorea orégano.", subcategoria="De verduras"),
+    p("en-pepino-yogur", "Ensalada de pepino y yogur", ["2 pepinos", "150 g de yogur",
+       "ajo", "menta", "aceite de oliva", "sal"],
+      "Corta el pepino en rodajas finas. Mézclalo con el yogur, el ajo machacado, la menta y la sal. Sirve muy frío.", subcategoria="De verduras"),
+    p("en-remolacha", "Ensalada de remolacha", ["2 remolachas cocidas", "1/2 cebolla roja",
+       "queso de cabra", "nueces", "aceite y vinagre"],
+      "Corta la remolacha en dados y mézclala con la cebolla. Reparte queso de cabra y nueces y aliña.", subcategoria="De verduras"),
+    p("en-cesar", "Ensalada César", ["1 lechuga romana", "1 pechuga de pollo", "picatostes",
+       "parmesano", "salsa césar", "anchoas opcional"],
+      "Marca el pollo a la plancha y córtalo en tiras. Mezcla la lechuga con la salsa césar, añade el pollo, los picatostes y el parmesano en lascas.", subcategoria="De verduras"),
+    # --- de féculas ---
+    p("en-patata", "Ensalada de patata", ["500 g de patatas", "2 huevos duros", "1/2 cebolla",
+       "pepinillos", "mayonesa", "perejil"],
+      "Cuece las patatas y córtalas en dados. Mézclalas con el huevo, la cebolla y los pepinillos picados y liga con mayonesa.", subcategoria="De féculas"),
+    p("en-pasta", "Ensalada de pasta", ["200 g de pasta corta", "tomates cherry", "mozzarella",
+       "aceitunas", "albahaca", "aceite de oliva"],
+      "Cuece la pasta al dente y enfríala. Mézclala con los cherry, la mozzarella y las aceitunas y aliña con aceite y albahaca.", subcategoria="De féculas"),
+    p("en-arroz", "Ensalada de arroz", ["200 g de arroz", "1 lata de atún", "maíz", "pimiento",
+       "huevo duro", "aceitunas", "aceite y vinagre"],
+      "Cuece el arroz y enfríalo. Mézclalo con el atún, el maíz, el pimiento, el huevo y las aceitunas y aliña.", subcategoria="De féculas"),
+    p("en-lentejas", "Ensalada de lentejas", ["250 g de lentejas cocidas", "1 tomate", "1/2 cebolla",
+       "1 pimiento", "comino", "aceite y vinagre"],
+      "Escurre las lentejas y mézclalas con el tomate, la cebolla y el pimiento picados. Aliña con aceite, vinagre y una pizca de comino.", subcategoria="De féculas"),
+    p("en-quinoa", "Ensalada de quinoa", ["150 g de quinoa", "pepino", "tomate", "aguacate",
+       "lima", "cilantro", "aceite de oliva"],
+      "Cuece la quinoa y déjala enfriar. Mézclala con el pepino, el tomate y el aguacate en dados y aliña con lima, cilantro y aceite.", subcategoria="De féculas"),
+    p("en-garbanzos", "Ensalada de garbanzos", ["250 g de garbanzos cocidos", "tomate", "pepino",
+       "cebolla", "perejil", "comino", "aceite y limón"],
+      "Mezcla los garbanzos con el tomate, el pepino y la cebolla picados. Aliña con aceite, limón, perejil y comino.", subcategoria="De féculas"),
+    # --- gourmet ---
+    p("en-salmon-aguacate", "Ensalada de salmón ahumado y aguacate", ["mezcla de hojas verdes",
+       "100 g de salmón ahumado", "1 aguacate", "tomates cherry", "eneldo", "aceite y limón"],
+      "Dispón las hojas en el plato y reparte el salmón, el aguacate laminado y los cherry. Aliña con aceite, limón y eneldo.", subcategoria="Gourmet"),
+    p("en-cabra-nueces", "Ensalada de queso de cabra y nueces", ["hojas verdes", "1 rulo de cabra",
+       "nueces", "miel", "vinagre balsámico", "aceite de oliva"],
+      "Gratina rodajas de queso de cabra y colócalas sobre las hojas. Reparte nueces y aliña con miel, balsámico y aceite.", subcategoria="Gourmet"),
+    p("en-jamon-melon", "Ensalada de jamón y melón", ["rúcula", "1/4 de melón", "80 g de jamón serrano",
+       "lascas de parmesano", "aceite de oliva"],
+      "Coloca la rúcula con el melón en dados y el jamón. Termina con lascas de parmesano y un hilo de aceite.", subcategoria="Gourmet"),
+    p("en-pollo-mango", "Ensalada de pollo y mango", ["hojas verdes", "1 pechuga de pollo", "1 mango",
+       "aguacate", "anacardos", "vinagreta de lima"],
+      "Marca el pollo y córtalo en tiras. Móntalo sobre las hojas con el mango y el aguacate en dados y los anacardos, y aliña con vinagreta de lima.", subcategoria="Gourmet"),
+    p("en-tofu-sesamo", "Ensalada de tofu y sésamo", ["200 g de tofu firme", "col lombarda",
+       "zanahoria", "edamame", "salsa de soja", "aceite de sésamo", "sésamo"],
+      "Dora el tofu en dados. Mézclalo con la col y la zanahoria en juliana y el edamame, y aliña con soja, aceite de sésamo y semillas.", subcategoria="Gourmet"),
+    # --- de temporada ---
+    p("en-verano", "Ensalada de verano (sandía y feta)", ["300 g de sandía", "100 g de feta",
+       "menta", "aceitunas", "aceite de oliva", "limón"],
+      "Corta la sandía en dados y mézclala con el feta y las aceitunas. Aliña con aceite, limón y menta. Dulce y salada.", subcategoria="De temporada"),
+    p("en-otono", "Ensalada de otoño (calabaza asada)", ["300 g de calabaza", "espinacas baby",
+       "nueces", "queso de cabra", "semillas", "vinagreta de miel"],
+      "Asa la calabaza en dados hasta dorar. Móntala templada sobre las espinacas con nueces, queso y semillas y aliña con vinagreta de miel.", subcategoria="De temporada"),
+    p("en-invierno", "Ensalada de invierno (naranja e hinojo)", ["2 naranjas", "1 bulbo de hinojo",
+       "aceitunas negras", "granada", "aceite de oliva", "sal"],
+      "Pela las naranjas a lo vivo y lamina el hinojo muy fino. Mézclalos con las aceitunas y la granada y aliña con aceite y sal.", subcategoria="De temporada"),
+    p("en-primavera", "Ensalada de primavera (espárragos y guisantes)", ["1 manojo de espárragos verdes",
+       "100 g de guisantes", "rúcula", "huevo poché", "parmesano", "aceite y limón"],
+      "Saltea los espárragos y los guisantes y déjalos templar. Móntalos sobre la rúcula con un huevo poché y parmesano, y aliña con aceite y limón.", subcategoria="De temporada"),
+    p("en-frutas", "Ensalada de frutas", ["1 manzana", "1 plátano", "1 naranja", "fresas", "uvas",
+       "el zumo de 1 naranja", "menta"],
+      "Trocea toda la fruta en tamaño similar. Mézclala con el zumo de naranja para que no se oxide y reparte unas hojas de menta.", subcategoria="De temporada"),
+])
+
+# ---------------------------------------------------------------------------
+# MOMENTO DEL DÍA (filtro transversal): la sección agrupa por tipo de plato y
+# el "momento" permite filtrar por desayuno/comida/cena/merienda/aperitivo/
+# postre/guarnición. Defecto por sección + excepciones editoriales por plato.
+# ---------------------------------------------------------------------------
+MOMENTOS_SECCION = {
+    "sopas-frias": ["comida", "cena"],
+    "salsas": ["guarnicion"],
+    "smoothies": ["desayuno", "merienda"],
+    "comidas-proteicas": ["comida", "cena"],
+    "pintxos": ["aperitivo", "cena"],
+    "tostas": ["desayuno", "merienda", "aperitivo"],
+    "aperitivos": ["aperitivo"],
+    "ensaladas": ["comida", "cena"],
+}
+# Excepciones: platos dulces o de fruta que encajan mejor en merienda/postre, etc.
+MOMENTOS_OVERRIDE = {
+    "sm-chocolate": ["merienda", "postre"],
+    "sm-sandia": ["merienda", "postre"],
+    "ts-cabra-miel": ["aperitivo", "merienda"],
+    "ts-brie-pera-nueces": ["aperitivo", "merienda"],
+    "ts-ricotta-miel-nueces": ["desayuno", "merienda", "postre"],
+    "ts-azul-higo": ["aperitivo", "merienda"],
+    "en-frutas": ["merienda", "postre"],
+    "en-verano": ["comida", "cena", "postre"],
+}
+for s in SECCIONES:
+    for d in s["platos"]:
+        d["momentos"] = MOMENTOS_OVERRIDE.get(d["id"], MOMENTOS_SECCION[s["id"]])
+
+out = {
+    "_nota": "Generado por build_secciones.py a partir de las infografías de 'imagenes comida/'. "
+             "Maestro en español; la app calcula alérgenos y dietas desde los ingredientes. "
+             "'momentos' es un filtro transversal por franja del día (no recategoriza la sección).",
+    "secciones": SECCIONES,
+}
+json.dump(out, open("secciones.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
+total = sum(len(s["platos"]) for s in SECCIONES)
+print(f"secciones.json escrito: {len(SECCIONES)} secciones, {total} platos")
+for s in SECCIONES:
+    print(f"  - {s['titulo']}: {len(s['platos'])}")

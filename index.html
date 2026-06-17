@@ -311,6 +311,26 @@
             <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4"></div>
         </div>
 
+        <!-- BLOCK 3b: COLECCIONES (SECTIONS) VIEW -->
+        <div id="view-secciones" class="view-section hidden space-y-stack-md">
+            <section class="space-y-stack-sm">
+                <h2 class="font-headline-md text-headline-md text-on-surface" data-i18n="sec_title">Colecciones por secciones</h2>
+                <p class="text-on-surface-variant font-body-md"><span data-i18n="sec_sub">Sopas frías, tapas, ensaladas, smoothies, salsas y más, organizados por tipo.</span> <span id="secciones-count" class="text-primary font-semibold"></span></p>
+            </section>
+
+            <label class="flex items-center gap-3 rounded-3xl bg-surface-container-low p-3 cursor-pointer">
+                <input id="secciones-only-compat" type="checkbox" onchange="toggleSeccionCompat(this.checked)" class="w-5 h-5 accent-primary"/>
+                <span class="font-label-lg text-label-lg text-on-surface" data-i18n="sec_only_compat">Solo aptos para mi dieta</span>
+            </label>
+
+            <div id="secciones-chips" class="flex gap-2 overflow-x-auto scroll-hide py-1"></div>
+            <div id="secciones-momentos" class="flex gap-2 overflow-x-auto scroll-hide py-1"></div>
+            <div id="secciones-beneficios" class="flex gap-2 overflow-x-auto scroll-hide py-1"></div>
+            <p id="secciones-nota" class="hidden text-body-sm text-on-surface-variant bg-surface-container-low rounded-xl p-3 border-l-4 border-secondary"></p>
+
+            <div id="secciones-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+
         <!-- BLOCK 4: SHOPPING CART VIEW -->
         <div id="view-cart" class="view-section hidden space-y-stack-lg">
             <section class="space-y-stack-sm">
@@ -405,8 +425,20 @@
                         <span class="material-symbols-outlined text-2xl">no_carbs</span>
                         <span class="font-label-lg text-label-lg" data-i18n="diet_baja">Baja en carbohidratos</span>
                     </button>
+                    <button onclick="setDiet('celiaco')" id="diet-celiaco" class="p-stack-md bg-surface-container-lowest text-on-surface-variant rounded-xl border border-outline-variant flex flex-col items-center gap-2 transition-all">
+                        <span class="material-symbols-outlined text-2xl">grain</span>
+                        <span class="font-label-lg text-label-lg" data-i18n="diet_celiaco">Celíaca (sin gluten)</span>
+                    </button>
+                    <button onclick="setDiet('diabetico')" id="diet-diabetico" class="p-stack-md bg-surface-container-lowest text-on-surface-variant rounded-xl border border-outline-variant flex flex-col items-center gap-2 transition-all">
+                        <span class="material-symbols-outlined text-2xl">monitoring</span>
+                        <span class="font-label-lg text-label-lg" data-i18n="diet_diabetico">Diabética (control de azúcares)</span>
+                    </button>
                 </div>
                 <p id="diet-summary" class="mt-3 font-body-md text-on-surface-variant">Dieta activa: Mediterránea</p>
+                <div id="diet-medical-info" class="hidden mt-2 rounded-xl bg-surface-container-low p-stack-md text-body-sm text-on-surface-variant border-l-4 border-primary">
+                    <p id="diet-medical-text" class="text-on-surface"></p>
+                    <p id="diet-medical-src" class="mt-1 text-label-md italic opacity-80"></p>
+                </div>
                 <section class="space-y-stack-md">
                   <div class="flex items-center gap-2">
                     <span class="material-symbols-outlined text-primary">swap_horiz</span>
@@ -558,6 +590,10 @@
         <button id="nav-catalog" onclick="switchView('catalog')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">restaurant_menu</span>
             <span class="font-label-md text-label-md" data-i18n="nav_recipes">Recetas</span>
+        </button>
+        <button id="nav-secciones" onclick="switchView('secciones')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
+            <span class="material-symbols-outlined">category</span>
+            <span class="font-label-md text-label-md" data-i18n="nav_secciones">Colecciones</span>
         </button>
         <button id="nav-cart" onclick="switchView('cart')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-3 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">shopping_cart</span>

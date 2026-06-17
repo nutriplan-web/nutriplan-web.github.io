@@ -17,6 +17,16 @@ const I18N = {
   es: {
     app_title: 'Recetario 365 — Menú semanal, +1000 recetas del mundo y lista de la compra',
     nav_plan: 'Plan', nav_day: 'Día', nav_recipes: 'Recetas', nav_cart: 'Lista', nav_profile: 'Perfil',
+    nav_secciones: 'Colecciones',
+    sec_title: 'Colecciones por secciones',
+    sec_sub: 'Sopas frías, tapas, ensaladas, smoothies, salsas y más, organizados por tipo.',
+    sec_all: 'Todas', sec_for: 'para 2 raciones',
+    sec_only_compat: 'Solo aptos para mi dieta', sec_not_suitable: 'No apto para',
+    sec_count: 'platos', sec_no_compat: 'No hay platos compatibles con tu dieta en esta sección.',
+    mom_all: 'Cualquier momento', mom_desayuno: 'Desayuno', mom_comida: 'Comida', mom_cena: 'Cena',
+    mom_merienda: 'Merienda', mom_aperitivo: 'Aperitivo', mom_postre: 'Postre', mom_guarnicion: 'Guarnición',
+    sec_zumos: 'Zumos y bebidas funcionales',
+    sec_zumos_note: 'Selecciona un beneficio (digestión, antioxidante, limpieza de hígado…). Son beneficios orientativos por sus ingredientes, no tratamientos médicos.',
     cuisine_es: 'Comida Española', cuisine_ro: 'Comida Rumana',
     weekly_menu: 'Menú Semanal', change_menu: 'Cambiar menú',
     badge_es: 'Cocina Española', badge_ro: 'Cocina Rumana',
@@ -61,7 +71,12 @@ const I18N = {
     profile_title: 'Configuración Nutricional', profile_sub: 'Ajustes directos del motor adaptativo.',
     diet_title: 'Tipo de Dieta Primaria', diet_vegana: 'Vegana', diet_vegetariana: 'Vegetariana', diet_keto: 'Keto',
     diet_mediterranea: 'Mediterránea', diet_baja: 'Baja en carbohidratos', diet_active: 'Dieta activa', diet_none: 'Ninguna',
+    diet_celiaco: 'Celíaca (sin gluten)', diet_diabetico: 'Diabética (control de azúcares)',
     diet_sub: 'Vegetariana: sin carne ni pescado (sí huevo y lácteos). Vegana: sin ningún producto animal (tampoco huevo, lácteos ni miel).',
+    diet_celiaco_info: 'Excluye trigo, cebada, centeno y derivados (pan, pasta, rebozados, cerveza). Prioriza alimentos naturalmente sin gluten: arroz, maíz, patata, legumbres, carne, pescado, huevo, fruta y verdura. Verifica siempre el sello «sin gluten» en productos procesados.',
+    diet_celiaco_src: 'Basado en las guías de FACE (Federación de Asociaciones de Celíacos de España) y AESAN.',
+    diet_diabetico_info: 'Limita azúcares libres y harinas refinadas (bollería, zumos azucarados, dulces). Prioriza hidratos integrales, legumbres, verduras, proteína magra y grasas saludables, repartiendo los hidratos a lo largo del día.',
+    diet_diabetico_src: 'Basado en las recomendaciones de la ADA (American Diabetes Association) y redGDPS.',
     menu_style_title: 'Estilo de Menú', menu_active: 'Menú activo', allergy_title: 'Exclusiones Alérgicas',
     no_gluten: 'Sin gluten', no_gluten_sub: 'Adapta automáticamente el menú',
     no_lactose: 'Sin lactosa', no_lactose_sub: 'Sin lácteos en recetas',
@@ -89,6 +104,16 @@ const I18N = {
   ro: {
     app_title: 'Recetario 365 — Meniu săptămânal, +1000 de rețete din lume și listă de cumpărături',
     nav_plan: 'Plan', nav_day: 'Azi', nav_recipes: 'Rețete', nav_cart: 'Listă', nav_profile: 'Profil',
+    nav_secciones: 'Colecții',
+    sec_title: 'Colecții pe secțiuni',
+    sec_sub: 'Supe reci, tapas, salate, smoothie-uri, sosuri și altele, organizate pe tipuri.',
+    sec_all: 'Toate', sec_for: 'pentru 2 porții',
+    sec_only_compat: 'Doar potrivite pentru dieta mea', sec_not_suitable: 'Nepotrivit pentru',
+    sec_count: 'feluri', sec_no_compat: 'Nu există feluri compatibile cu dieta ta în această secțiune.',
+    mom_all: 'Orice moment', mom_desayuno: 'Mic dejun', mom_comida: 'Prânz', mom_cena: 'Cină',
+    mom_merienda: 'Gustare', mom_aperitivo: 'Aperitiv', mom_postre: 'Desert', mom_guarnicion: 'Garnitură',
+    sec_zumos: 'Sucuri și băuturi funcționale',
+    sec_zumos_note: 'Alege un beneficiu (digestie, antioxidant, detoxifiere ficat…). Sunt beneficii orientative datorate ingredientelor, nu tratamente medicale.',
     cuisine_es: 'Mâncare Spaniolă', cuisine_ro: 'Mâncare Românească',
     weekly_menu: 'Meniu Săptămânal', change_menu: 'Schimbă meniul',
     badge_es: 'Bucătărie Spaniolă', badge_ro: 'Bucătărie Românească',
@@ -133,7 +158,12 @@ const I18N = {
     profile_title: 'Configurare Nutrițională', profile_sub: 'Setări directe ale motorului adaptiv.',
     diet_title: 'Tip de Dietă Principală', diet_vegana: 'Vegană', diet_vegetariana: 'Vegetariană', diet_keto: 'Keto',
     diet_mediterranea: 'Mediteraneană', diet_baja: 'Săracă în carbohidrați', diet_active: 'Dietă activă', diet_none: 'Niciuna',
+    diet_celiaco: 'Celiacă (fără gluten)', diet_diabetico: 'Diabetică (control al zahărului)',
     diet_sub: 'Vegetariană: fără carne și pește (dar cu ouă și lactate). Vegană: fără niciun produs animal (fără ouă, lactate sau miere).',
+    diet_celiaco_info: 'Exclude grâul, orzul, secara și derivatele (pâine, paste, pane, bere). Prioritizează alimente fără gluten în mod natural: orez, porumb, cartof, leguminoase, carne, pește, ou, fructe și legume. Verifică întotdeauna marcajul «fără gluten» pe produsele procesate.',
+    diet_celiaco_src: 'Bazat pe ghidurile FACE (Federația Asociațiilor de Celiaci din Spania) și AESAN.',
+    diet_diabetico_info: 'Limitează zaharurile libere și făinurile rafinate (patiserie, sucuri îndulcite, dulciuri). Prioritizează carbohidrați integrali, leguminoase, legume, proteină slabă și grăsimi sănătoase, distribuind carbohidrații pe parcursul zilei.',
+    diet_diabetico_src: 'Bazat pe recomandările ADA (American Diabetes Association) și redGDPS.',
     menu_style_title: 'Stil de Meniu', menu_active: 'Meniu activ', allergy_title: 'Excluderi Alergice',
     no_gluten: 'Fără gluten', no_gluten_sub: 'Adaptează automat meniul',
     no_lactose: 'Fără lactoză', no_lactose_sub: 'Fără lactate în rețete',
@@ -161,6 +191,16 @@ const I18N = {
   en: {
     app_title: 'Recetario 365 — Weekly menu, 1000+ world recipes and shopping list',
     nav_plan: 'Plan', nav_day: 'Today', nav_recipes: 'Recipes', nav_cart: 'List', nav_profile: 'Profile',
+    nav_secciones: 'Collections',
+    sec_title: 'Collections by section',
+    sec_sub: 'Cold soups, tapas, salads, smoothies, sauces and more, organised by type.',
+    sec_all: 'All', sec_for: 'for 2 servings',
+    sec_only_compat: 'Only suitable for my diet', sec_not_suitable: 'Not suitable for',
+    sec_count: 'dishes', sec_no_compat: 'No dishes compatible with your diet in this section.',
+    mom_all: 'Any time', mom_desayuno: 'Breakfast', mom_comida: 'Lunch', mom_cena: 'Dinner',
+    mom_merienda: 'Snack', mom_aperitivo: 'Aperitif', mom_postre: 'Dessert', mom_guarnicion: 'Side',
+    sec_zumos: 'Juices and functional drinks',
+    sec_zumos_note: 'Pick a benefit (digestion, antioxidant, liver cleanse…). These are indicative benefits from the ingredients, not medical treatments.',
     cuisine_es: 'Spanish Food', cuisine_ro: 'Romanian Food',
     weekly_menu: 'Weekly Menu', change_menu: 'Change menu',
     badge_es: 'Spanish Cuisine', badge_ro: 'Romanian Cuisine',
@@ -205,7 +245,12 @@ const I18N = {
     profile_title: 'Nutrition Settings', profile_sub: 'Direct controls of the adaptive engine.',
     diet_title: 'Primary Diet Type', diet_vegana: 'Vegan', diet_vegetariana: 'Vegetarian', diet_keto: 'Keto',
     diet_mediterranea: 'Mediterranean', diet_baja: 'Low carb', diet_active: 'Active diet', diet_none: 'None',
+    diet_celiaco: 'Coeliac (gluten-free)', diet_diabetico: 'Diabetic (sugar control)',
     diet_sub: 'Vegetarian: no meat or fish (eggs and dairy are fine). Vegan: no animal products at all (no eggs, dairy or honey).',
+    diet_celiaco_info: 'Excludes wheat, barley, rye and derivatives (bread, pasta, breaded foods, beer). Prioritises naturally gluten-free foods: rice, maize, potato, pulses, meat, fish, egg, fruit and vegetables. Always check the «gluten-free» label on processed products.',
+    diet_celiaco_src: 'Based on the guidelines of FACE (Spanish Coeliac Associations Federation) and AESAN.',
+    diet_diabetico_info: 'Limits free sugars and refined flours (pastries, sweetened juices, sweets). Prioritises wholegrain carbs, pulses, vegetables, lean protein and healthy fats, spreading carbs throughout the day.',
+    diet_diabetico_src: 'Based on the recommendations of the ADA (American Diabetes Association) and redGDPS.',
     menu_style_title: 'Menu Style', menu_active: 'Active menu', allergy_title: 'Allergy Exclusions',
     no_gluten: 'Gluten free', no_gluten_sub: 'Adapts the menu automatically',
     no_lactose: 'Lactose free', no_lactose_sub: 'No dairy in recipes',
@@ -466,9 +511,14 @@ const DIET_BLOCKERS = {
   vegana: /pollo|pavo|ternera|cerdo|cordero|carne|jamón|chorizo|morcill|panceta|bacon|salchich|burtă|burta|\bpui\b|pulpă de pui|piept de pui|porc|vită|vita\b|\bmici\b|cârnați|carnati|afumătură|afumatura|pescado|merluza|bacalao|salmón|atún|ventresca|sardina|anchoa|sepia|pulpo|calamar|gamba|mejillón|mejillones|marisco|pește|peste\b|somon|huevo|\bouă\b|\boua\b|\bou\b|leche\b(?!\s+de\s+(?:coco|almendras?|soja|avena|arroz))|lapte\b(?!\s+de\s+(?:cocos|migdale|soia|ovăz|ovaz|orez))|queso|brânză|branza|telemea|cașcaval|yogur|iaurt|\bnata\b|smântână|smantana|mantequilla|\bunt\b|\bmiel\b|miere|mayonesa|maioneză|alioli|croqueta|burtă/i,
   vegetariana: /pollo|pavo|ternera|cerdo|cordero|\bcarne\b|carne picada|carne tocată|jamón|chorizo|morcill|panceta|bacon|salchich|burtă|burta|\bpui\b|pulpă de pui|piept de pui|porc\b|vită|vita\b|\bmici\b|cârnați|carnati|afumătură|afumatura|pescado|merluza|bacalao|salmón|atún|ventresca|sardina|anchoa|sepia|pulpo|calamar|gamba|mejillón|mejillones|marisco|pește|peste\b|somon|croqueta/i,
   keto: /arroz|orez|pasta\b|macarrones|fideos|tăiței|taitei|\bpan\b|pâine|paine|patata|cartof|harina|făină|faina|azúcar|azucar|zahăr|zahar|plátano|platano|banană|banana|garbanzo|năut|naut|lenteja|linte|alubia|fabes|fasole|quinoa|avena|ovăz|ovaz|maíz|maiz|mălai|malai|mămăligă|mamaliga|porumb|churro|magdalena|\bmiel\b|miere|mermelada|\bgem\b|dulceață|dulceata|cozonac|granola|cuscús|dátil|curmale|borș|bors\b|baguette|tortita|crep\b|clătite|clatite|tarta|galleta/i,
-  mediterranea: null
+  mediterranea: null,
+  // Diabética: evita azúcares libres y harinas/cereales refinados y zumos azucarados.
+  // (Las legumbres y la fruta entera NO se bloquean; aportan fibra y bajo índice glucémico.)
+  diabetico: /azúcar|azucar|zahăr|zahar|\bsugar\b|\bmiel\b|miere|\bhoney\b|mermelada|dulceață|dulceata|\bgem\b|marmalade|sirope|jarabe|sirop|\bsyrup\b|churro|magdalena|bizcocho|\btarta\b|\bcake\b|galleta|biscui|\bcookie\b|bollería|bolleria|cozonac|caramelo|chocolate con leche|harina blanca|harina refinada|pan blanco|white bread|refined flour|zumo de (?:naranja|manzana|uva|frutas?|piña|melocotón)|orange juice|fruit juice|refresco|\bsoda\b/i
 };
 DIET_BLOCKERS.baja = DIET_BLOCKERS.keto;
+// Celíaca = exactamente el patrón de gluten (coherente con la exclusión alérgica).
+DIET_BLOCKERS.celiaco = ALLERGEN_PATTERNS.gluten;
 
 // Exclusiones de ajustes -> alérgenos detectados que bloquean un plato.
 const INTOLERANCE_TO_ALLERGENS = {
@@ -1392,6 +1442,20 @@ const allergyRules = {
     { find: /gambas|langostinos|mejillones|calamar|pulpo cocido|pulpo|sepia|midii|creveți/gi, findEn: /king prawns?|prawns?|shrimps?|mussels?|squid|octopus|cuttlefish|calamari/gi, replace: { es: 'pollo', ro: 'pui', en: 'chicken' } }
   ]
 };
+// Celíaca: misma adaptación que la exclusión de gluten (sustituye trigo, pasta,
+// pan, rebozados… por equivalentes sin gluten).
+dietRules.celiaco = allergyRules.gluten;
+// Diabética: sustituye azúcares libres y refinados por opciones de bajo índice
+// glucémico; mantiene legumbres, fruta entera y cereales integrales.
+dietRules.diabetico = [
+  { find: /azúcar|zahăr/gi, findEn: /sugar/gi, replace: { es: 'edulcorante sin calorías', ro: 'îndulcitor fără calorii', en: 'calorie-free sweetener' } },
+  { find: /\bmiel\b|miere/gi, findEn: /honey/gi, replace: { es: 'edulcorante sin calorías', ro: 'îndulcitor fără calorii', en: 'calorie-free sweetener' } },
+  { find: /mermelada|dulceață|\bgem\b/gi, findEn: /\bjam\b|marmalade/gi, replace: { es: 'mermelada sin azúcar', ro: 'gem fără zahăr', en: 'sugar-free jam' } },
+  { find: /pan blanco|\bpan\b|pâine/gi, findEn: /white bread|\bbread\b/gi, replace: { es: 'pan integral', ro: 'pâine integrală', en: 'wholegrain bread' } },
+  { find: /arroz blanco|arroz(?! integral)|orez/gi, findEn: /white rice|\brice\b/gi, replace: { es: 'arroz integral', ro: 'orez integral', en: 'brown rice' } },
+  { find: /harina blanca|harina refinada|harina|făină/gi, findEn: /white flour|refined flour|\bflour\b/gi, replace: { es: 'harina integral', ro: 'făină integrală', en: 'wholemeal flour' } },
+  { find: /zumo de naranja|zumo de|zumo/gi, findEn: /orange juice|fruit juice|\bjuice\b/gi, replace: { es: 'la fruta entera', ro: 'fructul întreg', en: 'whole fruit' } }
+];
 
 function getMealOptionsForDay(dayIndex, meal) {
   const dayData = menuData[currentOrigin].days[menuDayFor(dayIndex)];
@@ -1550,6 +1614,7 @@ function setLang(lang) {
   renderIntolerances();
   loadDayDetails();
   ensureCatalogTr().then(() => renderCatalog());
+  ensureSeccionesTr().then(() => renderSecciones());
   showToast(t('toast_lang'));
 }
 function toggleLang() {
@@ -1621,6 +1686,7 @@ function switchView(viewId) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
   if (viewId === 'catalog') openCatalog();
+  if (viewId === 'secciones') renderSecciones();
 }
 
 function filterOrigin(origin) {
@@ -1951,7 +2017,7 @@ function setDiet(type) {
 }
 
 function renderDietSelection() {
-  const diets = ['vegana', 'vegetariana', 'keto', 'mediterranea', 'baja'];
+  const diets = ['vegana', 'vegetariana', 'keto', 'mediterranea', 'baja', 'celiaco', 'diabetico'];
   diets.forEach(diet => {
     const button = document.getElementById(`diet-${diet}`);
     if (button) {
@@ -1960,6 +2026,16 @@ function renderDietSelection() {
   });
   const dietLabel = currentDiet ? t('diet_' + currentDiet) : t('diet_none');
   document.getElementById('diet-summary').innerText = `${t('diet_active')}: ${dietLabel}`;
+  // Recuadro informativo con guía clínica citada para dietas médicas.
+  const infoBox = document.getElementById('diet-medical-info');
+  if (infoBox) {
+    const hasInfo = currentDiet && I18N[currentLang]['diet_' + currentDiet + '_info'];
+    infoBox.classList.toggle('hidden', !hasInfo);
+    if (hasInfo) {
+      document.getElementById('diet-medical-text').innerText = t('diet_' + currentDiet + '_info');
+      document.getElementById('diet-medical-src').innerText = t('diet_' + currentDiet + '_src');
+    }
+  }
 }
 
 function setMenuStyle(style) {
@@ -2215,7 +2291,7 @@ const juiceData = [
     benefitsText: 'La vitamina C de la naranja contribuye a las defensas y a reducir el cansancio.',
     ingredients: ['4 naranjas de zumo', '1 cucharadita de miel (opcional)'],
     instructions: 'Exprime las naranjas y sírvelo recién hecho para conservar la vitamina C. Endulza con miel solo si lo necesitas.' },
-  { title: 'Zumo verde detox', type: 'Zumo', benefits: ['Detox', 'Digestión'],
+  { title: 'Zumo verde detox', type: 'Zumo', benefits: ['Detox', 'Digestión', 'Limpieza hígado'],
     benefitsText: 'Apio, pepino y manzana aportan agua, fibra y minerales que ayudan a depurar.',
     ingredients: ['2 ramas de apio', '1/2 pepino', '1 manzana verde', '1 puñado de espinacas', 'zumo de 1/2 limón', '200 ml de agua fría'],
     instructions: 'Lava todo, trocea y licúa o tritura con el agua. Cuela si lo prefieres más fino y bebe en el momento.' },
@@ -2223,8 +2299,8 @@ const juiceData = [
     benefitsText: 'El betacaroteno de la zanahoria cuida la vista y la piel; el jengibre es antiinflamatorio.',
     ingredients: ['3 zanahorias', '2 naranjas', '1 trozo (2 cm) de jengibre fresco'],
     instructions: 'Licúa las zanahorias con el jengibre pelado y mezcla con el zumo de las naranjas. Remueve y sirve frío.' },
-  { title: 'Zumo de remolacha y manzana', type: 'Zumo', benefits: ['Deporte', 'Corazón'],
-    benefitsText: 'Los nitratos naturales de la remolacha favorecen la circulación y el rendimiento deportivo.',
+  { title: 'Zumo de remolacha y manzana', type: 'Zumo', benefits: ['Deporte', 'Corazón', 'Limpieza hígado'],
+    benefitsText: 'Los nitratos naturales de la remolacha favorecen la circulación y el rendimiento deportivo; la betaína de la remolacha se asocia popularmente al apoyo de la función hepática.',
     ingredients: ['1 remolacha cruda pelada', '2 manzanas', 'zumo de 1/2 limón', '150 ml de agua'],
     instructions: 'Trocea la remolacha y las manzanas, tritura con el agua y el limón y cuela. Ideal una hora antes de entrenar.' },
   { title: 'Zumo de granada', type: 'Zumo', benefits: ['Antioxidante', 'Corazón'],
@@ -2243,7 +2319,7 @@ const juiceData = [
     benefitsText: 'Refresca, hidrata y aporta vitamina C sin los azúcares de los refrescos.',
     ingredients: ['3 limones', '500 ml de agua fría', '1 cucharada de miel o azúcar', 'hojas de menta', 'hielo'],
     instructions: 'Exprime los limones, mezcla con el agua y la miel hasta disolver y sirve con hielo y menta.' },
-  { title: 'Zumo de pomelo y naranja', type: 'Zumo', benefits: ['Detox', 'Inmunidad'],
+  { title: 'Zumo de pomelo y naranja', type: 'Zumo', benefits: ['Detox', 'Inmunidad', 'Limpieza hígado'],
     benefitsText: 'Cítricos bajos en azúcar y ricos en vitamina C; el pomelo es ligeramente depurativo.',
     ingredients: ['2 pomelos', '1 naranja', '1 cucharadita de miel (opcional)'],
     instructions: 'Exprime los cítricos, mezcla y endulza ligeramente si el pomelo te resulta muy amargo.' },
@@ -2587,7 +2663,13 @@ const FAMOUS_DISHES = [
   'wiener schnitzel', 'tarta sacher', 'gravlax', 'adobo filipino', 'jollof rice', 'koshari',
   'banh mi', 'som tam', 'onigiri', 'tonkatsu', 'katsudon', 'sopa de miso', 'mochi',
   'okonomiyaki', 'shakshuka', 'cuscus', 'tarta de queso', 'brownie', 'tres leches', 'flan',
-  'macaron', 'sarmale cu mamaliga'
+  'macaron',
+  // Cocina tradicional rumana (Recetario 365): los platos más queridos.
+  'sarmale', 'mamaliga cu branza si smantana', 'mici (mititei)', 'ciorba de burta',
+  'ciorba de perisoare', 'ciorba radauteana', 'tochitura moldoveneasca', 'papanasi',
+  'cozonac', 'salata de boeuf', 'zacusca', 'drob de miel', 'placinta cu branza',
+  'ardei umpluti', 'varza a la cluj', 'ciorba de fasole cu afumatura',
+  'gomboti (galuste cu prune)', 'mucenici moldovenesti'
 ];
 const FAMOUS_RANK = new Map(FAMOUS_DISHES.map((title, index) => [title, index]));
 // Sinónimos español -> inglés para buscar ingredientes también en recetas de la API.
@@ -2835,6 +2917,222 @@ function renderCatalog() {
   };
 
   hydrateLazyImages(grid);
+}
+
+// ===========================================================================
+// COLECCIONES POR SECCIONES (secciones.json)
+// Catálogo curado a partir de las infografías: sopas frías, tapas, ensaladas,
+// smoothies, salsas, etc. No toca el motor del menú diario; reutiliza el mismo
+// detector de alérgenos y de dieta (allergensOfText / optionNeedsAdaptation).
+// ===========================================================================
+let seccionesData = null;       // [{id, titulo, icon, descripcion, platos:[...]}]
+let seccionesTr = null;         // traducción RO/EN por id de plato {id: {t,i,s,titulo}}
+const seccionesFilter = { section: 'all', momento: 'all', benefit: 'all', onlyCompat: false };
+const MOMENTO_ORDER = ['desayuno', 'comida', 'cena', 'merienda', 'aperitivo', 'postre', 'guarnicion'];
+const MOMENTO_ICON = { desayuno: 'bakery_dining', comida: 'lunch_dining', cena: 'dinner_dining', merienda: 'cookie', aperitivo: 'tapas', postre: 'icecream', guarnicion: 'rice_bowl' };
+
+const seccionesPromise = fetch('secciones.json')
+  .then(r => (r.ok ? r.json() : null))
+  .then(d => {
+    seccionesData = d ? d.secciones : [];
+    // Sección virtual de zumos a partir del juiceData existente (con sus beneficios
+    // y su traducción del catálogo); no se duplica contenido.
+    seccionesData.push({
+      id: 'zumos', titulo: 'Zumos y bebidas funcionales', icon: 'local_drink',
+      platos: juiceData.map(j => Object.assign({}, j, {
+        id: 'juice:' + j.title, momentos: ['desayuno', 'merienda'],
+      })),
+    });
+  })
+  .catch(() => { seccionesData = []; });
+
+// Traducción de contenido (si existe secciones_<lang>.json; si no, español).
+function ensureSeccionesTr() {
+  if (currentLang === 'es') { seccionesTr = null; return Promise.resolve(); }
+  return fetch(`secciones_${currentLang}.json`)
+    .then(r => (r.ok ? r.json() : null))
+    .then(d => { seccionesTr = d; })
+    .catch(() => { seccionesTr = null; });
+}
+function trSeccionDish(dish) {
+  return (seccionesTr && seccionesTr[dish.id]) || null;
+}
+function trSeccionTitle(section) {
+  if (section.id === 'zumos') return t('sec_zumos');
+  if (seccionesTr && seccionesTr['sec:' + section.id]) return seccionesTr['sec:' + section.id];
+  return section.titulo;
+}
+
+function toggleSeccionCompat(checked) {
+  seccionesFilter.onlyCompat = checked;
+  renderSecciones();
+}
+function setSeccionSection(id) {
+  seccionesFilter.section = id;
+  renderSecciones();
+}
+function setSeccionMomento(id) {
+  seccionesFilter.momento = id;
+  renderSecciones();
+}
+function setSeccionBenefit(id) {
+  seccionesFilter.benefit = id;
+  renderSecciones();
+}
+
+function renderSeccionCard(dish, section) {
+  const isJuice = dish.source === 'juice';
+  // Los zumos reutilizan la traducción del catálogo (trDish); el resto, secciones_*.
+  const tr = isJuice ? trCatalogRecipe(dish) : trSeccionDish(dish);
+  const title = escapeHtml(dish.title); // clave interna (lista de la compra)
+  const displayTitle = escapeHtml(tr && tr.t ? cap(tr.t) : dish.title);
+  const ingredients = (tr && tr.i) || dish.ingredients;
+  const instructions = (tr && tr.s) || dish.instructions;
+  const allergens = allergensOfText(ingredientsText(dish.ingredients));
+  // Compatibilidad con la dieta activa (mismo motor que el menú diario).
+  const incompatible = optionNeedsAdaptation(dish);
+  const dietLabel = currentDiet ? t('diet_' + currentDiet) : '';
+  const notSuitable = incompatible && currentDiet && currentDiet !== 'mediterranea'
+    ? `<span class="bg-secondary-container text-on-secondary-container text-xs font-semibold px-2 py-1 rounded-full">⚠ ${t('sec_not_suitable')} ${escapeHtml(dietLabel)}</span>`
+    : '';
+  // Zumos: chips de beneficio (Limpieza hígado, Detox, Digestión…) + explicación.
+  const benefitsEl = (isJuice && dish.benefits && dish.benefits.length) ? `
+        <div class="text-label-md">
+          <div class="flex flex-wrap gap-1.5">
+            ${dish.benefits.map(b => `<span class="bg-tertiary-container text-on-tertiary-container text-xs font-semibold px-2 py-1 rounded-full">✦ ${escapeHtml(tBenefit(b))}</span>`).join('')}
+          </div>
+          <p class="mt-2 text-on-surface-variant">${escapeHtml((tr && tr.b) || dish.benefitsText || '')}</p>
+        </div>` : '';
+
+  return `
+    <div class="bg-surface-container-lowest rounded-3xl shadow-sm border border-surface-container overflow-hidden flex flex-col ${incompatible && seccionesFilter.onlyCompat ? 'hidden' : ''}">
+      <div class="bg-primary-container text-on-primary-container px-4 py-3 flex items-center gap-2">
+        <span class="material-symbols-outlined">${escapeHtml(section.icon || 'restaurant')}</span>
+        <h4 class="font-headline-sm">${displayTitle}</h4>
+      </div>
+      <div class="p-4 flex flex-col gap-3 flex-1">
+        ${(dish.momentos && dish.momentos.length) || notSuitable ? `<div class="flex flex-wrap gap-1.5">
+          ${(dish.momentos || []).map(m => `<span class="bg-surface-container-high text-on-surface-variant text-xs font-medium px-2 py-0.5 rounded-full flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:14px;">${escapeHtml(MOMENTO_ICON[m] || 'schedule')}</span>${escapeHtml(t('mom_' + m))}</span>`).join('')}
+          ${notSuitable}
+        </div>` : ''}
+        ${benefitsEl}
+        <div class="text-label-md text-on-surface-variant">
+          <p class="font-semibold text-on-surface">${t('ingredients')}${isJuice ? '' : ` <span class="text-primary">· ${t('sec_for')}</span>`}</p>
+          <ul class="list-disc list-inside mt-1 space-y-1">${ingredients.map(line => `<li>${escapeHtml(line)}</li>`).join('')}</ul>
+        </div>
+        <div class="text-label-md text-on-surface-variant">
+          <p class="font-semibold text-on-surface">${isJuice ? t('preparation') : t('cook_mode')}</p>
+          ${instructionStepsHTML(instructions)}
+        </div>
+        ${allergenFooterHTML(allergens)}
+        <button data-add-sec="${escapeHtml(dish.id)}" class="mt-auto w-full flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-semibold py-3 rounded-2xl active:scale-[0.98] transition-all">
+          <span class="material-symbols-outlined" style="font-size:20px;">add_shopping_cart</span>
+          ${t('add_to_list')}
+        </button>
+      </div>
+    </div>`;
+}
+
+function renderSecciones() {
+  const grid = document.getElementById('secciones-grid');
+  if (!grid) return;
+  const chipsContainer = document.getElementById('secciones-chips');
+  const countEl = document.getElementById('secciones-count');
+
+  if (!seccionesData) {
+    grid.innerHTML = `<div class="col-span-full rounded-3xl bg-surface-container-low p-10 text-center text-on-surface-variant">
+        <span class="material-symbols-outlined animate-spin text-primary" style="font-size:40px;">progress_activity</span>
+      </div>`;
+    seccionesPromise.then(() => ensureSeccionesTr()).then(renderSecciones);
+    return;
+  }
+
+  if (chipsContainer) {
+    const chips = [{ id: 'all', label: t('sec_all'), icon: 'apps' }]
+      .concat(seccionesData.map(s => ({ id: s.id, label: trSeccionTitle(s), icon: s.icon })));
+    chipsContainer.innerHTML = chips.map(chip => `
+      <button onclick="setSeccionSection('${chip.id}')" class="px-4 py-2 rounded-full font-label-lg text-label-lg whitespace-nowrap border border-surface-container transition-all flex items-center gap-1.5 ${seccionesFilter.section === chip.id ? 'active-catalog' : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-variant'}">
+        <span class="material-symbols-outlined" style="font-size:18px;">${escapeHtml(chip.icon || 'restaurant')}</span>${escapeHtml(chip.label)}</button>
+    `).join('');
+  }
+
+  // Filtro transversal por momento del día (solo los momentos presentes en los datos).
+  const momentosContainer = document.getElementById('secciones-momentos');
+  if (momentosContainer) {
+    const present = new Set();
+    seccionesData.forEach(s => s.platos.forEach(d => (d.momentos || []).forEach(m => present.add(m))));
+    const moms = [{ id: 'all', label: t('mom_all'), icon: 'schedule' }]
+      .concat(MOMENTO_ORDER.filter(m => present.has(m)).map(m => ({ id: m, label: t('mom_' + m), icon: MOMENTO_ICON[m] })));
+    momentosContainer.innerHTML = moms.map(chip => `
+      <button onclick="setSeccionMomento('${chip.id}')" class="px-3 py-1.5 rounded-full text-label-md whitespace-nowrap border transition-all flex items-center gap-1 ${seccionesFilter.momento === chip.id ? 'bg-secondary text-white border-secondary' : 'bg-surface-container-low text-on-surface-variant border-surface-container hover:bg-surface-variant'}">
+        <span class="material-symbols-outlined" style="font-size:16px;">${escapeHtml(chip.icon)}</span>${escapeHtml(chip.label)}</button>
+    `).join('');
+  }
+
+  // Filtro por beneficio: solo dentro de la sección de zumos (los demás platos no
+  // tienen beneficios y se filtrarían a cero). Incluye "Limpieza hígado", Detox, etc.
+  const inZumos = seccionesFilter.section === 'zumos';
+  const benefitsContainer = document.getElementById('secciones-beneficios');
+  const notaEl = document.getElementById('secciones-nota');
+  if (benefitsContainer) {
+    if (inZumos) {
+      const benefits = Array.from(new Set(juiceData.flatMap(j => j.benefits))).sort((a, b) => a.localeCompare(b, 'es'));
+      const chips = [{ id: 'all', label: t('all_benefits') }].concat(benefits.map(b => ({ id: b, label: tBenefit(b) })));
+      benefitsContainer.innerHTML = chips.map(chip => `
+        <button onclick="setSeccionBenefit('${chip.id.replace(/'/g, "\\'")}')" class="px-3 py-1.5 rounded-full text-label-md whitespace-nowrap border transition-all ${seccionesFilter.benefit === chip.id ? 'bg-tertiary text-white border-tertiary' : 'bg-surface-container-low text-on-surface-variant border-surface-container hover:bg-surface-variant'}">✦ ${escapeHtml(chip.label)}</button>
+      `).join('');
+    } else {
+      benefitsContainer.innerHTML = '';
+    }
+  }
+  if (notaEl) {
+    notaEl.classList.toggle('hidden', !inZumos);
+    if (inZumos) notaEl.innerText = t('sec_zumos_note');
+  }
+
+  const sections = seccionesFilter.section === 'all'
+    ? seccionesData
+    : seccionesData.filter(s => s.id === seccionesFilter.section);
+
+  let cards = [];
+  let compatCount = 0;
+  sections.forEach(section => {
+    section.platos.forEach(dish => {
+      if (seccionesFilter.momento !== 'all' && !(dish.momentos || []).includes(seccionesFilter.momento)) return;
+      if (inZumos && seccionesFilter.benefit !== 'all' && !(dish.benefits || []).includes(seccionesFilter.benefit)) return;
+      const incompatible = optionNeedsAdaptation(dish);
+      if (seccionesFilter.onlyCompat && incompatible) return;
+      compatCount++;
+      cards.push(renderSeccionCard(dish, section));
+    });
+  });
+
+  if (countEl) countEl.innerText = `${compatCount} ${t('sec_count')}`;
+
+  grid.innerHTML = cards.length
+    ? cards.join('')
+    : `<div class="col-span-full rounded-3xl bg-surface-container-low p-6 text-center text-on-surface-variant">${t('sec_no_compat')}</div>`;
+
+  grid.onclick = (event) => {
+    const addBtn = event.target.closest('[data-add-sec]');
+    if (addBtn) addSeccionDishToShopping(addBtn.getAttribute('data-add-sec'));
+  };
+}
+
+function addSeccionDishToShopping(dishId) {
+  if (!seccionesData) return;
+  let found = null;
+  seccionesData.forEach(s => s.platos.forEach(d => { if (d.id === dishId) found = d; }));
+  if (!found) return;
+  const tr = trSeccionDish(found);
+  const ingredients = (tr && tr.i) || found.ingredients;
+  ingredients.forEach(line => {
+    const key = line.toLowerCase();
+    if (!extraShoppingItems.has(key)) extraShoppingItems.set(key, { name: line, qty: '' });
+  });
+  persistState();
+  renderShoppingList();
+  showToast(`${t('added_list_toast')}: ${tr && tr.t ? cap(tr.t) : found.title}`);
 }
 
 // Espera breve tras dejar de teclear para filtrar (búsqueda fluida sin parpadeos).

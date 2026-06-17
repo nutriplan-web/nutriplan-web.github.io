@@ -5856,7 +5856,7 @@
 "8 pulpe de pui",
 "1 mână de pătrunjel"
 ],
-"s": "pasul 1\r\nÎncinge cuptorul la 200C/180C ventilator/gaz 6. Încinge uleiul de măsline într-o tigaie mare, sigură pentru cuptor, la foc mediu și prăjește ceapa, chorizo-ul și ardeii împreună cu un praf de sare și piper timp de 15 minute, până când legumele s-au înmuiat și chorizo-ul și-a eliberat uleiul. Adăugați boia de ardei și usturoiul și mai gătiți câteva minute până se parfumează.\r\n\r\npasul 2\r\nAdăugați roșiile tocate, măslinele și fasolea, amestecați pentru a se combina și condimentați. Se aseaza pulpele de pui si se condimenteaza bine. Transferați la cuptor și coaceți timp de 40 de minute până când pielea de pui este crocantă și carnea este gătită și fragedă. Se presara patrunjel si se serveste.\r\n\r\nUrmăriți după anunț (0,04):\r\n3 idei ieftine pentru ouă"
+"s": "pasul 1\r\nÎncinge cuptorul la 200C/180C ventilator/gaz 6. Încinge uleiul de măsline într-o tigaie mare, sigură pentru cuptor, la foc mediu și prăjește ceapa, chorizo-ul și ardeii împreună cu un praf de sare și piper timp de 15 minute, până când legumele s-au înmuiat și chorizo-ul și-a eliberat uleiul. Adăugați boia de ardei și usturoiul și mai gătiți câteva minute până se parfumează.\r\n\r\npasul 2\r\nAdăugați roșiile tocate, măslinele și fasolea, amestecați pentru a se combina și condimentați. Se aseaza pulpele de pui si se condimenteaza bine. Transferați la cuptor și coaceți timp de 40 de minute până când pielea de pui este crocantă și carnea este gătită și fragedă. Se presara patrunjel si se serveste."
 },
 "db:53144": {
 "t": "Creveți cu usturoi",
@@ -7149,7 +7149,7 @@
 "1 lingurita piper negru",
 "1 lingurita zahar"
 ],
-"s": "1\r\nSe incinge tigaia si se adauga putin ulei. Prăjiți mai întâi piureul de usturoi și ghimbirul și apoi adăugați carnea tocată și toate condimentele. Cand carnea este fiarta se lasa sa se raceasca.\r\n2\r\nLuați un alt castron mare. Se adauga oul, rosiile tocate, ceapa primavara tocata si carnea tocata.\r\n3\r\nObțineți 2 foi de aluat filo sau 1 foaie de înveliș pentru rulouri de primăvară. Ungeți cu puțin unt și apoi puneți niște umplutură în mijloc. Îndoiți aluatul și întindeți mai mult unt pe partea de sigiliu.\r\n4\r\nÎncinge o tigaie și adaugă puțin ulei pentru a găti pachetul până când ambele părți și toate cele 4 margini sunt aurii. (Sau unt topit pe tot pachetul si se coace la cuptor la 180°C pentru 10-15 minute)\r\n5\r\nbucură-te"
+"s": "1\r\nSe incinge tigaia si se adauga putin ulei. Prăjiți mai întâi piureul de usturoi și ghimbirul și apoi adăugați carnea tocată și toate condimentele. Cand carnea este fiarta se lasa sa se raceasca.\r\n2\r\nLuați un alt castron mare. Se adauga oul, rosiile tocate, ceapa primavara tocata si carnea tocata.\r\n3\r\nObțineți 2 foi de aluat filo sau 1 foaie de înveliș pentru rulouri de primăvară. Ungeți cu puțin unt și apoi puneți niște umplutură în mijloc. Îndoiți aluatul și întindeți mai mult unt pe partea de sigiliu.\r\n4\r\nÎncinge o tigaie și adaugă puțin ulei pentru a găti pachetul până când ambele părți și toate cele 4 margini sunt aurii. (Sau unt topit pe tot pachetul si se coace la cuptor la 180°C pentru 10-15 minute)\nBucură-te."
 },
 "db:53224": {
 "t": "Tort de ciocolată și cupcakes kunafa de fistic",
@@ -15592,5 +15592,306 @@
 "1 cană de apă"
 ],
 "s": "Fierbeți apa cu sare într-o cratiță.\nSe toarnă grisul într-un duș cu ploaie, bătând cu telul, astfel încât să nu se formeze cocoloașe.\nReduceți focul la minim, acoperiți și gătiți aproximativ 15 minute, amestecând din când în când, până obțineți consistența dorită.\nSe ia de pe foc si se lasa 2 minute sa se odihneasca, acoperit.\nServiți-l fierbinte: dulce cu lapte, miere și scorțișoară, sau sărat cu unt și brânză rasă ca garnitură cremoasă."
+},
+"w:Sarmale": {
+"t": "Sarmale",
+"i": [
+"1 varză murată întreagă sau 1 varză mare proaspătă",
+"600 g carne de porc tocată (sau jumătate de porc și jumătate de vită)",
+"120 g orez cu bob rotund",
+"2 cepe mari, tocate mărunt",
+"150 g pancetta sau bacon afumat",
+"3 linguri ulei de floarea soarelui",
+"2 linguri pasta de rosii (sau 200 ml rosii macinate)",
+"1 lingurita de cimbru uscat",
+"1 lingurita boia dulce",
+"2 foi de dafin",
+"10 boabe de piper negru",
+"o grămadă de mărar (opțional)",
+"sare dupa gust",
+"smântână (smântână) și mămăligă de servit"
+],
+"s": "Dacă folosiți varză murată, separați cu grijă frunzele, clătiți-le dacă sunt prea sărate și tăiați eventualele vene groase. Dacă folosiți varză proaspătă, puneți-o miezul și puneți-o la fiert întreg în apă cu sare până când frunzele cad moi.\nSe caleste ceapa in ulei la foc mic timp de 8-10 minute fara ca aceasta sa prinda culoare. Rezervă jumătate. Cealaltă jumătate se amestecă cu carnea tocată, orezul crud, boia de ardei, cimbru, sare și piper până obțineți o umplutură omogenă.\nTăiați fiecare frunză în bucăți de mărimea palmei. Puneți o lingură de umplutură pe margine, pliați părțile laterale spre interior și rulați strâns într-un cilindru mic.\nTocați varza rămasă. Acoperiți fundul unei oale grele cu un strat de varză tocată și câteva fâșii de slănină. Așezați rulourile strâns împreună în straturi, alternând slănină, dafin și piper. Terminati cu varza tocata deasupra.\nSe dilueaza pasta de rosii si ceapa rezervata in apa (sau suc de varza murata) si se toarna pana aproape acoperite. Acoperiți și gătiți la foc foarte mic timp de 2,5-3 ore, sau la cuptor la 160°C, până când se înmoaie și se topesc. Odihnește-te înainte de a servi cu o lingură de smântână și mămăligă fierbinte."
+},
+"w:Mămăligă cu brânză și smântână": {
+"t": "Mămăligă cu brânză și smântână",
+"i": [
+"200 g făină de porumb (griș fin sau mediu)",
+"750 ml apă",
+"1 lingurita sare",
+"20 g unt (optional)",
+"150 g brânză telemea sau brânză rasă",
+"150 g smântână (smântână)"
+],
+"s": "Aduceți apa și sarea la fiert într-o cratiță cu fundul greu. Când vine în fierbere, se reduce focul la mediu și se adaugă făina de porumb într-un jet în timp ce se amestecă cu telul pentru a nu se forma cocoloașe.\nTreceți pe o lingură de lemn și gătiți, amestecând des, timp de 25-30 de minute, până când aluatul se îngroașă, se desprinde de pereți și bule ca un vulcan. Dacă este prea tare, adăugați puțină apă fierbinte.\nPe foc, adăugați untul. Se toarnă mămăligă pe o placă sau se distribuie pe farfurii.\nSe serveste foarte fierbinte cu branza rasa deasupra si o lingura buna de smântână. Este acompaniamentul clasic la sarmale, tochitură și multe tocănițe românești."
+},
+"w:Mici (Mititei)": {
+"t": "Mici (Mititei)",
+"i": [
+"500 g carne de vită tocată",
+"250 g carne de porc tocata",
+"250 g miel tocat (sau mai multă carne de vită)",
+"4 catei de usturoi, zdrobiti cu putina apa",
+"1 lingurita de bicarbonat de sodiu",
+"1 lingurita chimen macinat",
+"1 lingurita coriandru macinat",
+"1/2 lingurita de cimbru uscat",
+"1/2 lingurita piper negru",
+"un praf de ienibahar macinat",
+"100 ml bulion de carne rece sau apa gazoasa",
+"1,5 lingurite sare",
+"muştar şi pâine de servit"
+],
+"s": "Amesteca cele trei carnuri cu toate condimentele, sarea, bicarbonatul de sodiu si apa cu usturoi. Frământați energic câteva minute până obțineți o pastă lipicioasă și omogenă; Adaugam bulionul rece putin cate putin sa fie suculent.\nSe acopera si se lasa la frigider minim 6 ore, de preferat peste noapte: asa se dezvolta aroma si textura elastica caracteristica.\nCu mâinile umede se formează cilindri groși de aproximativ 7-8 cm, ca cârnații fără coajă. O pungă fără vârf ajută la modelarea lor uniformă.\nPrăjiți micii pe un grătar foarte încins (cărbunele este tradițional), întorcându-se des, timp de 8-10 minute, până devin aurii la exterior și suculenți la interior. Serviți-le calde cu muștar, pâine proaspătă și, dacă doriți, murături."
+},
+"w:Ciorbă de burtă": {
+"t": "Ciorbă de burtă",
+"i": [
+"600 g de tripa de vita curatata",
+"1 os de vita cu maduva",
+"2 morcovi",
+"1 rădăcină mică de țelină",
+"1 ceapă",
+"1 ardei rosu",
+"4 catei de usturoi",
+"2 galbenusuri de ou",
+"200 g smântână (smântână)",
+"2-3 linguri otet de vin (sau dupa gust)",
+"sare si piper",
+"ardei iute si usturoi zdrobit pentru a insoti"
+],
+"s": "Se fierb trippa cu osul in multa apa cu sare, spumand bine, pana sunt foarte fragede (2,5-3 ore, sau 45 minute intr-o oala sub presiune). Rezervați bulionul strecurat.\nGatiti morcovul, telina, ceapa si ardeiul intregi sau bucati mari in acest bulion timp de 30 de minute pentru a-l parfuma; îndepărtați-le. Tăiați tripața în fâșii subțiri și puneți-le înapoi în oală.\nSe zdrobește usturoiul cu puțină sare și apă și se adaugă în supă. Ajustați sare și piper.\nBateți gălbenușurile cu smântână într-un castron. Se caleste amestecul adaugand treptat cateva oale de bulion fierbinte in timp ce se bate in continuare, apoi se toarna in oala cu focul la minim, fara sa fiarba din nou pentru a nu se inchega.\nAcru dupa gust cu otet. Se serveste foarte fierbinte, cu ardei iute si mai mult usturoi zdrobit in parte, dupa cum spune traditia."
+},
+"w:Ciorbă de perișoare": {
+"t": "Ciorbă de perișoare",
+"i": [
+"400 g carne tocata de porc (sau amestecati cu carne de vita)",
+"3 linguri de orez",
+"1 ou",
+"2 morcovi, tăiați cubulețe",
+"1 rădăcină mică de țelină, tăiată cubulețe",
+"1 ceapa tocata",
+"1 ardei rosu, taiat cubulete",
+"2 rosii rase (sau 1 lingura pasta de rosii)",
+"500 ml borș (zer acru) sau zeama de la 1 lămâie",
+"o grămadă bună de leuștean și pătrunjel",
+"sare si piper",
+"smântână a servi (opțional)"
+],
+"s": "Amestecați carnea tocată cu orezul crud, oul, sare, piper și puțină ceapă tocată mărunt. Cu mâinile umede, formați chiftele mici (perișoare) de mărimea unei nuci.\nÎntr-o oală, căliți ceapa, morcovul, țelina și ardeiul timp de 5 minute. Se acoperă cu 2 litri de apă, se adaugă roșia și se aduce la fierbere ușor.\nAdăugați chiftelele unul câte unul în bulionul care fierbe; Cand sunt crude cu orez, vor elibera putina spuma: se indeparteaza. Gatiti 25-30 de minute la foc mediu pana ce orezul este gata si pluteste.\nSe acrișează ciorba cu borșul fiert separat sau cu zeamă de lămâie, și se potrivește sarea. Opriți focul și adăugați din belșug leuștean tocat și pătrunjel, care îi conferă aroma inconfundabilă. Serviți cu o lingură de smântână dacă doriți."
+},
+"w:Ciorbă rădăuțeană": {
+"t": "Ciorbă rădăuțeană",
+"i": [
+"500 g piept și pulpe de pui",
+"2 morcovi",
+"1 rădăcină mică de țelină",
+"1 ardei rosu",
+"1 ceapă",
+"4 catei de usturoi",
+"2 galbenusuri de ou",
+"200 g smântână (smântână)",
+"2 linguri otet de vin (sau dupa gust)",
+"sare si piper",
+"patrunjel tocat"
+],
+"s": "Gatiti puiul cu ceapa intreaga, morcovii, telina si ardeiul in 2 litri de apa cu sare, degresand, pana cand carnea este frageda (cca 40 de minute). Se strecoară și se rezervă bulionul.\nTăiați carnea fâșii subțiri și tăiați morcovii fâșii julienne. Pune-le înapoi în bulionul strecurat și dai la fierbere ușor.\nSe zdrobește usturoiul cu sare și puțină apă și se adaugă în supă.\nSe bat galbenusurile cu smântâna, se caleste amestecul cu cateva oale de bulion fierbinte, amestecand, si se toarna in oala la foc mic fara sa fiarba, pentru a lega supa fara sa o tai.\nSe acru cu otet dupa gust, se potriveste sarea si se termina cu patrunjel. Este varianta „albă” și blândă a burtei ciorbă, foarte populară în toată România. Se serveste cu ardei iute si usturoi in parte."
+},
+"w:Tochitură moldovenească": {
+"t": "Tochitură moldovenească",
+"i": [
+"600 g carne de porc (spata sau pulpa) taiata cubulete",
+"200 g bacon afumat in fasii",
+"2 cârnați proaspeți feliați",
+"1 ceapa tocata",
+"4 catei de usturoi",
+"2 linguri pasta de rosii",
+"100 ml vin roșu",
+"1 lingurita boia",
+"1 frunză de dafin",
+"sare si piper",
+"de servit: mămăligă, 1 ou prăjit de persoană și brânză telemea rasă"
+],
+"s": "Rumeniți slănina într-o cratiță până când se eliberează grăsimea. Adăugați carnea de porc tăiată cubulețe și prăjiți-o pe toate părțile la foc mare.\nAdăugați ceapa și căleți până se înmoaie. Adaugam boiaua de ardei, pasta de rosii si frunza de dafin, amestecam de cateva ori si turnam vinul. Lasă alcoolul să se evapore.\nSe acoperă cu puțină apă fierbinte, se condimentează cu sare și piper și se fierbe acoperit la foc mic timp de 1-1,5 ore, până când carnea este foarte fragedă și sosul se îngroașă.\nAdăugați feliile de cârnați și usturoiul zdrobit în ultimele 15 minute.\nServiți tochitură pe o porție de mămăligă, acoperiți-o cu un ou prăjit și presărați deasupra brânză rasă. Este un preparat copios tipic din Moldova, ideal pentru iarna."
+},
+"w:Papanași": {
+"t": "Papanași",
+"i": [
+"500 g brânză de vaci proaspătă, bine scursă",
+"2 ouă",
+"200-250 g de făină (aprox.)",
+"3 linguri gris fin",
+"3 linguri de zahar",
+"1 lingurita praf de copt",
+"coaja de 1 lamaie",
+"un praf de sare",
+"ulei din belșug pentru prăjit",
+"200 g smântână (smântână)",
+"gem de afine sau vișine pentru a servi"
+],
+"s": "Se amestecă brânza proaspătă cu ouăle, zahărul, grisul, coaja de lămâie și sarea. Adaugam faina cu drojdia putin cate putin pana obtinem un aluat moale si manevrabil care abia se lipeste; Nu-l suprasolicita.\nCu mainile infainate se formeaza bilute si se aplatizeaza putin, facand o gaura in centru ca o gogoasa; Rezervați puțin aluat pentru a face biluțele care depășesc fiecare papanaș.\nÎncinge mult ulei la 160-170°C (nu mai mult, ca să se gătească înăuntru). Prăjiți papanașii, întorcându-le, până se rumenesc și sunt umflați, aproximativ 3-4 minute. Scurge-le pe hârtie.\nServiți-le calde: puneți gogoșa, deasupra o lingură generoasă de smântână, bila în centru și terminați cu dulceața de afine. Sunt cel mai iubit desert românesc de pe terase."
+},
+"w:Cozonac": {
+"t": "Cozonac",
+"i": [
+"600 g faina tare",
+"250 ml lapte caldut",
+"25 g drojdie proaspata (sau 8 g uscata)",
+"150 g zahăr",
+"4 gălbenușuri de ou",
+"100 g unt moale",
+"coaja de 1 lamaie si 1 portocala",
+"1 lingurita extract de vanilie",
+"1 lingura de rom",
+"1/2 lingurita sare",
+"Umplutura: 250 g nuca macinata, 100 g zahar, 2 linguri cacao, 100 ml lapte, 2 albusuri, esenta de rom",
+"1 ou bătut pentru periaj"
+],
+"s": "Activați drojdia cu lapte cald și o lingură de zahăr și făină; se lasa sa faca spuma 10 minute. Se amestecă cu restul de făină, zahărul, gălbenușurile, coaja, vanilia, romul și sarea. Se framanta pana se integreaza si se adauga putin cate putin untul inmuiat; Framantam energic timp de 15 minute pana obtinem un aluat neted si elastic. Se lasa la crescut la loc caldut 1,5-2 ore, pana se dubleaza.\nSe pregateste umplutura: se incinge laptele cu zaharul si cacao, se amesteca cu nuca macinata si se lasa sa se raceasca; Bate albușurile spumă și amestecă-le ușor.\nÎmpărțiți aluatul în porții, întindeți fiecare într-un dreptunghi, distribuiți umplutura și rulați. Impletiti rulourile cate doua si asezati-le in forme alungite captusite, umplundu-le pe jumatate. Mai lasam la crescut 40-60 de minute.\nUngeți cu ou bătut și coaceți la 170°C timp de 40-45 de minute, până devin aurii și sunet gol; Dacă se prăjește prea devreme, acoperiți-l cu hârtie. Se desface si se lasa sa se raceasca culcat. Este painea dulce de Craciun si Paste prin excelenta in Romania."
+},
+"w:Salată de boeuf": {
+"t": "Salată de boeuf",
+"i": [
+"300 g carne de vita fiarta (sau piept de pui)",
+"3 cartofi medii",
+"3 morcovi",
+"1 patrunjel sau radacina de telina (optional)",
+"200 g mazăre fiartă",
+"150 g corniși murați",
+"150 g ardei copți în oțet (gogoșari)",
+"1 lingura mustar",
+"250 g maioneza",
+"sare si piper",
+"pentru a decora: măsline, ou fiert și mai multe murături"
+],
+"s": "Gatiti carnea in apa cu sare pana se inmoaie; rezerva bulionul pentru o alta reteta. În aceeași apă sau separat, fierbeți cartofii și morcovii cu coaja lor până sunt gata dar fermi. Lasă totul să se răcească complet, de preferință peste noapte.\nTăiați carnea, cartofii, morcovii, cornișii și ardeii prăjiți în cuburi foarte mici, obișnuite; Acea tăietură fină este cheia unei bune salate de boeuf.\nAmesteca totul intr-un castron mare cu mazarea. Se adauga mustarul si maioneza, se condimenteaza cu sare si piper si se amesteca cu grija pana devine cremoasa si omogena.\nSe intinde pe un platou, se netezeste si se decoreaza cu maioneza, felii de oua, masline si fasii de ardei. Dati la frigider cateva ore inainte de servire. Nu lipsește de la nicio masă românească de partid."
+},
+"w:Zacuscă": {
+"t": "Zacuscă",
+"i": [
+"1 kg de vinete",
+"1 kg ardei roșu cărnos (gogoșari)",
+"500 g ceapa tocata",
+"500 g roșii zdrobite (sau 4 linguri pastă de tomate)",
+"250 ml ulei de floarea soarelui",
+"2 foi de dafin",
+"1 lingurita piper negru macinat",
+"sare dupa gust",
+"chilli dupa gust (optional)"
+],
+"s": "Prăjiți vinetele și ardeii întregi la cuptor sau pe grătar până când pielea este carbonizată. Pune-le intr-o punga inchisa sa transpire, curata-le de coaja, scoatem semintele si toaca-le marunt sau zdrobeste-le usor.\nÎntr-o cratiță mare, cu fundul gros, căliți ceapa în ulei la foc mic timp de 15-20 de minute, până devine foarte moale și dulce, fără să capete culoare.\nAdăugați ardeiul prăjit și vinetele, roșia, frunza de dafin, piperul și sarea. Gatiti la foc mic, amestecand des, timp de 45-60 de minute, pana se ingroasa, scade si uleiul iese la suprafata.\nAjustați sarea. Daca ai de gand sa-l pastrezi, impacheteaza-l foarte fierbinte in borcane sterilizate, inchide-le si lasa-le sa se raceasca cu capul in jos, acoperite cu o patura. Se consuma tartinat pe paine, ca aperitiv sau cina usoara, pe tot parcursul anului."
+},
+"w:Drob de miel": {
+"t": "Drob de miel",
+"i": [
+"500 g organe de miel (ficat, inimă și plămân) și carne slabă",
+"1 legatura de ceapa primavara",
+"1 buchet de usturoi tânăr",
+"1 buchet bun de marar si patrunjel",
+"5 oua (2 pentru aluatul crud, 3 fierte)",
+"2 felii de paine inmuiate in lapte",
+"lamb caul (prapăr) sau hârtie de copt",
+"sare si piper",
+"1 lingurita boia"
+],
+"s": "Se curata si se fierbe organele de miel aproximativ 10 minute; Scurgeți-l și tocați-l mărunt cu un cuțit sau într-un tocator gros, împreună cu carnea slabă.\nSe caleste arpagicul si usturoiul tocat pana se inmoaie. Amesteca-le cu organele, painea scursa, mararul si patrunjelul tocate, cele 2 oua crude, sare, piper si boia. Ar trebui să fie un aluat suculent, dar legat.\nTapetați o formă alungită cu călăfătul (sau hârtie de copt). Punem jumatate din aluat, asezam cele 3 oua fierte curatate pe rand in centru si acoperim cu restul, presand sa ramana in interior la taiere.\nSe inchide cu capacul deasupra si se coace la 180°C aproximativ 50-60 de minute, pana devin aurii si se fixeaza. Se lasa sa se raceasca inainte de a o desface si taia in felii. Este preparatul esential al Pastelui romanesc, servit rece."
+},
+"w:Plăcintă cu brânză": {
+"t": "Plăcintă cu brânză",
+"i": [
+"1 pachet de aluat filo (sau aluat de casă întins subțire)",
+"500 g brânză de vaci proaspătă",
+"100 g brânză telemea sau feta mărunțită",
+"3 ouă",
+"4 linguri de zahar (sau sare daca vrei sarat)",
+"2 linguri gris",
+"coaja de lamaie",
+"o mână de stafide (opțional)",
+"100 g unt sau ulei topit",
+"zahăr pudră de servit"
+],
+"s": "Amesteca cele doua branzeturi intr-un bol cu ​​ouale, zaharul, grisul, coaja de lamaie si stafidele. Grișul absoarbe zerul și împiedică curgerea umpluturii.\nSe pune o foaie de aluat filo, se unge cu unt topit si se suprapune pe alta. Întindeți o parte din umplutură de-a lungul unei margini și rulați într-un cilindru sau pliați în pachete; Repetați până se termină aluatul și umplutura.\nAsezati placintele pe o tava tapetata (le puteti rula spiralat intr-o forma rotunda) si ungeti suprafata cu mai mult unt si putin ou batut.\nCoacem la 180°C timp de 30-35 de minute, pana devine auriu si crocant. Se pot face si intr-o tigaie cu putin ulei. Serviți-le calde, stropite cu zahăr pudră. Este unul dintre cele mai tipice aluaturi umplute din Romania."
+},
+"w:Ardei umpluți": {
+"t": "Ardei umpluți",
+"i": [
+"6 ardei la umplut",
+"500 g carne de porc tocata (sau amestec)",
+"100 g de orez",
+"2 cepe tocate",
+"1 morcov ras",
+"2 linguri pasta de rosii",
+"500 ml roșii zdrobite",
+"1 lingurita boia",
+"o grămadă de mărar și pătrunjel",
+"sare si piper",
+"smântână a sluji"
+],
+"s": "Se caleste ceapa si morcovul in putin ulei pana se inmoaie; se lasa sa se raceasca. Amestecă-le cu carnea tocată, orezul crud, o lingură de pastă de roșii, boia de ardei, mărar și pătrunjel tocat, sare și piper.\nSpălați ardeii, tăiați vârfurile și îndepărtați semințele, lăsându-i întregi ca niște cupe. Umpleți-le cu amestecul fără a apăsa prea mult, pentru că orezul va crește.\nAșezați-le în poziție verticală și apropiați într-o oală. Se diluează restul de pasta de roșii și roșia zdrobită în apă, se condimentează cu sare și piper și se toarnă până când ardeii sunt aproape complet acoperiți.\nSe acoperă și se fierbe la foc mic timp de 1-1,5 ore (sau la cuptor la 180°C), până când ardeii sunt fragezi și orezul este gata. Serviți fiecare ardei cu sosul lui de roșii și deasupra o lingură de smântână."
+},
+"w:Varză à la Cluj": {
+"t": "Varză à la Cluj",
+"i": [
+"1 varză mare proaspătă (sau jumătate proaspătă și jumătate acru)",
+"500 g carne de porc tocata",
+"150 g orez",
+"2 cepe tocate",
+"150 g bacon afumat",
+"400 g roșii zdrobite",
+"1 lingurita boia",
+"1 lingurita de cimbru",
+"2 foi de dafin",
+"sare si piper",
+"smântână a sluji"
+],
+"s": "Tăiați varza fâșii julienne largi și o fierbeți câteva minute în apă cu sare; scurge-l bine. Se caleste ceapa, se adauga carnea tocata si se rumeneste, maruntind-o; Se adaugă orezul, boia de ardei, cimbru, sare și piper și se călesc câteva minute.\nSeparat rumeniți slănina tăiată fâșii.\nIntr-un vas uns adanc se asambleaza straturi ca lasagna: un strat de varza, unul din amestecul de carne cu orez, putina rosii si bacon; repetați, terminând cu varză și roșii deasupra. Distribuiți frunza de dafin între straturi.\nAcoperim cu folie de aluminiu si coacem la 180°C aproximativ 60 de minute; descoperă ultimele 15 astfel încât să se rumenească. Odihnește-te înainte de servire, cu o lingură de smântână. Este varianta „deconstruită” a sarmalei, tipică Transilvaniei."
+},
+"w:Ciorbă de fasole cu afumătură": {
+"t": "Ciorbă de fasole cu afumătură",
+"i": [
+"300 g fasole albă uscată (înmuiată cu o zi înainte)",
+"400 g coaste sau ciocane de porc afumate",
+"2 morcovi, tăiați cubulețe",
+"1 rădăcină mică de țelină, tăiată cubulețe",
+"1 ceapa tocata",
+"1 ardei rosu, taiat cubulete",
+"2 rosii rase (sau 1 lingura pasta de rosii)",
+"1 lingurita boia",
+"borș sau sucul de la 1 lămâie la acrișor",
+"un leuștean (leuștean) și pătrunjel",
+"sare si piper"
+],
+"s": "Scurgeți fasolea înmuiată, acoperiți-o cu apă rece, aduceți-o la fiert și schimbați apa o dată sau de două ori pentru a nu se repeta. Adăugați carnea afumată și gătiți la foc mic până când fasolea începe să devină fragedă (1-1,5 ore).\nIntr-o alta tigaie caliti ceapa, morcovul, telina si ardeiul cu boia si rosiile. Adăugați acest sos în oala cu fasole și continuați să gătiți până când totul este fraged.\nScoateți carnea, dezosați-o, tăiați-o și întoarceți-o în supă. Ajustați sare și piper.\nAcrișor după gust cu borș fiert separat sau cu zeamă de lămâie și terminați cu leuștean tocat din belșug și pătrunjel. Se serveste foarte fierbinte; În Transilvania este tipic să-l servești într-o pâine scobită (ciorbă în pâine)."
+},
+"w:Gomboți (găluște cu prune)": {
+"t": "Gomboți (găluște cu prune)",
+"i": [
+"500 g cartofi făinoase",
+"200 g faina (aprox.)",
+"1 ou",
+"20 g unt",
+"un praf de sare",
+"12 prune mici (stafide proaspete sau înmuiate)",
+"12 cuburi de zahăr (sau zahăr pentru gol)",
+"100 g pesmet",
+"3 linguri de zahar si scortisoara",
+"50 g de unt pentru aluat"
+],
+"s": "Gatiti cartofii cu coaja, curatati-i de coaja si pasiti-i; se lasa sa se raceasca. Amesteca-le cu oul, untul, sarea si faina necesare pentru a obtine un aluat moale si manevrabil, care sa nu se lipeasca. Nu-l suprasolicita sau va fi greu.\nSâmburele prunele, având grijă să le lase întregi, și puneți în locul lor un cub de zahăr (sau puțin zahăr).\nÎmpărțiți aluatul în porții, aplatizați-le în mână, înfășurați fiecare prună, închizând aluatul strâns în jurul ei și formând bile netede, fără crăpături.\nGătiți-le în multă apă cu sare la foc mic; Vor fi gata când vor pluti și au mai trecut câteva minute, aproximativ 8-10 minute.\nIntre timp prajim pesmetul in unt cu zaharul pana devine auriu. Ungeți biluțele scurse în acel amestec și stropiți cu scorțișoară. Se servesc calde; Este un desert foarte iubit în Transilvania și Banat."
+},
+"w:Mucenici moldovenești": {
+"t": "Mucenici moldovenești",
+"i": [
+"500 g faina tare",
+"200 ml lapte cald",
+"20 g drojdie proaspata",
+"60 g zahăr",
+"1 ou",
+"40 g unt",
+"coaja de lamaie",
+"1/2 lingurita sare",
+"Pentru decorare: miere, 150 g nucă tocată și 1 ou de periat"
+],
+"s": "Activați drojdia cu lapte cald și o lingură de zahăr; se lasa sa faca spuma 10 minute. Se amestecă cu făina, zahărul, oul, coaja și sarea și se adaugă untul. Frământați până obțineți un aluat neted și elastic și lăsați-l să crească până se dublează, 1-1,5 ore.\nÎmpărțiți aluatul în șnururi subțiri și formați fiecare câte un opt (forma tradițională care amintește de cei 40 de martiri sărbătoriți pe 9 martie). Asezati-le pe o tava tapetata, despartite, si lasati-le la crescut 30 de minute.\nUngeți cu ou bătut și coaceți la 180°C timp de 15-20 de minute, până devin aurii.\nCât sunt încă calde, ungeți-le cu miere diluată în puțină apă fierbinte și stropiți generos cu nuca tocată. Aceasta este varianta moldovenească, copt; in sudul Romaniei se fac mici si se servesc intr-un bulion dulce cu nuca si scortisoara."
 }
 }
