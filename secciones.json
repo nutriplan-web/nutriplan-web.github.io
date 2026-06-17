@@ -1870,6 +1870,243 @@
      ]
     }
    ]
+  },
+  {
+   "id": "postres",
+   "titulo": "Postres",
+   "icon": "icecream",
+   "descripcion": "Doce postres clásicos, del tiramisú al coulant, con receta paso a paso.",
+   "platos": [
+    {
+     "id": "po-tiramisu",
+     "title": "Tiramisú",
+     "ingredients": [
+      "250 g de queso mascarpone",
+      "3 huevos",
+      "80 g de azúcar",
+      "200 ml de café fuerte frío",
+      "1 paquete de bizcochos de soletilla",
+      "cacao en polvo para espolvorear"
+     ],
+     "instructions": "Separa las claras de las yemas. Bate las yemas con el azúcar hasta que blanqueen e incorpora el mascarpone hasta tener una crema lisa. Monta las claras a punto de nieve e intégralas con movimientos suaves. Moja brevemente los bizcochos en el café y forma una capa en una fuente; cubre con crema y repite. Termina con cacao espolvoreado y enfría al menos 4 horas.",
+     "image": "img/secciones/po-tiramisu.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "postre",
+      "merienda"
+     ]
+    },
+    {
+     "id": "po-coulant-chocolate",
+     "title": "Coulant de chocolate",
+     "ingredients": [
+      "120 g de chocolate negro",
+      "100 g de mantequilla",
+      "2 huevos",
+      "60 g de azúcar",
+      "40 g de harina",
+      "una pizca de sal",
+      "mantequilla y cacao para los moldes"
+     ],
+     "instructions": "Funde el chocolate con la mantequilla y deja templar. Bate los huevos con el azúcar y añade el chocolate, la harina tamizada y la sal. Reparte en moldes individuales engrasados y enfría 30 minutos. Hornea a 200 °C unos 9-10 minutos: el borde debe quedar cuajado y el centro líquido. Desmolda con cuidado y sirve enseguida.",
+     "image": "img/secciones/po-coulant-chocolate.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "postre",
+      "merienda"
+     ]
+    },
+    {
+     "id": "po-cheesecake",
+     "title": "Cheesecake sin horno",
+     "ingredients": [
+      "200 g de galletas tipo digestive",
+      "90 g de mantequilla",
+      "400 g de queso crema",
+      "200 ml de nata para montar",
+      "80 g de azúcar",
+      "1 cucharadita de extracto de vainilla",
+      "frutos rojos para cubrir"
+     ],
+     "instructions": "Tritura las galletas y mézclalas con la mantequilla fundida; presiona en la base de un molde y enfría. Bate el queso con el azúcar y la vainilla, monta la nata aparte e intégrala con suavidad. Vierte sobre la base, alisa y refrigera al menos 4 horas. Cubre con frutos rojos antes de servir.",
+     "image": "img/secciones/po-cheesecake.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "postre",
+      "merienda"
+     ]
+    },
+    {
+     "id": "po-panna-cotta",
+     "title": "Panna cotta de vainilla",
+     "ingredients": [
+      "500 ml de nata para montar",
+      "80 g de azúcar",
+      "1 vaina de vainilla o 1 cucharadita de extracto",
+      "3 hojas de gelatina",
+      "frutos rojos para el coulis"
+     ],
+     "instructions": "Hidrata la gelatina en agua fría. Calienta la nata con el azúcar y la vainilla sin que llegue a hervir, retira del fuego y disuelve la gelatina escurrida. Reparte en vasos y enfría al menos 4 horas hasta que cuaje. Tritura unos frutos rojos con un poco de azúcar y cubre la panna cotta antes de servir.",
+     "image": "img/secciones/po-panna-cotta.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "postre",
+      "merienda"
+     ]
+    },
+    {
+     "id": "po-mousse-chocolate",
+     "title": "Mousse de chocolate",
+     "ingredients": [
+      "150 g de chocolate negro",
+      "3 huevos",
+      "30 g de azúcar",
+      "una pizca de sal"
+     ],
+     "instructions": "Funde el chocolate y déjalo templar. Separa las claras de las yemas e incorpora las yemas al chocolate. Monta las claras con la sal y, cuando estén espumosas, añade el azúcar hasta un merengue firme. Integra el merengue en el chocolate con movimientos envolventes para no bajarlo. Reparte en vasos y enfría al menos 3 horas.",
+     "image": "img/secciones/po-mousse-chocolate.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "postre",
+      "merienda"
+     ]
+    },
+    {
+     "id": "po-tarta-limon",
+     "title": "Tarta de crema de limón",
+     "ingredients": [
+      "1 base de masa quebrada",
+      "4 huevos",
+      "150 g de azúcar",
+      "el zumo de 3 limones y la ralladura de 1",
+      "100 g de mantequilla",
+      "1 cucharada de maicena"
+     ],
+     "instructions": "Hornea la base de masa quebrada en blanco a 180 °C unos 15 minutos. Mezcla los huevos con el azúcar, el zumo y la ralladura de limón y la maicena, y cocina a fuego suave removiendo hasta que espese. Retira, incorpora la mantequilla en trozos y rellena la base. Enfría hasta que cuaje y sirve fría.",
+     "image": "img/secciones/po-tarta-limon.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "postre",
+      "merienda"
+     ]
+    },
+    {
+     "id": "po-crepes",
+     "title": "Crepes rellenas",
+     "ingredients": [
+      "2 huevos",
+      "250 ml de leche",
+      "120 g de harina",
+      "1 cucharada de azúcar",
+      "una pizca de sal",
+      "mantequilla para la sartén",
+      "crema y frutos rojos para rellenar"
+     ],
+     "instructions": "Bate los huevos con la leche, la harina, el azúcar y la sal hasta una masa fina y sin grumos; deja reposar 20 minutos. Engrasa una sartén y vierte un cucharón extendiéndolo fino; cuaja un minuto por cada lado. Rellena con crema y frutos rojos, dobla y espolvorea azúcar.",
+     "image": "img/secciones/po-crepes.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "postre",
+      "merienda"
+     ]
+    },
+    {
+     "id": "po-budin-chia",
+     "title": "Budín de chía con frutos rojos",
+     "ingredients": [
+      "3 cucharadas de semillas de chía",
+      "250 ml de leche o bebida vegetal",
+      "1 cucharada de miel o sirope",
+      "1/2 cucharadita de vainilla",
+      "frutos rojos y yogur para montar"
+     ],
+     "instructions": "Mezcla la chía con la leche, la miel y la vainilla y remueve bien para que no se apelmace. Deja reposar en la nevera al menos 4 horas (mejor toda la noche), removiendo una vez a media espera. Monta en vasos alternando con yogur y frutos rojos.",
+     "image": "img/secciones/po-budin-chia.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "postre",
+      "merienda"
+     ]
+    },
+    {
+     "id": "po-bundt-limon",
+     "title": "Bizcocho bundt de limón",
+     "ingredients": [
+      "3 huevos",
+      "200 g de azúcar",
+      "200 g de harina",
+      "120 ml de aceite suave",
+      "120 ml de yogur natural",
+      "la ralladura de 2 limones y su zumo",
+      "1 sobre de levadura química",
+      "azúcar glas y zumo de limón para el glaseado"
+     ],
+     "instructions": "Bate los huevos con el azúcar hasta que doblen su volumen. Añade el aceite, el yogur, la ralladura y el zumo de limón. Incorpora la harina con la levadura tamizadas. Vierte en un molde de bundt engrasado y hornea a 175 °C unos 40 minutos hasta que al pinchar salga limpio. Desmolda, deja enfriar y cubre con un glaseado de azúcar glas y limón.",
+     "image": "img/secciones/po-bundt-limon.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "postre",
+      "merienda"
+     ]
+    },
+    {
+     "id": "po-pavlova",
+     "title": "Pavlova de frutos rojos",
+     "ingredients": [
+      "4 claras de huevo",
+      "200 g de azúcar",
+      "1 cucharadita de maicena",
+      "1 cucharadita de vinagre",
+      "250 ml de nata para montar",
+      "frutos rojos para cubrir"
+     ],
+     "instructions": "Monta las claras y añade el azúcar en varias veces hasta un merengue firme y brillante; incorpora la maicena y el vinagre. Forma un disco sobre papel de hornear y hornea a 120 °C unos 70 minutos; deja enfriar dentro del horno apagado. Cubre con nata montada y frutos rojos justo antes de servir.",
+     "image": "img/secciones/po-pavlova.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "postre",
+      "merienda"
+     ]
+    },
+    {
+     "id": "po-sorbete-limon",
+     "title": "Sorbete de limón",
+     "ingredients": [
+      "250 ml de zumo de limón",
+      "150 g de azúcar",
+      "250 ml de agua",
+      "la ralladura de 1 limón",
+      "1 clara de huevo (opcional)"
+     ],
+     "instructions": "Calienta el agua con el azúcar hasta disolverlo y deja enfriar este almíbar. Mézclalo con el zumo y la ralladura de limón. Congela en un recipiente removiendo con un tenedor cada 30-40 minutos para romper los cristales; para una textura más suave, integra la clara montada a media congelación. Está listo cuando quede firme pero cremoso.",
+     "image": "img/secciones/po-sorbete-limon.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "postre",
+      "merienda"
+     ]
+    },
+    {
+     "id": "po-natillas",
+     "title": "Natillas caseras",
+     "ingredients": [
+      "500 ml de leche",
+      "4 yemas de huevo",
+      "100 g de azúcar",
+      "1 cucharada de maicena",
+      "1 rama de canela",
+      "la piel de 1/2 limón",
+      "canela en polvo y galletas para servir"
+     ],
+     "instructions": "Infusiona la leche con la canela en rama y la piel de limón y retírala antes de que hierva. Bate las yemas con el azúcar y la maicena, añade la leche templada y colada y cocina a fuego suave removiendo hasta que espese sin hervir. Reparte en cuencos, espolvorea canela y sirve con una galleta.",
+     "image": "img/secciones/po-natillas.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "postre",
+      "merienda"
+     ]
+    }
+   ]
   }
  ]
 }

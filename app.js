@@ -43,7 +43,7 @@ const I18N = {
     sec_sub: 'Sopas frías, tapas, ensaladas, smoothies, salsas y más, organizados por tipo.',
     sec_all: 'Todas', sec_for: 'para 2 raciones',
     sec_only_compat: 'Solo aptos para mi dieta', sec_not_suitable: 'No apto para',
-    sec_count: 'platos', sec_no_compat: 'No hay platos compatibles con tu dieta en esta sección.',
+    sec_count: 'platos', sec_no_compat: 'No hay platos compatibles con tu dieta en esta sección.', sec_ilustracion: 'Ilustración',
     mom_all: 'Cualquier momento', mom_desayuno: 'Desayuno', mom_comida: 'Comida', mom_cena: 'Cena',
     mom_merienda: 'Merienda', mom_aperitivo: 'Aperitivo', mom_postre: 'Postre', mom_guarnicion: 'Guarnición',
     sec_zumos: 'Zumos y bebidas funcionales',
@@ -151,7 +151,7 @@ const I18N = {
     sec_sub: 'Supe reci, tapas, salate, smoothie-uri, sosuri și altele, organizate pe tipuri.',
     sec_all: 'Toate', sec_for: 'pentru 2 porții',
     sec_only_compat: 'Doar potrivite pentru dieta mea', sec_not_suitable: 'Nepotrivit pentru',
-    sec_count: 'feluri', sec_no_compat: 'Nu există feluri compatibile cu dieta ta în această secțiune.',
+    sec_count: 'feluri', sec_no_compat: 'Nu există feluri compatibile cu dieta ta în această secțiune.', sec_ilustracion: 'Ilustrație',
     mom_all: 'Orice moment', mom_desayuno: 'Mic dejun', mom_comida: 'Prânz', mom_cena: 'Cină',
     mom_merienda: 'Gustare', mom_aperitivo: 'Aperitiv', mom_postre: 'Desert', mom_guarnicion: 'Garnitură',
     sec_zumos: 'Sucuri și băuturi funcționale',
@@ -259,7 +259,7 @@ const I18N = {
     sec_sub: 'Cold soups, tapas, salads, smoothies, sauces and more, organised by type.',
     sec_all: 'All', sec_for: 'for 2 servings',
     sec_only_compat: 'Only suitable for my diet', sec_not_suitable: 'Not suitable for',
-    sec_count: 'dishes', sec_no_compat: 'No dishes compatible with your diet in this section.',
+    sec_count: 'dishes', sec_no_compat: 'No dishes compatible with your diet in this section.', sec_ilustracion: 'Illustration',
     mom_all: 'Any time', mom_desayuno: 'Breakfast', mom_comida: 'Lunch', mom_cena: 'Dinner',
     mom_merienda: 'Snack', mom_aperitivo: 'Aperitif', mom_postre: 'Dessert', mom_guarnicion: 'Side',
     sec_zumos: 'Juices and functional drinks',
@@ -3220,6 +3220,10 @@ function renderSeccionCard(dish, section) {
 
   return `
     <div class="bg-surface-container-lowest rounded-3xl shadow-sm border border-surface-container overflow-hidden flex flex-col ${incompatible && seccionesFilter.onlyCompat ? 'hidden' : ''}">
+      ${dish.image ? `<div class="relative h-40 w-full">
+        <img class="w-full h-full object-cover" src="${escapeHtml(dish.image)}" alt="${displayTitle}" loading="lazy"/>
+        ${dish.ilustracion ? `<span class="absolute bottom-2 right-2 bg-black/55 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full backdrop-blur-sm">${t('sec_ilustracion')}</span>` : ''}
+      </div>` : ''}
       <div class="bg-primary-container text-on-primary-container px-4 py-3 flex items-center gap-2">
         <span class="material-symbols-outlined">${escapeHtml(section.icon || 'restaurant')}</span>
         <h4 class="font-headline-sm">${displayTitle}</h4>
