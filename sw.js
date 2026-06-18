@@ -1,6 +1,6 @@
 // Service Worker de Recetario 365: instala la app completa (incluidos los datos de
 // recetas y fotos) para que funcione rápida, estable y sin conexión.
-const CACHE = 'recetario365-v22';
+const CACHE = 'recetario365-v23';
 const ASSETS = [
   './', './index.html', './app.js', './styles.css', './icon.svg', './manifest.json',
   './icon-192.png', './icon-512.png',

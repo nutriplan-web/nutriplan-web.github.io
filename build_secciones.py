@@ -808,6 +808,51 @@ seccion("limonadas", "Limonadas y aguas frescas", "local_bar",
       image="img/secciones/lm-jamaica.jpg", ilustracion=True),
 ])
 
+# ===========================================================================
+# 16) POSTRES RUMANOS  (dulces tradicionales documentados)
+# ===========================================================================
+seccion("postres-rumanos", "Postres rumanos", "cake",
+    "Ocho dulces tradicionales de Rumanía para la merienda o el postre.", [
+    p("pr-papanasi", "Papanași (buñuelos de requesón)",
+      ["500 g de requesón (urdă) o queso fresco", "2 huevos", "150 g de harina", "1 cucharadita de levadura química",
+       "ralladura de limón", "una pizca de sal", "aceite para freír", "nata agria y mermelada de arándanos para servir"],
+      "Mezcla el requesón con los huevos, la ralladura, la sal, la harina y la levadura hasta una masa manejable. Forma bolas con un agujero en el centro (como una rosquilla) y una bolita pequeña aparte. Fríelas en aceite no muy caliente hasta que floten doradas. Sírvelas calientes con nata agria por encima y mermelada de arándanos, coronadas con la bolita.",
+      image="img/secciones/pr-papanasi.jpg", ilustracion=True),
+    p("pr-cozonac", "Cozonac (pan dulce trenzado)",
+      ["500 g de harina de fuerza", "100 g de azúcar", "100 ml de leche templada", "2 huevos", "25 g de levadura fresca",
+       "60 g de mantequilla", "ralladura de limón", "para el relleno: 150 g de nueces molidas, 50 g de azúcar, 2 cucharadas de cacao, 1 clara"],
+      "Activa la levadura en la leche con una cucharada de azúcar. Amasa con la harina, el azúcar, los huevos, la ralladura y la mantequilla hasta una masa lisa y elástica; deja levar 1 hora. Mezcla las nueces con el azúcar, el cacao y la clara. Estira la masa, reparte el relleno, enrolla, trenza dos rollos y colócalos en un molde. Deja levar de nuevo y hornea a 170 °C unos 40-45 minutos.",
+      image="img/secciones/pr-cozonac.jpg", ilustracion=True),
+    p("pr-gogosi", "Gogoși (buñuelos esponjosos)",
+      ["500 g de harina", "250 ml de leche templada", "2 huevos", "25 g de levadura fresca", "50 g de azúcar",
+       "ralladura de limón", "una pizca de sal", "aceite para freír", "azúcar glas para espolvorear"],
+      "Activa la levadura en la leche con azúcar. Amasa con la harina, los huevos, el azúcar, la ralladura y la sal hasta una masa blanda; deja levar 1 hora. Estira, corta discos y déjalos reposar 15 minutos. Fríelos en abundante aceite a fuego medio dándoles la vuelta hasta que se hinchen y doren. Escúrrelos y espolvorea azúcar glas.",
+      image="img/secciones/pr-gogosi.jpg", ilustracion=True),
+    p("pr-clatite", "Clătite (crepes rumanos)",
+      ["200 g de harina", "400 ml de leche", "2 huevos", "1 cucharada de azúcar", "una pizca de sal",
+       "mantequilla para la sartén", "mermelada o crema de avellanas para rellenar"],
+      "Bate los huevos con la leche, el azúcar y la sal e incorpora la harina hasta una masa fluida sin grumos; deja reposar 20 minutos. Cuaja crepes finos en una sartén untada de mantequilla, dorándolos por ambos lados. Rellénalos con mermelada o crema, enróllalos y espolvorea azúcar.",
+      image="img/secciones/pr-clatite.jpg", ilustracion=True),
+    p("pr-placinta-mere", "Plăcintă cu mere (pastel de manzana)",
+      ["1 lámina de masa filo o de hojaldre", "4 manzanas", "60 g de azúcar", "1 cucharadita de canela",
+       "50 g de pan rallado", "mantequilla fundida", "azúcar glas"],
+      "Ralla las manzanas y rehógalas con el azúcar y la canela hasta que pierdan el agua; añade el pan rallado para que absorba el jugo. Pincela las láminas de masa con mantequilla, reparte el relleno, enrolla o monta en capas en una fuente y pincela por encima. Hornea a 180 °C 30-35 minutos hasta dorar. Sirve templado con azúcar glas.",
+      image="img/secciones/pr-placinta-mere.jpg", ilustracion=True),
+    p("pr-orez-lapte", "Orez cu lapte (arroz con leche)",
+      ["150 g de arroz redondo", "750 ml de leche", "60 g de azúcar", "1 rama de canela", "ralladura de limón", "canela en polvo"],
+      "Cuece el arroz un par de minutos en agua y escúrrelo. Añádelo a la leche caliente con el azúcar, la canela en rama y la ralladura, y cuece a fuego suave removiendo a menudo unos 25-30 minutos hasta que quede cremoso. Sirve frío o templado con canela en polvo.",
+      image="img/secciones/pr-orez-lapte.jpg", ilustracion=True),
+    p("pr-budinca-gris", "Budincă de griș (pudin de sémola)",
+      ["100 g de sémola fina", "500 ml de leche", "50 g de azúcar", "1 huevo", "vainilla", "mantequilla", "mermelada para acompañar"],
+      "Calienta la leche con el azúcar y la vainilla y añade la sémola en lluvia removiendo hasta que espese. Retira, atempera e incorpora el huevo batido. Vierte en un molde untado de mantequilla y hornea a 180 °C unos 25 minutos (o cuaja en flaneras). Sirve templado o frío con mermelada.",
+      image="img/secciones/pr-budinca-gris.jpg", ilustracion=True),
+    p("pr-salam-biscuiti", "Salam de biscuiți (salami de galletas)",
+      ["300 g de galletas tipo María", "100 g de mantequilla", "100 g de azúcar", "3 cucharadas de cacao",
+       "100 ml de leche", "50 g de nueces", "azúcar glas (opcional)"],
+      "Trocea las galletas en trozos irregulares. Calienta la leche con el azúcar, el cacao y la mantequilla hasta una crema lisa y mézclala con las galletas y las nueces. Forma un cilindro con film, enróllalo apretado y enfría en la nevera varias horas. Corta en rodajas que imitan al salami; reboza en azúcar glas si quieres.",
+      image="img/secciones/pr-salam-biscuiti.jpg", ilustracion=True),
+])
+
 # ---------------------------------------------------------------------------
 # MOMENTO DEL DÍA (filtro transversal): la sección agrupa por tipo de plato y
 # el "momento" permite filtrar por desayuno/comida/cena/merienda/aperitivo/
@@ -829,6 +874,7 @@ MOMENTOS_SECCION = {
     "rumanos": ["comida", "cena"],
     "croquetas": ["aperitivo", "comida", "cena"],
     "limonadas": ["merienda", "aperitivo"],
+    "postres-rumanos": ["postre", "merienda"],
 }
 # Excepciones: platos dulces o de fruta que encajan mejor en merienda/postre, etc.
 MOMENTOS_OVERRIDE = {
