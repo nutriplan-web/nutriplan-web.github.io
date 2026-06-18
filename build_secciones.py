@@ -765,6 +765,49 @@ seccion("croquetas", "Croquetas caseras", "lunch_dining",
       image="img/secciones/cq-gambas.jpg", ilustracion=True),
 ])
 
+# ===========================================================================
+# 15) LIMONADAS Y AGUAS FRESCAS  (bebidas refrescantes sin alcohol)
+# ===========================================================================
+seccion("limonadas", "Limonadas y aguas frescas", "local_bar",
+    "Nueve bebidas refrescantes caseras para el verano, sin alcohol.", [
+    p("lm-clasica", "Limonada clásica",
+      ["4 limones", "1 l de agua", "4-5 cucharadas de azúcar", "hielo"],
+      "Exprime los limones y mezcla el zumo con el agua. Disuelve el azúcar removiendo y prueba para ajustar el dulzor. Sirve bien fría con hielo y unas rodajas de limón.",
+      image="img/secciones/lm-clasica.jpg", ilustracion=True),
+    p("lm-fresa", "Limonada de fresa",
+      ["200 g de fresas", "3 limones", "1 l de agua", "4 cucharadas de azúcar", "hielo"],
+      "Tritura las fresas con un poco de agua y cuela si quieres una textura limpia. Mézclalas con el zumo de limón, el resto del agua y el azúcar al gusto. Sirve muy fría con hielo.",
+      image="img/secciones/lm-fresa.jpg", ilustracion=True),
+    p("lm-menta-pepino", "Limonada de menta y pepino",
+      ["1/2 pepino", "3 limones", "1 l de agua", "un puñado de hojas de menta", "3 cucharadas de azúcar o miel", "hielo"],
+      "Tritura el pepino con la menta y un poco de agua y cuela. Mezcla con el zumo de limón, el resto del agua y el endulzante. Sirve con hielo, rodajas de pepino y hojas de menta.",
+      image="img/secciones/lm-menta-pepino.jpg", ilustracion=True),
+    p("lm-naranjada", "Naranjada casera",
+      ["4 naranjas", "1 limón", "700 ml de agua", "2-3 cucharadas de azúcar", "hielo"],
+      "Exprime las naranjas y el limón. Mezcla los zumos con el agua y endulza al gusto (las naranjas ya aportan dulzor). Sirve muy fría con hielo y rodajas de naranja.",
+      image="img/secciones/lm-naranjada.jpg", ilustracion=True),
+    p("lm-agua-sandia", "Agua de sandía",
+      ["600 g de sandía sin pepitas", "el zumo de 1 lima", "500 ml de agua", "azúcar al gusto (opcional)", "hielo"],
+      "Tritura la sandía y cuela el zumo. Mézclalo con el agua y la lima, y endulza solo si hace falta. Sirve muy fría con hielo y, si quieres, hojas de menta.",
+      image="img/secciones/lm-agua-sandia.jpg", ilustracion=True),
+    p("lm-te-melocoton", "Té helado de melocotón",
+      ["2 bolsitas de té negro", "1 l de agua", "1 melocotón maduro", "2 cucharadas de azúcar o miel", "zumo de 1/2 limón", "hielo"],
+      "Infusiona el té en el agua caliente 4-5 minutos y deja enfriar. Tritura el melocotón con un poco de agua y mézclalo con el té, el endulzante y el limón. Sirve bien frío con hielo y láminas de melocotón.",
+      image="img/secciones/lm-te-melocoton.jpg", ilustracion=True),
+    p("lm-horchata", "Horchata de chufa",
+      ["200 g de chufas secas", "1 l de agua", "100 g de azúcar", "ralladura de limón", "canela"],
+      "Remoja las chufas en agua 12 horas, escúrrelas y tritúralas con el litro de agua. Deja reposar 1-2 horas y cuela con un paño exprimiendo bien. Endulza con el azúcar, perfuma con limón y canela y enfría. Sirve muy fría, removiendo antes.",
+      image="img/secciones/lm-horchata.jpg", ilustracion=True),
+    p("lm-mojito-sin", "Mojito sin alcohol",
+      ["1 lima", "un puñado de hojas de menta", "2 cucharaditas de azúcar", "agua con gas", "hielo picado"],
+      "Maja la lima en gajos con la menta y el azúcar en el fondo del vaso para soltar los aromas. Llena de hielo picado y completa con agua con gas. Remueve y decora con menta y lima.",
+      image="img/secciones/lm-mojito-sin.jpg", ilustracion=True),
+    p("lm-jamaica", "Agua de jamaica",
+      ["30 g de flor de jamaica (hibisco) seca", "1 l de agua", "4 cucharadas de azúcar", "zumo de 1/2 limón", "hielo"],
+      "Hierve el agua, retira del fuego y añade la flor de jamaica; deja infusionar 10-15 minutos. Cuela, endulza con el azúcar y añade el limón. Enfría y sirve con hielo.",
+      image="img/secciones/lm-jamaica.jpg", ilustracion=True),
+])
+
 # ---------------------------------------------------------------------------
 # MOMENTO DEL DÍA (filtro transversal): la sección agrupa por tipo de plato y
 # el "momento" permite filtrar por desayuno/comida/cena/merienda/aperitivo/
@@ -785,6 +828,7 @@ MOMENTOS_SECCION = {
     "huevos": ["desayuno", "comida", "cena"],
     "rumanos": ["comida", "cena"],
     "croquetas": ["aperitivo", "comida", "cena"],
+    "limonadas": ["merienda", "aperitivo"],
 }
 # Excepciones: platos dulces o de fruta que encajan mejor en merienda/postre, etc.
 MOMENTOS_OVERRIDE = {
