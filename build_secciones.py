@@ -558,6 +558,63 @@ seccion("dips", "Dips y untables", "tapas",
       image="img/secciones/dip-tapenade.jpg", ilustracion=True),
 ])
 
+# ===========================================================================
+# 11) CREMAS FRÍAS  (img 40 — cremas frías del Mediterráneo; purés fríos)
+# ===========================================================================
+seccion("cremas-frias", "Cremas frías", "soup_kitchen",
+    "Diez purés fríos cremosos para el verano, más allá del gazpacho.", [
+    p("cf-vichyssoise", "Vichyssoise",
+      ["3 puerros (parte blanca)", "2 patatas", "1 cebolla", "750 ml de caldo de verduras",
+       "100 ml de nata", "30 g de mantequilla", "sal y pimienta", "cebollino para servir"],
+      "Rehoga el puerro y la cebolla picados en la mantequilla sin que tomen color. Añade la patata en trozos y el caldo, y cuece 20 minutos hasta que esté tierna. Tritura muy fino, incorpora la nata y salpimienta. Enfría al menos 3 horas y sirve con cebollino picado.",
+      image="img/secciones/cf-vichyssoise.jpg", ilustracion=True),
+    p("cf-remolacha", "Crema fría de remolacha",
+      ["3 remolachas cocidas", "1 yogur natural", "1 diente de ajo pequeño", "el zumo de 1/2 limón",
+       "200 ml de agua fría", "2 cucharadas de aceite de oliva", "sal y pimienta", "eneldo para servir"],
+      "Tritura las remolachas con el yogur, el ajo, el limón y el agua hasta una crema fina. Emulsiona con el aceite y salpimienta. Enfría bien y sirve con un poco de yogur y eneldo por encima.",
+      image="img/secciones/cf-remolacha.jpg", ilustracion=True),
+    p("cf-aguacate", "Crema fría de aguacate",
+      ["2 aguacates maduros", "1 pepino", "el zumo de 1 lima", "200 ml de caldo o agua fría",
+       "1 yogur natural", "unas hojas de cilantro", "sal y pimienta"],
+      "Tritura los aguacates con el pepino pelado, el yogur, la lima y el caldo hasta que quede sedoso. Añade el cilantro y salpimienta. Sirve muy frío; si espesa, aclara con un poco más de agua.",
+      image="img/secciones/cf-aguacate.jpg", ilustracion=True),
+    p("cf-calabacin", "Crema fría de calabacín",
+      ["3 calabacines", "1 cebolla", "50 g de queso crema", "600 ml de caldo de verduras",
+       "2 cucharadas de aceite de oliva", "sal y pimienta"],
+      "Rehoga la cebolla y el calabacín en trozos con el aceite unos minutos. Añade el caldo y cuece 15 minutos. Tritura con el queso hasta una crema fina, salpimienta y enfría. Sirve frío con un hilo de aceite.",
+      image="img/secciones/cf-calabacin.jpg", ilustracion=True),
+    p("cf-zanahoria", "Crema fría de zanahoria y naranja",
+      ["500 g de zanahorias", "1 cebolla", "el zumo de 2 naranjas", "600 ml de caldo de verduras",
+       "2 cucharadas de aceite de oliva", "una pizca de jengibre", "sal y pimienta"],
+      "Rehoga la cebolla y la zanahoria en rodajas con el aceite. Añade el caldo y el jengibre y cuece 20 minutos. Tritura con el zumo de naranja hasta una crema fina, salpimienta y enfría. Sirve fría.",
+      image="img/secciones/cf-zanahoria.jpg", ilustracion=True),
+    p("cf-guisantes-menta", "Crema fría de guisantes y menta",
+      ["400 g de guisantes", "1 cebolleta", "500 ml de caldo de verduras", "unas hojas de menta",
+       "2 cucharadas de aceite de oliva", "sal y pimienta", "yogur para servir"],
+      "Rehoga la cebolleta, añade los guisantes y el caldo y cuece 10 minutos. Tritura con la menta hasta una crema fina y cuela si quieres. Salpimienta, enfría y sirve con una cucharada de yogur.",
+      image="img/secciones/cf-guisantes-menta.jpg", ilustracion=True),
+    p("cf-melon-jamon", "Crema fría de melón con jamón",
+      ["1/2 melón maduro", "100 ml de agua fría o caldo", "1 cucharada de aceite de oliva",
+       "una pizca de sal", "menta", "50 g de jamón serrano para servir"],
+      "Tritura el melón con el agua, el aceite y la sal hasta una crema fina. Enfría bien. Sirve con unas virutas de jamón serrano y unas hojas de menta.",
+      image="img/secciones/cf-melon-jamon.jpg", ilustracion=True),
+    p("cf-pepino-yogur", "Crema fría de pepino y yogur",
+      ["2 pepinos", "250 g de yogur griego", "1 diente de ajo pequeño", "1 cucharada de aceite de oliva",
+       "el zumo de 1/2 limón", "eneldo", "sal y pimienta"],
+      "Tritura los pepinos pelados con el yogur, el ajo, el limón y el aceite hasta una crema. Añade eneldo y salpimienta. Enfría bien y sirve; es muy refrescante en verano.",
+      image="img/secciones/cf-pepino-yogur.jpg", ilustracion=True),
+    p("cf-calabaza", "Crema fría de calabaza",
+      ["500 g de calabaza", "1 cebolla", "1 zanahoria", "600 ml de caldo de verduras",
+       "2 cucharadas de aceite de oliva", "una pizca de nuez moscada", "sal y pimienta"],
+      "Rehoga la cebolla, la zanahoria y la calabaza en trozos. Añade el caldo y cuece 20 minutos hasta que estén tiernas. Tritura con la nuez moscada hasta una crema fina, salpimienta y enfría. Sirve fría con un hilo de aceite.",
+      image="img/secciones/cf-calabaza.jpg", ilustracion=True),
+    p("cf-esparragos", "Crema fría de espárragos",
+      ["1 manojo de espárragos verdes", "1 puerro", "1 patata pequeña", "600 ml de caldo de verduras",
+       "2 cucharadas de aceite de oliva", "sal y pimienta"],
+      "Rehoga el puerro y la patata, añade los espárragos troceados (reserva las puntas) y el caldo, y cuece 15 minutos. Tritura muy fino y salpimienta. Saltea las puntas reservadas y úsalas para decorar. Sirve frío.",
+      image="img/secciones/cf-esparragos.jpg", ilustracion=True),
+])
+
 # ---------------------------------------------------------------------------
 # MOMENTO DEL DÍA (filtro transversal): la sección agrupa por tipo de plato y
 # el "momento" permite filtrar por desayuno/comida/cena/merienda/aperitivo/
@@ -574,6 +631,7 @@ MOMENTOS_SECCION = {
     "ensaladas": ["comida", "cena"],
     "postres": ["postre", "merienda"],
     "dips": ["aperitivo"],
+    "cremas-frias": ["comida", "cena"],
 }
 # Excepciones: platos dulces o de fruta que encajan mejor en merienda/postre, etc.
 MOMENTOS_OVERRIDE = {
