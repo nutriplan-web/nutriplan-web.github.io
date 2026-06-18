@@ -716,6 +716,55 @@ seccion("rumanos", "Clásicos rumanos salados", "ramen_dining",
       image="img/secciones/ro-cartofi-taranesti.jpg", ilustracion=True),
 ])
 
+# ===========================================================================
+# 14) CROQUETAS  (clásico español; todas sobre base de bechamel)
+# ===========================================================================
+seccion("croquetas", "Croquetas caseras", "lunch_dining",
+    "Ocho croquetas cremosas por dentro y crujientes por fuera, sobre una buena bechamel.", [
+    p("cq-jamon", "Croquetas de jamón",
+      ["100 g de jamón serrano picado", "60 g de mantequilla", "70 g de harina", "600 ml de leche",
+       "nuez moscada", "sal y pimienta", "2 huevos y pan rallado para empanar", "aceite para freír"],
+      "Funde la mantequilla, sofríe el jamón un minuto y añade la harina; cuécela 2 minutos. Vierte la leche caliente poco a poco sin dejar de remover hasta una bechamel espesa y lisa; sazona con nuez moscada, sal y pimienta. Extiéndela en una fuente, cúbrela a piel y enfría varias horas. Forma las croquetas, pásalas por huevo y pan rallado y fríelas en aceite caliente hasta dorarlas.",
+      image="img/secciones/cq-jamon.jpg", ilustracion=True),
+    p("cq-pollo", "Croquetas de pollo",
+      ["250 g de pollo cocido o asado desmenuzado", "60 g de mantequilla", "70 g de harina", "600 ml de leche",
+       "1/2 cebolla", "nuez moscada", "sal y pimienta", "2 huevos y pan rallado", "aceite para freír"],
+      "Pocha la cebolla muy picada en la mantequilla, añade el pollo y la harina y rehoga 2 minutos. Incorpora la leche caliente en varias veces removiendo hasta una bechamel espesa; salpimienta con nuez moscada. Enfría la masa bien tapada, forma las croquetas, empánalas con huevo y pan rallado y fríelas doradas.",
+      image="img/secciones/cq-pollo.jpg", ilustracion=True),
+    p("cq-bacalao", "Croquetas de bacalao",
+      ["250 g de bacalao desalado y desmigado", "60 g de mantequilla", "70 g de harina", "600 ml de leche",
+       "1 diente de ajo", "perejil", "nuez moscada", "sal", "2 huevos y pan rallado", "aceite para freír"],
+      "Saltea el ajo picado y el bacalao en la mantequilla, añade la harina y cuécela 2 minutos. Vierte la leche caliente poco a poco hasta una bechamel espesa; ajusta de sal (ojo, el bacalao ya sala), nuez moscada y perejil. Enfría tapada, forma las croquetas, rebózalas en huevo y pan rallado y fríelas doradas.",
+      image="img/secciones/cq-bacalao.jpg", ilustracion=True),
+    p("cq-espinacas", "Croquetas de espinacas",
+      ["250 g de espinacas cocidas y escurridas", "60 g de mantequilla", "70 g de harina", "550 ml de leche",
+       "1 diente de ajo", "30 g de piñones (opcional)", "nuez moscada", "sal y pimienta",
+       "2 huevos y pan rallado", "aceite para freír"],
+      "Saltea el ajo y las espinacas bien escurridas y picadas con los piñones. Añade la harina, rehoga y vierte la leche caliente poco a poco hasta una bechamel espesa; salpimienta con nuez moscada. Enfría la masa, forma las croquetas, empánalas y fríelas hasta dorarlas.",
+      image="img/secciones/cq-espinacas.jpg", ilustracion=True),
+    p("cq-queso", "Croquetas de queso",
+      ["120 g de queso curado o azul rallado", "60 g de mantequilla", "70 g de harina", "600 ml de leche",
+       "nuez moscada", "sal y pimienta", "2 huevos y pan rallado", "aceite para freír"],
+      "Prepara una bechamel espesa: funde la mantequilla, cuece la harina 2 minutos y añade la leche caliente removiendo. Fuera del fuego incorpora el queso hasta que se funda y sazona con nuez moscada, sal y pimienta. Enfría bien tapada, forma las croquetas, empánalas con huevo y pan rallado y fríelas doradas.",
+      image="img/secciones/cq-queso.jpg", ilustracion=True),
+    p("cq-setas", "Croquetas de setas",
+      ["250 g de setas variadas", "60 g de mantequilla", "70 g de harina", "600 ml de leche",
+       "1/2 cebolla", "nuez moscada", "sal y pimienta", "2 huevos y pan rallado", "aceite para freír"],
+      "Saltea la cebolla y las setas muy picadas hasta que pierdan el agua y se doren. Añade la harina, rehoga 2 minutos y vierte la leche caliente poco a poco hasta una bechamel espesa; salpimienta con nuez moscada. Enfría la masa, forma las croquetas, empánalas y fríelas crujientes.",
+      image="img/secciones/cq-setas.jpg", ilustracion=True),
+    p("cq-cocido", "Croquetas de cocido",
+      ["250 g de carne del cocido o puchero desmenuzada", "60 g de mantequilla", "70 g de harina", "600 ml de leche",
+       "1/2 cebolla", "nuez moscada", "sal y pimienta", "2 huevos y pan rallado", "aceite para freír"],
+      "Aprovecha las carnes del cocido picadas finas. Pocha la cebolla en la mantequilla, añade la carne y la harina y rehoga. Incorpora la leche caliente poco a poco hasta una bechamel espesa; salpimienta con nuez moscada. Enfría tapada, forma las croquetas, empánalas con huevo y pan rallado y fríelas doradas.",
+      image="img/secciones/cq-cocido.jpg", ilustracion=True),
+    p("cq-gambas", "Croquetas de gambas",
+      ["250 g de gambas peladas", "60 g de mantequilla", "70 g de harina", "550 ml de leche",
+       "100 ml del caldo de las cáscaras", "1/2 cebolla", "nuez moscada", "sal", "2 huevos y pan rallado",
+       "aceite para freír"],
+      "Hierve las cáscaras de las gambas unos minutos para un caldo corto. Pocha la cebolla, saltea las gambas troceadas, añade la harina y rehoga. Vierte la leche y el caldo calientes poco a poco hasta una bechamel espesa; sazona con nuez moscada y sal. Enfría la masa, forma las croquetas, empánalas y fríelas doradas.",
+      image="img/secciones/cq-gambas.jpg", ilustracion=True),
+])
+
 # ---------------------------------------------------------------------------
 # MOMENTO DEL DÍA (filtro transversal): la sección agrupa por tipo de plato y
 # el "momento" permite filtrar por desayuno/comida/cena/merienda/aperitivo/
@@ -735,6 +784,7 @@ MOMENTOS_SECCION = {
     "cremas-frias": ["comida", "cena"],
     "huevos": ["desayuno", "comida", "cena"],
     "rumanos": ["comida", "cena"],
+    "croquetas": ["aperitivo", "comida", "cena"],
 }
 # Excepciones: platos dulces o de fruta que encajan mejor en merienda/postre, etc.
 MOMENTOS_OVERRIDE = {
