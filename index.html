@@ -161,9 +161,9 @@
             <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-primary-fixed-dim">Recetario 365</h1>
         </div>
         <div class="flex items-center gap-1">
-            <button id="lang-toggle" onclick="toggleLang()" class="hover:bg-surface-container-high transition-colors px-3 py-1.5 rounded-full active:scale-95 duration-150 font-label-lg text-label-lg text-primary dark:text-primary-fixed-dim border border-outline-variant" title="Español / Română / English">ES</button>
-            <button onclick="switchView('profile')" class="hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-150">
-                <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">settings</span>
+            <button onclick="switchView('profile')" title="Mi perfil" aria-label="Mi perfil" class="hover:bg-surface-container-high transition-colors flex items-center gap-1.5 pl-2 pr-3 py-1.5 rounded-full active:scale-95 duration-150 text-primary dark:text-primary-fixed-dim">
+                <span class="material-symbols-outlined">account_circle</span>
+                <span class="font-label-lg text-label-lg" data-i18n="nav_profile">Mi perfil</span>
             </button>
         </div>
     </header>
@@ -224,11 +224,11 @@
                             <span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="inicio_tile_secciones_sub">Tapas, sopas, ensaladas, zumos</span>
                         </span>
                     </button>
-                    <button onclick="switchView('profile')" class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-2xl border border-surface-variant/40 text-left active:scale-[0.98] transition-all hover:border-primary">
-                        <span class="material-symbols-outlined text-primary">person</span>
+                    <button onclick="switchView('mundo')" class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-2xl border border-surface-variant/40 text-left active:scale-[0.98] transition-all hover:border-primary">
+                        <span class="material-symbols-outlined text-primary">public</span>
                         <span class="flex flex-col">
-                            <span class="font-label-lg text-label-lg text-on-surface" data-i18n="inicio_tile_profile">Tu perfil</span>
-                            <span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="inicio_tile_profile_sub">Dieta, alergias, idioma</span>
+                            <span class="font-label-lg text-label-lg text-on-surface" data-i18n="inicio_tile_mundo">Recetas del mundo</span>
+                            <span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="inicio_tile_mundo_sub">Por continente y país</span>
                         </span>
                     </button>
                     <button onclick="switchView('hosteleria')" class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-2xl border border-surface-variant/40 text-left active:scale-[0.98] transition-all hover:border-primary">
@@ -389,6 +389,15 @@
             <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4"></div>
         </div>
 
+        <!-- BLOCK 3b-mundo: RECETAS DEL MUNDO (continente -> país) -->
+        <div id="view-mundo" class="view-section hidden space-y-stack-md">
+            <section class="space-y-stack-sm">
+                <h2 class="font-headline-md text-headline-md text-on-surface" data-i18n="mundo_title">Recetas del mundo</h2>
+                <p class="text-on-surface-variant font-body-md" data-i18n="mundo_sub">Explora platos auténticos por continente y país, cada uno con su receta completa.</p>
+            </section>
+            <div id="mundo-content" class="space-y-stack-md"></div>
+        </div>
+
         <!-- BLOCK 3b: COLECCIONES (SECTIONS) VIEW -->
         <div id="view-secciones" class="view-section hidden space-y-stack-md">
             <section class="space-y-stack-sm">
@@ -531,19 +540,6 @@
                     <h3 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface" data-i18n="diet_title">Tipo de Dieta Primaria</h3>
                 </div>
                 <p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="diet_sub">Vegetariana: sin carne ni pescado (sí huevo y lácteos). Vegana: sin ningún producto animal (tampoco huevo, lácteos ni miel).</p>
-                <div class="relative">
-                    <select id="diet-select" onchange="setDiet(this.value)" class="w-full appearance-none bg-surface-container-low border border-outline-variant rounded-xl py-3.5 pl-4 pr-10 text-body-md text-on-surface focus:ring-2 focus:ring-primary cursor-pointer">
-                        <option value="" data-i18n="diet_none">Ninguna</option>
-                        <option value="vegana" data-i18n="diet_vegana">Vegana</option>
-                        <option value="vegetariana" data-i18n="diet_vegetariana">Vegetariana</option>
-                        <option value="keto" data-i18n="diet_keto">Keto</option>
-                        <option value="mediterranea" data-i18n="diet_mediterranea">Mediterránea</option>
-                        <option value="baja" data-i18n="diet_baja">Baja en carbohidratos</option>
-                        <option value="celiaco" data-i18n="diet_celiaco">Celíaca (sin gluten)</option>
-                        <option value="diabetico" data-i18n="diet_diabetico">Diabética (control de azúcares)</option>
-                    </select>
-                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
-                </div>
                 <div class="grid grid-cols-2 gap-4">
                     <button onclick="setDiet('vegana')" id="diet-vegana" class="p-stack-md bg-surface-container-lowest text-on-surface-variant rounded-xl border border-outline-variant flex flex-col items-center gap-2 transition-all">
                         <span class="material-symbols-outlined text-2xl">spa</span>
@@ -731,21 +727,9 @@
             <span class="material-symbols-outlined">restaurant_menu</span>
             <span class="font-label-md text-label-md" data-i18n="nav_recipes">Recetas</span>
         </button>
-        <button id="nav-secciones" onclick="switchView('secciones')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-2 py-1 transition-all duration-200">
-            <span class="material-symbols-outlined">category</span>
-            <span class="font-label-md text-label-md" data-i18n="nav_secciones">Colecciones</span>
-        </button>
         <button id="nav-fridge" onclick="switchView('fridge')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-2 py-1 transition-all duration-200">
             <span class="material-symbols-outlined">kitchen</span>
             <span class="font-label-md text-label-md" data-i18n="nav_fridge">Nevera</span>
-        </button>
-        <button id="nav-cart" onclick="switchView('cart')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-2 py-1 transition-all duration-200">
-            <span class="material-symbols-outlined">shopping_cart</span>
-            <span class="font-label-md text-label-md" data-i18n="nav_cart">Lista</span>
-        </button>
-        <button id="nav-profile" onclick="switchView('profile')" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-full px-2 py-1 transition-all duration-200">
-            <span class="material-symbols-outlined">person</span>
-            <span class="font-label-md text-label-md" data-i18n="nav_profile">Perfil</span>
         </button>
     </nav>
 

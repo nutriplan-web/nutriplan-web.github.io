@@ -16,7 +16,7 @@ let currentLang = (() => {
 const I18N = {
   es: {
     app_title: 'Recetario 365 — Menú semanal, +1000 recetas del mundo y lista de la compra',
-    nav_plan: 'Plan', nav_day: 'Día', nav_recipes: 'Recetas', nav_cart: 'Lista', nav_profile: 'Perfil',
+    nav_plan: 'Plan', nav_day: 'Día', nav_recipes: 'Recetas', nav_cart: 'Lista', nav_profile: 'Mi perfil',
     nav_secciones: 'Colecciones', nav_inicio: 'Inicio', nav_hosteleria: 'Hostelería', nav_fridge: 'Nevera',
     inicio_hero_title: '¿Qué cocinamos hoy?',
     inicio_hero_sub: 'Más de 1100 recetas, menú semanal y tus colecciones, todo en un sitio.',
@@ -28,8 +28,12 @@ const I18N = {
     inicio_tile_secciones: 'Colecciones', inicio_tile_secciones_sub: 'Tapas, sopas, ensaladas, zumos',
     inicio_tile_fridge: 'Cocina con lo que tengo', inicio_tile_fridge_sub: 'Dinos qué hay en tu nevera',
     inicio_tile_cart: 'Lista de la compra', inicio_tile_cart_sub: 'Generada de tu menú',
-    inicio_tile_profile: 'Tu perfil', inicio_tile_profile_sub: 'Dieta, alergias, idioma',
+    inicio_tile_mundo: 'Recetas del mundo', inicio_tile_mundo_sub: 'Por continente y país',
     inicio_tile_hosteleria: 'Hostelería', inicio_tile_hosteleria_sub: 'Ideas de carta y tapas',
+    mundo_title: 'Recetas del mundo', mundo_sub: 'Explora platos auténticos por continente y país, cada uno con su receta completa.',
+    mundo_back: 'Atrás', mundo_countries: 'países',
+    cont_europa: 'Europa', cont_asia: 'Asia', cont_america: 'América', cont_africa: 'África', cont_oceania: 'Oceanía', cont_internacional: 'Internacional',
+    secg_picar: 'Para picar', secg_platos: 'Platos', secg_bebidas: 'Bebidas', secg_rumano: 'Cocina rumana', secg_dulces: 'Dulces', secg_otros: 'Otros',
     fridge_title: 'Cocina con lo que tengo',
     fridge_sub: 'Escribe los ingredientes que tienes y te decimos qué puedes cocinar ya.',
     fridge_ph: 'Añade un ingrediente y pulsa Enter: huevos, arroz, tomate...',
@@ -90,7 +94,7 @@ const I18N = {
     empty_list: 'Lista de la compra adaptada: selecciona un menú o añade recetas desde la pestaña Recetas.',
     copied: 'Lista copiada al portapapeles', copy_fail: 'No se pudo copiar', copy_unsupported: 'Tu navegador no permite copiar',
     menu_ings: 'Ingredientes del menú',
-    profile_title: 'Configuración Nutricional', profile_sub: 'Ajustes directos del motor adaptativo.',
+    profile_title: 'Mi perfil', profile_sub: 'Idioma, dieta, alergias y apariencia, todo en un sitio.',
     diet_title: 'Tipo de Dieta Primaria', diet_vegana: 'Vegana', diet_vegetariana: 'Vegetariana', diet_keto: 'Keto',
     diet_mediterranea: 'Mediterránea', diet_baja: 'Baja en carbohidratos', diet_active: 'Dieta activa', diet_none: 'Ninguna',
     diet_celiaco: 'Celíaca (sin gluten)', diet_diabetico: 'Diabética (control de azúcares)',
@@ -125,7 +129,7 @@ const I18N = {
   },
   ro: {
     app_title: 'Recetario 365 — Meniu săptămânal, +1000 de rețete din lume și listă de cumpărături',
-    nav_plan: 'Plan', nav_day: 'Azi', nav_recipes: 'Rețete', nav_cart: 'Listă', nav_profile: 'Profil',
+    nav_plan: 'Plan', nav_day: 'Azi', nav_recipes: 'Rețete', nav_cart: 'Listă', nav_profile: 'Profilul meu',
     nav_secciones: 'Colecții', nav_inicio: 'Acasă', nav_hosteleria: 'HoReCa', nav_fridge: 'Frigider',
     inicio_hero_title: 'Ce gătim azi?',
     inicio_hero_sub: 'Peste 1100 de rețete, meniu săptămânal și colecțiile tale, totul într-un loc.',
@@ -137,8 +141,12 @@ const I18N = {
     inicio_tile_secciones: 'Colecții', inicio_tile_secciones_sub: 'Tapas, supe, salate, sucuri',
     inicio_tile_fridge: 'Gătește cu ce ai', inicio_tile_fridge_sub: 'Spune-ne ce ai în frigider',
     inicio_tile_cart: 'Listă de cumpărături', inicio_tile_cart_sub: 'Generată din meniul tău',
-    inicio_tile_profile: 'Profilul tău', inicio_tile_profile_sub: 'Dietă, alergii, limbă',
+    inicio_tile_mundo: 'Rețete din toată lumea', inicio_tile_mundo_sub: 'Pe continente și țări',
     inicio_tile_hosteleria: 'HoReCa', inicio_tile_hosteleria_sub: 'Idei de meniu și tapas',
+    mundo_title: 'Rețete din toată lumea', mundo_sub: 'Explorează preparate autentice pe continente și țări, fiecare cu rețeta completă.',
+    mundo_back: 'Înapoi', mundo_countries: 'țări',
+    cont_europa: 'Europa', cont_asia: 'Asia', cont_america: 'America', cont_africa: 'Africa', cont_oceania: 'Oceania', cont_internacional: 'Internațional',
+    secg_picar: 'De ronțăit', secg_platos: 'Feluri', secg_bebidas: 'Băuturi', secg_rumano: 'Bucătărie românească', secg_dulces: 'Dulciuri', secg_otros: 'Altele',
     fridge_title: 'Gătește cu ce ai',
     fridge_sub: 'Scrie ingredientele pe care le ai și îți spunem ce poți găti acum.',
     fridge_ph: 'Adaugă un ingredient și apasă Enter: ouă, orez, roșii...',
@@ -199,7 +207,7 @@ const I18N = {
     empty_list: 'Listă de cumpărături adaptată: alege un meniu sau adaugă rețete din fila Rețete.',
     copied: 'Listă copiată în clipboard', copy_fail: 'Nu s-a putut copia', copy_unsupported: 'Browserul tău nu permite copierea',
     menu_ings: 'Ingredientele meniului',
-    profile_title: 'Configurare Nutrițională', profile_sub: 'Setări directe ale motorului adaptiv.',
+    profile_title: 'Profilul meu', profile_sub: 'Limbă, dietă, alergii și aspect, toate într-un loc.',
     diet_title: 'Tip de Dietă Principală', diet_vegana: 'Vegană', diet_vegetariana: 'Vegetariană', diet_keto: 'Keto',
     diet_mediterranea: 'Mediteraneană', diet_baja: 'Săracă în carbohidrați', diet_active: 'Dietă activă', diet_none: 'Niciuna',
     diet_celiaco: 'Celiacă (fără gluten)', diet_diabetico: 'Diabetică (control al zahărului)',
@@ -234,7 +242,7 @@ const I18N = {
   },
   en: {
     app_title: 'Recetario 365 — Weekly menu, 1000+ world recipes and shopping list',
-    nav_plan: 'Plan', nav_day: 'Today', nav_recipes: 'Recipes', nav_cart: 'List', nav_profile: 'Profile',
+    nav_plan: 'Plan', nav_day: 'Today', nav_recipes: 'Recipes', nav_cart: 'List', nav_profile: 'My profile',
     nav_secciones: 'Collections', nav_inicio: 'Home', nav_hosteleria: 'Catering', nav_fridge: 'Fridge',
     inicio_hero_title: 'What shall we cook today?',
     inicio_hero_sub: 'Over 1100 recipes, a weekly menu and your collections, all in one place.',
@@ -246,8 +254,12 @@ const I18N = {
     inicio_tile_secciones: 'Collections', inicio_tile_secciones_sub: 'Tapas, soups, salads, juices',
     inicio_tile_fridge: 'Cook with what I have', inicio_tile_fridge_sub: 'Tell us what is in your fridge',
     inicio_tile_cart: 'Shopping list', inicio_tile_cart_sub: 'Built from your menu',
-    inicio_tile_profile: 'Your profile', inicio_tile_profile_sub: 'Diet, allergies, language',
+    inicio_tile_mundo: 'World recipes', inicio_tile_mundo_sub: 'By continent and country',
     inicio_tile_hosteleria: 'Catering', inicio_tile_hosteleria_sub: 'Menu & tapas ideas',
+    mundo_title: 'World recipes', mundo_sub: 'Explore authentic dishes by continent and country, each with its full recipe.',
+    mundo_back: 'Back', mundo_countries: 'countries',
+    cont_europa: 'Europe', cont_asia: 'Asia', cont_america: 'Americas', cont_africa: 'Africa', cont_oceania: 'Oceania', cont_internacional: 'International',
+    secg_picar: 'To nibble', secg_platos: 'Dishes', secg_bebidas: 'Drinks', secg_rumano: 'Romanian cuisine', secg_dulces: 'Sweets', secg_otros: 'Others',
     fridge_title: 'Cook with what I have',
     fridge_sub: 'Type the ingredients you have and we tell you what you can cook right now.',
     fridge_ph: 'Add an ingredient and press Enter: eggs, rice, tomato...',
@@ -308,7 +320,7 @@ const I18N = {
     empty_list: 'Adaptive shopping list: pick a menu or add recipes from the Recipes tab.',
     copied: 'List copied to clipboard', copy_fail: 'Could not copy', copy_unsupported: 'Your browser does not allow copying',
     menu_ings: 'Menu ingredients',
-    profile_title: 'Nutrition Settings', profile_sub: 'Direct controls of the adaptive engine.',
+    profile_title: 'My profile', profile_sub: 'Language, diet, allergies and appearance, all in one place.',
     diet_title: 'Primary Diet Type', diet_vegana: 'Vegan', diet_vegetariana: 'Vegetarian', diet_keto: 'Keto',
     diet_mediterranea: 'Mediterranean', diet_baja: 'Low carb', diet_active: 'Active diet', diet_none: 'None',
     diet_celiaco: 'Coeliac (gluten-free)', diet_diabetico: 'Diabetic (sugar control)',
@@ -439,6 +451,119 @@ function tCat(c) { return pickMap(CAT_RO, CAT_EN, c); }
 function tArea(a) { return pickMap(AREA_RO, AREA_EN, a); }
 function tBenefit(b) { return pickMap(BENEFIT_RO, BENEFIT_EN, b); }
 function tType(ty) { return pickMap(TYPE_RO, TYPE_EN, ty); }
+
+// ===========================================================================
+// RECETAS DEL MUNDO — agrupación continente -> país.
+// El campo `area` de los datos viene con muchas grafías para el mismo país
+// (France/Francia, México/Mexicana, United States/Estados Unidos…). Aquí se
+// normaliza cada variante a un país canónico y se le asigna continente.
+// España y Rumanía quedan FUERA del mundo (tienen su sitio en Menú/Colecciones).
+// La clave es el área ya normalizada (sin acentos, en minúsculas) vía normalizeText.
+// ===========================================================================
+const MUNDO_EXCLUDE = new Set(['Espana', 'España', 'Rumania', 'Rumanía']); // por país canónico
+const AREA_TO_COUNTRY = {
+  // Europa
+  'britanica': 'Reino Unido', 'reino unido': 'Reino Unido', 'france': 'Francia', 'francia': 'Francia',
+  'italia': 'Italia', 'italiana': 'Italia', 'polaca': 'Polonia', 'polonia': 'Polonia',
+  'norway': 'Noruega', 'netherlands': 'Países Bajos', 'paises bajos': 'Países Bajos',
+  'grecia': 'Grecia', 'griega': 'Grecia', 'alemania': 'Alemania', 'irlanda': 'Irlanda',
+  'irlandesa': 'Irlanda', 'portugal': 'Portugal', 'portuguesa': 'Portugal', 'croata': 'Croacia',
+  'rusa': 'Rusia', 'rusia': 'Rusia', 'ucraniana': 'Ucrania', 'slovakia': 'Eslovaquia',
+  'hungria': 'Hungría', 'suecia': 'Suecia', 'suiza': 'Suiza', 'austria': 'Austria', 'belgica': 'Bélgica',
+  // Asia
+  'china': 'China', 'india': 'India', 'turca': 'Turquía', 'turquia': 'Turquía',
+  'tailandesa': 'Tailandia', 'tailandia': 'Tailandia', 'vietnamita': 'Vietnam', 'vietnam': 'Vietnam',
+  'japon': 'Japón', 'japonesa': 'Japón', 'saudi': 'Arabia Saudí', 'malasia': 'Malasia',
+  'indonesia': 'Indonesia', 'filipina': 'Filipinas', 'filipinas': 'Filipinas',
+  'corea del sur': 'Corea del Sur', 'libano': 'Líbano', 'siria': 'Siria', 'israel': 'Israel',
+  'iran': 'Irán', 'pakistan': 'Pakistán', 'singapur': 'Singapur',
+  // América
+  'united states': 'Estados Unidos', 'estados unidos': 'Estados Unidos', 'mexico': 'México',
+  'mexicana': 'México', 'argentina': 'Argentina', 'venezuela': 'Venezuela', 'canadiense': 'Canadá',
+  'canada': 'Canadá', 'jamaicana': 'Jamaica', 'jamaica': 'Jamaica', 'uruguaya': 'Uruguay',
+  'brasil': 'Brasil', 'peru': 'Perú', 'colombia': 'Colombia', 'cuba': 'Cuba', 'chile': 'Chile',
+  'ecuador': 'Ecuador', 'bolivia': 'Bolivia',
+  // África
+  'argelina': 'Argelia', 'egipcia': 'Egipto', 'egipto': 'Egipto', 'tunecina': 'Túnez',
+  'marroqui': 'Marruecos', 'marruecos': 'Marruecos', 'keniana': 'Kenia', 'sudafrica': 'Sudáfrica',
+  'etiopia': 'Etiopía', 'nigeria': 'Nigeria',
+  // Oceanía
+  'australiana': 'Australia', 'australia': 'Australia',
+  // Excluidos del mundo (mapean a su país para poder filtrarlos)
+  'espanola': 'España', 'espana': 'España', 'rumania': 'Rumanía'
+};
+// País canónico -> { bandera, continente }. El continente "Internacional" agrupa
+// los platos sin país concreto (area "Internacional" o sin correspondencia).
+const COUNTRY_META = {
+  // Europa
+  'Reino Unido': { flag: '🇬🇧', cont: 'Europa' }, 'Francia': { flag: '🇫🇷', cont: 'Europa' },
+  'Italia': { flag: '🇮🇹', cont: 'Europa' }, 'Polonia': { flag: '🇵🇱', cont: 'Europa' },
+  'Noruega': { flag: '🇳🇴', cont: 'Europa' }, 'Países Bajos': { flag: '🇳🇱', cont: 'Europa' },
+  'Grecia': { flag: '🇬🇷', cont: 'Europa' }, 'Alemania': { flag: '🇩🇪', cont: 'Europa' },
+  'Irlanda': { flag: '🇮🇪', cont: 'Europa' }, 'Portugal': { flag: '🇵🇹', cont: 'Europa' },
+  'Croacia': { flag: '🇭🇷', cont: 'Europa' }, 'Rusia': { flag: '🇷🇺', cont: 'Europa' },
+  'Ucrania': { flag: '🇺🇦', cont: 'Europa' }, 'Eslovaquia': { flag: '🇸🇰', cont: 'Europa' },
+  'Hungría': { flag: '🇭🇺', cont: 'Europa' }, 'Suecia': { flag: '🇸🇪', cont: 'Europa' },
+  'Suiza': { flag: '🇨🇭', cont: 'Europa' }, 'Austria': { flag: '🇦🇹', cont: 'Europa' },
+  'Bélgica': { flag: '🇧🇪', cont: 'Europa' },
+  // Asia
+  'China': { flag: '🇨🇳', cont: 'Asia' }, 'India': { flag: '🇮🇳', cont: 'Asia' },
+  'Turquía': { flag: '🇹🇷', cont: 'Asia' }, 'Tailandia': { flag: '🇹🇭', cont: 'Asia' },
+  'Vietnam': { flag: '🇻🇳', cont: 'Asia' }, 'Japón': { flag: '🇯🇵', cont: 'Asia' },
+  'Arabia Saudí': { flag: '🇸🇦', cont: 'Asia' }, 'Malasia': { flag: '🇲🇾', cont: 'Asia' },
+  'Indonesia': { flag: '🇮🇩', cont: 'Asia' }, 'Filipinas': { flag: '🇵🇭', cont: 'Asia' },
+  'Corea del Sur': { flag: '🇰🇷', cont: 'Asia' }, 'Líbano': { flag: '🇱🇧', cont: 'Asia' },
+  'Siria': { flag: '🇸🇾', cont: 'Asia' }, 'Israel': { flag: '🇮🇱', cont: 'Asia' },
+  'Irán': { flag: '🇮🇷', cont: 'Asia' }, 'Pakistán': { flag: '🇵🇰', cont: 'Asia' },
+  'Singapur': { flag: '🇸🇬', cont: 'Asia' },
+  // América
+  'Estados Unidos': { flag: '🇺🇸', cont: 'América' }, 'México': { flag: '🇲🇽', cont: 'América' },
+  'Argentina': { flag: '🇦🇷', cont: 'América' }, 'Venezuela': { flag: '🇻🇪', cont: 'América' },
+  'Canadá': { flag: '🇨🇦', cont: 'América' }, 'Jamaica': { flag: '🇯🇲', cont: 'América' },
+  'Uruguay': { flag: '🇺🇾', cont: 'América' }, 'Brasil': { flag: '🇧🇷', cont: 'América' },
+  'Perú': { flag: '🇵🇪', cont: 'América' }, 'Colombia': { flag: '🇨🇴', cont: 'América' },
+  'Cuba': { flag: '🇨🇺', cont: 'América' }, 'Chile': { flag: '🇨🇱', cont: 'América' },
+  'Ecuador': { flag: '🇪🇨', cont: 'América' }, 'Bolivia': { flag: '🇧🇴', cont: 'América' },
+  // África
+  'Argelia': { flag: '🇩🇿', cont: 'África' }, 'Egipto': { flag: '🇪🇬', cont: 'África' },
+  'Túnez': { flag: '🇹🇳', cont: 'África' }, 'Marruecos': { flag: '🇲🇦', cont: 'África' },
+  'Kenia': { flag: '🇰🇪', cont: 'África' }, 'Sudáfrica': { flag: '🇿🇦', cont: 'África' },
+  'Etiopía': { flag: '🇪🇹', cont: 'África' }, 'Nigeria': { flag: '🇳🇬', cont: 'África' },
+  // Oceanía
+  'Australia': { flag: '🇦🇺', cont: 'Oceanía' }
+};
+const CONTINENTES = [
+  { id: 'Europa', icon: 'castle' }, { id: 'Asia', icon: 'temple_buddhist' },
+  { id: 'América', icon: 'public' }, { id: 'África', icon: 'savings' },
+  { id: 'Oceanía', icon: 'sailing' }, { id: 'Internacional', icon: 'language' }
+];
+
+// Devuelve el país canónico de una receta del mundo, o null si debe excluirse.
+function mundoCountryOf(recipe) {
+  const area = recipe.area || 'Internacional';
+  const country = AREA_TO_COUNTRY[normalizeText(area)] || 'Internacional';
+  if (MUNDO_EXCLUDE.has(country)) return null;
+  return country;
+}
+function mundoContinentOf(country) {
+  return country === 'Internacional' ? 'Internacional' : ((COUNTRY_META[country] || {}).cont || 'Internacional');
+}
+// Agrupa el catálogo (solo recetas reales del recetario/mundo, sin ES/RO ni
+// zumos/menú local) en { continente: { país: [recetas] } }.
+function buildMundoGroups() {
+  const groups = {};
+  (catalogData || []).forEach(recipe => {
+    if (recipe.source !== 'db' && recipe.source !== 'world') return;
+    const country = mundoCountryOf(recipe);
+    if (!country) return;
+    const cont = mundoContinentOf(country);
+    (groups[cont] = groups[cont] || {})[country] = (groups[cont][country] || []).concat(recipe);
+  });
+  return groups;
+}
+function tContinent(c) {
+  return t('cont_' + normalizeText(c)); // cont_europa, cont_asia, cont_america, cont_africa, cont_oceania, cont_internacional
+}
 
 const dayNamesByLang = {
   es: ['LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB', 'DOM'],
@@ -1754,6 +1879,7 @@ function switchView(viewId) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
   if (viewId === 'inicio') renderInicio();
+  if (viewId === 'mundo') renderMundo();
   if (viewId === 'catalog') openCatalog();
   if (viewId === 'secciones') renderSecciones();
   if (viewId === 'fridge') renderFridge();
@@ -3189,6 +3315,99 @@ function renderCatalog() {
 }
 
 // ===========================================================================
+// RECETAS DEL MUNDO — vista de descubrimiento por continente -> país -> platos.
+// Reutiliza renderCatalogCard (foto, ingredientes escalables, pasos, alérgenos
+// y "añadir a la lista") y los datos ya fusionados de ensureCatalogData.
+// ===========================================================================
+let mundoState = { continent: null, country: null };
+
+function openMundoContinent(cont) { mundoState = { continent: cont, country: null }; renderMundo(); }
+function openMundoCountry(country) { mundoState.country = country; renderMundo(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function mundoBack() {
+  if (mundoState.country) mundoState.country = null;
+  else mundoState.continent = null;
+  renderMundo();
+}
+
+function mundoBreadcrumb() {
+  const home = `<button onclick="mundoBack()" class="inline-flex items-center gap-1 text-primary font-semibold"><span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>${t('mundo_back')}</button>`;
+  const parts = [`<span class="text-on-surface-variant">${t('mundo_title')}</span>`];
+  if (mundoState.continent) parts.push(`<span class="text-on-surface-variant">${escapeHtml(tContinent(mundoState.continent))}</span>`);
+  if (mundoState.country) parts.push(`<span class="text-on-surface font-semibold">${escapeHtml(tArea(mundoState.country))}</span>`);
+  return `<div class="flex items-center justify-between gap-3 flex-wrap">${home}<div class="flex items-center gap-1.5 text-label-md flex-wrap">${parts.join('<span class="text-outline-variant">/</span>')}</div></div>`;
+}
+
+function renderMundo() {
+  const content = document.getElementById('mundo-content');
+  if (!content) return;
+  content.innerHTML = `<div class="col-span-full rounded-3xl bg-surface-container-low p-10 text-center text-on-surface-variant">
+      <span class="material-symbols-outlined animate-spin text-primary" style="font-size:40px;">progress_activity</span>
+    </div>`;
+  Promise.all([ensureCatalogData(), ensureCatalogTr()]).then(() => {
+    const groups = buildMundoGroups();
+
+    // Nivel 1: continentes.
+    if (!mundoState.continent) {
+      const cards = CONTINENTES.filter(c => groups[c.id]).map(c => {
+        const countries = Object.keys(groups[c.id]);
+        const dishes = countries.reduce((n, k) => n + groups[c.id][k].length, 0);
+        return `<button onclick="openMundoContinent('${c.id}')" class="flex items-center gap-4 p-5 bg-surface-container-lowest rounded-3xl border border-surface-variant/40 text-left active:scale-[0.98] transition-all hover:border-primary">
+            <span class="material-symbols-outlined text-primary" style="font-size:36px;">${c.icon}</span>
+            <span class="flex flex-col">
+              <span class="font-headline-sm text-headline-sm text-on-surface">${escapeHtml(tContinent(c.id))}</span>
+              <span class="font-body-sm text-body-sm text-on-surface-variant">${countries.length} ${t('mundo_countries')} · ${dishes} ${t('dishes_count')}</span>
+            </span>
+            <span class="material-symbols-outlined ml-auto text-on-surface-variant">chevron_right</span>
+          </button>`;
+      }).join('');
+      content.innerHTML = `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">${cards}</div>`;
+      return;
+    }
+
+    // Nivel 2: países del continente.
+    if (!mundoState.country) {
+      const byCountry = groups[mundoState.continent] || {};
+      const countries = Object.keys(byCountry).sort((a, b) => tArea(a).localeCompare(tArea(b), 'es'));
+      const cards = countries.map(country => {
+        const meta = COUNTRY_META[country] || {};
+        const flag = meta.flag || '🌍';
+        return `<button onclick="openMundoCountry('${country.replace(/'/g, "\\'")}')" class="flex items-center gap-3 p-4 bg-surface-container-lowest rounded-2xl border border-surface-variant/40 text-left active:scale-[0.98] transition-all hover:border-primary">
+            <span style="font-size:28px;line-height:1;">${flag}</span>
+            <span class="flex flex-col">
+              <span class="font-label-lg text-label-lg text-on-surface">${escapeHtml(tArea(country))}</span>
+              <span class="font-body-sm text-body-sm text-on-surface-variant">${byCountry[country].length} ${t('dishes_count')}</span>
+            </span>
+          </button>`;
+      }).join('');
+      content.innerHTML = `${mundoBreadcrumb()}
+        <h3 class="font-headline-sm text-headline-sm text-on-surface">${escapeHtml(tContinent(mundoState.continent))}</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">${cards}</div>`;
+      return;
+    }
+
+    // Nivel 3: platos del país (reutiliza la tarjeta del recetario).
+    const recipes = ((groups[mundoState.continent] || {})[mundoState.country] || [])
+      .slice().sort((a, b) => a.title.localeCompare(b.title, 'es'));
+    const meta = COUNTRY_META[mundoState.country] || {};
+    const cards = recipes.map(renderCatalogCard).join('');
+    content.innerHTML = `${mundoBreadcrumb()}
+      <h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2"><span style="font-size:30px;line-height:1;">${meta.flag || '🌍'}</span>${escapeHtml(tArea(mundoState.country))}</h3>
+      <p class="text-on-surface-variant font-body-md">${recipes.length} ${t('dishes_count')}</p>
+      <div id="mundo-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">${cards}</div>`;
+    const grid = document.getElementById('mundo-grid');
+    if (grid) {
+      grid.onclick = (event) => {
+        const favBtn = event.target.closest('[data-fav]');
+        if (favBtn) { toggleCatalogFavorite(favBtn.getAttribute('data-fav')); return; }
+        const addBtn = event.target.closest('[data-add]');
+        if (addBtn) { addRecipeToShopping(addBtn.getAttribute('data-add')); }
+      };
+      hydrateLazyImages(grid);
+    }
+  });
+}
+
+// ===========================================================================
 // COLECCIONES POR SECCIONES (secciones.json)
 // Catálogo curado a partir de las infografías: sopas frías, tapas, ensaladas,
 // smoothies, salsas, etc. No toca el motor del menú diario; reutiliza el mismo
@@ -3197,6 +3416,15 @@ function renderCatalog() {
 let seccionesData = null;       // [{id, titulo, icon, descripcion, platos:[...]}]
 let seccionesTr = null;         // traducción RO/EN por id de plato {id: {t,i,s,titulo}}
 const seccionesFilter = { section: 'all', momento: 'all', benefit: 'all', onlyCompat: false };
+// Agrupación lógica de las colecciones para una navegación más profesional.
+// Las secciones no listadas caen en el grupo "otros" al final.
+const SECCION_GRUPOS = [
+  { key: 'picar', ids: ['pintxos', 'tostas', 'aperitivos', 'dips'] },
+  { key: 'platos', ids: ['sopas-frias', 'cremas-frias', 'ensaladas', 'croquetas', 'huevos', 'comidas-proteicas', 'salsas'] },
+  { key: 'bebidas', ids: ['zumos', 'smoothies', 'limonadas'] },
+  { key: 'rumano', ids: ['rumanos', 'postres-rumanos'] },
+  { key: 'dulces', ids: ['postres'] }
+];
 const MOMENTO_ORDER = ['desayuno', 'comida', 'cena', 'merienda', 'aperitivo', 'postre', 'guarnicion'];
 const MOMENTO_ICON = { desayuno: 'bakery_dining', comida: 'lunch_dining', cena: 'dinner_dining', merienda: 'cookie', aperitivo: 'tapas', postre: 'icecream', guarnicion: 'rice_bowl' };
 
@@ -3321,12 +3549,23 @@ function renderSecciones() {
   }
 
   if (chipsContainer) {
-    const chips = [{ id: 'all', label: t('sec_all'), icon: 'apps' }]
-      .concat(seccionesData.map(s => ({ id: s.id, label: trSeccionTitle(s), icon: s.icon })));
-    chipsContainer.innerHTML = chips.map(chip => `
-      <button onclick="setSeccionSection('${chip.id}')" class="px-4 py-2 rounded-full font-label-lg text-label-lg whitespace-nowrap border border-surface-container transition-all flex items-center gap-1.5 ${seccionesFilter.section === chip.id ? 'active-catalog' : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-variant'}">
-        <span class="material-symbols-outlined" style="font-size:18px;">${escapeHtml(chip.icon || 'restaurant')}</span>${escapeHtml(chip.label)}</button>
-    `).join('');
+    const byId = new Map(seccionesData.map(s => [s.id, s]));
+    const chipBtn = (s) => `
+      <button onclick="setSeccionSection('${s.id}')" class="px-4 py-2 rounded-full font-label-lg text-label-lg whitespace-nowrap border border-surface-container transition-all flex items-center gap-1.5 ${seccionesFilter.section === s.id ? 'active-catalog' : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-variant'}">
+        <span class="material-symbols-outlined" style="font-size:18px;">${escapeHtml(s.icon || 'restaurant')}</span>${escapeHtml(trSeccionTitle(s))}</button>`;
+    const grpLabel = (key) => `<span class="self-center pl-2 pr-1 text-label-md font-semibold uppercase tracking-wide text-on-surface-variant whitespace-nowrap">${escapeHtml(t('secg_' + key))}</span>`;
+    // Chip "Todas" + secciones ordenadas y etiquetadas por grupo.
+    let html = `<button onclick="setSeccionSection('all')" class="px-4 py-2 rounded-full font-label-lg text-label-lg whitespace-nowrap border border-surface-container transition-all flex items-center gap-1.5 ${seccionesFilter.section === 'all' ? 'active-catalog' : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-variant'}">
+        <span class="material-symbols-outlined" style="font-size:18px;">apps</span>${escapeHtml(t('sec_all'))}</button>`;
+    const placed = new Set();
+    SECCION_GRUPOS.forEach(g => {
+      const present = g.ids.filter(id => byId.has(id));
+      if (!present.length) return;
+      html += grpLabel(g.key) + present.map(id => { placed.add(id); return chipBtn(byId.get(id)); }).join('');
+    });
+    const otros = seccionesData.filter(s => !placed.has(s.id));
+    if (otros.length) html += grpLabel('otros') + otros.map(chipBtn).join('');
+    chipsContainer.innerHTML = html;
   }
 
   // Filtro transversal por momento del día (solo los momentos presentes en los datos).
