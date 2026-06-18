@@ -2471,6 +2471,171 @@
      ]
     }
    ]
+  },
+  {
+   "id": "huevos",
+   "titulo": "Tortillas y huevos",
+   "icon": "egg",
+   "descripcion": "Ocho clásicos del huevo para desayuno, comida o cena rápida.",
+   "platos": [
+    {
+     "id": "hv-tortilla-espanola",
+     "title": "Tortilla española",
+     "ingredients": [
+      "5 huevos",
+      "4 patatas medianas",
+      "1 cebolla (opcional)",
+      "aceite de oliva para freír",
+      "sal"
+     ],
+     "instructions": "Pela y corta las patatas en láminas finas (y la cebolla en juliana). Fríelas a fuego medio en abundante aceite hasta que estén tiernas, escúrrelas y sálalas. Bate los huevos, mézclalos con la patata y cuaja la tortilla en una sartén con un poco de aceite, dándole la vuelta con un plato. Déjala jugosa por dentro.",
+     "image": "img/secciones/hv-tortilla-espanola.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "desayuno",
+      "comida",
+      "cena"
+     ]
+    },
+    {
+     "id": "hv-tortilla-francesa",
+     "title": "Tortilla francesa",
+     "ingredients": [
+      "2 huevos",
+      "1 cucharadita de aceite o mantequilla",
+      "sal",
+      "perejil o queso (opcional)"
+     ],
+     "instructions": "Bate los huevos con una pizca de sal. Calienta el aceite en una sartén pequeña, vierte el huevo y, cuando empiece a cuajar por los bordes, recógelo hacia el centro. Enróllala sobre sí misma y sirve jugosa. Añade queso o perejil al gusto.",
+     "image": "img/secciones/hv-tortilla-francesa.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "desayuno",
+      "comida",
+      "cena"
+     ]
+    },
+    {
+     "id": "hv-huevos-rotos",
+     "title": "Huevos rotos con patatas",
+     "ingredients": [
+      "3 patatas",
+      "4 huevos",
+      "aceite de oliva",
+      "sal",
+      "jamón o chorizo (opcional)"
+     ],
+     "instructions": "Corta las patatas en bastones y fríelas hasta que estén doradas y tiernas. Fríe los huevos en aceite caliente dejando la yema líquida. Coloca los huevos sobre las patatas, rómpelos y mezcla. Añade jamón o chorizo si quieres.",
+     "image": "img/secciones/hv-huevos-rotos.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "desayuno",
+      "comida",
+      "cena"
+     ]
+    },
+    {
+     "id": "hv-revuelto-setas",
+     "title": "Revuelto de setas",
+     "ingredients": [
+      "4 huevos",
+      "200 g de setas variadas",
+      "1 diente de ajo",
+      "2 cucharadas de aceite de oliva",
+      "perejil",
+      "sal y pimienta"
+     ],
+     "instructions": "Saltea las setas troceadas con el ajo y un poco de aceite hasta que suelten el agua y se doren. Baja el fuego, añade los huevos batidos y remueve sin parar hasta que cuajen cremosos. Salpimienta y termina con perejil.",
+     "image": "img/secciones/hv-revuelto-setas.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "desayuno",
+      "comida",
+      "cena"
+     ]
+    },
+    {
+     "id": "hv-shakshuka",
+     "title": "Shakshuka",
+     "ingredients": [
+      "4 huevos",
+      "400 g de tomate triturado",
+      "1 cebolla",
+      "1 pimiento rojo",
+      "1 diente de ajo",
+      "1 cucharadita de comino",
+      "1 cucharadita de pimentón",
+      "aceite de oliva",
+      "sal",
+      "perejil o cilantro"
+     ],
+     "instructions": "Rehoga la cebolla, el pimiento y el ajo. Añade el tomate, el comino y el pimentón y cuece 10 minutos hasta que espese. Haz huecos y casca los huevos dentro; tapa y cocina a fuego suave hasta que cuajen las claras y la yema quede líquida. Sirve con hierbas.",
+     "image": "img/secciones/hv-shakshuka.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "desayuno",
+      "comida",
+      "cena"
+     ]
+    },
+    {
+     "id": "hv-huevos-rellenos",
+     "title": "Huevos rellenos",
+     "ingredients": [
+      "6 huevos",
+      "100 g de atún",
+      "3 cucharadas de mayonesa",
+      "1 cucharada de tomate frito",
+      "sal"
+     ],
+     "instructions": "Cuece los huevos 10 minutos, enfría y pélalos. Pártelos por la mitad y saca las yemas. Mezcla las yemas con el atún, la mayonesa y el tomate hasta una pasta. Rellena las claras con la mezcla y decora con un poco más de mayonesa.",
+     "image": "img/secciones/hv-huevos-rellenos.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "desayuno",
+      "comida",
+      "cena"
+     ]
+    },
+    {
+     "id": "hv-huevos-benedictinos",
+     "title": "Huevos benedictinos",
+     "ingredients": [
+      "2 huevos",
+      "2 muffins ingleses o rebanadas de pan",
+      "2 lonchas de bacon o jamón",
+      "1 cucharada de vinagre",
+      "2 yemas, 100 g de mantequilla, zumo de limón y sal para la holandesa"
+     ],
+     "instructions": "Escalfa los huevos en agua con vinagre unos 3 minutos. Tuesta el pan y calienta el bacon. Prepara la holandesa batiendo las yemas al baño maría e incorporando la mantequilla fundida y el limón hasta que espese. Monta el pan con el bacon, el huevo escalfado y la salsa por encima.",
+     "image": "img/secciones/hv-huevos-benedictinos.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "desayuno",
+      "comida",
+      "cena"
+     ]
+    },
+    {
+     "id": "hv-tortilla-calabacin",
+     "title": "Tortilla de calabacín",
+     "ingredients": [
+      "4 huevos",
+      "2 calabacines",
+      "1 cebolla",
+      "aceite de oliva",
+      "sal"
+     ],
+     "instructions": "Pocha el calabacín en rodajas con la cebolla y un poco de aceite hasta que estén tiernos. Bate los huevos, mézclalos con la verdura escurrida y cuaja la tortilla por ambos lados en la sartén. Déjala jugosa.",
+     "image": "img/secciones/hv-tortilla-calabacin.jpg",
+     "ilustracion": true,
+     "momentos": [
+      "desayuno",
+      "comida",
+      "cena"
+     ]
+    }
+   ]
   }
  ]
 }
