@@ -34,6 +34,7 @@ const I18N = {
     mundo_back: 'Atrás', mundo_countries: 'países',
     cont_europa: 'Europa', cont_asia: 'Asia', cont_america: 'América', cont_africa: 'África', cont_oceania: 'Oceanía', cont_internacional: 'Internacional',
     secg_picar: 'Para picar', secg_platos: 'Platos', secg_bebidas: 'Bebidas', secg_rumano: 'Cocina rumana', secg_dulces: 'Dulces', secg_otros: 'Otros',
+    origin_label: 'Cocina', origin_all: 'Todas', origin_es: 'Española', origin_ro: 'Rumana', origin_intl: 'Internacional', origin_both: 'Ambas',
     fridge_title: 'Cocina con lo que tengo',
     fridge_sub: 'Escribe los ingredientes que tienes y te decimos qué puedes cocinar ya.',
     fridge_ph: 'Añade un ingrediente y pulsa Enter: huevos, arroz, tomate...',
@@ -147,6 +148,7 @@ const I18N = {
     mundo_back: 'Înapoi', mundo_countries: 'țări',
     cont_europa: 'Europa', cont_asia: 'Asia', cont_america: 'America', cont_africa: 'Africa', cont_oceania: 'Oceania', cont_internacional: 'Internațional',
     secg_picar: 'De ronțăit', secg_platos: 'Feluri', secg_bebidas: 'Băuturi', secg_rumano: 'Bucătărie românească', secg_dulces: 'Dulciuri', secg_otros: 'Altele',
+    origin_label: 'Bucătărie', origin_all: 'Toate', origin_es: 'Spaniolă', origin_ro: 'Românească', origin_intl: 'Internațional', origin_both: 'Ambele',
     fridge_title: 'Gătește cu ce ai',
     fridge_sub: 'Scrie ingredientele pe care le ai și îți spunem ce poți găti acum.',
     fridge_ph: 'Adaugă un ingredient și apasă Enter: ouă, orez, roșii...',
@@ -260,6 +262,7 @@ const I18N = {
     mundo_back: 'Back', mundo_countries: 'countries',
     cont_europa: 'Europe', cont_asia: 'Asia', cont_america: 'Americas', cont_africa: 'Africa', cont_oceania: 'Oceania', cont_internacional: 'International',
     secg_picar: 'To nibble', secg_platos: 'Dishes', secg_bebidas: 'Drinks', secg_rumano: 'Romanian cuisine', secg_dulces: 'Sweets', secg_otros: 'Others',
+    origin_label: 'Cuisine', origin_all: 'All', origin_es: 'Spanish', origin_ro: 'Romanian', origin_intl: 'International', origin_both: 'Both',
     fridge_title: 'Cook with what I have',
     fridge_sub: 'Type the ingredients you have and we tell you what you can cook right now.',
     fridge_ph: 'Add an ingredient and press Enter: eggs, rice, tomato...',
@@ -1937,6 +1940,7 @@ function renderInicio() {
 let fridgeItems = [];
 let fridgePantry = true;        // se asume despensa básica (sal, aceite, agua…)
 let fridgeLastResults = [];     // memoria para "Sorpréndeme"
+let fridgeOrigin = 'ambos';     // 'ambos' (española+rumana), 'es', 'ro': acota la cocina de la nevera
 
 // Ingredientes comunes para añadir con un toque (sin teclear).
 const FRIDGE_QUICK = ['Huevos', 'Pollo', 'Arroz', 'Pasta', 'Patata', 'Tomate', 'Cebolla', 'Ajo', 'Queso', 'Atún', 'Leche', 'Harina', 'Zanahoria', 'Pimiento', 'Garbanzos', 'Champiñones'];
@@ -1969,6 +1973,7 @@ function fridgeAdd(value) {
 function fridgeRemove(idx) { fridgeItems.splice(idx, 1); renderFridge(); }
 function fridgeClear() { fridgeItems = []; renderFridge(); }
 function fridgeTogglePantry(on) { fridgePantry = on; renderFridge(); }
+function setFridgeOrigin(origin) { fridgeOrigin = origin; renderFridge(); }
 function fridgeQuickToggle(name) {
   const n = normalizeText(name);
   const i = fridgeItems.findIndex(x => normalizeText(x) === n);
@@ -2000,6 +2005,10 @@ function renderFridgeControls() {
   }
   const pantry = document.getElementById('fridge-pantry');
   if (pantry) pantry.checked = fridgePantry;
+  ['ambos', 'es', 'ro'].forEach(o => {
+    const btn = document.getElementById('fridge-origin-' + o);
+    if (btn) btn.classList.toggle('active-catalog', fridgeOrigin === o);
+  });
 }
 
 function renderFridge() {
@@ -2011,6 +2020,11 @@ function renderFridge() {
     const have = fridgeItems.map(normalizeText).filter(Boolean);
     const results = [];
     (catalogData || []).forEach(r => {
+      // Acota a la cocina elegida: española, rumana o ambas (sin internacional).
+      const ro = recipeOrigin(r);
+      if (fridgeOrigin === 'es' && ro !== 'es') return;
+      if (fridgeOrigin === 'ro' && ro !== 'ro') return;
+      if (fridgeOrigin === 'ambos' && ro === 'intl') return;
       // Respeta la dieta activa: no ofrece platos no aptos.
       try { if (currentDiet && currentDiet !== 'mediterranea' && optionNeedsAdaptation(r)) return; } catch (e) {}
       const cores = recipeCores(r);
@@ -2812,7 +2826,17 @@ let catalogData = null;
 let catalogLoading = false;
 let catalogRenderLimit = 48;
 let catalogServings = 2;
-const catalogFilter = { text: '', category: 'all', benefit: 'all' };
+const catalogFilter = { text: '', category: 'all', benefit: 'all', origin: 'all' };
+
+// Origen de un plato a partir de su área: 'es' (España), 'ro' (Rumanía) o 'intl'
+// (resto del mundo, incluidos zumos y platos sin país concreto). Permite acotar
+// la búsqueda del recetario y la nevera a una cocina o a "todas".
+function recipeOrigin(recipe) {
+  const a = normalizeText(recipe && recipe.area || '');
+  if (a === 'espanola' || a === 'espana') return 'es';
+  if (a === 'rumania') return 'ro';
+  return 'intl';
+}
 // Productos añadidos manualmente a la lista de la compra (desde recetas o a mano).
 const extraShoppingItems = new Map();
 
@@ -3123,6 +3147,7 @@ function getFilteredCatalog() {
     : [];
   const scored = [];
   catalogData.forEach((recipe, index) => {
+    if (catalogFilter.origin !== 'all' && recipeOrigin(recipe) !== catalogFilter.origin) return;
     if (catalogFilter.category === 'fav') {
       if (!favoriteRecipes.has(recipe.title)) return;
     } else if (catalogFilter.category === 'top') {
@@ -3260,6 +3285,18 @@ function renderCatalog() {
       </div>
     `;
     return;
+  }
+
+  // Acotar la búsqueda por cocina: Todas / Española / Rumana / Internacional.
+  const originEl = document.getElementById('catalog-origin');
+  if (originEl) {
+    const origins = [
+      { id: 'all', emoji: '', label: t('origin_all') }, { id: 'es', emoji: '🇪🇸 ', label: t('origin_es') },
+      { id: 'ro', emoji: '🇷🇴 ', label: t('origin_ro') }, { id: 'intl', emoji: '🌍 ', label: t('origin_intl') }
+    ];
+    originEl.innerHTML = origins.map(o => `
+      <button onclick="setCatalogOrigin('${o.id}')" class="px-4 py-2 rounded-full font-label-lg text-label-lg whitespace-nowrap border border-surface-container transition-all ${catalogFilter.origin === o.id ? 'active-catalog' : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-variant'}">${o.emoji}${escapeHtml(o.label)}</button>
+    `).join('');
   }
 
   if (chipsContainer) {
@@ -3661,6 +3698,12 @@ function catalogSearch(value) {
 function setCatalogCategory(category) {
   catalogFilter.category = category;
   catalogFilter.benefit = 'all';
+  catalogRenderLimit = 48;
+  renderCatalog();
+}
+
+function setCatalogOrigin(origin) {
+  catalogFilter.origin = origin;
   catalogRenderLimit = 48;
   renderCatalog();
 }

@@ -1,0 +1,2336 @@
+{
+"sec:sopas-frias": "Supe reci spaniole",
+"sf-gazpacho-andaluz": {
+"t": "gazpacho andaluz",
+"i": [
+"1 kg de roșii coapte",
+"1/2 castravete",
+"1 ardei verde italian",
+"1 catel de usturoi",
+"50 g pâine veche de o zi",
+"50 ml ulei de măsline extravirgin",
+"1 lingura otet de vin",
+"sare dupa gust"
+],
+"s": "Tăiați roșiile, castraveții și ardeiul și puneți-le în paharul blenderului cu usturoiul și pâinea înmuiată. Se macină până fin și, cu mașina în funcțiune, se adaugă uleiul treptat pentru a se emulsiona. Ajustați oțetul și sarea, strecurați dacă doriți să fie foarte fin și lăsați la rece cel puțin 2 ore înainte de servire."
+},
+"sf-salmorejo-cordobes": {
+"t": "salmorejo de Cordoban",
+"i": [
+"1 kg de roșii coapte",
+"150 g pâine albă veche de o zi",
+"1 catel de usturoi",
+"100 ml ulei de măsline extravirgin",
+"sare dupa gust",
+"2 ouă fierte tari și 50 g șuncă serrano de servit"
+],
+"s": "Zdrobiți roșiile cu usturoiul și sarea, adăugați pâinea bucăți și lăsați-o să se hidrateze câteva minute. Amestecă din nou, încorporând uleiul puțin câte puțin până obții o cremă groasă, de portocale. Se raceste si se serveste cu ou fiert tare tocat si sunca deasupra."
+},
+"sf-ajoblanco-malagueno": {
+"t": "Ajoblanco din Malaga",
+"i": [
+"150 g migdale crude decojite",
+"1 catel de usturoi",
+"50 g pâine veche de o zi",
+"60 ml ulei de măsline extravirgin",
+"1 lingura otet",
+"750 ml apă rece",
+"sare dupa gust",
+"struguri sau pepene galben de servit"
+],
+"s": "Înmuiați pâinea și măcinați-o cu migdalele, usturoiul și puțină apă până obțineți o pastă. Se adauga restul de apa, otetul si sarea si se emulsioneaza cu ulei pana se omogenizeaza. Se serveste foarte rece cu niste struguri despicati deasupra."
+},
+"sf-porra-antequerana": {
+"t": "bagheta Antequera",
+"i": [
+"1 kg de roșii coapte",
+"200 g pâine veche de o zi",
+"1 catel de usturoi",
+"1 ardei verde mic",
+"120 ml ulei de măsline extravirgin",
+"sare dupa gust",
+"ou fiert tare și șuncă de servit"
+],
+"s": "Se amestecă roșiile cu usturoiul, piperul și sarea, se adaugă pâinea înmuiată și se lasă să se odihnească. Se bat din nou, emulsionand cu uleiul pana la o crema mai groasa decat gazpacho. Se serveste rece cu ou fiert tare si sunca taiata cubulete."
+},
+"sf-gazpacho-verde": {
+"t": "gazpacho verde",
+"i": [
+"1 castravete",
+"1 ardei verde",
+"1 mar verde",
+"1/2 avocado",
+"1 mână de spanac",
+"40 ml ulei de măsline extravirgin",
+"sucul de la 1 lime",
+"200 ml apă rece",
+"sare dupa gust"
+],
+"s": "Curatam si tocam castravetele, marul si avocado si le punem in blender cu ardeiul si spanacul. Amestecați cu apa și lime până obțineți o cremă fină, verde, emulsionând cu uleiul. Ajustați sarea și serviți foarte rece."
+},
+"sf-gazpacho-sandia": {
+"t": "Gazpacho cu pepene verde",
+"i": [
+"500 g pepene verde fără semințe",
+"2 roșii coapte",
+"1/2 castravete",
+"30 ml ulei de măsline extravirgin",
+"1 lingurita otet",
+"niste frunze de menta",
+"sare dupa gust"
+],
+"s": "Amestecați pepenele verde cu roșiile și castraveții până la lichid. Se emulsionează cu uleiul și oțetul, se adaugă câteva frunze de mentă și sare și se bat din nou. Se strecoară și se servește foarte rece; Este dulce și răcoritoare."
+},
+"sec:salsas": "Sosuri de casă",
+"salsa-ranch": {
+"t": "sos ranch",
+"i": [
+"4 linguri maioneza",
+"3 linguri iaurt natural sau smantana",
+"2 linguri de lapte",
+"1/2 lingurita praf de usturoi",
+"1/2 lingurita praf de ceapa",
+"1 lingura arpagic tocat",
+"1 lingurita marar",
+"sare si piper"
+],
+"s": "Amesteca maioneza cu iaurtul si laptele pana devine o crema fluida. Adăugați usturoiul și praful de ceapă, arpagicul și mărarul și asezonați cu sare și piper. Se lasa sa se odihneasca 30 de minute la rece pentru ca aromele sa se integreze."
+},
+"salsa-bufalo": {
+"t": "sos de bivoliță",
+"i": [
+"120 ml sos iute cayenne",
+"60 g unt",
+"1 lingurita otet",
+"1/2 lingurita praf de usturoi",
+"un praf de sare"
+],
+"s": "Topiți untul la foc mic și luați de pe foc. Adăugați sosul iute, oțetul și pudra de usturoi și amestecați până se emulsionează și devine lucios. Folosește-l cald pe aripioare sau pe conopida prăjită."
+},
+"salsa-tartara": {
+"t": "sos tartar",
+"i": [
+"6 linguri maioneza",
+"2 castraveti murati, tocati",
+"1 lingura capere tocate",
+"1/2 ceapa mica, tocata marunt",
+"1 lingura patrunjel",
+"1 lingurita mustar",
+"câteva picături de lămâie"
+],
+"s": "Se toacă foarte mărunt murăturile, caperele și ceapa. Amesteca-le cu maioneza, mustarul, patrunjelul si lamaia. Se răcește înainte de servire; Insoteste pestele si mancarurile prajite."
+},
+"salsa-alfredo": {
+"t": "Sos Alfredo",
+"i": [
+"250 ml smantana de gatit",
+"50 g unt",
+"80 g parmezan ras",
+"1 catel de usturoi",
+"un praf de nucsoara",
+"sare si piper"
+],
+"s": "Topim untul cu usturoiul tocat fara sa se rumeneasca. Se adauga smantana si se incinge fara sa fiarba, se adauga parmezanul putin cate putin, amestecand pana se ingroasa. Se condimenteaza cu nucsoara, sare si piper si se foloseste imediat pe paste."
+},
+"salsa-chipotle": {
+"t": "sos chipotle",
+"i": [
+"6 linguri maioneza",
+"2 ardei iute chipotle in marinada",
+"1 lingura de sos adobo",
+"sucul de 1/2 lime",
+"1/2 catel de usturoi",
+"sare"
+],
+"s": "Amestecați chipotles-urile cu marinada lor, usturoiul și lime-ul până obțineți o pastă. Amestecă-l cu maioneza până obții picantența pe care o preferi. Se pune la frigider; Merge bine cu tacos, hamburgeri și cartofi."
+},
+"salsa-yogur-pepino": {
+"t": "Sos de iaurt și castraveți (tzatziki)",
+"i": [
+"250 g iaurt grecesc",
+"1/2 castravete ras si scurs",
+"1 catel de usturoi",
+"1 lingura ulei de masline",
+"câteva frunze de mentă sau mărar",
+"sucul de la 1/2 lămâie",
+"sare"
+],
+"s": "Se rade castravetele, se sare si se scurge bine pentru a scoate apa. Se amestecă cu iaurtul, usturoiul zdrobit, uleiul, lămâia și planta tocată. Se răcește 1 oră; împrospătează carnea și legumele la grătar."
+},
+"sec:smoothies": "Băuturi sănătoase și smoothie-uri",
+"sm-arandanos": {
+"t": "Smoothie cu afine",
+"i": [
+"150 g afine",
+"1 banană",
+"200 ml de lapte sau băutură vegetală",
+"1 lingură fulgi de ovăz",
+"1 lingurita miere"
+],
+"s": "Pune toate ingredientele în blender. Se amestecă până când este omogen și cremos. Servește instantaneu; Daca vrei sa fie mai lichid, mai adauga putin lapte."
+},
+"sm-chocolate": {
+"t": "Smoothie de ciocolată",
+"i": [
+"1 banana congelata",
+"200 ml de lapte sau băutură vegetală",
+"1 lingură pudră de cacao pură",
+"1 lingura unt de arahide",
+"1 data optionala"
+],
+"s": "Se zdrobește banana cu laptele, cacao și untul de arahide. Se amestecă până când este densă și netedă. Îndulciți cu data dacă aveți nevoie."
+},
+"sm-melocoton": {
+"t": "Smoothie cu piersici",
+"i": [
+"2 piersici coapte",
+"150 g de iaurt natural",
+"150 ml lapte",
+"1 lingurita miere"
+],
+"s": "Curățați și tăiați piersicile. Amesteca-le cu iaurtul, laptele si mierea pana se omogenizeaza. Se serveste rece."
+},
+"sm-vainilla": {
+"t": "Smoothie de vanilie",
+"i": [
+"1 banană",
+"200 ml lapte",
+"150 g iaurt",
+"1/2 lingurita extract de vanilie",
+"1 lingurita miere"
+],
+"s": "Bateți banana cu iaurtul, laptele, vanilia și mierea. Mixați până obțineți o textură cremoasă de smoothie. Se servește imediat."
+},
+"sm-verde": {
+"t": "smoothie verde",
+"i": [
+"1 mână de spanac",
+"1 mar verde",
+"1 banană",
+"200 ml apă sau băutură vegetală",
+"o bucată de ghimbir",
+"sucul de la 1/2 lămâie"
+],
+"s": "Spanacul se spala si se toaca fructele. Amesteca totul cu apa, ghimbirul si lamaia pana devine fin si fara fire. Bea proaspat facut pentru a profita de vitamine."
+},
+"sm-fresa": {
+"t": "Smoothie de căpșuni",
+"i": [
+"200 g căpșuni",
+"150 g iaurt",
+"150 ml lapte",
+"1 lingurita miere"
+],
+"s": "Spălați și tăiați căpșunile. Amestecați-le cu iaurtul, laptele și mierea până devin roz și spumoase. Se serveste rece."
+},
+"sm-platano": {
+"t": "Smoothie cu banane și ovăz",
+"i": [
+"2 banane",
+"250 ml de lapte sau băutură vegetală",
+"2 linguri de fulgi de ovaz",
+"1/2 lingurita scortisoara",
+"1 lingurita miere"
+],
+"s": "Se zdrobesc bananele cu laptele, ovazul si scortisoara. Se bate bine până când ovăzul este integrat și cremos. Este satios, ideal inainte de antrenament."
+},
+"sm-mango": {
+"t": "Smoothie de mango",
+"i": [
+"1 mango copt",
+"150 g iaurt",
+"100 ml suc de portocale",
+"1 lingurita miere"
+],
+"s": "Curățați și tăiați mango. Amestecați-l cu iaurtul, sucul de portocale și mierea până devine tropical și neted. Se serveste foarte rece."
+},
+"sm-sandia": {
+"t": "Smoothie cu pepene verde",
+"i": [
+"400 g pepene verde fără semințe",
+"100 g căpșuni",
+"sucul de la 1 lime",
+"niste frunze de menta",
+"gheata"
+],
+"s": "Pasează pepenele verde cu căpșunile, limea și menta. Adăugați gheață și amestecați până devine nămol. Foarte revigorant și sărac în calorii."
+},
+"sm-pina": {
+"t": "Smoothie cu ananas și nucă de cocos",
+"i": [
+"200 g ananas",
+"1 banană",
+"150 ml lapte de cocos",
+"100 ml apă"
+],
+"s": "Tăiați ananasul și banana. Amestecați-le cu laptele de cocos și apă până când obțineți o băutură fără alcool de tip piña colada. Serviți cu gheață."
+},
+"sec:comidas-proteicas": "Mâncăruri cu proteine ​​pentru a merge",
+"pl-ensalada-atun-garbanzos": {
+"t": "Salată de ton și năut",
+"i": [
+"1 cutie mare de ton natural",
+"250 g năut fiert",
+"1 rosie",
+"1/2 ceapa rosie",
+"1 ou fiert tare",
+"patrunjel",
+"ulei de măsline, oțet și sare"
+],
+"s": "Scurgeți năutul și tonul și amestecați-le cu roșia și ceapa tocate. Se imbraca cu ulei, otet, sare si patrunjel si deasupra se pune oul fiert tare in felii. Se ține perfect într-o cutie de prânz. Oferă aproximativ 32 g de proteine."
+},
+"pl-wrap-pollo-aguacate": {
+"t": "Wrap cu pui și avocado",
+"i": [
+"1 tortilla mare de grâu",
+"150 g pui la gratar in fasii",
+"1/2 avocado",
+"frunze de salata verde",
+"1 roșie feliată",
+"1 lingură iaurt sau sos ușor"
+],
+"s": "Ungeți tortilla cu iaurt și distribuiți salata verde, roșia, avocado feliat și pui. Rulați strâns și înfășurați în hârtie pentru a o transporta. Oferă aproximativ 38 g de proteine."
+},
+"pl-pasta-pollo-pesto": {
+"t": "Paste reci cu pui si pesto",
+"i": [
+"180 g paste scurte",
+"150 g pui fiert",
+"2 linguri pesto",
+"8 roșii cherry",
+"30 g parmezan",
+"rucola"
+],
+"s": "Fierbe pastele al dente și răcește-le sub robinet. Se amestecă cu pesto, puiul mărunțit, cireșele tocate și rucola și se distribuie parmezanul. Se consumă rece și oferă aproximativ 36 g de proteine."
+},
+"pl-bowl-quinoa-salmon": {
+"t": "Bol cu quinoa si somon",
+"i": [
+"120 g quinoa",
+"150 g somon fiert sau la gratar",
+"1/2 avocado",
+"1 morcov ras",
+"o mână de edamame",
+"sos de soia si susan"
+],
+"s": "Gatiti quinoa si lasati-o sa se raceasca. Pune-l în vasul cu somonul, avocado, morcovul și edamame și asezonează cu soia și susan. Oferă aproximativ 29 g de proteine."
+},
+"pl-hummus-verduras-huevo": {
+"t": "Hummus cu legume si ou",
+"i": [
+"150 g hummus",
+"1 morcov în bețișoare",
+"1/2 castravete in batoane",
+"1 ardei in fasii",
+"2 oua fierte tari",
+"ţepi de pâine de grâu integral"
+],
+"s": "Așezați humusul în centru și distribuiți legumele crude pe bețișoare în jurul lui. Adăugați ouăle fierte tari sparte și câteva vârfuri pentru scufundare. Oferă aproximativ 22 g de proteine."
+},
+"sec:pintxos": "pintxos basci",
+"px-gilda": {
+"t": "Gilda clasică",
+"i": [
+"3 măsline verzi fără sâmburi",
+"2 hamsii in ulei",
+"2 ardei iute in otet (piparras)",
+"ulei de măsline extravirgin"
+],
+"s": "Așezați o măsline, un ardei iute rulat și o hamsie pe o scobitoare, repetând până când pintxo-ul este asamblat. Stropiți cu un strop de ulei de măsline. Se serveste rece ca aperitiv sarat si picant."
+},
+"px-tortilla-cremosa": {
+"t": "Omletă cremoasă de cartofi",
+"i": [
+"3 oua",
+"2 cartofi medii",
+"1/2 ceapă",
+"ulei de măsline",
+"sare",
+"pâine feliată"
+],
+"s": "Prăjiți cartofii tăiați felii și ceapa la foc mic până se înmoaie și le scurgeți. Amesteca-le cu ouale batute si punem omleta, lasand-o suculenta in interior. Serviți o bucată pe pâine."
+},
+"px-anchoa-piparra": {
+"t": "hamsii si piparra",
+"i": [
+"2 hamsii in ulei",
+"2 ardei in otet",
+"1 felie de pâine",
+"roșie rasă",
+"ulei de măsline"
+],
+"s": "Ungeti painea cu putina rosii rasa si ulei. Puneți hamsiile deasupra și însoțiți cu piparras. Salină și mușcătură proaspătă în același timp."
+},
+"px-bacalao-pilpil": {
+"t": "Cod pil pil",
+"i": [
+"200 g cod desarat",
+"3 catei de usturoi",
+"1 ardei iute",
+"100 ml ulei de măsline",
+"pâine"
+],
+"s": "Confitați usturoiul și ardeiul iute în ulei și îndepărtați-le. Fierbe codul la foc foarte mic pe partea de piele si, de pe foc, misca oala in cercuri pentru a lega pil pilul cu gelatina de peste. Serviți pe pâine."
+},
+"px-jamon-brie": {
+"t": "șuncă iberică și brie",
+"i": [
+"50 g șuncă iberică",
+"50 g brânză brie",
+"1 felie de pâine",
+"dulceata sau gutui"
+],
+"s": "Pâinea prăjită ușor și puneți o felie de brie. Pune deasupra sunca iberica si un strop de dulceata. Contrastul dintre sărat și dulce este cheia."
+},
+"px-pulpo-gallega": {
+"t": "Caracatiță în stil galic",
+"i": [
+"200 g caracatiță fiartă",
+"1 cartof fiert",
+"boia dulce și picant",
+"fulgi de sare",
+"ulei de măsline"
+],
+"s": "Tăiați caracatița în felii și puneți-o pe o felie de cartof fiert. Se presară boia și fulgi de sare și se stropesc cu ulei de măsline. Serviți cald."
+},
+"px-txaka": {
+"t": "Txaka (salata de surimi)",
+"i": [
+"150 g surimi",
+"3 linguri maioneza",
+"1 lingura rosii prajite",
+"câteva picături de coniac",
+"pâine"
+],
+"s": "Maruntiti surimi-ul si amestecati-l cu maioneza si rosiile prajite pana obtineti o crema roz. Adăugați câteva picături de coniac. Serviți pe pâine sau într-o tartă."
+},
+"px-croquetas": {
+"t": "Crochete de șuncă de casă",
+"i": [
+"50 g șuncă serrano",
+"40 g unt",
+"40 g faina",
+"400 ml lapte",
+"1 ou",
+"pesmet",
+"ulei pentru prajit",
+"nucsoara si sare"
+],
+"s": "Se face un bechamel gros cu untul, faina si laptele, se adauga sunca tocata si nucsoara si se lasa sa se raceasca. Formați crochetele, scufundați-le în ou și pesmet și prăjiți-le în ulei încins până se rumenesc."
+},
+"px-boqueron-donostiarra": {
+"t": "Anșoa murată",
+"i": [
+"200 g hamsii curate",
+"otet de vin",
+"2 catei de usturoi",
+"patrunjel",
+"ulei de măsline",
+"sare"
+],
+"s": "Se acoperă ansoa deschisă cu oțet și sare și se lasă la marinat câteva ore la rece până devin albe. Scurge-le si imbraca-le cu usturoi si patrunjel tocate si mult ulei de masline. Se serveste foarte rece pe paine."
+},
+"px-solomillo-foie": {
+"t": "Mușchiu și foie",
+"i": [
+"150 g muschi de vita",
+"50 g foie",
+"1 felie de pâine",
+"reducerea lui Pedro Ximénez",
+"sare si piper"
+],
+"s": "Se prăjește mușchiul la grătar la perfecțiune și se condimentează cu sare și piper. Se caleste foie-ul cateva secunde pe fiecare parte si se monteaza pe muschiu si paine. Se încheie cu un fir de reducere de Pedro Ximénez."
+},
+"px-txangurro": {
+"t": "Crab la grătar",
+"i": [
+"200 g de crab sau carne de crab",
+"1/2 ceapă",
+"1 rosie",
+"un strop de coniac",
+"pesmet",
+"unt"
+],
+"s": "Se caleste ceapa si rosiile, se adauga carnea de crab si rachiul si se lasa sa se reduca. Umpleți cojile sau caserole, presărați pesmet cu câteva foi de unt și gratinați până devine auriu."
+},
+"px-atun-cebolla": {
+"t": "Ton roșu și ceapă confit",
+"i": [
+"150 g ton roșu",
+"1 ceapă",
+"1 lingura zahar brun",
+"otet",
+"ulei de măsline",
+"sare"
+],
+"s": "Confitați ceapa julienne la foc mic cu puțin zahăr și oțet până se caramelizează. Pe exterior se taie tonul, lăsându-l crud în centru și tăiați-l cubulețe. Serviți pe ceapă și pâine."
+},
+"px-morcilla-piquillos": {
+"t": "Budincă neagră și piquillos",
+"i": [
+"150 g cârnați Burgos",
+"2 ardei piquillo",
+"1 felie de pâine",
+"ulei de măsline"
+],
+"s": "Prăjiți budinca neagră mărunțită până devine liberă și crocantă. Încălziți piquillos în aceeași tigaie. Se montează cârnatul pe pâine și deasupra ardeii piquillo."
+},
+"px-salmon-ahumado": {
+"t": "Somon afumat si crema de branza",
+"i": [
+"80 g somon afumat",
+"2 linguri crema de branza",
+"1 felie de pâine",
+"mărar",
+"capere"
+],
+"s": "Intindeti painea cu crema de branza si asezati somonul afumat in pliuri. Se decorează cu mărar și niște capere. Pintxo proaspăt care nu necesită gătit."
+},
+"px-cangrejos-vino": {
+"t": "Crabi în vin (changurro)",
+"i": [
+"200 g carne de crab",
+"1/2 ceapă",
+"1 rosie",
+"100 ml vin alb",
+"ulei de măsline",
+"patrunjel",
+"sare"
+],
+"s": "Se caleste ceapa si rosiile, se adauga carnea de crab si se toarna peste vinul alb. Se lasă să se reducă până când sosul este omogen și se presară pătrunjel. Se serveste fierbinte intr-o caserola sau pe paine."
+},
+"sec:tostas": "Pâine prăjită și tartine sărate",
+"ts-aguacate-huevo": {
+"t": "Pâine prăjită cu ouă poșat și avocado",
+"i": [
+"1 felie de pâine rustică",
+"1/2 avocado",
+"1 ou",
+"otet",
+"fulgi de sare",
+"piper"
+],
+"s": "Pâinea prăjită și zdrobiți avocado cu sare deasupra. Posați oul în apă cu un strop de oțet timp de 3 minute și puneți-l pe avocado. Terminați cu fulgi de sare și piper."
+},
+"ts-jamon-burrata": {
+"t": "Șuncă crudă, burrata și pâine prăjită cu roșii",
+"i": [
+"1 felie de pâine",
+"1/2 burrata",
+"2 felii de sunca serrano",
+"1 rosie",
+"busuioc",
+"ulei de măsline"
+],
+"s": "Pune burrata deschisă pe pâine și distribuie roșia feliată. Adăugați șunca și câteva frunze de busuioc și stropiți cu ulei. Se serveste imediat pentru ca burrata sa fie cremoasa."
+},
+"ts-salmon-aguacate": {
+"t": "Somon afumat și pâine prăjită cu avocado",
+"i": [
+"1 felie de pâine",
+"1/2 avocado",
+"60 g somon afumat",
+"crema de branza",
+"mărar",
+"lamaie"
+],
+"s": "Ungeți pâinea cu cremă de brânză și întindeți avocado feliat. Aranjați somonul în pliuri și terminați cu mărar și câteva picături de lămâie."
+},
+"ts-cabra-miel": {
+"t": "Brânză de capră și pâine prăjită cu miere",
+"i": [
+"1 felie de pâine",
+"1 felie de bucle de capră",
+"1 lingurita miere",
+"nuci",
+"cimbru"
+],
+"s": "Pune branza pe paine si gratina-o cateva minute pana devine aurie. Stropiți cu miere și împrăștiați cu nucă și cimbru mărunțit. Serviți cald."
+},
+"ts-atun-rabano": {
+"t": "Pâine prăjită cu ton, maioneză și ridichi",
+"i": [
+"1 felie de pâine",
+"1 conserve de ton",
+"1 lingură maioneză",
+"2 ridichi",
+"arpagic"
+],
+"s": "Se amestecă tonul scurs cu maioneza și se întinde pe pâine. Deasupra cu ridichi tăiate felii subțiri și arpagic tocat."
+},
+"ts-caprese": {
+"t": "toast caprese",
+"i": [
+"1 felie de pâine",
+"1/2 bila de mozzarella",
+"1 rosie",
+"busuioc",
+"ulei de măsline",
+"sare"
+],
+"s": "Întindeți pe pâine felii alternative de mozzarella și roșii. Adăugați frunze de busuioc, sare și un strop de ulei. Proaspăt și mediteranean."
+},
+"ts-salmon-eneldo": {
+"t": "Pâine prăjită cu somon și mărar",
+"i": [
+"1 felie de pâine de secară",
+"60 g somon afumat",
+"crema de branza",
+"mărar",
+"castravete"
+],
+"s": "Ungeți pâinea de secară cu cremă de brânză și puneți felii de castraveți. Adăugați somonul și mult mărar proaspăt."
+},
+"ts-jamon-emmental": {
+"t": "Șuncă fiartă și pâine prăjită cu emmental",
+"i": [
+"1 felie de pâine",
+"2 felii de sunca fiarta",
+"2 felii de emmental",
+"muștar blând"
+],
+"s": "Ungeți pâinea cu muștar și puneți șunca fiartă și emmentalul. Coaceți sau gratinați până se topește brânza."
+},
+"ts-chorizo-manchego": {
+"t": "Toast chorizo și brânză manchego",
+"i": [
+"1 felie de pâine",
+"4 felii de chorizo",
+"2 felii de brânză Manchego",
+"ulei de măsline"
+],
+"s": "Prăjiți ușor chorizo ​​​​pentru a-și elibera grăsimea. Se monteaza pe paine cu manchego si un strop de ulei. Se încălzește până când brânza începe să se topească."
+},
+"ts-guacamole-gambas": {
+"t": "Pâine prăjită cu guacamole și creveți",
+"i": [
+"1 felie de pâine",
+"1/2 avocado",
+"6 creveți decojiți",
+"var",
+"coriandru",
+"usturoi"
+],
+"s": "Se zdrobește avocado cu lime, sare și coriandru și se întinde pe pâine. Se calesc crevetii cu putin usturoi si se aseaza deasupra."
+},
+"ts-pate-pepinillos": {
+"t": "Pateu si muraturi prajite",
+"i": [
+"1 felie de pâine",
+"50 g paté",
+"2 muraturi",
+"ceapa murata"
+],
+"s": "Intindeti painea cu pateul. Acoperiți cu murături feliate și puțină ceapă murată pentru a tăia prin grăsime."
+},
+"ts-queso-fresco-pepino": {
+"t": "Pâine prăjită cu brânză proaspătă, castraveți și mărar",
+"i": [
+"1 felie de pâine",
+"3 linguri de brânză proaspătă bătută",
+"1/2 castravete",
+"mărar",
+"sare"
+],
+"s": "Întindeți brânza proaspătă pe pâine. Acoperiți cu felii de castraveți, mărar și un praf de sare. Ușoară și răcoritoare."
+},
+"ts-brie-pera-nueces": {
+"t": "Toast brie, pere si nuci",
+"i": [
+"1 felie de pâine",
+"2 felii de brie",
+"1/2 para",
+"nuci",
+"miere"
+],
+"s": "Pune brie-ul pe paine si deasupra pere feliate. Intindeti nuca si un strop de miere si gratinati usor."
+},
+"ts-hummus-verduras": {
+"t": "Pâine prăjită cu hummus și legume prăjite",
+"i": [
+"1 felie de pâine",
+"3 linguri hummus",
+"dovlecei prăjiți și ardei",
+"susan"
+],
+"s": "Ungeti generos painea cu hummus. Puneți deasupra legumele prăjite calde și stropiți cu semințe de susan."
+},
+"ts-sardinas-tomate": {
+"t": "Sardine și pâine prăjită cu roșii",
+"i": [
+"1 felie de pâine",
+"1 conserve de sardine",
+"roșie rasă",
+"ulei de măsline",
+"sare"
+],
+"s": "Ungeti painea cu rosii ras si ulei. Deasupra pune sardinele scurse si un praf de sare."
+},
+"ts-ricotta-miel-nueces": {
+"t": "Pâine prăjită cu ricotta, miere și nuci",
+"i": [
+"1 felie de pâine",
+"3 linguri ricotta",
+"1 lingurita miere",
+"nuci",
+"scorțișoară"
+],
+"s": "Întindeți ricotta pe pâinea prăjită. Stropiți cu miere și stropiți cu nucă și un strop de scorțișoară. Dulce și sărat în același timp."
+},
+"ts-pavo-mostaza": {
+"t": "Pâine prăjită cu curcan, salată verde și muștar",
+"i": [
+"1 felie de pâine",
+"2 felii de piept de curcan",
+"frunze de salata verde",
+"mustar",
+"roșie"
+],
+"s": "Ungeti painea cu mustar si asezati salata verde, rosiile si curcanul. Opțiune ușoară și rapidă pentru mijlocul dimineții."
+},
+"ts-azul-higo": {
+"t": "Pâine prăjită cu brânză albastră, smochine și nuci",
+"i": [
+"1 felie de pâine",
+"30 g brânză albastră",
+"1 fig",
+"nuci",
+"miere"
+],
+"s": "Peste pâine se întinde brânza albastră mărunțită. Adăugați bucățile de smochine, nucile și un strop de miere pentru a echilibra aroma puternică a brânzei."
+},
+"ts-pan-tumaca": {
+"t": "Pâine cu roșii (pa amb tomàquet)",
+"i": [
+"1 felie de pâine",
+"1 roșie coaptă",
+"1 catel de usturoi",
+"ulei de măsline extravirgin",
+"sare"
+],
+"s": "Pâinea prăjită și frecați-o cu usturoiul și apoi cu roșia tocată. Apă cu ulei bun și sare. Baza gustărilor mediteraneene."
+},
+"ts-boquerones-pimiento": {
+"t": "Toast cu hamsii si ardei prajit",
+"i": [
+"1 felie de pâine",
+"3 hamsii in otet",
+"1/2 ardei rosu prajit",
+"ulei de măsline"
+],
+"s": "Pune pe pâine fâșii de ardei prăjit. Adaugam ansoa murata si un strop de ulei."
+},
+"ts-queso-crema-salmon": {
+"t": "Cremă de brânză și pâine prăjită cu somon",
+"i": [
+"1 felie de pâine",
+"2 linguri crema de branza",
+"60 g somon afumat",
+"capere",
+"ceapa rosie"
+],
+"s": "Intindem crema de branza si asezam somonul. Terminați cu capere și ceapă roșie în rondele subțiri."
+},
+"ts-revuelto-champinones": {
+"t": "Pâine prăjită cu ciuperci omletă",
+"i": [
+"1 felie de pâine",
+"100 g ciuperci",
+"1 ou",
+"usturoi",
+"patrunjel",
+"ulei"
+],
+"s": "Se călesc ciupercile feliate cu usturoi până se rumenesc și se adaugă oul pentru a face un amestec suculent. Se intinde peste paine cu patrunjel."
+},
+"ts-berenjena-feta": {
+"t": "Pâine prăjită de vinete și feta",
+"i": [
+"1 felie de pâine",
+"1/2 vinete",
+"40 g branza feta",
+"mentă",
+"ulei de măsline"
+],
+"s": "Prăjiți vinetele feliate în ulei până se înmoaie. Pune-l pe painea cu feta maruntita si menta."
+},
+"ts-anchoas-mantequilla": {
+"t": "Toast cu hamsi si unt",
+"i": [
+"1 felie de pâine",
+"3 hamsii in ulei",
+"unt",
+"arpagic"
+],
+"s": "Întindeți pâinea cu un strat de unt. Deasupra se aseaza ansoa si se presara cu arpagic. Un simplu clasic francez."
+},
+"ts-tortilla-jamon": {
+"t": "Omletă franțuzească și pâine prăjită cu șuncă",
+"i": [
+"1 felie de pâine",
+"2 ouă",
+"2 felii de sunca fiarta",
+"ulei",
+"sare"
+],
+"s": "Faceți o omletă franțuzească suculentă și pliați-o peste pâine. Se adauga sunca si un praf de sare."
+},
+"sec:aperitivos": "Gustări pentru gustare",
+"ap-brocheta-caprese": {
+"t": "Brochete de tomate și mozzarella",
+"i": [
+"12 roșii cherry",
+"12 mini mozzarella",
+"busuioc",
+"ulei de măsline",
+"otet balsamic"
+],
+"s": "Înșiră o cireșă, o frunză de busuioc și o mozzarella pe scobitori. Se imbraca cu ulei si un strop de balsamic. Gata în câteva minute."
+},
+"ap-rollitos-calabacin": {
+"t": "Rulouri cu dovlecel și cremă de brânză",
+"i": [
+"1 dovlecel",
+"100 g crema de branza",
+"mentă",
+"ulei de măsline",
+"sare"
+],
+"s": "Tăiați dovleceii în felii subțiri pe lungime și marcați-le pe grătar. Se unge cu crema de branza si menta, se ruleaza si se fixeaza cu o scobitoare."
+},
+"ap-huevos-rellenos": {
+"t": "ouă umplute",
+"i": [
+"4 oua fierte tari",
+"1 conserve de ton",
+"2 linguri maioneza",
+"roșie prăjită",
+"măsline"
+],
+"s": "Tăiați ouăle în jumătate și amestecați gălbenușurile cu tonul și maioneza. Umplem albusurile cu pastele si decoram cu putina rosii prajite si masline."
+},
+"ap-mini-quiches": {
+"t": "Mini quiche cu legume",
+"i": [
+"1 foaie de aluat scurt",
+"2 ouă",
+"100 ml de smântână",
+"praz și spanac",
+"brânză rasă",
+"sare"
+],
+"s": "Tapetați formele pentru brioșe cu aluatul. Umpleți cu legumele poșate și amestecul de ouă, smântână și brânză și coaceți la 180°C aproximativ 20 de minute."
+},
+"ap-tartaletas-tomate": {
+"t": "Tartalete cu roșii și brânză",
+"i": [
+"8 tartelete",
+"roșie prăjită",
+"brânză rasă",
+"oregano"
+],
+"s": "Umpleți tartelele cu roșii și brânză. Se gratina pana se topeste branza si se presara cu oregano."
+},
+"ap-brocheta-melon-jamon": {
+"t": "Frigarui de pepene si sunca",
+"i": [
+"1/4 de pepene galben",
+"8 felii de șuncă serrano",
+"mentă"
+],
+"s": "Tăiați pepenele galben în cuburi și înveliți-le cu o jumătate de felie de șuncă. Înșiră o frunză de mentă pe scobitori. Dulce și sărat."
+},
+"ap-palmeritas-pesto": {
+"t": "Aluat foietaj și pesto palmieri",
+"i": [
+"1 foaie de aluat foietaj",
+"3 linguri pesto",
+"parmezan"
+],
+"s": "Întinde pesto peste aluatul foietaj și rulează ambele părți spre centru. Tăiați felii, stropiți cu parmezan și coaceți până devin aurii."
+},
+"ap-champinones-rellenos": {
+"t": "ciuperci umplute",
+"i": [
+"12 ciuperci mari",
+"100 g crema de branza",
+"usturoi",
+"patrunjel",
+"pesmet"
+],
+"s": "Scoateți tulpinile de pe ciuperci și tăiați-le. Se amestecă cu cremă de brânză, usturoi și pătrunjel, se umple pălăriile, se presară cu pesmet și se coace 15 minute."
+},
+"ap-bolitas-queso": {
+"t": "Biluțe cu brânză și ierburi",
+"i": [
+"200 g crema de branza",
+"50 g brânză rasă",
+"ierburi proaspete",
+"nuci tocate"
+],
+"s": "Se amestecă brânzeturile și se formează bile cu mâinile. Acoperiți-le cu ierburi și nuci tocate și lăsați-le la rece până la servire."
+},
+"ap-brocheta-pollo-pina": {
+"t": "Frigarui de pui si ananas",
+"i": [
+"1 piept de pui",
+"200 g ananas",
+"sos de soia",
+"miere",
+"susan"
+],
+"s": "Marinați puiul tăiat cubulețe cu soia și miere. Se frigarui alternand cu ananas si se gratareste; presara susan."
+},
+"ap-cherry-atun": {
+"t": "Roșii cherry umplute cu ton",
+"i": [
+"16 roșii cherry mari",
+"1 conserve de ton",
+"2 linguri maioneza",
+"arpagic"
+],
+"s": "Goliți cireșele cu grijă. Umpleți-le cu ton amestecat cu maioneză și terminați cu arpagic."
+},
+"ap-rollitos-salmon": {
+"t": "Rulouri cu somon și brânză",
+"i": [
+"100 g somon afumat",
+"100 g crema de branza",
+"mărar"
+],
+"s": "Întindeți feliile de somon, întindeți cremă de brânză cu mărar și rulați-le. Tăiați în felii în stil sushi."
+},
+"ap-crackers-pate": {
+"t": "Biscuiți cu paté și murături",
+"i": [
+"12 biscuiti",
+"100 g paté",
+"muraturi"
+],
+"s": "Ungeți fiecare biscuit cu pate. Acoperiți cu o felie de murătură. Rapid și rezultat."
+},
+"ap-datiles-bacon": {
+"t": "Curmale învelite în slănină",
+"i": [
+"12 curmale fără sâmburi",
+"6 felii de bacon",
+"migdale"
+],
+"s": "Umpleți fiecare curmale cu o migdale și înveliți-o cu o jumătate de felie de slănină. Coaceți până când baconul este crocant."
+},
+"ap-bruschetta-tomate": {
+"t": "Mini bruscheta cu rosii",
+"i": [
+"1 bagheta",
+"2 rosii",
+"busuioc",
+"usturoi",
+"ulei de măsline",
+"sare"
+],
+"s": "Prăjiți felii de baghetă și frecați-le cu usturoi. Acoperiți cu roșii tăiate, asezonate cu busuioc, ulei și sare."
+},
+"ap-pinchos-caprese": {
+"t": "Frigarui caprese",
+"i": [
+"12 roșii cherry",
+"12 bile de mozzarella",
+"busuioc",
+"balsamic"
+],
+"s": "Alternați cireșe, busuioc și mozzarella pe fiecare scobitoare. Apă cu reducere balsamică."
+},
+"ap-pepino-feta": {
+"t": "Frigarui de castraveti si feta",
+"i": [
+"1 castravete",
+"100 g branza feta",
+"măsline negre",
+"oregano"
+],
+"s": "Tăiați castravetele în felii groase și puneți deasupra un cub de feta și o jumătate de măsline. Asigurați cu o scobitoare și stropiți cu oregano."
+},
+"ap-croquetas-jamon": {
+"t": "Crochete cu șuncă",
+"i": [
+"bechamel gros cu 50 g sunca",
+"ou",
+"pesmet",
+"ulei pentru prajit"
+],
+"s": "Formați crochetele cu aluatul rece de bechamel și șuncă. Ungeți-le în ou și pesmet și prăjiți-le până devin aurii."
+},
+"ap-aceitunas-marinadas": {
+"t": "Măsline marinate",
+"i": [
+"250 g masline",
+"usturoi",
+"coaja de lamaie si portocala",
+"cimbru",
+"ulei de măsline"
+],
+"s": "Se amestecă măslinele cu usturoiul feliat, cojile de citrice, cimbru și uleiul. Marinați cel puțin o zi la frigider."
+},
+"ap-hummus-cruidites": {
+"t": "Hummus cu crudités",
+"i": [
+"200 g hummus",
+"morcov, telina si piper",
+"ţepi de pâine"
+],
+"s": "Serviți humusul într-un castron în centru. Serviți cu bețișoare de legume crude și dippers."
+},
+"sec:ensaladas": "salate proaspete",
+"en-griega": {
+"t": "Salata greceasca",
+"i": [
+"2 rosii",
+"1 castravete",
+"1/2 ceapa rosie",
+"100 g feta",
+"măsline negre",
+"oregano",
+"ulei de măsline"
+],
+"s": "Tăiați roșia, castraveții și ceapa în bucăți mari. Adăugați feta și măslinele tăiate cubulețe și îmbinați cu ulei și oregano. Nu are salata verde."
+},
+"en-col": {
+"t": "Salată de varză",
+"i": [
+"1/4 varză",
+"2 morcovi",
+"3 linguri maioneza",
+"1 lingura otet",
+"1 lingurita mustar",
+"sare"
+],
+"s": "Tăiați varza și morcovul în fâșii julienne foarte fine. Se amestecă maioneza cu oțetul și muștarul și se condimentează. Se lasa sa se inmoaie sa se inmoaie."
+},
+"en-tomate-cebolla": {
+"t": "Salata de rosii si ceapa",
+"i": [
+"3 roșii",
+"1/2 ceapa dulce",
+"ulei de măsline",
+"otet",
+"sare",
+"oregano"
+],
+"s": "Tăiați roșiile felii și ceapa pene. Se imbraca cu ulei, otet si sare si se presara cu oregano."
+},
+"en-pepino-yogur": {
+"t": "Salată de castraveți și iaurt",
+"i": [
+"2 castraveți",
+"150 g iaurt",
+"usturoi",
+"mentă",
+"ulei de măsline",
+"sare"
+],
+"s": "Tăiați castravetele în felii subțiri. Se amestecă cu iaurtul, usturoiul zdrobit, menta și sarea. Se serveste foarte rece."
+},
+"en-remolacha": {
+"t": "Salată de sfeclă",
+"i": [
+"2 sfecla fiarta",
+"1/2 ceapa rosie",
+"brânză de capră",
+"nuci",
+"ulei și oțet"
+],
+"s": "Tăiați sfecla cubulețe și amestecați-o cu ceapa. Ungeți brânză de capră și nuci și asezonați."
+},
+"en-cesar": {
+"t": "Salata Caesar",
+"i": [
+"1 salata romana",
+"1 piept de pui",
+"crutoane",
+"parmezan",
+"sos caesar",
+"hamsii optional"
+],
+"s": "Puiul la gratar si taiati-l fasii. Amestecați salata verde cu sosul Caesar, adăugați puiul, crutoanele și fulgii de parmezan."
+},
+"en-patata": {
+"t": "salata de cartofi",
+"i": [
+"500 g cartofi",
+"2 oua fierte tari",
+"1/2 ceapă",
+"muraturi",
+"maioneza",
+"patrunjel"
+],
+"s": "Gatiti cartofii si taiati-i cubulete. Se amestecă cu oul, ceapa și murăturile tocate și se amestecă cu maioneză."
+},
+"en-pasta": {
+"t": "salata de paste",
+"i": [
+"200 g paste scurte",
+"rosii cherry",
+"mozzarella",
+"măsline",
+"busuioc",
+"ulei de măsline"
+],
+"s": "Se fierb pastele al dente și se răcesc. Se amestecă cu cireșe, mozzarella și măsline și se îmbracă cu ulei și busuioc."
+},
+"en-arroz": {
+"t": "salata de orez",
+"i": [
+"200 g de orez",
+"1 conserve de ton",
+"porumb",
+"piper",
+"ou fiert tare",
+"măsline",
+"ulei și oțet"
+],
+"s": "Gătiți orezul și răciți-l. Se amestecă cu tonul, porumbul, ardeiul, ouul și măslinele și se asezonează."
+},
+"en-lentejas": {
+"t": "Salata de linte",
+"i": [
+"250 g linte fiartă",
+"1 rosie",
+"1/2 ceapă",
+"1 ardei",
+"chimen",
+"ulei și oțet"
+],
+"s": "Scurgeți lintea și amestecați-o cu roșia, ceapa și ardeiul tocate. Se imbraca cu ulei, otet si un praf de chimen."
+},
+"en-quinoa": {
+"t": "Salata de quinoa",
+"i": [
+"150 g quinoa",
+"castravete",
+"roșie",
+"avocado",
+"var",
+"coriandru",
+"ulei de măsline"
+],
+"s": "Gatiti quinoa si lasati-o sa se raceasca. Se amestecă cu castravetele, roșiile și avocado tăiat cubulețe și se condimentează cu lime, coriandru și ulei."
+},
+"en-garbanzos": {
+"t": "Salată de năut",
+"i": [
+"250 g năut fiert",
+"roșie",
+"castravete",
+"ceapa",
+"patrunjel",
+"chimen",
+"ulei și lămâie"
+],
+"s": "Se amestecă năutul cu roșia, castravetele și ceapa tocate. Se imbraca cu ulei, lamaie, patrunjel si chimen."
+},
+"en-salmon-aguacate": {
+"t": "Somon afumat și salată de avocado",
+"i": [
+"amestec de frunze verzi",
+"100 g somon afumat",
+"1 avocado",
+"rosii cherry",
+"mărar",
+"ulei și lămâie"
+],
+"s": "Aranjați frunzele pe farfurie și distribuiți somonul, avocado feliat și cireșele. Se imbraca cu ulei, lamaie si marar."
+},
+"en-cabra-nueces": {
+"t": "Ensalada de queso de cabra y nueces",
+"i": [
+"frunze verzi",
+"1 buclă de capră",
+"nuci",
+"miere",
+"otet balsamic",
+"ulei de măsline"
+],
+"s": "Gratinați felii de brânză de capră și puneți-le pe frunze. Presarati nuci si imbracati cu miere, balsamic si ulei."
+},
+"en-jamon-melon": {
+"t": "Ensalada de jamón și melón",
+"i": [
+"rucola",
+"1/4 de pepene galben",
+"80 g șuncă serrano",
+"fulgi de parmezan",
+"ulei de măsline"
+],
+"s": "Aranjați rucola cu cubulețe de pepene și șuncă. Terminați cu fulgi de parmezan și un strop de ulei."
+},
+"en-pollo-mango": {
+"t": "Salată de pui și mango",
+"i": [
+"frunze verzi",
+"1 piept de pui",
+"1 mâner",
+"avocado",
+"caju",
+"vinegreta de lime"
+],
+"s": "Se taie puiul și se taie fâșii. Se montează pe frunze cu mango și cubulete de avocado și caju și se îmbracă cu vinegretă de lime."
+},
+"en-tofu-sesamo": {
+"t": "Salată de tofu și susan",
+"i": [
+"200 g tofu ferm",
+"varză roșie",
+"morcov",
+"edamame",
+"sos de soia",
+"ulei de susan",
+"susan"
+],
+"s": "Rumeniți tofuul tăiat cubulețe. Se amestecă cu varza și morcovul tăiate julien și cu edamame și se condimentează cu soia, ulei de susan și semințe."
+},
+"en-verano": {
+"t": "Salata de vara (pepene verde si feta)",
+"i": [
+"300 g pepene verde",
+"100 g feta",
+"mentă",
+"măsline",
+"ulei de măsline",
+"lamaie"
+],
+"s": "Tăiați pepenele verde în cuburi și amestecați-l cu feta și măsline. Se imbraca cu ulei, lamaie si menta. Dulce și sărat."
+},
+"en-otono": {
+"t": "Salată de toamnă (dovleac prăjit)",
+"i": [
+"300 g dovleac",
+"baby spanac",
+"nuci",
+"brânză de capră",
+"semințe",
+"vinegreta cu miere"
+],
+"s": "Se prăjește dovleacul tăiat cubulețe până se rumenește. Se monteaza cald pe spanac cu nuci, branza si seminte si se imbraca cu vinegreta de miere."
+},
+"en-invierno": {
+"t": "Salata de iarna (portocale si fenicul)",
+"i": [
+"2 portocale",
+"1 bulb de fenicul",
+"măsline negre",
+"rodie",
+"ulei de măsline",
+"sare"
+],
+"s": "Curatam grosolan portocalele si taiati feniculul foarte marunt. Amesteca-le cu maslinele si rodiile si asezoneaza-le cu ulei si sare."
+},
+"en-primavera": {
+"t": "Salata de primavara (sparagus si mazare)",
+"i": [
+"1 buchet de sparanghel verde",
+"100 g mazăre",
+"rucola",
+"ou poșat",
+"parmezan",
+"ulei și lămâie"
+],
+"s": "Se calesc sparanghelul si mazarea si se lasa sa se raceasca. Montați-le pe rucola cu un ou poșat și parmezan și îmbrăcați-le cu ulei și lămâie."
+},
+"en-frutas": {
+"t": "salata de fructe",
+"i": [
+"1 măr",
+"1 banană",
+"1 portocală",
+"căpșuni",
+"strugurii",
+"sucul de la 1 portocală",
+"mentă"
+],
+"s": "Tăiați toate fructele în dimensiuni similare. Amesteca-l cu sucul de portocale ca sa nu se oxideze si distribuie cateva frunze de menta."
+},
+"sec:postres": "Deserturi",
+"po-tiramisu": {
+"t": "Tiramisu",
+"i": [
+"250 g branza mascarpone",
+"3 oua",
+"80 g zahăr",
+"200 ml cafea tare rece",
+"1 pachet de pandișpan",
+"pudră de cacao pentru stropire"
+],
+"s": "Separam albusurile de galbenusuri. Bate galbenusurile cu zaharul pana devin albe si adauga mascarpone pana obtinem o crema fina. Bateți albușurile spumă și încorporați-le cu mișcări ușoare. Scufundați scurt biscuiții în cafea și formați un strat pe un platou; se acopera cu crema si se repeta. Terminați cu cacao stropită și lăsați la rece cel puțin 4 ore."
+},
+"po-coulant-chocolate": {
+"t": "Coulant de ciocolată",
+"i": [
+"120 g ciocolată neagră",
+"100 g unt",
+"2 ouă",
+"60 g zahăr",
+"40 g faina",
+"un praf de sare",
+"unt si cacao pentru forme"
+],
+"s": "Topiți ciocolata cu untul și lăsați-o să se răcească. Batem ouale cu zaharul si adaugam ciocolata, faina cernuta si sarea. Se toarnă în forme individuale unse cu unt și se da la rece timp de 30 de minute. Se coace la 200°C aproximativ 9-10 minute: marginea trebuie să fie întărită, iar centrul curgător. Desfaceți cu grijă și serviți imediat."
+},
+"po-cheesecake": {
+"t": "Cheesecake fără cuptor",
+"i": [
+"200 g biscuiti digestivi",
+"90 g unt",
+"400 g crema de branza",
+"200 ml smantana pentru frisca",
+"80 g zahăr",
+"1 lingurita extract de vanilie",
+"fructe rosii de acoperit"
+],
+"s": "Zdrobiți fursecurile și amestecați-le cu untul topit; Apăsați în baza unei forme și răciți. Bateți brânza cu zahărul și vanilia, bateți smântâna separat și amestecați-o ușor. Se toarna peste baza, se netezeste si se da la frigider pentru cel putin 4 ore. Acoperiți cu fructe de pădure înainte de servire."
+},
+"po-panna-cotta": {
+"t": "Panna cotta de vanilie",
+"i": [
+"500 ml smantana pentru frisca",
+"80 g zahăr",
+"1 boabe de vanilie sau 1 lingurita extract",
+"3 foi de gelatina",
+"fructe rosii pentru coulis"
+],
+"s": "Hidratati gelatina in apa rece. Se incinge smantana cu zaharul si vanilia fara sa fiarba, se ia de pe foc si se dizolva gelatina scursa. Se toarnă în pahare și se lasă la rece pentru cel puțin 4 ore până se fixează. Zdrobiți câteva fructe de pădure roșii cu puțin zahăr și acoperiți panna cotta înainte de servire."
+},
+"po-mousse-chocolate": {
+"t": "Mousse de ciocolată",
+"i": [
+"150 g ciocolată neagră",
+"3 oua",
+"30 g zahăr",
+"un praf de sare"
+],
+"s": "Topiți ciocolata și lăsați-o să se răcească. Separam albusurile de galbenusuri si adaugam galbenusurile la ciocolata. Albusurile se bat spuma cu sarea si, cand sunt spumoase, adauga zaharul pana o bezea ferma. Integrați bezeaua în ciocolată cu mișcări învăluitoare pentru a nu o coborî. Se toarnă în pahare și se da la rece cel puțin 3 ore."
+},
+"po-tarta-limon": {
+"t": "Plăcintă cu cremă de lămâie",
+"i": [
+"1 bază de aluat scurt",
+"4 ouă",
+"150 g zahăr",
+"sucul a 3 lămâi și coaja a 1",
+"100 g unt",
+"1 lingura amidon de porumb"
+],
+"s": "Coaceți baza de aluat scurt la 180°C timp de aproximativ 15 minute. Se amestecă ouăle cu zahărul, sucul de lămâie, coaja și amidonul de porumb și se fierbe la foc mic, amestecând până se îngroașă. Scoateți, adăugați untul în bucăți și umpleți baza. Se da la rece pana se fixeaza si se serveste rece."
+},
+"po-crepes": {
+"t": "crepe umplute",
+"i": [
+"2 ouă",
+"250 ml lapte",
+"120g faina",
+"1 lingura de zahar",
+"un praf de sare",
+"unt pentru tigaie",
+"cremă și fructe roșii de umplut"
+],
+"s": "Batem ouale cu laptele, faina, zaharul si sarea pana se obtine un aluat subtire fara cocoloase; Se lasa sa se odihneasca 20 de minute. Se unge o tigaie si se toarna un cadru, intindendu-l subtire; coagul timp de un minut pe fiecare parte. Umpleți cu smântână și fructe de pădure roșii, pliați și stropiți cu zahăr."
+},
+"po-budin-chia": {
+"t": "Budinca de chia cu fructe de padure rosii",
+"i": [
+"3 linguri de seminte de chia",
+"250 ml de lapte sau băutură vegetală",
+"1 lingura miere sau sirop",
+"1/2 lingurita vanilie",
+"fructe rosii si iaurt de batut"
+],
+"s": "Se amestecă chia cu laptele, mierea și vanilia și se amestecă bine ca să nu se aglomereze. Lăsați-l să se odihnească la frigider pentru cel puțin 4 ore (de preferință peste noapte), amestecând o dată la jumătate. Se toarnă în pahare alternând cu iaurt și fructe roșii."
+},
+"po-bundt-limon": {
+"t": "Tort cu lamaie",
+"i": [
+"3 oua",
+"200 g zahăr",
+"200g faina",
+"120 ml ulei blând",
+"120 ml iaurt natural",
+"coaja a 2 lamai si sucul lor",
+"1 plic de drojdie chimică",
+"zahăr pudră și suc de lămâie pentru glazură"
+],
+"s": "Batem ouale cu zaharul pana isi dubleaza volumul. Adăugați uleiul, iaurtul, coaja de lămâie și sucul. Adăugați făina și drojdia cernute. Se toarnă într-o tavă unsă cu unt și se coace la 175°C timp de aproximativ 40 de minute până când o frigărui iese curată. Se desface, se lasa sa se raceasca si se acopera cu zahar pudra si glazura de lamaie."
+},
+"po-pavlova": {
+"t": "Pavlova cu fructe roșii",
+"i": [
+"4 albusuri",
+"200 g zahăr",
+"1 lingurita amidon de porumb",
+"1 lingurita otet",
+"250 ml smantana pentru frisca",
+"fructe rosii de acoperit"
+],
+"s": "Batem albusurile spuma si adaugam zaharul de cateva ori pana o bezea ferma si stralucitoare; incorpora la maicena y el vinagre. Formați un disc pe hârtie de copt și coaceți la 120°C aproximativ 70 de minute; deja enfriar dentro del horno apagado. Acoperiți cu frișcă și fructe de pădure chiar înainte de servire."
+},
+"po-sorbete-limon": {
+"t": "sorbet de lamaie",
+"i": [
+"250 ml suc de lamaie",
+"150 g zahăr",
+"250 ml apă",
+"coaja de 1 lamaie",
+"1 clara de huevo (optional)"
+],
+"s": "Se încălzește apa cu zahărul până se dizolvă și se lasă acest sirop să se răcească. Se amestecă cu sucul și coaja de lămâie. Congelați într-un recipient, amestecând cu o furculiță la fiecare 30-40 de minute pentru a sparge cristalele; Pentru o textura mai moale, adauga albusul batut pe jumatate inghetat. Este gata când este ferm, dar cremos."
+},
+"po-natillas": {
+"t": "Crema de casa",
+"i": [
+"500 ml lapte",
+"4 gălbenușuri de ou",
+"100 g zahăr",
+"1 lingura amidon de porumb",
+"1 baton de scortisoara",
+"coaja a 1/2 lămâie",
+"scorțișoară pudră și fursecuri pentru a servi"
+],
+"s": "Infuzati laptele cu batonul de scortisoara si coaja de lamaie si scoateti-l inainte sa dea in clocot. Se bat galbenusurile cu zaharul si amidonul de porumb, se adauga laptele cald si strecurat si se fierbe la foc mic, amestecand pana se ingroasa fara sa dea in clocot. Împărțiți în boluri, stropiți cu scorțișoară și serviți cu o prăjitură."
+},
+"sec:dips": "Dips și spreads",
+"dip-hummus": {
+"t": "Hummus",
+"i": [
+"400 g năut fiert",
+"2 linguri tahini",
+"sucul de la 1 lămâie",
+"1 catel de usturoi",
+"3 linguri ulei de masline extravirgin",
+"1/2 lingurita chimen",
+"sare dupa gust",
+"apa rece dupa gust"
+],
+"s": "Scurgeți năutul, rezervând puțin lichid. Măcinați-le cu tahini, zeama de lămâie, usturoi, chimen și sare până o pastă. Se adauga uleiul si putina apa rece in timp ce se bate pana devine cremos. Se serveste cu un strop de ulei si boia."
+},
+"dip-guacamole": {
+"t": "Guacamole",
+"i": [
+"2 avocado coapte",
+"1/2 ceapa mica tocata",
+"1 rosie tocata",
+"sucul de la 1 lime",
+"niste frunze de coriandru",
+"1 chili sau chilli (optional)",
+"sare dupa gust"
+],
+"s": "Deschideți avocado și zdrobiți-le cu o furculiță, lăsând puțină textură. Se amestecă cu ceapa, roșia, coriandru și chili tocate mărunt. Se imbraca cu suc de lime si sare. Serviți-l proaspăt pentru a nu se oxida."
+},
+"dip-tzatziki": {
+"t": "Tzatziki",
+"i": [
+"250 g iaurt grecesc",
+"1/2 castravete",
+"1 catel de usturoi",
+"1 lingura ulei de masline",
+"1 lingurita otet sau lamaie",
+"câteva frunze de mentă sau mărar",
+"sare dupa gust"
+],
+"s": "Se rade castravetele, se sare si se scurge bine, stoarcendu-l pentru a scoate apa. Se amestecă cu iaurtul, usturoiul ras, uleiul și oțetul. Se adauga menta tocata si sarea si se da la rece cel putin 1 ora inainte de servire."
+},
+"dip-baba-ganoush": {
+"t": "baba ganoush",
+"i": [
+"2 vinete",
+"2 linguri tahini",
+"sucul de la 1 lămâie",
+"1 catel de usturoi",
+"2 linguri ulei de masline",
+"sare dupa gust",
+"patrunjel de servit"
+],
+"s": "Prăjiți vinetele întregi la cuptor la 200°C timp de aproximativ 40 de minute până când sunt foarte moi. Se lasa sa se raceasca, se indeparteaza pielea si se scurge pulpa. Se zdrobește sau se zdrobește cu tahini, usturoi, sucul de lămâie și sare. Se serveste cu ulei si patrunjel deasupra."
+},
+"dip-pico-gallo": {
+"t": "Pico de gallo",
+"i": [
+"3 roșii coapte",
+"1/2 ceapă",
+"1 ardei jalapeno (optional)",
+"sucul de la 1 lime",
+"coriandru tocat",
+"sare dupa gust"
+],
+"s": "Tăiați roșiile, ceapa și chiliul în cuburi foarte mici. Amesteca-le cu coriandru, sucul de lime si sare. Lăsați să se odihnească timp de 10 minute pentru ca aromele să se integreze înainte de servire."
+},
+"dip-alioli": {
+"t": "Alioli",
+"i": [
+"1 ou",
+"1 catel de usturoi",
+"200 ml ulei de măsline blând",
+"câteva picături de lămâie",
+"sare dupa gust"
+],
+"s": "Pune oul, usturoiul, lamaia si sarea in paharul blenderului. Se acopera cu ulei si se bate cu mixerul atasat pe fund fara a-l misca pana se emulsioneaza. Ridicați încet pentru a integra tot uleiul până obțineți un sos ferm. Păstrați-l la rece."
+},
+"dip-muhammara": {
+"t": "Muhammara",
+"i": [
+"2 ardei rosii prajiti",
+"60 g nuci",
+"1 felie de pâine prăjită",
+"1 lingura melasa de rodie (sau putin otet)",
+"1 lingurita chimen",
+"2 linguri ulei de masline",
+"sare dupa gust"
+],
+"s": "Zdrobiți ardeii prăjiți și curățați cu nuca, pâinea, chimenul și melasa de rodie. Se adauga uleiul treptat pana se obtine o pasta groasa si se potriveste sarea. Se mai serveste cu putin ulei si nuci tocate."
+},
+"dip-tapenade": {
+"t": "tapenada de masline",
+"i": [
+"200 g măsline negre fără sâmburi",
+"2 linguri capere",
+"2 file de hamsii",
+"1 catel de usturoi",
+"3 linguri ulei de masline",
+"câteva picături de lămâie"
+],
+"s": "Tăiați măslinele, caperele, ansoa și usturoiul. Le macinați cu uleiul și lămâia până la o pastă rustică, nu prea fină. Folosiți-l pe pâine prăjită sau ca acompaniament."
+},
+"sec:cremas-frias": "creme reci",
+"cf-vichyssoise": {
+"t": "Vichyssoise",
+"i": [
+"3 praz (partea alba)",
+"2 cartofi",
+"1 ceapă",
+"750 ml bulion de legume",
+"100 ml de smântână",
+"30 g unt",
+"sare si piper",
+"arpagic de servit"
+],
+"s": "Se caleste prazul si ceapa tocate in unt fara a le lasa sa se coloreze. Adăugați bucățile de cartofi și bulionul și gătiți timp de 20 de minute până se înmoaie. Se amestecă foarte fin, se adaugă smântâna și se condimentează cu sare și piper. Se da la rece cel putin 3 ore si se serveste cu arpagic tocat."
+},
+"cf-remolacha": {
+"t": "Crema rece de sfecla",
+"i": [
+"3 sfeclă fiartă",
+"1 iaurt natural",
+"1 cățel mic de usturoi",
+"sucul de la 1/2 lămâie",
+"200 ml apă rece",
+"2 linguri ulei de masline",
+"sare si piper",
+"mărar de servit"
+],
+"s": "Mixați sfecla cu iaurtul, usturoiul, lămâia și apa până la o cremă fină. Se emulsionează cu ulei și sare și piper. Se raceste bine si se serveste cu putin iaurt si marar deasupra."
+},
+"cf-aguacate": {
+"t": "Crema rece de avocado",
+"i": [
+"2 avocado coapte",
+"1 castravete",
+"sucul de la 1 lime",
+"200 ml bulion sau apa rece",
+"1 iaurt natural",
+"niste frunze de coriandru",
+"sare si piper"
+],
+"s": "Se face piure de avocado cu castravetele decojiti, iaurtul, limea si bulionul pana se omogenizeaza. Adăugați coriandru și sare și piper. Se serveste foarte rece; Dacă se îngroașă, clătiți cu puțină apă."
+},
+"cf-calabacin": {
+"t": "Crema rece de dovlecel",
+"i": [
+"3 dovlecei",
+"1 ceapă",
+"50 g crema de branza",
+"600 ml bulion de legume",
+"2 linguri ulei de masline",
+"sare si piper"
+],
+"s": "Căleți ceapa și bucățile de dovlecel în ulei pentru câteva minute. Adăugați bulionul și gătiți timp de 15 minute. Se amestecă cu brânza până la o cremă fină, se condimentează cu sare și piper și se răcește. Se serveste rece cu un strop de ulei."
+},
+"cf-zanahoria": {
+"t": "Crema rece de morcovi si portocale",
+"i": [
+"500 g morcovi",
+"1 ceapă",
+"sucul a 2 portocale",
+"600 ml bulion de legume",
+"2 linguri ulei de masline",
+"un praf de ghimbir",
+"sare si piper"
+],
+"s": "Se caleste in ulei ceapa si morcovul feliate. Adăugați bulionul și ghimbirul și gătiți timp de 20 de minute. Se amestecă cu sucul de portocale până la o cremă fină, se condimentează cu sare și piper și se răcește. Se serveste rece."
+},
+"cf-guisantes-menta": {
+"t": "Cremă rece de mazăre și mentă",
+"i": [
+"400 g mazăre",
+"1 arpagic",
+"500 ml bulion de legume",
+"niste frunze de menta",
+"2 linguri ulei de masline",
+"sare si piper",
+"iaurt de servit"
+],
+"s": "Se caleste ceapa primavara, se adauga mazarea si bulionul si se fierbe 10 minute. Se amestecă cu menta până la o cremă fină și se strecoară dacă vrei. Se condimentează cu sare și piper, se răcește și se servește cu o lingură de iaurt."
+},
+"cf-melon-jamon": {
+"t": "Crema rece de pepene galben cu sunca",
+"i": [
+"1/2 pepene copt",
+"100 ml apă rece sau bulion",
+"1 lingura ulei de masline",
+"un praf de sare",
+"mentă",
+"50 g de șuncă serrano de servit"
+],
+"s": "Amestecați pepenele galben cu apa, uleiul și sarea până la o cremă fină. Se raceste bine. Se serveste cu niste talie de sunca Serrano si cateva frunze de menta."
+},
+"cf-pepino-yogur": {
+"t": "Cremă rece de castraveți și iaurt",
+"i": [
+"2 castraveți",
+"250 g iaurt grecesc",
+"1 cățel mic de usturoi",
+"1 lingura ulei de masline",
+"sucul de la 1/2 lămâie",
+"mărar",
+"sare si piper"
+],
+"s": "Se amestecă castraveții decojiți cu iaurtul, usturoiul, lămâia și uleiul până devine cremos. Adăugați mărar și sare și piper. Se răcește bine și se servește; Este foarte revigorant vara."
+},
+"cf-calabaza": {
+"t": "Crema rece de dovleac",
+"i": [
+"500 g dovleac",
+"1 ceapă",
+"1 morcov",
+"600 ml bulion de legume",
+"2 linguri ulei de masline",
+"un praf de nucsoara",
+"sare si piper"
+],
+"s": "Se caleste ceapa, morcovul si dovleacul in bucatele. Adăugați bulionul și gătiți timp de 20 de minute până se înmoaie. Se amestecă cu nucșoara până la o cremă fină, se condimentează cu sare și piper și se răcește. Se serveste rece cu un strop de ulei."
+},
+"cf-esparragos": {
+"t": "Crema rece de sparanghel",
+"i": [
+"1 buchet de sparanghel verde",
+"1 praz",
+"1 cartof mic",
+"600 ml bulion de legume",
+"2 linguri ulei de masline",
+"sare si piper"
+],
+"s": "Se caleste prazul si cartoful, se adauga sparanghelul tocat (rezerva varfurile) si bulionul si se fierbe 15 minute. Se macină foarte fin și se condimentează cu sare și piper. Sari peste sfaturile rezervate si foloseste-le pentru a decora. Se serveste rece."
+},
+"sec:huevos": "Omlete și ouă",
+"hv-tortilla-espanola": {
+"t": "omletă spaniolă",
+"i": [
+"5 ouă",
+"4 cartofi medii",
+"1 ceapa (optional)",
+"ulei de măsline pentru prăjit",
+"sare"
+],
+"s": "Curățați și tăiați cartofii în felii subțiri (și ceapa fâșii julienne). Prăjiți-le la foc mediu în ulei din belșug până sunt fragede, scurgeți-le și sărați-le. Batem ouale, le amestecam cu cartoful si punem omleta intr-o tigaie cu putin ulei, rasturnand-o cu o farfurie. Lasă-l suculent înăuntru."
+},
+"hv-tortilla-francesa": {
+"t": "omletă franțuzească",
+"i": [
+"2 ouă",
+"1 lingurita ulei sau unt",
+"sare",
+"patrunjel sau branza (optional)"
+],
+"s": "Bate ouăle cu un praf de sare. Se incinge uleiul intr-o tigaie mica, se toarna oul si, cand incepe sa se intareasca pe margini, se strange spre centru. Se rulează pe sine și se servește suculent. Adauga branza sau patrunjel dupa gust."
+},
+"hv-huevos-rotos": {
+"t": "Ouă sparte cu cartofi",
+"i": [
+"3 cartofi",
+"4 ouă",
+"ulei de măsline",
+"sare",
+"sunca sau chorizo (optional)"
+],
+"s": "Tăiați cartofii în bețe și prăjiți-i până devin aurii și fragezi. Prăjiți ouăle în ulei încins, lăsând gălbenușul lichid. Puneți ouăle pe cartofi, spargeți-le și amestecați. Adăugați șuncă sau chorizo ​​​​dacă doriți."
+},
+"hv-revuelto-setas": {
+"t": "Ciuperci omletă",
+"i": [
+"4 ouă",
+"200 g ciuperci asortate",
+"1 catel de usturoi",
+"2 linguri ulei de masline",
+"patrunjel",
+"sare si piper"
+],
+"s": "Se calesc ciupercile tocate cu usturoi si putin ulei pana isi elibereaza apa si devin maro auriu. Se reduce focul, se adauga ouale batute si se amesteca continuu pana devin cremoase. Se condimenteaza cu sare si piper si se termina cu patrunjel."
+},
+"hv-shakshuka": {
+"t": "Shakshuka",
+"i": [
+"4 ouă",
+"400 g roșii zdrobite",
+"1 ceapă",
+"1 ardei rosu",
+"1 catel de usturoi",
+"1 lingurita chimen",
+"1 lingurita boia",
+"ulei de măsline",
+"sare",
+"patrunjel sau coriandru"
+],
+"s": "Se caleste ceapa, ardeiul si usturoiul. Adăugați roșia, chimenul și boia și fierbeți timp de 10 minute până se îngroașă. Faceți găuri și spargeți ouăle înăuntru; Se acoperă și se fierbe la foc mic până când albușurile se întăresc și gălbenușul este lichid. Serviți cu ierburi."
+},
+"hv-huevos-rellenos": {
+"t": "ouă umplute",
+"i": [
+"6 ouă",
+"100 g ton",
+"3 linguri maioneza",
+"1 lingura rosii prajite",
+"sare"
+],
+"s": "Gătiți ouăle timp de 10 minute, răciți-le și curățați-le de coajă. Tăiați-le în jumătate și îndepărtați gălbenușurile. Se amestecă gălbenușurile cu tonul, maioneza și roșiile până la o pastă. Albusurile se umplu cu amestecul si se mai decoreaza cu putina maioneza."
+},
+"hv-huevos-benedictinos": {
+"t": "Ouă Benedict",
+"i": [
+"2 ouă",
+"2 briose englezești sau felii de pâine",
+"2 felii de bacon sau sunca",
+"1 lingura otet",
+"2 galbenusuri, 100 g unt, zeama de lamaie si sare pentru olandeza"
+],
+"s": "Puneți ouăle în apă cu oțet timp de aproximativ 3 minute. Pâinea prăjită și încălziți baconul. Pregătiți olandeza bătând gălbenușurile la bain-marie și adăugând untul topit și lămâia până se îngroașă. Se asambleaza painea cu baconul, oul poat si sosul deasupra."
+},
+"hv-tortilla-calabacin": {
+"t": "Omletă cu dovlecel",
+"i": [
+"4 ouă",
+"2 dovlecei",
+"1 ceapă",
+"ulei de măsline",
+"sare"
+],
+"s": "Se calesc dovlecelul feliat cu ceapa si putin ulei pana se inmoaie. Batem ouale, le amestecam cu legumele scurse si punem omleta pe ambele parti in tigaie. Lasă-l suculent."
+},
+"sec:clasicos-espanoles": "clasici spanioli",
+"ce-paella-valenciana": {
+"t": "paella valenciană",
+"i": [
+"400 g orez bombă",
+"500 g pui tocat",
+"300 g iepure tocat",
+"200 g fasole verde plată (bajoqueta)",
+"100 g garrofon (fasole albă plată)",
+"1 roșie coaptă rasă",
+"1 lingurita boia dulce",
+"câteva fire de șofran",
+"ulei de măsline extravirgin",
+"apă",
+"1 crenguță de rozmarin",
+"sare"
+],
+"s": "Încinge uleiul într-o tigaie pentru paella nivelată și prăjește puiul și iepurele până se rumenesc pe toate părțile. Adăugați Bajoqueta și Garrofonul, căliți câteva minute și mutați carnea în lateral pentru a călca roșia rasă până când apa se evaporă; Se adauga boia de ardei si, fara sa se arda, se acopera cu apa. Se adauga sofranul, rozmarinul si sarea si se fierbe tare 20 de minute pentru a face bulionul; se scoate rozmarinul, se distribuie orezul in forma de cruce si apoi pe toata suprafata. Gatiti 8 minute la foc mare si inca 8-10 la foc mic fara a amesteca, si lasati sa se odihneasca 5 minute inainte de servire."
+},
+"ce-fabada-asturiana": {
+"t": "Fabada asturiană",
+"i": [
+"500 g fasole (fasole albă asturiană)",
+"2 chorizos asturian",
+"2 cârnați asturiani",
+"150 g de lacón",
+"150 g bacon",
+"câteva fire de șofran",
+"apă"
+],
+"s": "Înmuiați fasolea în apă rece timp de 12 ore și înmuiați separat carnea de porc. Scurgeți-le și puneți-le într-o oală mare cu compango (chorizo, cârnați, lacón și bacon), acoperiți cu apă rece două degete deasupra și aduceți la fiert, eliminând spuma. Se adauga sofranul, se reduce la mic si se fierbe foarte incet aproximativ doua ore si jumatate, “speriind” de cateva ori fasolea cu un strop de apa rece sa nu se rupa. Mutați oala de mânere în loc să amestecați cu o lingură, ajustați sarea și serviți fierbinte cu compango tocat."
+},
+"ce-cochinillo": {
+"t": "porc de lapte fript",
+"i": [
+"1 porcușor de aproximativ 4 kg deschis în carcasă",
+"100 g untură",
+"1 pahar de apă",
+"sare grunjoasă",
+"frunze de dafin (optional)"
+],
+"s": "Se sare in interior cu sare grunjoasa si se intinde cu un strat subtire de unt. Puneți niște șipci de lemn în fundul unui vas de lut, adăugați un pahar cu apă și frunza de dafin și puneți pielea de porc cu partea în jos pe lemn. Se prăjește la 160ºC timp de aproximativ o oră și un sfert, asigurându-vă că nu lipsește apa; Întoarceți-l cu pielea în sus, înțepați-l cu un ac și întindeți-l cu unt. Creșteți la 190 °C și coaceți încă o oră până când pielea devine maro aurie și atât de crocantă încât se rupe la atingere."
+},
+"ce-pisto-manchego": {
+"t": "Ratatouille Manchego",
+"i": [
+"2 ardei verzi italieni",
+"1 ardei rosu",
+"1 kg de roșii coapte zdrobite",
+"1 dovlecel mare",
+"2 cepe",
+"ulei de măsline extravirgin",
+"1 lingurita zahar",
+"sare"
+],
+"s": "Tăiați toate legumele în cuburi obișnuite de aproximativ un centimetru. Se caleste ceapa cu un praf de sare intr-o cantitate buna de ulei la foc mic aproximativ 10 minute, se adauga ardeii si se mai caleste inca 10. Se adauga dovleceii si se calesc 5-7 minute fara sa se descompuna, si se adauga rosia macinata cu sare si zahar. Gatiti descoperit la foc mic, timp de 20-25 de minute, amestecand din cand in cand, pana ce rosiile se reduce si uleiul pluteste la suprafata."
+},
+"ce-churros": {
+"t": "Churros",
+"i": [
+"250 g faina de grau",
+"250 ml apă",
+"1 lingurita sare",
+"ulei de măsline sau de floarea soarelui pentru prăjit",
+"zahar de presarat"
+],
+"s": "Se pune apa si sarea la fiert intr-o cratita si, de indata ce da in clocot, se toarna toata faina deodata. Se ia de pe foc si se amesteca energic cu o lingura de lemn pana se obtine o masa omogena care se desprinde de pereti. Pune aluatul într-o churrera și presează-l astfel încât să cadă direct pe uleiul încins la 190ºC, formând fâșii sau funde. Se prajesc pana devin aurii si crocante, se scurg pe hartie absorbanta si se presara zahar inainte de servire."
+},
+"ce-crema-catalana": {
+"t": "Crema catalana",
+"i": [
+"1 l lapte integral",
+"8 gălbenușuri de ou",
+"200 g zahăr",
+"40 g amidon de porumb",
+"1 baton de scortisoara",
+"coaja de 1 lămâie",
+"coaja de 1 portocală"
+],
+"s": "Se dizolvă amidonul de porumb într-un pahar rezervat cu lapte rece și se încălzește restul de lapte cu scorțișoara și cojile de lămâie și portocală; Cand da in clocot se lasa deoparte si se lasa 10 minute la infuzat. Se bat galbenusurile cu 150 g zahar pana se albesc si se adauga laptele cu amidonul de porumb dizolvat. Peste amestec se strecoară laptele infuzat fierbinte și se aduce totul la fiert, amestecând continuu până se îngroașă, fără să fiarbă. Se toarnă în vase mici de lut, se răcește la frigider și, înainte de servire, se stropește cu zahărul rămas și se arde cu o arfulă până se caramelizează."
+},
+"sec:rumanos": "Clasici românești savuroase",
+"ro-sarmale": {
+"t": "Sarmale (sarmale românești)",
+"i": [
+"1 varză fermentată sau albă",
+"500 g carne de porc tocata",
+"100 g de orez",
+"1 ceapă",
+"400 g roșii zdrobite",
+"1 lingurita boia",
+"cimbru",
+"sare si piper",
+"felii de bacon afumat (optional)"
+],
+"s": "Se caleste ceapa tocata si se amesteca cu carnea, orezul crud, boia de ardei, sare si piper. Se separă frunzele de varză, se taie coasta și se pun puțină umplutură în fiecare; rulați-le, înfigându-le în părțile laterale. Asezam rulourile strans intr-o oala pe un pat de varza tocata si bacon, se acopera cu rosiile, cimbru si apa, si se fierbe acoperit la foc foarte mic 2-3 ore (sau la cuptor). Se servesc cu mamaliga si smantana."
+},
+"ro-mamaliga": {
+"t": "Mămăligă cu brânză și smântână",
+"i": [
+"250 g faina de porumb",
+"1 l de apă",
+"1 lingurita sare",
+"150 g branza romaneasca proaspata (telemea) sau feta",
+"smântână (smântână)",
+"unt"
+],
+"s": "Aduceți apa cu sare la fiert și adăugați făina de porumb într-un jet, amestecând continuu cu telul pentru a nu forma cocoloașe. Gatiti la foc mediu 20-30 de minute, amestecand des, pana se desprinde de pereti. Servim mamaliga fierbinte cu branza maruntita, o lingura de smantana si unt."
+},
+"ro-mici": {
+"t": "Mici (mititei la gratar)",
+"i": [
+"500 g carne de vită tocată",
+"200 g carne de porc tocata",
+"3 catei de usturoi",
+"1 lingurita de bicarbonat de sodiu",
+"1 lingurita chimen",
+"1 lingurita boia",
+"100 ml bulion de carne",
+"sare si piper"
+],
+"s": "Se amestecă cele două cărnuri cu usturoiul zdrobit, chimenul, boia de ardei, bicarbonatul de sodiu, sare și piper, și se adaugă bulionul rece puțin câte puțin până se obține un aluat lipicios. Se lasa sa se odihneasca acoperit la frigider cateva ore (de preferat peste noapte). Formați rulouri groase de mărimea unui deget și puneți-le la grătar foarte fierbinte, întorcându-le, până se rumenesc pe exterior și devin suculente. Serviți cu muștar și pâine."
+},
+"ro-tochitura": {
+"t": "tochitură moldovenească",
+"i": [
+"600 g carne de porc în tacos",
+"150 g bacon afumat",
+"150 g cârnați românești",
+"1 ceapă",
+"3 catei de usturoi",
+"2 linguri concentrat de roșii",
+"1 frunză de dafin",
+"unt sau ulei",
+"sare si piper",
+"ouă prăjite și mămăligă pentru a servi"
+],
+"s": "Rumeniți baconul și carnea de porc într-o cratiță cu puțin unt. Adăugați ceapa și usturoiul tocate și căliți. Se adaugă roșia, dafinul și apa pentru a acoperi, se condimentează cu sare și piper și se fierbe la foc mic timp de 1 oră până când carnea este fragedă și sosul este concentrat; se adauga carnatii feliati la sfarsit. Se serveste cu mamaliga si un ou prajit deasupra."
+},
+"ro-ardei-umpluti": {
+"t": "Ardei umpluți (ardei umpluți)",
+"i": [
+"6 ardei la umplut",
+"500 g carne tocata amestecata",
+"80 g de orez",
+"1 ceapă",
+"400 g roșii zdrobite",
+"1 morcov",
+"mărar și pătrunjel",
+"sare si piper",
+"smantana"
+],
+"s": "Se caleste ceapa si se amesteca cu carnea, orezul, ierburile, sare si piper. Goliți ardeii de semințe și umpleți-i lejer (orezul crește). Așezați-le în picioare într-o oală, acoperiți-le cu roșia și morcovul ras cu apă și gătiți, acoperit, la foc mic, timp de 45-60 de minute. Se serveste cu o lingura de smantana."
+},
+"ro-ciorba-perisoare": {
+"t": "Ciorbă de perișoare",
+"i": [
+"300 g carne tocată",
+"2 linguri de orez",
+"1 ceapă",
+"2 morcovi",
+"1 păstârnac",
+"1 ardei",
+"100 ml borș sau suc de lămâie",
+"pătrunjel și leuștean",
+"sare"
+],
+"s": "Se caleste ceapa, morcovii, pastarnacul si ardeiul taiat cubulete in apa cu sare. Se amestecă carnea cu orezul și puțină ceapă, se formează chiftele mici și se adaugă în supa care fierbe; gătiți 20 de minute. Acrisați supa cu borșul (sau lămâia) și fierbeți încă câteva minute. Terminați cu mult pătrunjel tocat și leuștean."
+},
+"ro-salata-boeuf": {
+"t": "Salată de boeuf (salata românească rusească)",
+"i": [
+"300 g carne de vita sau pui fiarta",
+"3 cartofi",
+"2 morcovi",
+"100 g mazăre",
+"100 g corniși murați",
+"200 g maioneza",
+"1 lingura mustar",
+"sare"
+],
+"s": "Gatiti carnea si, separat, cartofii si morcovii; se lasa sa se raceasca. Tăiați totul în cuburi foarte mici împreună cu murăturile și amestecați-l cu mazărea, maioneza, muștarul și sarea. Se da la frigider pentru cel putin 2 ore si se serveste foarte rece, netezit si decorat cu muraturi sau piper."
+},
+"ro-chiftele": {
+"t": "Chiftele (găluște prăjite românești)",
+"i": [
+"500 g carne de porc tocata",
+"1 cartof crud ras",
+"1 ceapă",
+"1 ou",
+"2 catei de usturoi",
+"mărar",
+"făină pentru acoperire",
+"ulei pentru prajit",
+"sare si piper"
+],
+"s": "Amestecați carnea cu cartoful ras și scurs de apă, ceapa rasă, usturoiul, oul, mărarul, sare și piper. Formați bile oarecum turtite, treceți-le în făină și prăjiți-le în ulei încins până devin aurii pe ambele părți și fierte pe interior. Se scurge pe hartie si se serveste cald sau rece."
+},
+"ro-ostropel-pui": {
+"t": "ostropel de pui",
+"i": [
+"1 pui tocat",
+"6 catei de usturoi",
+"400 g roșii zdrobite",
+"1 lingura de faina",
+"2 linguri de ulei",
+"patrunjel",
+"sare si piper"
+],
+"s": "Rumeniți bucățile de pui în ulei și lăsați-le deoparte. În aceeași cratiță, căliți făina pentru un minut, adăugați roșia, usturoiul zdrobit, sare și piper și puțină apă. Reveniți puiul, acoperiți și fierbeți timp de 30-40 de minute până când se înmoaie și sosul este gros și foarte topit. Se presara patrunjel si se serveste cu mamaliga sau paine."
+},
+"ro-cartofi-taranesti": {
+"t": "Cartofi țărănești (cartofi țărănești)",
+"i": [
+"800 g cartofi",
+"200 g coaste afumate sau bacon",
+"2 cepe",
+"2 catei de usturoi",
+"1 ardei rosu",
+"1 lingurita boia",
+"cimbru",
+"ulei",
+"sare si piper"
+],
+"s": "Rumeniți coasta în cuburi și puneți-o deoparte. Se caleste ceapa, usturoiul si ardeiul in grasime. Adăugați felii de cartofi, boia de ardei și cimbru, asezonați cu sare și piper și adăugați puțină apă. Revenim carnea, acoperim și gătiți la foc mediu (sau la cuptor) până când cartofii sunt fragezi și se topesc."
+},
+"ro-ciorba-burta": {
+"t": "Ciorbă de burtă",
+"i": [
+"1 kg de tripă de vită prefiertă",
+"1 os de vita cu maduva",
+"2 morcovi",
+"1 rădăcină mică de țelină",
+"1 ceapă",
+"4 gălbenușuri de ou",
+"400 g smantana (smântână)",
+"1 cap de usturoi",
+"2 linguri de otet",
+"sare si piper boabe"
+],
+"s": "Gatiti osul in multa apa cu sare, spumand des, adaugati ceapa, telina si un morcov intreg si gatiti pana obtineti un bulion limpede; strecoara-l. Adăugați tripața tăiată fâșii subțiri în bulionul strecurat și gătiți timp de 30 de minute, adăugând și celălalt morcov ras și sot pentru a da culoare. Se bat galbenusurile cu smantana, se caleste amestecul adaugand oale de bulion fierbinte si se toarna in oala de pe foc sa nu se incheie. Adăugați o tulpină de usturoi zdrobită, acru cu oțet după gust și ajustați sarea."
+},
+"ro-ciorba-radauteana": {
+"t": "Ciorbă rădăuțeană (ciorbă de pui)",
+"i": [
+"1 kg pui cu os (piept si pulpe)",
+"2 morcovi",
+"1 radacina de patrunjel",
+"1 rădăcină mică de țelină",
+"1 ardei",
+"300 g smantana",
+"3 galbenusuri de ou",
+"1 cap de usturoi",
+"3 linguri otet de mere",
+"2 linguri de faina",
+"sare si piper"
+],
+"s": "Gatiti puiul in apa spumanta cu sare, impreuna cu legumele intregi, pana cand carnea cade de pe os. Scoatem carnea, o maruntiți în fâșii subțiri și strecurați bulionul (nu se mai folosesc legumele); se intoarce in oala cu carnea. Se bat galbenusurile cu smantana si faina, se caleste amestecul cu oale de bulion fierbinte si se toarna amestecand continuu. Adăugați usturoiul zdrobit și oțetul, aduceți la fiert și luați de pe foc."
+},
+"ro-salata-vinete": {
+"t": "Salată de vinete (pateu de vinete prăjite)",
+"i": [
+"1,5 kg vinete",
+"150 ml ulei de floarea soarelui",
+"1 ceapa mica, tocata marunt",
+"sare"
+],
+"s": "Prăjiți vinetele întregi la flacără sau la grătar până când pielea este carbonizată și pulpa este foarte moale. Curățați-le cât sunt fierbinți și lăsați-le să se scurgă pe o scândură înclinată timp de o oră pentru a elibera sucul amar. Tăiați-le cu un cuțit de lemn (evitați metalul ca să nu ruginească) și bateți-le cu o lingură, încorporând uleiul în jet, ca maioneza, până devin cremoase. Sarați-le și adăugați ceapa tocată chiar înainte de servire, cu pâine."
+},
+"ro-zacusca": {
+"t": "Zacuscă (conserve de ardei și ciuperci)",
+"i": [
+"1 kg de ciuperci de pădure fierte (sau vinete prăjite)",
+"2 kg ardei kapia roșu prăjiți și curățați",
+"1 kg de ceapa",
+"1 l de roșii zdrobite",
+"300 ml ulei de floarea soarelui",
+"foi de dafin, sare si piper boabe"
+],
+"s": "Tocați sau zdrobiți mărunt ciupercile fierte și ardeii prăjiți, deja curățați și fără semințe. Se caleste ceapa tocata in tot uleiul la foc mic pana devine transparenta si se topeste. Adaugam ardeii si ciupercile, amestecand sa nu se lipeasca, si adaugam rosiile, dafinul, sare si piper. Gatiti la foc mic 2-3 ore, amestecand din cand in cand, pana pasta se ingroasa si uleiul iese la suprafata; ambalaj fierbinte."
+},
+"sec:croquetas": "Crochete de casă",
+"cq-jamon": {
+"t": "Crochete cu șuncă",
+"i": [
+"100 g sunca serrano tocata",
+"60 g unt",
+"70g faina",
+"600 ml lapte",
+"nucsoara",
+"sare si piper",
+"2 oua si pesmet pentru pane",
+"ulei pentru prajit"
+],
+"s": "Se topeste untul, se caleste sunca un minut si se adauga faina; gătiți-l timp de 2 minute. Se toarnă puțin câte puțin laptele fierbinte, amestecând continuu până se obține un bechamel gros, neted; se asezoneaza cu nucsoara, sare si piper. Întindeți-l pe un platou, acoperiți-l etanș și lăsați-l la rece câteva ore. Formați crochetele, scufundați-le în ou și pesmet și prăjiți-le în ulei încins până se rumenesc."
+},
+"cq-pollo": {
+"t": "crochete de pui",
+"i": [
+"250 g pui tocat fiert sau fript",
+"60 g unt",
+"70g faina",
+"600 ml lapte",
+"1/2 ceapă",
+"nucsoara",
+"sare si piper",
+"2 ouă și pesmet",
+"ulei pentru prajit"
+],
+"s": "Se caleste ceapa tocata marunt in unt, se adauga puiul si faina si se calesc 2 minute. Se adauga laptele fierbinte de cateva ori, amestecand pana se formeaza un bechamel gros; se asezoneaza cu nucsoara. Răciți aluatul bine acoperit, formați crochetele, ungeți-le cu ou și pesmet și prăjiți-le aurii."
+},
+"cq-bacalao": {
+"t": "Crochete de cod",
+"i": [
+"250 g cod desarat si maruntit",
+"60 g unt",
+"70g faina",
+"600 ml lapte",
+"1 catel de usturoi",
+"patrunjel",
+"nucsoara",
+"sare",
+"2 ouă și pesmet",
+"ulei pentru prajit"
+],
+"s": "Se caleste in unt usturoiul si codul tocat, se adauga faina si se fierbe 2 minute. Se toarna laptele fierbinte putin cate putin pana se obtine un bechamel gros; Se potrivesc sarea (atentie, codul este deja sarat), nucsoara si patrunjelul. Se raceste acoperite, se formeaza crochete, se imbraca in ou si pesmet si se prajesc aurii."
+},
+"cq-espinacas": {
+"t": "Crochete cu spanac",
+"i": [
+"250 g spanac fiert și scurs",
+"60 g unt",
+"70g faina",
+"550 ml lapte",
+"1 catel de usturoi",
+"30 g nuci de pin (optional)",
+"nucsoara",
+"sare si piper",
+"2 ouă și pesmet",
+"ulei pentru prajit"
+],
+"s": "Se calesc usturoiul si spanacul bine scurs si tocat cu nucile de pin. Se adauga faina, se caleste si se toarna laptele fierbinte putin cate putin pana se obtine un bechamel gros; se asezoneaza cu nucsoara. Răciți aluatul, formați crochetele, paine-le și prăjiți-le până se rumenesc."
+},
+"cq-queso": {
+"t": "crochete cu brânză",
+"i": [
+"120 g branza rasa curata sau albastra",
+"60 g unt",
+"70g faina",
+"600 ml lapte",
+"nucsoara",
+"sare si piper",
+"2 ouă și pesmet",
+"ulei pentru prajit"
+],
+"s": "Se prepară un bechamel gros: se topește untul, se fierbe făina 2 minute și se adaugă laptele fierbinte, amestecând. De pe foc, adaugam branza pana se topeste si asezonam cu nucsoara, sare si piper. Se racesc bine acoperite, se formeaza crochetele, se imbraca cu ou si pesmet si se prajesc aurii."
+},
+"cq-setas": {
+"t": "Crochete cu ciuperci",
+"i": [
+"250 g ciuperci asortate",
+"60 g unt",
+"70g faina",
+"600 ml lapte",
+"1/2 ceapă",
+"nucsoara",
+"sare si piper",
+"2 ouă și pesmet",
+"ulei pentru prajit"
+],
+"s": "Se caleste ceapa si ciupercile tocate marunt pana isi pierd apa si devin aurii. Se adauga faina, se caleste 2 minute si se toarna laptele fierbinte putin cate putin pana se obtine un bechamel gros; se asezoneaza cu nucsoara. Răciți aluatul, formați crochetele, paine-le și prăjiți-le crocante."
+},
+"cq-cocido": {
+"t": "Crochete fierte",
+"i": [
+"250 g tocană mărunțită sau tocană de carne",
+"60 g unt",
+"70g faina",
+"600 ml lapte",
+"1/2 ceapă",
+"nucsoara",
+"sare si piper",
+"2 ouă și pesmet",
+"ulei pentru prajit"
+],
+"s": "Profita de carnea tocanita tocata marunt. Se caleste ceapa in unt, se adauga carnea si faina si se calesc. Se adauga laptele fierbinte putin cate putin pana se obtine un bechamel gros; se asezoneaza cu nucsoara. Se raceste acoperite, se formeaza crochete, se imbraca cu ou si pesmet si se prajesc aurii."
+},
+"cq-gambas": {
+"t": "Crochete cu creveți",
+"i": [
+"250 g creveți decojiți",
+"60 g unt",
+"70g faina",
+"550 ml lapte",
+"100 ml bulion de coajă",
+"1/2 ceapă",
+"nucsoara",
+"sare",
+"2 ouă și pesmet",
+"ulei pentru prajit"
+],
+"s": "Se fierb cojile de creveți pentru câteva minute pentru un bulion scurt. Se caleste ceapa, se calesc crevetii tocati, se adauga faina si se calesc. Se toarnă puțin câte puțin laptele și bulionul fierbinte până se obține o bechamel groasă; se asezoneaza cu nucsoara si sare. Răciți aluatul, formați crochetele, paine-le și prăjiți-le aurii."
+},
+"sec:limonadas": "Limonade și ape proaspete",
+"lm-clasica": {
+"t": "limonadă clasică",
+"i": [
+"4 lămâi",
+"1 l de apă",
+"4-5 linguri de zahar",
+"gheata"
+],
+"s": "Stoarceți lămâile și amestecați sucul cu apa. Se dizolvă zahărul amestecând și se gustă pentru a ajusta dulceața. Se serveste foarte rece cu gheata si cateva felii de lamaie."
+},
+"lm-fresa": {
+"t": "Limonadă de căpșuni",
+"i": [
+"200 g căpșuni",
+"3 lămâi",
+"1 l de apă",
+"4 linguri de zahar",
+"gheata"
+],
+"s": "Se pasează căpșunile cu puțină apă și se strecoară dacă vrei o textură curată. Amesteca-le cu sucul de lamaie, restul de apa si zaharul dupa gust. Se serveste foarte rece cu gheata."
+},
+"lm-menta-pepino": {
+"t": "Limonadă de mentă și castraveți",
+"i": [
+"1/2 castravete",
+"3 lămâi",
+"1 l de apă",
+"o mână de frunze de mentă",
+"3 linguri de zahar sau miere",
+"gheata"
+],
+"s": "Se amestecă castravetele cu menta și puțină apă și se strecoară. Se amestecă cu sucul de lămâie, restul de apă și îndulcitorul. Serviți cu gheață, felii de castraveți și frunze de mentă."
+},
+"lm-naranjada": {
+"t": "Portocală de casă",
+"i": [
+"4 portocale",
+"1 lămâie",
+"700 ml apă",
+"2-3 linguri de zahar",
+"gheata"
+],
+"s": "Stoarceți portocalele și lămâia. Se amestecă sucurile cu apa și se îndulcește după gust (portocalele oferă deja dulceață). Se serveste foarte rece cu gheata si felii de portocala."
+},
+"lm-agua-sandia": {
+"t": "apă de pepene verde",
+"i": [
+"600 g pepene verde fără semințe",
+"sucul de la 1 lime",
+"500 ml apă",
+"zahăr după gust (opțional)",
+"gheata"
+],
+"s": "Pasează pepenele verde și strecoară sucul. Se amestecă cu apa și lime și se îndulcește doar dacă este necesar. Se serveste foarte rece cu gheata si, daca vrei, frunze de menta."
+},
+"lm-te-melocoton": {
+"t": "ceai cu gheață de piersici",
+"i": [
+"2 pliculete de ceai negru",
+"1 l de apă",
+"1 piersică coaptă",
+"2 linguri de zahar sau miere",
+"suc de 1/2 lămâie",
+"gheata"
+],
+"s": "Infuzam ceaiul in apa fierbinte timp de 4-5 minute si lasam sa se raceasca. Piersați piersica cu puțină apă și amestecați-o cu ceaiul, îndulcitorul și lămâia. Se serveste foarte rece cu gheata si felii de piersici."
+},
+"lm-horchata": {
+"t": "horchata de nuci tigre",
+"i": [
+"200 g nuci tigre uscate",
+"1 l de apă",
+"100 g zahăr",
+"coaja de lamaie",
+"scorțișoară"
+],
+"s": "Înmuiați nucile tigre în apă timp de 12 ore, scurgeți-le și măcinați-le cu litru de apă. Se lasă să se odihnească 1-2 ore și se strecoară cu o cârpă, strângând bine. Îndulciți cu zahăr, parfumați cu lămâie și scorțișoară și răciți. Se serveste foarte rece, amestecand inainte."
+},
+"lm-mojito-sin": {
+"t": "Mojito fără alcool",
+"i": [
+"1 tei",
+"o mână de frunze de mentă",
+"2 lingurite de zahar",
+"apă spumante",
+"gheață zdrobită"
+],
+"s": "Lămâia se zdrobește în felii cu menta și zahărul pe fundul paharului pentru a elibera aromele. Umpleți cu gheață zdrobită și completați cu apă minerală. Se amestecă și se decorează cu mentă și lime."
+},
+"lm-jamaica": {
+"t": "apă Jamaica",
+"i": [
+"30 g floare de hibiscus uscată",
+"1 l de apă",
+"4 linguri de zahar",
+"suc de 1/2 lămâie",
+"gheata"
+],
+"s": "Se fierbe apa, se ia de pe foc si se adauga floarea de hibiscus; Se lasa la infuzat 10-15 minute. Se strecoară, se îndulcește cu zahăr și se adaugă lămâia. Se răcește și se servește cu gheață."
+},
+"sec:postres-rumanos": "deserturi romanesti",
+"pr-papanasi": {
+"t": "Papanași",
+"i": [
+"500 g brânză de vaci (urdă) sau brânză proaspătă",
+"2 ouă",
+"150g faina",
+"1 lingurita praf de copt",
+"coaja de lamaie",
+"un praf de sare",
+"ulei pentru prajit",
+"smantana si dulceata de afine pentru a servi"
+],
+"s": "Se amestecă brânza de vaci cu ouăle, coaja, sarea, făina și drojdia până la un aluat ușor de gestionat. Formați bile cu o gaură în centru (ca o gogoașă) și o bilă mică în lateral. Prăjiți-le în ulei nu foarte încins până plutesc maro auriu. Se servesc fierbinti cu smantana deasupra si dulceata de afine, deasupra cu bila."
+},
+"pr-cozonac": {
+"t": "Cozonac (pâine dulce împletită)",
+"i": [
+"500 g faina tare",
+"100 g zahăr",
+"100 ml lapte cald",
+"2 ouă",
+"25 g drojdie proaspata",
+"60 g unt",
+"coaja de lamaie",
+"pentru umplutura: 150 g nuca macinata, 50 g zahar, 2 linguri cacao, 1 albus de ou"
+],
+"s": "Activați drojdia în lapte cu o lingură de zahăr. Se framanta cu faina, zaharul, ouale, coaja si untul pana se obtine un aluat omogen si elastic; lasa sa creasca 1 ora. Se amestecă nucile cu zahărul, cacao și albușul. Întindeți aluatul, întindeți umplutura, rulați, împletiți două rulouri și puneți-le într-o formă. Se lasa din nou la dospit si se coace la 170°C aproximativ 40-45 minute."
+},
+"pr-gogosi": {
+"t": "Gogoși (frișoare pufoase)",
+"i": [
+"500g faina",
+"250 ml lapte cald",
+"2 ouă",
+"25 g drojdie proaspata",
+"50 g zahăr",
+"coaja de lamaie",
+"un praf de sare",
+"ulei pentru prajit",
+"zahăr pudră de presărat"
+],
+"s": "Activează drojdia din lapte cu zahăr. Se framanta cu faina, ouale, zaharul, coaja si sarea pana se obtine un aluat moale; lasa sa creasca 1 ora. Întindeți, tăiați discurile și lăsați-le să se odihnească timp de 15 minute. Prăjiți-le în ulei din belșug la foc mediu, întorcându-le până se umflă și se rumenesc. Scurgeți-le și stropiți-le cu zahăr pudră."
+},
+"pr-clatite": {
+"t": "Clătite (crepe românești)",
+"i": [
+"200g faina",
+"400 ml lapte",
+"2 ouă",
+"1 lingura de zahar",
+"un praf de sare",
+"unt pentru tigaie",
+"dulceata de alune sau crema de umplut"
+],
+"s": "Batem ouale cu laptele, zaharul si sarea si adaugam faina pana obtinem un aluat fluid, fara cocoloase; Se lasa sa se odihneasca 20 de minute. Pune crepele subțiri într-o tavă unsă cu unt, rumenindu-le pe ambele părți. Umple-le cu gem sau smantana, ruleaza-le si presara zahar."
+},
+"pr-placinta-mere": {
+"t": "Plăcintă cu mere (plăcintă cu mere)",
+"i": [
+"1 foaie de aluat filo sau foietaj",
+"4 mere",
+"60 g zahăr",
+"1 lingurita scortisoara",
+"50 g pesmet",
+"unt topit",
+"zahăr pudră"
+],
+"s": "Merele se dau pe razatoare si se calesc cu zaharul si scortisoara pana isi pierd apa; Adăugați pesmetul pentru a absorbi sucul. Ungeți foile de aluat cu unt, întindeți umplutura, rulați sau asamblați în straturi într-un vas și ungeți deasupra. Coacem la 180°C timp de 30-35 de minute, pana devin aurii. Se serveste cald cu zahar pudra."
+},
+"pr-orez-lapte": {
+"t": "Orez cu lapte (budinca de orez)",
+"i": [
+"150 g orez rotund",
+"750 ml lapte",
+"60 g zahăr",
+"1 baton de scortisoara",
+"coaja de lamaie",
+"scorțișoară pudră"
+],
+"s": "Gatiti orezul cateva minute in apa si scurgeti-l. Adăugați-l în laptele fierbinte cu zahărul, batonul de scorțișoară și coaja și fierbeți la foc mic, amestecând des, timp de aproximativ 25-30 de minute până devine cremos. Se serveste rece sau calda cu scortisoara pudra."
+},
+"pr-budinca-gris": {
+"t": "Budincă de griș (budincă de gris)",
+"i": [
+"100 g gris fin",
+"500 ml lapte",
+"50 g zahăr",
+"1 ou",
+"vanilie",
+"unt",
+"dulceata pentru a insoti"
+],
+"s": "Se incinge laptele cu zaharul si vanilia si se adauga grisul in ploaie, amestecand pana se ingroasa. Retira, atempera e incorpora el huevo batido. Se toarnă într-o formă unsă cu unt și se coace la 180°C pentru aproximativ 25 de minute (sau se pune în tavi). Sirve templado o frío con mermelada."
+},
+"pr-salam-biscuiti": {
+"t": "Salam de biscuiți (salami de galletas)",
+"i": [
+"300 g de galletas tipo María",
+"100 g unt",
+"100 g zahăr",
+"3 linguri de cacao",
+"100 ml lapte",
+"50 g nuci",
+"zahăr pudră (opțional)"
+],
+"s": "Trocea las galletas en trozos irregulares. Încinge laptele cu zahărul, cacao și untul până la o cremă omogenă și amestecă-l cu prăjiturile și nucile. Formați un cilindru cu folie, rulați-l strâns și lăsați-l la frigider pentru câteva ore. Corta en rodajas que imitan al salami; reboza en azúcar glass si quieres."
+}
+}

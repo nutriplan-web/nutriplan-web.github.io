@@ -1,0 +1,2336 @@
+{
+"sec:sopas-frias": "Spanish cold soups",
+"sf-gazpacho-andaluz": {
+"t": "Andalusian gazpacho",
+"i": [
+"1 kg of ripe tomatoes",
+"1/2 cucumber",
+"1 green Italian pepper",
+"1 clove of garlic",
+"50 g of day-old bread",
+"50 ml extra virgin olive oil",
+"1 tablespoon wine vinegar",
+"salt to taste"
+],
+"s": "Chop the tomatoes, cucumber and pepper and put them in the blender glass with the garlic and soaked bread. Grind until fine and, with the machine running, add the oil gradually so that it emulsifies. Adjust the vinegar and salt, strain if you want it very fine and chill for at least 2 hours before serving."
+},
+"sf-salmorejo-cordobes": {
+"t": "Cordoban salmorejo",
+"i": [
+"1 kg of ripe tomatoes",
+"150 g day-old white bread",
+"1 clove of garlic",
+"100 ml extra virgin olive oil",
+"salt to taste",
+"2 hard-boiled eggs and 50 g of serrano ham to serve"
+],
+"s": "Crush the tomatoes with the garlic and salt, add the bread in pieces and let it hydrate for a couple of minutes. Blend again, incorporating the oil little by little until you achieve a thick, orange cream. Cool and serve with chopped hard-boiled egg and ham on top."
+},
+"sf-ajoblanco-malagueno": {
+"t": "Ajoblanco from Malaga",
+"i": [
+"150 g raw peeled almonds",
+"1 clove of garlic",
+"50 g of day-old bread",
+"60 ml extra virgin olive oil",
+"1 tablespoon vinegar",
+"750 ml cold water",
+"salt to taste",
+"grapes or melon to serve"
+],
+"s": "Soak the bread and grind it with the almonds, garlic and a little water until you obtain a paste. Add the rest of the water, vinegar and salt, and emulsify with the oil until smooth. Serve very cold with some split grapes on top."
+},
+"sf-porra-antequerana": {
+"t": "Antequera baton",
+"i": [
+"1 kg of ripe tomatoes",
+"200 g of day-old bread",
+"1 clove of garlic",
+"1 small green pepper",
+"120 ml extra virgin olive oil",
+"salt to taste",
+"hard boiled egg and ham to serve"
+],
+"s": "Blend the tomatoes with the garlic, pepper and salt, add the soaked bread and let it rest. Beat again, emulsifying with the oil until a cream thicker than gazpacho. Serve cold with hard-boiled egg and diced ham."
+},
+"sf-gazpacho-verde": {
+"t": "green gazpacho",
+"i": [
+"1 cucumber",
+"1 green pepper",
+"1 green apple",
+"1/2 avocado",
+"1 handful of spinach",
+"40 ml extra virgin olive oil",
+"the juice of 1 lime",
+"200 ml cold water",
+"salt to taste"
+],
+"s": "Peel and chop the cucumber, apple and avocado and put them in the blender with the pepper and spinach. Blend with the water and lime until you have a fine, green cream, emulsifying with the oil. Adjust the salt and serve very cold."
+},
+"sf-gazpacho-sandia": {
+"t": "Watermelon gazpacho",
+"i": [
+"500 g seedless watermelon",
+"2 ripe tomatoes",
+"1/2 cucumber",
+"30 ml extra virgin olive oil",
+"1 teaspoon vinegar",
+"some mint leaves",
+"salt to taste"
+],
+"s": "Blend the watermelon with the tomato and cucumber until liquid. Emulsify with the oil and vinegar, add some mint leaves and salt, and beat again. Strain and serve very cold; It is sweet and refreshing."
+},
+"sec:salsas": "Homemade sauces",
+"salsa-ranch": {
+"t": "ranch sauce",
+"i": [
+"4 tablespoons mayonnaise",
+"3 tablespoons natural yogurt or sour cream",
+"2 tablespoons of milk",
+"1/2 teaspoon garlic powder",
+"1/2 teaspoon onion powder",
+"1 tablespoon chopped chives",
+"1 teaspoon dill",
+"salt and pepper"
+],
+"s": "Mix the mayonnaise with the yogurt and milk until it becomes a fluid cream. Add the garlic and onion powder, chives and dill, and season with salt and pepper. Let it rest for 30 minutes in the cold so that the flavors integrate."
+},
+"salsa-bufalo": {
+"t": "buffalo sauce",
+"i": [
+"120 ml cayenne hot sauce",
+"60g butter",
+"1 teaspoon vinegar",
+"1/2 teaspoon garlic powder",
+"a pinch of salt"
+],
+"s": "Melt the butter over low heat and remove from heat. Add the hot sauce, vinegar and garlic powder and whisk until emulsified and glossy. Use it warm on wings or roasted cauliflower."
+},
+"salsa-tartara": {
+"t": "tartar sauce",
+"i": [
+"6 tablespoons mayonnaise",
+"2 pickled cucumbers, chopped",
+"1 tablespoon chopped capers",
+"1/2 small onion, finely chopped",
+"1 tablespoon parsley",
+"1 teaspoon mustard",
+"a few drops of lemon"
+],
+"s": "Chop the pickles, capers and onion very finely. Mix them with the mayonnaise, mustard, parsley and lemon. Chill before serving; Accompanies fish and fried foods."
+},
+"salsa-alfredo": {
+"t": "Alfredo sauce",
+"i": [
+"250 ml cooking cream",
+"50g butter",
+"80 g grated parmesan cheese",
+"1 clove of garlic",
+"a pinch of nutmeg",
+"salt and pepper"
+],
+"s": "Melt the butter with the minced garlic without browning. Add the cream and heat without boiling, add the parmesan little by little, stirring until it thickens. Season with nutmeg, salt and pepper and use immediately on pasta."
+},
+"salsa-chipotle": {
+"t": "chipotle sauce",
+"i": [
+"6 tablespoons mayonnaise",
+"2 chipotle chiles in marinade",
+"1 tablespoon of the adobo sauce",
+"the juice of 1/2 lime",
+"1/2 clove of garlic",
+"salt"
+],
+"s": "Blend the chipotles with their marinade, garlic and lime until you obtain a paste. Mix it with the mayonnaise until you achieve the spiciness you prefer. Refrigerate; It goes well with tacos, hamburgers and potatoes."
+},
+"salsa-yogur-pepino": {
+"t": "Yogurt and cucumber sauce (tzatziki)",
+"i": [
+"250 g Greek yogurt",
+"1/2 cucumber grated and drained",
+"1 clove of garlic",
+"1 tablespoon olive oil",
+"a few mint or dill leaves",
+"the juice of 1/2 lemon",
+"salt"
+],
+"s": "Grate the cucumber, salt it and drain it well to remove the water. Mix it with the yogurt, crushed garlic, oil, lemon and chopped herb. Chill 1 hour; refreshes grilled meats and vegetables."
+},
+"sec:smoothies": "Healthy drinks and smoothies",
+"sm-arandanos": {
+"t": "Blueberry smoothie",
+"i": [
+"150g blueberries",
+"1 banana",
+"200 ml of milk or vegetable drink",
+"1 tablespoon oat flakes",
+"1 teaspoon honey"
+],
+"s": "Put all the ingredients in the blender. Blend until smooth and creamy. Serves instantly; If you want it more liquid, add a little more milk."
+},
+"sm-chocolate": {
+"t": "Chocolate smoothie",
+"i": [
+"1 frozen banana",
+"200 ml of milk or vegetable drink",
+"1 tablespoon pure cocoa powder",
+"1 tablespoon peanut butter",
+"1 date optional"
+],
+"s": "Mash the banana with the milk, cocoa and peanut butter. Blend until thick and smooth. Sweeten with the date if you need it."
+},
+"sm-melocoton": {
+"t": "Peach smoothie",
+"i": [
+"2 ripe peaches",
+"150 g of natural yogurt",
+"150 ml milk",
+"1 teaspoon honey"
+],
+"s": "Peel and chop the peaches. Blend them with the yogurt, milk and honey until smooth. Serve cold."
+},
+"sm-vainilla": {
+"t": "Vanilla smoothie",
+"i": [
+"1 banana",
+"200 ml of milk",
+"150g yogurt",
+"1/2 teaspoon vanilla extract",
+"1 teaspoon honey"
+],
+"s": "Beat the banana with the yogurt, milk, vanilla and honey. Blend until you achieve a creamy smoothie texture. Serves immediately."
+},
+"sm-verde": {
+"t": "green smoothie",
+"i": [
+"1 handful of spinach",
+"1 green apple",
+"1 banana",
+"200 ml of water or vegetable drink",
+"a piece of ginger",
+"the juice of 1/2 lemon"
+],
+"s": "Wash the spinach and chop the fruit. Blend everything with the water, ginger and lemon until it is fine and without strands. Drink freshly made to take advantage of the vitamins."
+},
+"sm-fresa": {
+"t": "Strawberry smoothie",
+"i": [
+"200g strawberries",
+"150g yogurt",
+"150 ml milk",
+"1 teaspoon honey"
+],
+"s": "Wash and trim the strawberries. Blend them with the yogurt, milk and honey until pink and foamy. Serve cold."
+},
+"sm-platano": {
+"t": "Banana and oat smoothie",
+"i": [
+"2 bananas",
+"250 ml of milk or vegetable drink",
+"2 tablespoons oat flakes",
+"1/2 teaspoon cinnamon",
+"1 teaspoon honey"
+],
+"s": "Mash the bananas with the milk, oats and cinnamon. Beat well until the oats are integrated and creamy. It is satiating, ideal before training."
+},
+"sm-mango": {
+"t": "Mango smoothie",
+"i": [
+"1 ripe mango",
+"150g yogurt",
+"100 ml orange juice",
+"1 teaspoon honey"
+],
+"s": "Peel and chop the mango. Blend it with the yogurt, orange juice and honey until it is tropical and smooth. Serve very cold."
+},
+"sm-sandia": {
+"t": "Watermelon smoothie",
+"i": [
+"400 g seedless watermelon",
+"100g strawberries",
+"the juice of 1 lime",
+"some mint leaves",
+"ice"
+],
+"s": "Mash the watermelon with the strawberries, lime and mint. Add ice and blend until slushy. Very refreshing and low in calories."
+},
+"sm-pina": {
+"t": "Pineapple and coconut smoothie",
+"i": [
+"200 g pineapple",
+"1 banana",
+"150 ml coconut milk",
+"100 ml of water"
+],
+"s": "Chop the pineapple and banana. Blend them with the coconut milk and water until you have a non-alcoholic piña colada-type drink. Serve with ice."
+},
+"sec:comidas-proteicas": "Protein meals to go",
+"pl-ensalada-atun-garbanzos": {
+"t": "Tuna and chickpea salad",
+"i": [
+"1 large can of natural tuna",
+"250 g cooked chickpeas",
+"1 tomato",
+"1/2 red onion",
+"1 hard-boiled egg",
+"parsley",
+"olive oil, vinegar and salt"
+],
+"s": "Drain the chickpeas and tuna and mix them with the chopped tomato and onion. Dress with oil, vinegar, salt and parsley, and top with the hard-boiled egg in wedges. Holds up perfectly in a lunch box. It provides about 32 g of protein."
+},
+"pl-wrap-pollo-aguacate": {
+"t": "Chicken and avocado wrap",
+"i": [
+"1 large wheat tortilla",
+"150 g grilled chicken in strips",
+"1/2 avocado",
+"lettuce leaves",
+"1 sliced tomato",
+"1 tablespoon yogurt or light sauce"
+],
+"s": "Spread the tortilla with the yogurt and distribute the lettuce, tomato, sliced ​​avocado and chicken. Roll tightly and wrap in paper to transport it. It provides about 38 g of protein."
+},
+"pl-pasta-pollo-pesto": {
+"t": "Cold pasta with chicken and pesto",
+"i": [
+"180 g short pasta",
+"150 g cooked chicken",
+"2 tablespoons pesto",
+"8 cherry tomatoes",
+"30 g parmesan cheese",
+"arugula"
+],
+"s": "Cook the pasta al dente and cool it under the tap. Mix it with the pesto, shredded chicken, chopped cherries and arugula, and distribute the parmesan. It is eaten cold and provides about 36 g of protein."
+},
+"pl-bowl-quinoa-salmon": {
+"t": "Quinoa and salmon bowl",
+"i": [
+"120 g quinoa",
+"150 g cooked or grilled salmon",
+"1/2 avocado",
+"1 grated carrot",
+"a handful of edamame",
+"soy and sesame sauce"
+],
+"s": "Cook the quinoa and let it cool. Put it in the bowl with the salmon, avocado, carrot and edamame, and season with soy and sesame. It provides about 29 g of protein."
+},
+"pl-hummus-verduras-huevo": {
+"t": "Hummus with vegetables and egg",
+"i": [
+"150g hummus",
+"1 carrot in sticks",
+"1/2 cucumber in sticks",
+"1 pepper in strips",
+"2 hard-boiled eggs",
+"whole wheat bread spikes"
+],
+"s": "Place the hummus in the center and distribute the raw vegetables on sticks around it. Add the broken hard-boiled eggs and a few peaks for dipping. It provides about 22 g of protein."
+},
+"sec:pintxos": "Basque pintxos",
+"px-gilda": {
+"t": "classic Gilda",
+"i": [
+"3 pitted green olives",
+"2 anchovies in oil",
+"2 chillies in vinegar (piparras)",
+"extra virgin olive oil"
+],
+"s": "Thread an olive, a rolled chili pepper and an anchovy on a toothpick, repeating until the pintxo is assembled. Drizzle with a drizzle of olive oil. It is served cold as a salty and spicy appetizer."
+},
+"px-tortilla-cremosa": {
+"t": "Creamy potato omelette",
+"i": [
+"3 eggs",
+"2 medium potatoes",
+"1/2 onion",
+"olive oil",
+"salt",
+"sliced bread"
+],
+"s": "Fry the sliced ​​potatoes and onion over low heat until tender and drain them. Mix them with the beaten eggs and set the omelette, leaving it juicy inside. Serve a piece on bread."
+},
+"px-anchoa-piparra": {
+"t": "anchovy and piparra",
+"i": [
+"2 anchovies in oil",
+"2 peppers in vinegar",
+"1 slice of bread",
+"grated tomato",
+"olive oil"
+],
+"s": "Spread the bread with a little grated tomato and oil. Place the anchovies on top and accompany with the piparras. Saline and fresh bite at the same time."
+},
+"px-bacalao-pilpil": {
+"t": "Cod pil pil",
+"i": [
+"200 g desalted cod",
+"3 cloves of garlic",
+"1 chilli",
+"100 ml olive oil",
+"bread"
+],
+"s": "Confit the garlic and chilli in the oil and remove them. Cook the cod over very low heat on the skin side and, off the heat, move the pot in circles to bind the pil pil with the fish gelatin. Serve on bread."
+},
+"px-jamon-brie": {
+"t": "Iberian ham and brie",
+"i": [
+"50 g of Iberian ham",
+"50 g brie cheese",
+"1 slice of bread",
+"jam or quince"
+],
+"s": "Lightly toast the bread and place a slice of brie. Put the Iberian ham and a touch of jam on top. The contrast of salty and sweet is the key."
+},
+"px-pulpo-gallega": {
+"t": "Galician-style octopus",
+"i": [
+"200 g cooked octopus",
+"1 cooked potato",
+"sweet and spicy paprika",
+"salt flakes",
+"olive oil"
+],
+"s": "Cut the octopus into slices and place it on a slice of cooked potato. Sprinkle paprika and salt flakes and drizzle with olive oil. Serve warm."
+},
+"px-txaka": {
+"t": "Txaka (surimi salad)",
+"i": [
+"150g surimi",
+"3 tablespoons mayonnaise",
+"1 tablespoon fried tomato",
+"a few drops of brandy",
+"bread"
+],
+"s": "Crumble the surimi and mix it with the mayonnaise and fried tomato until you achieve a pink cream. Add a few drops of brandy. Serve on bread or in a tartlet."
+},
+"px-croquetas": {
+"t": "Homemade ham croquettes",
+"i": [
+"50 g of serrano ham",
+"40g butter",
+"40g flour",
+"400 ml of milk",
+"1 egg",
+"breadcrumbs",
+"oil for frying",
+"nutmeg and salt"
+],
+"s": "Make a thick bechamel with the butter, flour and milk, add the chopped ham and nutmeg and let it cool. Form the croquettes, dip them in egg and breadcrumbs and fry them in hot oil until golden brown."
+},
+"px-boqueron-donostiarra": {
+"t": "Pickled anchovies",
+"i": [
+"200 g of clean anchovies",
+"wine vinegar",
+"2 cloves of garlic",
+"parsley",
+"olive oil",
+"salt"
+],
+"s": "Cover the opened anchovies with vinegar and salt and let them marinate for a few hours in the cold until they turn white. Drain them and dress them with chopped garlic and parsley and plenty of olive oil. Serve very cold on bread."
+},
+"px-solomillo-foie": {
+"t": "Sirloin and foie",
+"i": [
+"150 g beef tenderloin",
+"50 g foie",
+"1 slice of bread",
+"reduction of Pedro Ximénez",
+"salt and pepper"
+],
+"s": "Sear the grilled sirloin to perfection and season it with salt and pepper. Sear the foie for a few seconds on each side and mount it on the sirloin and bread. It ends with a reduction thread by Pedro Ximénez."
+},
+"px-txangurro": {
+"t": "Grilled crab",
+"i": [
+"200 g of crab or crab meat",
+"1/2 onion",
+"1 tomato",
+"a splash of brandy",
+"breadcrumbs",
+"butter"
+],
+"s": "Sauté the onion and tomato, add the crab meat and brandy and let it reduce. Fill the shells or casseroles, sprinkle breadcrumbs with a few sheets of butter and gratin until golden."
+},
+"px-atun-cebolla": {
+"t": "Red tuna and confit onion",
+"i": [
+"150 g red tuna",
+"1 onion",
+"1 tablespoon brown sugar",
+"vinegar",
+"olive oil",
+"salt"
+],
+"s": "Confit the julienne onion over low heat with a little sugar and vinegar until caramelized. Score the tuna on the outside, leaving it raw in the center and cut it into cubes. Serve on onion and bread."
+},
+"px-morcilla-piquillos": {
+"t": "Black pudding and piquillos",
+"i": [
+"150 g of Burgos blood sausage",
+"2 piquillo peppers",
+"1 slice of bread",
+"olive oil"
+],
+"s": "Fry the crumbled black pudding until loose and crispy. Heat the piquillos in the same pan. Mount the blood sausage on the bread and the piquillo peppers on top."
+},
+"px-salmon-ahumado": {
+"t": "Smoked salmon and cream cheese",
+"i": [
+"80 g smoked salmon",
+"2 tablespoons cream cheese",
+"1 slice of bread",
+"dill",
+"capers"
+],
+"s": "Spread the bread with the cream cheese and place the smoked salmon in folds. Decorate with dill and some capers. Fresh pintxo that does not need cooking."
+},
+"px-cangrejos-vino": {
+"t": "Crabs in wine (changurro)",
+"i": [
+"200 g crab meat",
+"1/2 onion",
+"1 tomato",
+"100 ml white wine",
+"olive oil",
+"parsley",
+"salt"
+],
+"s": "Sauté the onion and tomato, add the crab meat and pour over the white wine. Let it reduce until the sauce is smooth and sprinkle with parsley. Serve hot in a casserole or on bread."
+},
+"sec:tostas": "Salty toasts and tartines",
+"ts-aguacate-huevo": {
+"t": "Avocado and poached egg toast",
+"i": [
+"1 slice of rustic bread",
+"1/2 avocado",
+"1 egg",
+"vinegar",
+"salt flakes",
+"pepper"
+],
+"s": "Toast the bread and mash the avocado with salt on top. Poach the egg in water with a splash of vinegar for 3 minutes and place it on the avocado. Finish with flaked salt and pepper."
+},
+"ts-jamon-burrata": {
+"t": "Raw ham, burrata and tomato toast",
+"i": [
+"1 slice of bread",
+"1/2 burrata",
+"2 slices of serrano ham",
+"1 tomato",
+"basil",
+"olive oil"
+],
+"s": "Place the open burrata on the bread and distribute the sliced ​​tomato. Add the ham and some basil leaves and drizzle with oil. Serve immediately so the burrata is creamy."
+},
+"ts-salmon-aguacate": {
+"t": "Smoked salmon and avocado toast",
+"i": [
+"1 slice of bread",
+"1/2 avocado",
+"60 g smoked salmon",
+"cream cheese",
+"dill",
+"lemon"
+],
+"s": "Spread the bread with cream cheese and spread the sliced ​​avocado. Arrange the salmon in folds and finish with dill and a few drops of lemon."
+},
+"ts-cabra-miel": {
+"t": "Goat cheese and honey toast",
+"i": [
+"1 slice of bread",
+"1 slice of goat curl",
+"1 teaspoon honey",
+"nuts",
+"thyme"
+],
+"s": "Place the cheese on the bread and gratin it for a few minutes until it turns golden. Drizzle with honey and scatter with chopped walnuts and thyme. Serve warm."
+},
+"ts-atun-rabano": {
+"t": "Tuna, mayonnaise and radish toast",
+"i": [
+"1 slice of bread",
+"1 can of tuna",
+"1 tablespoon mayonnaise",
+"2 radishes",
+"chives"
+],
+"s": "Mix the drained tuna with the mayonnaise and spread it on the bread. Top with thinly sliced ​​radishes and chopped chives."
+},
+"ts-caprese": {
+"t": "caprese toast",
+"i": [
+"1 slice of bread",
+"1/2 ball of mozzarella",
+"1 tomato",
+"basil",
+"olive oil",
+"salt"
+],
+"s": "Spread alternating slices of mozzarella and tomato on the bread. Add basil leaves, salt and a drizzle of oil. Fresh and Mediterranean."
+},
+"ts-salmon-eneldo": {
+"t": "Salmon and dill toast",
+"i": [
+"1 slice of rye bread",
+"60 g smoked salmon",
+"cream cheese",
+"dill",
+"cucumber"
+],
+"s": "Spread the rye bread with cream cheese and place cucumber slices. Add the salmon and plenty of fresh dill."
+},
+"ts-jamon-emmental": {
+"t": "Cooked ham and emmental toast",
+"i": [
+"1 slice of bread",
+"2 slices of cooked ham",
+"2 slices of emmental",
+"mild mustard"
+],
+"s": "Spread the bread with mustard and place the cooked ham and emmental. Bake or gratin until the cheese melts."
+},
+"ts-chorizo-manchego": {
+"t": "Chorizo and Manchego cheese toast",
+"i": [
+"1 slice of bread",
+"4 slices of chorizo",
+"2 slices of Manchego cheese",
+"olive oil"
+],
+"s": "Lightly fry the chorizo ​​to release its fat. Mount it on the bread with the manchego and a drizzle of oil. Heat until the cheese begins to melt."
+},
+"ts-guacamole-gambas": {
+"t": "Guacamole and shrimp toast",
+"i": [
+"1 slice of bread",
+"1/2 avocado",
+"6 peeled shrimp",
+"lime",
+"cilantro",
+"garlic"
+],
+"s": "Mash the avocado with lime, salt and cilantro and spread it on the bread. Sauté the shrimp with a little garlic and place them on top."
+},
+"ts-pate-pepinillos": {
+"t": "Pâté and pickle toast",
+"i": [
+"1 slice of bread",
+"50 g pâté",
+"2 pickles",
+"pickled onion"
+],
+"s": "Spread the bread with the pate. Top with sliced ​​pickles and a little pickled onion to cut through the fat."
+},
+"ts-queso-fresco-pepino": {
+"t": "Fresh cheese, cucumber and dill toast",
+"i": [
+"1 slice of bread",
+"3 tablespoons of whipped fresh cheese",
+"1/2 cucumber",
+"dill",
+"salt"
+],
+"s": "Spread the fresh cheese on the bread. Top with cucumber slices, dill and a pinch of salt. Light and refreshing."
+},
+"ts-brie-pera-nueces": {
+"t": "Brie, pear and walnut toast",
+"i": [
+"1 slice of bread",
+"2 slices of brie",
+"1/2 pear",
+"nuts",
+"honey"
+],
+"s": "Place the brie on the bread and the sliced ​​pear on top. Spread walnuts and a drizzle of honey and lightly gratin."
+},
+"ts-hummus-verduras": {
+"t": "Hummus and roasted vegetables toast",
+"i": [
+"1 slice of bread",
+"3 tablespoons hummus",
+"roasted zucchini and pepper",
+"sesame"
+],
+"s": "Spread bread generously with hummus. Place the warm roasted vegetables on top and sprinkle with sesame seeds."
+},
+"ts-sardinas-tomate": {
+"t": "Sardines and tomato toast",
+"i": [
+"1 slice of bread",
+"1 can of sardines",
+"grated tomato",
+"olive oil",
+"salt"
+],
+"s": "Spread the bread with grated tomato and oil. Place the drained sardines on top and a pinch of salt."
+},
+"ts-ricotta-miel-nueces": {
+"t": "Ricotta, honey and walnut toast",
+"i": [
+"1 slice of bread",
+"3 tablespoons ricotta",
+"1 teaspoon honey",
+"nuts",
+"cinnamon"
+],
+"s": "Spread the ricotta on the toasted bread. Drizzle with honey and sprinkle with walnuts and a touch of cinnamon. Sweet and salty at the same time."
+},
+"ts-pavo-mostaza": {
+"t": "Turkey, lettuce and mustard toast",
+"i": [
+"1 slice of bread",
+"2 slices of turkey breast",
+"lettuce leaves",
+"mustard",
+"tomato"
+],
+"s": "Spread the bread with mustard and place the lettuce, tomato and turkey. Light and quick option for mid-morning."
+},
+"ts-azul-higo": {
+"t": "Blue cheese, fig and walnut toast",
+"i": [
+"1 slice of bread",
+"30 g blue cheese",
+"1 fig",
+"nuts",
+"honey"
+],
+"s": "Spread the crumbled blue cheese over the bread. Add the fig segments, walnuts and a drizzle of honey to balance the strong flavor of the cheese."
+},
+"ts-pan-tumaca": {
+"t": "Bread with tomato (pa amb tomàquet)",
+"i": [
+"1 slice of bread",
+"1 ripe tomato",
+"1 clove of garlic",
+"extra virgin olive oil",
+"salt"
+],
+"s": "Toast the bread and rub it with the garlic and then with the chopped tomato. Water with good oil and salt. The basis of Mediterranean snacking."
+},
+"ts-boquerones-pimiento": {
+"t": "Anchovies and roasted pepper toast",
+"i": [
+"1 slice of bread",
+"3 anchovies in vinegar",
+"1/2 roasted red pepper",
+"olive oil"
+],
+"s": "Place roasted pepper strips on the bread. Add the pickled anchovies and a drizzle of oil."
+},
+"ts-queso-crema-salmon": {
+"t": "Cream cheese and salmon toast",
+"i": [
+"1 slice of bread",
+"2 tablespoons cream cheese",
+"60 g smoked salmon",
+"capers",
+"red onion"
+],
+"s": "Spread the cream cheese and place the salmon. Finish with capers and red onion in thin rings."
+},
+"ts-revuelto-champinones": {
+"t": "Scrambled mushroom toast",
+"i": [
+"1 slice of bread",
+"100 g mushrooms",
+"1 egg",
+"garlic",
+"parsley",
+"oil"
+],
+"s": "Sauté the sliced ​​mushrooms with garlic until golden brown and add the egg to make a juicy scramble. Spread over the bread with parsley."
+},
+"ts-berenjena-feta": {
+"t": "Roasted eggplant and feta toast",
+"i": [
+"1 slice of bread",
+"1/2 eggplant",
+"40g feta cheese",
+"mint",
+"olive oil"
+],
+"s": "Grill sliced ​​eggplant in oil until tender. Place it on the bread with crumbled feta and mint."
+},
+"ts-anchoas-mantequilla": {
+"t": "Anchovies and butter toast",
+"i": [
+"1 slice of bread",
+"3 anchovies in oil",
+"butter",
+"chives"
+],
+"s": "Spread the bread with a layer of butter. Place the anchovies on top and sprinkle with chives. A simple French classic."
+},
+"ts-tortilla-jamon": {
+"t": "French omelet and ham toast",
+"i": [
+"1 slice of bread",
+"2 eggs",
+"2 slices of cooked ham",
+"oil",
+"salt"
+],
+"s": "Make a juicy French omelette and fold it over the bread. Add the ham and a pinch of salt."
+},
+"sec:aperitivos": "Snacks to snack",
+"ap-brocheta-caprese": {
+"t": "Tomato and mozzarella skewers",
+"i": [
+"12 cherry tomatoes",
+"12 mini mozzarellas",
+"basil",
+"olive oil",
+"balsamic vinegar"
+],
+"s": "String a cherry, a basil leaf and a mozzarella on toothpicks. Dress with oil and a touch of balsamic. Ready in minutes."
+},
+"ap-rollitos-calabacin": {
+"t": "Zucchini and cream cheese rolls",
+"i": [
+"1 zucchini",
+"100 g cream cheese",
+"mint",
+"olive oil",
+"salt"
+],
+"s": "Cut the zucchini into thin slices lengthwise and mark them on the grill. Spread with cream cheese and mint, roll up and secure with a toothpick."
+},
+"ap-huevos-rellenos": {
+"t": "stuffed eggs",
+"i": [
+"4 hard boiled eggs",
+"1 can of tuna",
+"2 tablespoons mayonnaise",
+"fried tomato",
+"olives"
+],
+"s": "Cut the eggs in half and mix the yolks with the tuna and mayonnaise. Fill the egg whites with the pasta and decorate with a little fried tomato and olive."
+},
+"ap-mini-quiches": {
+"t": "Mini vegetable quiches",
+"i": [
+"1 sheet of shortcrust pastry",
+"2 eggs",
+"100 ml of cream",
+"leek and spinach",
+"grated cheese",
+"salt"
+],
+"s": "Line muffin molds with the dough. Fill with the poached vegetables and the egg, cream and cheese mixture, and bake at 180°C for about 20 minutes."
+},
+"ap-tartaletas-tomate": {
+"t": "Tomato and cheese tartlets",
+"i": [
+"8 tartlets",
+"fried tomato",
+"grated cheese",
+"oregano"
+],
+"s": "Fill the tartlets with tomato and cheese. Gratin until the cheese melts and sprinkle with oregano."
+},
+"ap-brocheta-melon-jamon": {
+"t": "Melon and ham skewers",
+"i": [
+"1/4 of melon",
+"8 slices of serrano ham",
+"mint"
+],
+"s": "Cut the melon into cubes and wrap them with half a slice of ham. String a mint leaf onto toothpicks. Sweet and salty."
+},
+"ap-palmeritas-pesto": {
+"t": "Puff pastry and pesto palms",
+"i": [
+"1 sheet of puff pastry",
+"3 tablespoons pesto",
+"parmesan cheese"
+],
+"s": "Spread the pesto over the puff pastry and roll both sides towards the center. Cut into slices, sprinkle with parmesan and bake until golden."
+},
+"ap-champinones-rellenos": {
+"t": "stuffed mushrooms",
+"i": [
+"12 large mushrooms",
+"100 g cream cheese",
+"garlic",
+"parsley",
+"breadcrumbs"
+],
+"s": "Remove the stems from the mushrooms and chop them. Mix them with cream cheese, garlic and parsley, fill the hats, sprinkle with breadcrumbs and bake for 15 minutes."
+},
+"ap-bolitas-queso": {
+"t": "Cheese and herb balls",
+"i": [
+"200 g cream cheese",
+"50 g grated cheese",
+"fresh herbs",
+"chopped nuts"
+],
+"s": "Mix the cheeses and form balls with your hands. Coat them in herbs and chopped nuts and chill until serving."
+},
+"ap-brocheta-pollo-pina": {
+"t": "Chicken and pineapple skewers",
+"i": [
+"1 chicken breast",
+"200 g pineapple",
+"soy sauce",
+"honey",
+"sesame"
+],
+"s": "Marinate the diced chicken with soy and honey. Skewer it alternating with pineapple and grill it; sprinkle sesame."
+},
+"ap-cherry-atun": {
+"t": "Cherry tomatoes stuffed with tuna",
+"i": [
+"16 large cherry tomatoes",
+"1 can of tuna",
+"2 tablespoons mayonnaise",
+"chives"
+],
+"s": "Empty the cherries carefully. Fill them with tuna mixed with mayonnaise and finish with chives."
+},
+"ap-rollitos-salmon": {
+"t": "Salmon and cheese rolls",
+"i": [
+"100 g smoked salmon",
+"100 g cream cheese",
+"dill"
+],
+"s": "Spread the salmon slices, spread cream cheese with dill and roll them up. Cut into sushi-style slices."
+},
+"ap-crackers-pate": {
+"t": "Crackers with pâté and pickle",
+"i": [
+"12 crackers",
+"100 g pâté",
+"pickles"
+],
+"s": "Spread each cracker with pate. Top with a slice of pickle. Fast and result."
+},
+"ap-datiles-bacon": {
+"t": "Dates wrapped in bacon",
+"i": [
+"12 pitted dates",
+"6 slices of bacon",
+"almonds"
+],
+"s": "Fill each date with an almond and wrap it with half a slice of bacon. Bake until the bacon is crispy."
+},
+"ap-bruschetta-tomate": {
+"t": "Mini tomato bruschetta",
+"i": [
+"1 baguette",
+"2 tomatoes",
+"basil",
+"garlic",
+"olive oil",
+"salt"
+],
+"s": "Toast baguette slices and rub them with garlic. Cover with chopped tomato seasoned with basil, oil and salt."
+},
+"ap-pinchos-caprese": {
+"t": "Caprese skewers",
+"i": [
+"12 cherry tomatoes",
+"12 mozzarella balls",
+"basil",
+"balsamic"
+],
+"s": "Alternate cherry, basil and mozzarella on each toothpick. Water with a balsamic reduction."
+},
+"ap-pepino-feta": {
+"t": "Cucumber and feta skewers",
+"i": [
+"1 cucumber",
+"100g feta cheese",
+"black olives",
+"oregano"
+],
+"s": "Cut the cucumber into thick slices and place a cube of feta and half an olive on top. Secure with a toothpick and sprinkle with oregano."
+},
+"ap-croquetas-jamon": {
+"t": "Ham croquettes",
+"i": [
+"thick bechamel with 50 g of ham",
+"egg",
+"breadcrumbs",
+"oil for frying"
+],
+"s": "Form the croquettes with the cold bechamel and ham dough. Coat them in egg and breadcrumbs and fry them until golden."
+},
+"ap-aceitunas-marinadas": {
+"t": "Marinated olives",
+"i": [
+"250 g olives",
+"garlic",
+"lemon and orange peel",
+"thyme",
+"olive oil"
+],
+"s": "Mix the olives with sliced ​​garlic, citrus peels, thyme and oil. Marinate for at least a day in the refrigerator."
+},
+"ap-hummus-cruidites": {
+"t": "Hummus with crudités",
+"i": [
+"200 g hummus",
+"carrot, celery and pepper",
+"bread spikes"
+],
+"s": "Serve the hummus in a bowl in the center. Serve with raw vegetable sticks and dippers."
+},
+"sec:ensaladas": "fresh salads",
+"en-griega": {
+"t": "Greek salad",
+"i": [
+"2 tomatoes",
+"1 cucumber",
+"1/2 red onion",
+"100g feta",
+"black olives",
+"oregano",
+"olive oil"
+],
+"s": "Chop the tomato, cucumber and onion into large pieces. Add the diced feta and olives, and dress with oil and oregano. It doesn't have lettuce."
+},
+"en-col": {
+"t": "Coleslaw",
+"i": [
+"1/4 cabbage",
+"2 carrots",
+"3 tablespoons mayonnaise",
+"1 tablespoon vinegar",
+"1 teaspoon mustard",
+"salt"
+],
+"s": "Cut the cabbage and carrot into very fine julienne strips. Mix the mayonnaise with the vinegar and mustard and season it. Let it rest to soften."
+},
+"en-tomate-cebolla": {
+"t": "Tomato and onion salad",
+"i": [
+"3 tomatoes",
+"1/2 sweet onion",
+"olive oil",
+"vinegar",
+"salt",
+"oregano"
+],
+"s": "Cut the tomatoes into slices and the onion into feathers. Dress with oil, vinegar and salt and sprinkle with oregano."
+},
+"en-pepino-yogur": {
+"t": "Cucumber and yogurt salad",
+"i": [
+"2 cucumbers",
+"150g yogurt",
+"garlic",
+"mint",
+"olive oil",
+"salt"
+],
+"s": "Cut the cucumber into thin slices. Mix it with the yogurt, crushed garlic, mint and salt. Serve very cold."
+},
+"en-remolacha": {
+"t": "Beet salad",
+"i": [
+"2 cooked beets",
+"1/2 red onion",
+"goat cheese",
+"nuts",
+"oil and vinegar"
+],
+"s": "Cut the beet into cubes and mix it with the onion. Spread goat cheese and walnuts and season."
+},
+"en-cesar": {
+"t": "Caesar Salad",
+"i": [
+"1 romaine lettuce",
+"1 chicken breast",
+"croutons",
+"parmesan",
+"caesar sauce",
+"anchovies optional"
+],
+"s": "Grill the chicken and cut it into strips. Mix the lettuce with the Caesar sauce, add the chicken, croutons and flaked Parmesan."
+},
+"en-patata": {
+"t": "potato salad",
+"i": [
+"500 g potatoes",
+"2 hard-boiled eggs",
+"1/2 onion",
+"pickles",
+"mayonnaise",
+"parsley"
+],
+"s": "Cook the potatoes and cut them into cubes. Mix them with the egg, onion and chopped pickles and mix with mayonnaise."
+},
+"en-pasta": {
+"t": "pasta salad",
+"i": [
+"200 g short pasta",
+"cherry tomatoes",
+"mozzarella",
+"olives",
+"basil",
+"olive oil"
+],
+"s": "Cook the pasta al dente and cool it. Mix it with the cherries, mozzarella and olives and dress with oil and basil."
+},
+"en-arroz": {
+"t": "rice salad",
+"i": [
+"200 g of rice",
+"1 can of tuna",
+"corn",
+"pepper",
+"hard boiled egg",
+"olives",
+"oil and vinegar"
+],
+"s": "Cook the rice and cool it. Mix it with the tuna, corn, pepper, egg and olives and season."
+},
+"en-lentejas": {
+"t": "Lentil salad",
+"i": [
+"250 g cooked lentils",
+"1 tomato",
+"1/2 onion",
+"1 pepper",
+"cumin",
+"oil and vinegar"
+],
+"s": "Drain the lentils and mix them with the chopped tomato, onion and pepper. Dress with oil, vinegar and a pinch of cumin."
+},
+"en-quinoa": {
+"t": "Quinoa salad",
+"i": [
+"150g quinoa",
+"cucumber",
+"tomato",
+"avocado",
+"lime",
+"cilantro",
+"olive oil"
+],
+"s": "Cook the quinoa and let it cool. Mix it with the cucumber, tomato and diced avocado and season with lime, cilantro and oil."
+},
+"en-garbanzos": {
+"t": "Chickpea salad",
+"i": [
+"250 g cooked chickpeas",
+"tomato",
+"cucumber",
+"onion",
+"parsley",
+"cumin",
+"oil and lemon"
+],
+"s": "Mix the chickpeas with the chopped tomato, cucumber and onion. Dress with oil, lemon, parsley and cumin."
+},
+"en-salmon-aguacate": {
+"t": "Smoked salmon and avocado salad",
+"i": [
+"green leaf mix",
+"100 g smoked salmon",
+"1 avocado",
+"cherry tomatoes",
+"dill",
+"oil and lemon"
+],
+"s": "Arrange the leaves on the plate and distribute the salmon, the sliced ​​avocado and the cherries. Dress with oil, lemon and dill."
+},
+"en-cabra-nueces": {
+"t": "Goat cheese and walnut salad",
+"i": [
+"green leaves",
+"1 goat curl",
+"nuts",
+"honey",
+"balsamic vinegar",
+"olive oil"
+],
+"s": "Gratin slices of goat cheese and place them on the leaves. Scatter walnuts and dress with honey, balsamic and oil."
+},
+"en-jamon-melon": {
+"t": "Ham and melon salad",
+"i": [
+"arugula",
+"1/4 of melon",
+"80 g of serrano ham",
+"parmesan flakes",
+"olive oil"
+],
+"s": "Arrange the arugula with the diced melon and ham. Finish with flakes of parmesan and a drizzle of oil."
+},
+"en-pollo-mango": {
+"t": "Chicken and mango salad",
+"i": [
+"green leaves",
+"1 chicken breast",
+"1 handle",
+"avocado",
+"cashews",
+"lime vinaigrette"
+],
+"s": "Score the chicken and cut it into strips. Mount it on the leaves with the mango and diced avocado and cashews, and dress with lime vinaigrette."
+},
+"en-tofu-sesamo": {
+"t": "Tofu and sesame salad",
+"i": [
+"200 g firm tofu",
+"red cabbage",
+"carrot",
+"edamame",
+"soy sauce",
+"sesame oil",
+"sesame"
+],
+"s": "Brown the diced tofu. Mix it with the julienned cabbage and carrot and the edamame, and season with soy, sesame oil and seeds."
+},
+"en-verano": {
+"t": "Summer salad (watermelon and feta)",
+"i": [
+"300 g watermelon",
+"100g feta",
+"mint",
+"olives",
+"olive oil",
+"lemon"
+],
+"s": "Cut the watermelon into cubes and mix it with the feta and olives. Dress with oil, lemon and mint. Sweet and salty."
+},
+"en-otono": {
+"t": "Autumn Salad (Roasted Pumpkin)",
+"i": [
+"300 g pumpkin",
+"baby spinach",
+"nuts",
+"goat cheese",
+"seeds",
+"honey vinaigrette"
+],
+"s": "Roast the diced pumpkin until golden brown. Mount it warm on the spinach with nuts, cheese and seeds and dress with honey vinaigrette."
+},
+"en-invierno": {
+"t": "Winter salad (orange and fennel)",
+"i": [
+"2 oranges",
+"1 fennel bulb",
+"black olives",
+"pomegranate",
+"olive oil",
+"salt"
+],
+"s": "Peel the oranges roughly and slice the fennel very finely. Mix them with the olives and pomegranate and season with oil and salt."
+},
+"en-primavera": {
+"t": "Spring salad (asparagus and peas)",
+"i": [
+"1 bunch of green asparagus",
+"100 g peas",
+"arugula",
+"poached egg",
+"parmesan",
+"oil and lemon"
+],
+"s": "Sauté the asparagus and peas and let them cool. Mount them on the arugula with a poached egg and parmesan, and dress with oil and lemon."
+},
+"en-frutas": {
+"t": "fruit salad",
+"i": [
+"1 apple",
+"1 banana",
+"1 orange",
+"strawberries",
+"grapes",
+"the juice of 1 orange",
+"mint"
+],
+"s": "Cut all the fruit into similar sizes. Mix it with the orange juice so that it does not oxidize and distribute some mint leaves."
+},
+"sec:postres": "Desserts",
+"po-tiramisu": {
+"t": "Tiramisu",
+"i": [
+"250 g mascarpone cheese",
+"3 eggs",
+"80g sugar",
+"200 ml cold strong coffee",
+"1 package of sponge cakes",
+"cocoa powder for sprinkling"
+],
+"s": "Separate the whites from the yolks. Beat the yolks with the sugar until they turn white and add the mascarpone until you have a smooth cream. Whip the egg whites until stiff and fold them in with gentle movements. Briefly dip the biscuits in the coffee and form a layer on a platter; cover with cream and repeat. Finish with sprinkled cocoa and chill for at least 4 hours."
+},
+"po-coulant-chocolate": {
+"t": "Chocolate Coulant",
+"i": [
+"120 g dark chocolate",
+"100g butter",
+"2 eggs",
+"60g sugar",
+"40g flour",
+"a pinch of salt",
+"butter and cocoa for the molds"
+],
+"s": "Melt the chocolate with the butter and let it cool. Beat the eggs with the sugar and add the chocolate, sifted flour and salt. Pour into individual greased molds and chill for 30 minutes. Bake at 200°C for about 9-10 minutes: the edge should be set and the center runny. Carefully unmold and serve immediately."
+},
+"po-cheesecake": {
+"t": "Cheesecake without oven",
+"i": [
+"200 g digestive biscuits",
+"90g butter",
+"400 g cream cheese",
+"200 ml whipping cream",
+"80g sugar",
+"1 teaspoon vanilla extract",
+"red fruits to cover"
+],
+"s": "Crush the cookies and mix them with the melted butter; Press into the base of a mold and cool. Beat the cheese with the sugar and vanilla, whip the cream separately and fold it in gently. Pour over the base, smooth and refrigerate for at least 4 hours. Top with berries before serving."
+},
+"po-panna-cotta": {
+"t": "Vanilla panna cotta",
+"i": [
+"500 ml whipping cream",
+"80g sugar",
+"1 vanilla bean or 1 teaspoon extract",
+"3 gelatin sheets",
+"red fruits for the coulis"
+],
+"s": "Hydrate the gelatin in cold water. Heat the cream with the sugar and vanilla without boiling, remove from the heat and dissolve the drained gelatin. Pour into glasses and chill for at least 4 hours until set. Crush some red berries with a little sugar and cover the panna cotta before serving."
+},
+"po-mousse-chocolate": {
+"t": "Chocolate mousse",
+"i": [
+"150 g dark chocolate",
+"3 eggs",
+"30g sugar",
+"a pinch of salt"
+],
+"s": "Melt the chocolate and let it cool. Separate the whites from the yolks and add the yolks to the chocolate. Whip the egg whites with the salt and, when they are foamy, add the sugar until a firm meringue. Integrate the meringue into the chocolate with enveloping movements so as not to lower it. Pour into glasses and chill for at least 3 hours."
+},
+"po-tarta-limon": {
+"t": "Lemon cream pie",
+"i": [
+"1 shortcrust pastry base",
+"4 eggs",
+"150g sugar",
+"the juice of 3 lemons and the zest of 1",
+"100g butter",
+"1 tablespoon cornstarch"
+],
+"s": "Bake the blank shortcrust pastry base at 180°C for about 15 minutes. Mix the eggs with the sugar, lemon juice, zest and cornstarch, and cook over low heat, stirring until thickened. Remove, add the butter in pieces and fill the base. Chill until set and serve cold."
+},
+"po-crepes": {
+"t": "stuffed crepes",
+"i": [
+"2 eggs",
+"250 ml milk",
+"120g flour",
+"1 tablespoon of sugar",
+"a pinch of salt",
+"butter for the pan",
+"cream and red fruits to fill"
+],
+"s": "Beat the eggs with the milk, flour, sugar and salt until a thin dough without lumps; Let it rest for 20 minutes. Grease a frying pan and pour a ladle, spreading it thinly; curdle for a minute on each side. Fill with cream and red berries, fold and sprinkle with sugar."
+},
+"po-budin-chia": {
+"t": "Chia pudding with red berries",
+"i": [
+"3 tablespoons chia seeds",
+"250 ml of milk or vegetable drink",
+"1 tablespoon honey or syrup",
+"1/2 teaspoon vanilla",
+"red fruits and yogurt to whip"
+],
+"s": "Mix the chia with the milk, honey and vanilla and stir well so that it does not clump. Let it rest in the refrigerator for at least 4 hours (preferably overnight), stirring once halfway through. Pour into glasses alternating with yogurt and red fruits."
+},
+"po-bundt-limon": {
+"t": "Lemon Bundt Cake",
+"i": [
+"3 eggs",
+"200g sugar",
+"200g flour",
+"120 ml mild oil",
+"120 ml natural yogurt",
+"the zest of 2 lemons and their juice",
+"1 sachet of chemical yeast",
+"icing sugar and lemon juice for the glaze"
+],
+"s": "Beat the eggs with the sugar until they double in volume. Add the oil, yogurt, lemon zest and juice. Add the sifted flour and yeast. Pour into a greased bundt pan and bake at 175°C for about 40 minutes until a skewer comes out clean. Unmold, let cool and cover with a icing sugar and lemon glaze."
+},
+"po-pavlova": {
+"t": "Red fruit pavlova",
+"i": [
+"4 egg whites",
+"200g sugar",
+"1 teaspoon cornstarch",
+"1 teaspoon vinegar",
+"250 ml whipping cream",
+"red fruits to cover"
+],
+"s": "Whip the egg whites and add the sugar several times until a firm and shiny meringue; Add the cornstarch and vinegar. Form a disk on baking paper and bake at 120°C for about 70 minutes; Let it cool in the turned off oven. Top with whipped cream and berries just before serving."
+},
+"po-sorbete-limon": {
+"t": "lemon sorbet",
+"i": [
+"250 ml lemon juice",
+"150g sugar",
+"250 ml of water",
+"zest of 1 lemon",
+"1 egg white (optional)"
+],
+"s": "Heat the water with the sugar until it dissolves and let this syrup cool. Mix it with the juice and lemon zest. Freeze in a container, stirring with a fork every 30-40 minutes to break up the crystals; For a softer texture, add the half-frozen whipped egg white. It is ready when it is firm but creamy."
+},
+"po-natillas": {
+"t": "Homemade custard",
+"i": [
+"500 ml of milk",
+"4 egg yolks",
+"100g sugar",
+"1 tablespoon cornstarch",
+"1 cinnamon stick",
+"the peel of 1/2 lemon",
+"cinnamon powder and cookies to serve"
+],
+"s": "Infuse the milk with the cinnamon stick and lemon peel and remove it before it boils. Beat the yolks with the sugar and cornstarch, add the warm and strained milk and cook over low heat, stirring until it thickens without boiling. Divide into bowls, sprinkle with cinnamon and serve with a cookie."
+},
+"sec:dips": "Dips and spreads",
+"dip-hummus": {
+"t": "Hummus",
+"i": [
+"400 g cooked chickpeas",
+"2 tablespoons tahini",
+"the juice of 1 lemon",
+"1 clove of garlic",
+"3 tablespoons extra virgin olive oil",
+"1/2 teaspoon cumin",
+"salt to taste",
+"cold water to taste"
+],
+"s": "Drain the chickpeas, reserving a little of the liquid. Grind them with the tahini, lemon juice, garlic, cumin and salt until a paste. Add the oil and a little cold water while beating until creamy. Serve with a drizzle of oil and paprika."
+},
+"dip-guacamole": {
+"t": "Guacamole",
+"i": [
+"2 ripe avocados",
+"1/2 small onion chopped",
+"1 chopped tomato",
+"the juice of 1 lime",
+"some coriander leaves",
+"1 chili or chilli (optional)",
+"salt to taste"
+],
+"s": "Open the avocados and mash them with a fork, leaving some texture. Mix with the finely chopped onion, tomato, cilantro and chili. Dress with lime juice and salt. Serve it freshly so it doesn't oxidize."
+},
+"dip-tzatziki": {
+"t": "Tzatziki",
+"i": [
+"250 g Greek yogurt",
+"1/2 cucumber",
+"1 clove of garlic",
+"1 tablespoon olive oil",
+"1 teaspoon vinegar or lemon",
+"a few mint or dill leaves",
+"salt to taste"
+],
+"s": "Grate the cucumber, salt it and drain it well, squeezing to remove the water. Mix it with the yogurt, grated garlic, oil and vinegar. Add the chopped mint and salt, and chill for at least 1 hour before serving."
+},
+"dip-baba-ganoush": {
+"t": "baba ganoush",
+"i": [
+"2 eggplants",
+"2 tablespoons tahini",
+"the juice of 1 lemon",
+"1 clove of garlic",
+"2 tablespoons olive oil",
+"salt to taste",
+"parsley to serve"
+],
+"s": "Roast the whole aubergines in the oven at 200°C for about 40 minutes until very soft. Let it cool, remove the skin and drain the pulp. Crush or crush it with the tahini, garlic, lemon juice and salt. Serve with oil and parsley on top."
+},
+"dip-pico-gallo": {
+"t": "Pico de gallo",
+"i": [
+"3 ripe tomatoes",
+"1/2 onion",
+"1 jalapeno pepper (optional)",
+"the juice of 1 lime",
+"chopped cilantro",
+"salt to taste"
+],
+"s": "Chop the tomatoes, onion and chili into very small cubes. Mix them with the cilantro, lime juice and salt. Let it rest for 10 minutes for the flavors to integrate before serving."
+},
+"dip-alioli": {
+"t": "Alioli",
+"i": [
+"1 egg",
+"1 clove of garlic",
+"200 ml mild olive oil",
+"a few drops of lemon",
+"salt to taste"
+],
+"s": "Put the egg, garlic, lemon and salt in the blender glass. Cover with the oil and beat with the mixer attached to the bottom without moving it until emulsified. Raise slowly to integrate all the oil until you achieve a firm sauce. Keep it cold."
+},
+"dip-muhammara": {
+"t": "Muhammara",
+"i": [
+"2 roasted red peppers",
+"60 g walnuts",
+"1 slice of toast",
+"1 tablespoon pomegranate molasses (or a little vinegar)",
+"1 teaspoon cumin",
+"2 tablespoons olive oil",
+"salt to taste"
+],
+"s": "Crush the roasted and peeled peppers with the walnuts, bread, cumin and pomegranate molasses. Add the oil gradually until a thick paste and adjust the salt. Serve with a little more oil and chopped nuts."
+},
+"dip-tapenade": {
+"t": "olive tapenade",
+"i": [
+"200 g pitted black olives",
+"2 tablespoons capers",
+"2 anchovy fillets",
+"1 clove of garlic",
+"3 tablespoons olive oil",
+"a few drops of lemon"
+],
+"s": "Chop the olives, capers, anchovies and garlic. Grind them with the oil and lemon until a rustic paste, not too fine. Use it on toasted bread or as an accompaniment."
+},
+"sec:cremas-frias": "cold creams",
+"cf-vichyssoise": {
+"t": "Vichyssoise",
+"i": [
+"3 leeks (white part)",
+"2 potatoes",
+"1 onion",
+"750 ml vegetable broth",
+"100 ml of cream",
+"30g butter",
+"salt and pepper",
+"chives to serve"
+],
+"s": "Sauté the chopped leek and onion in the butter without letting them color. Add the potato pieces and broth, and cook for 20 minutes until tender. Blend very finely, add the cream and season with salt and pepper. Chill for at least 3 hours and serve with chopped chives."
+},
+"cf-remolacha": {
+"t": "Cold beet cream",
+"i": [
+"3 cooked beets",
+"1 natural yogurt",
+"1 small clove of garlic",
+"the juice of 1/2 lemon",
+"200 ml cold water",
+"2 tablespoons olive oil",
+"salt and pepper",
+"dill to serve"
+],
+"s": "Blend the beets with the yogurt, garlic, lemon and water until a fine cream. Emulsify with the oil and salt and pepper. Cool well and serve with a little yogurt and dill on top."
+},
+"cf-aguacate": {
+"t": "Cold avocado cream",
+"i": [
+"2 ripe avocados",
+"1 cucumber",
+"the juice of 1 lime",
+"200 ml of broth or cold water",
+"1 natural yogurt",
+"some coriander leaves",
+"salt and pepper"
+],
+"s": "Puree the avocados with the peeled cucumber, yogurt, lime and broth until smooth. Add the cilantro and salt and pepper. Serve very cold; If it thickens, rinse with a little more water."
+},
+"cf-calabacin": {
+"t": "Zucchini cold cream",
+"i": [
+"3 zucchini",
+"1 onion",
+"50 g cream cheese",
+"600 ml vegetable broth",
+"2 tablespoons olive oil",
+"salt and pepper"
+],
+"s": "Sauté the onion and zucchini pieces in the oil for a few minutes. Add the broth and cook for 15 minutes. Blend with the cheese until a fine cream, season with salt and pepper and cool. Serve cold with a drizzle of oil."
+},
+"cf-zanahoria": {
+"t": "Cold carrot and orange cream",
+"i": [
+"500g carrots",
+"1 onion",
+"the juice of 2 oranges",
+"600 ml vegetable broth",
+"2 tablespoons olive oil",
+"a pinch of ginger",
+"salt and pepper"
+],
+"s": "Sauté the sliced ​​onion and carrot in the oil. Add the broth and ginger and cook for 20 minutes. Blend with the orange juice until a fine cream, season with salt and pepper and cool. Serve cold."
+},
+"cf-guisantes-menta": {
+"t": "Pea and mint cold cream",
+"i": [
+"400 g peas",
+"1 chive",
+"500 ml vegetable broth",
+"some mint leaves",
+"2 tablespoons olive oil",
+"salt and pepper",
+"yogurt to serve"
+],
+"s": "Sauté the spring onion, add the peas and broth and cook for 10 minutes. Blend with the mint until a fine cream and strain if you want. Season with salt and pepper, cool and serve with a spoonful of yogurt."
+},
+"cf-melon-jamon": {
+"t": "Cold melon cream with ham",
+"i": [
+"1/2 ripe melon",
+"100 ml cold water or broth",
+"1 tablespoon olive oil",
+"a pinch of salt",
+"mint",
+"50 g of serrano ham to serve"
+],
+"s": "Blend the melon with the water, oil and salt until a fine cream. Cools well. Serve with some shavings of Serrano ham and some mint leaves."
+},
+"cf-pepino-yogur": {
+"t": "Cold cucumber and yogurt cream",
+"i": [
+"2 cucumbers",
+"250 g Greek yogurt",
+"1 small clove of garlic",
+"1 tablespoon olive oil",
+"the juice of 1/2 lemon",
+"dill",
+"salt and pepper"
+],
+"s": "Blend the peeled cucumbers with the yogurt, garlic, lemon and oil until creamy. Add dill and salt and pepper. Cool well and serve; It is very refreshing in summer."
+},
+"cf-calabaza": {
+"t": "Cold pumpkin cream",
+"i": [
+"500 g pumpkin",
+"1 onion",
+"1 carrot",
+"600 ml vegetable broth",
+"2 tablespoons olive oil",
+"a pinch of nutmeg",
+"salt and pepper"
+],
+"s": "Sauté the onion, carrot and pumpkin in pieces. Add the broth and cook for 20 minutes until tender. Blend with the nutmeg until a fine cream, season with salt and pepper and cool. Serve cold with a drizzle of oil."
+},
+"cf-esparragos": {
+"t": "Cold asparagus cream",
+"i": [
+"1 bunch of green asparagus",
+"1 leek",
+"1 small potato",
+"600 ml vegetable broth",
+"2 tablespoons olive oil",
+"salt and pepper"
+],
+"s": "Sauté the leek and potato, add the chopped asparagus (reserve the tips) and the broth, and cook for 15 minutes. Grind very fine and season with salt and pepper. Skip the reserved tips and use them to decorate. Serve cold."
+},
+"sec:huevos": "Omelettes and eggs",
+"hv-tortilla-espanola": {
+"t": "Spanish omelette",
+"i": [
+"5 eggs",
+"4 medium potatoes",
+"1 onion (optional)",
+"olive oil for frying",
+"salt"
+],
+"s": "Peel and cut the potatoes into thin slices (and the onion into julienne strips). Fry them over medium heat in plenty of oil until they are tender, drain them and salt them. Beat the eggs, mix them with the potato and set the omelette in a frying pan with a little oil, turning it over with a plate. Leave it juicy inside."
+},
+"hv-tortilla-francesa": {
+"t": "French omelet",
+"i": [
+"2 eggs",
+"1 teaspoon oil or butter",
+"salt",
+"parsley or cheese (optional)"
+],
+"s": "Beat the eggs with a pinch of salt. Heat the oil in a small frying pan, pour in the egg and, when it starts to set around the edges, collect it towards the center. Roll it on itself and serve juicy. Add cheese or parsley to taste."
+},
+"hv-huevos-rotos": {
+"t": "Broken eggs with potatoes",
+"i": [
+"3 potatoes",
+"4 eggs",
+"olive oil",
+"salt",
+"ham or chorizo (optional)"
+],
+"s": "Cut the potatoes into sticks and fry them until golden and tender. Fry the eggs in hot oil, leaving the yolk liquid. Place the eggs on the potatoes, break them and mix. Add ham or chorizo ​​if you want."
+},
+"hv-revuelto-setas": {
+"t": "Scrambled mushrooms",
+"i": [
+"4 eggs",
+"200 g assorted mushrooms",
+"1 clove of garlic",
+"2 tablespoons olive oil",
+"parsley",
+"salt and pepper"
+],
+"s": "Sauté the chopped mushrooms with garlic and a little oil until they release their water and turn golden brown. Lower the heat, add the beaten eggs and stir constantly until they become creamy. Season with salt and pepper and finish with parsley."
+},
+"hv-shakshuka": {
+"t": "Shakshuka",
+"i": [
+"4 eggs",
+"400 g crushed tomato",
+"1 onion",
+"1 red pepper",
+"1 clove of garlic",
+"1 teaspoon cumin",
+"1 teaspoon paprika",
+"olive oil",
+"salt",
+"parsley or cilantro"
+],
+"s": "Sauté the onion, pepper and garlic. Add the tomato, cumin and paprika and cook for 10 minutes until thickened. Make holes and crack the eggs inside; Cover and cook over low heat until the whites are set and the yolk is liquid. Serve with herbs."
+},
+"hv-huevos-rellenos": {
+"t": "stuffed eggs",
+"i": [
+"6 eggs",
+"100 g tuna",
+"3 tablespoons mayonnaise",
+"1 tablespoon fried tomato",
+"salt"
+],
+"s": "Cook the eggs for 10 minutes, cool and peel them. Cut them in half and remove the yolks. Mix the yolks with the tuna, mayonnaise and tomato until a paste. Fill the egg whites with the mixture and decorate with a little more mayonnaise."
+},
+"hv-huevos-benedictinos": {
+"t": "Eggs Benedict",
+"i": [
+"2 eggs",
+"2 English muffins or slices of bread",
+"2 slices of bacon or ham",
+"1 tablespoon vinegar",
+"2 yolks, 100 g of butter, lemon juice and salt for the hollandaise"
+],
+"s": "Poach the eggs in water with vinegar for about 3 minutes. Toast the bread and heat the bacon. Prepare the hollandaise by beating the yolks in a bain-marie and adding the melted butter and lemon until it thickens. Assemble the bread with the bacon, the poached egg and the sauce on top."
+},
+"hv-tortilla-calabacin": {
+"t": "Zucchini omelet",
+"i": [
+"4 eggs",
+"2 zucchini",
+"1 onion",
+"olive oil",
+"salt"
+],
+"s": "Sauté the sliced ​​zucchini with the onion and a little oil until tender. Beat the eggs, mix them with the drained vegetables and set the omelette on both sides in the pan. Leave it juicy."
+},
+"sec:clasicos-espanoles": "Spanish classics",
+"ce-paella-valenciana": {
+"t": "Valencian paella",
+"i": [
+"400 g bomb rice",
+"500 g chopped chicken",
+"300 g chopped rabbit",
+"200 g flat green beans (bajoqueta)",
+"100 g garrofon (flat white bean)",
+"1 grated ripe tomato",
+"1 teaspoon sweet paprika",
+"a few strands of saffron",
+"extra virgin olive oil",
+"water",
+"1 sprig of rosemary",
+"salt"
+],
+"s": "Heat the oil in the leveled paella pan and fry the chicken and rabbit until golden brown on all sides. Add the Bajoqueta and the Garrofon, sauté for a few minutes and move the meat to the sides to sauté the grated tomato until the water evaporates; Add the paprika and, without burning, cover with water. Add the saffron, rosemary and salt, and boil hard for 20 minutes to make the broth; remove the rosemary, distribute the rice in the shape of a cross and then over the entire surface. Cook for 8 minutes over high heat and another 8-10 over low heat without stirring, and let it rest for 5 minutes before serving."
+},
+"ce-fabada-asturiana": {
+"t": "Asturian fabada",
+"i": [
+"500 g of beans (Asturian white beans)",
+"2 Asturian chorizos",
+"2 Asturian blood sausages",
+"150 g of lacón",
+"150 g bacon",
+"a few strands of saffron",
+"water"
+],
+"s": "Soak the beans in cold water for 12 hours and soak the pork separately. Drain them and put them in a large pot with the compango (chorizo, blood sausage, lacón and bacon), cover with cold water two fingers above and bring to a boil, removing the foam. Add the saffron, reduce to low and cook very slowly for about two and a half hours, \"scaring\" the beans with a splash of cold water a couple of times so they don't break. Move the pot by the handles instead of stirring with a spoon, adjust the salt and serve hot with the chopped compango."
+},
+"ce-cochinillo": {
+"t": "roast suckling pig",
+"i": [
+"1 suckling pig of about 4 kg open in carcass",
+"100 g lard",
+"1 glass of water",
+"coarse salt",
+"bay leaves (optional)"
+],
+"s": "Salt it inside with coarse salt and spread it with a thin layer of butter. Place some wooden slats in the bottom of a clay pot, add a glass of water and the bay leaf, and place the suckling pig skin side down on the wood. Roast at 160ºC for around an hour and a quarter, making sure there is no lack of water; Turn it over with the skin facing up, prick it with a needle and spread it with butter. Increase to 190ºC and roast for another hour until the skin is golden brown and so crispy that it breaks to the touch."
+},
+"ce-pisto-manchego": {
+"t": "Manchego ratatouille",
+"i": [
+"2 green Italian peppers",
+"1 red pepper",
+"1 kg of crushed ripe tomato",
+"1 large zucchini",
+"2 onions",
+"extra virgin olive oil",
+"1 teaspoon sugar",
+"salt"
+],
+"s": "Cut all the vegetables into regular cubes of approximately one centimeter. Sauté the onion with a pinch of salt in a good amount of oil over low heat for about 10 minutes, add the peppers and sauté for another 10. Add the zucchini and fry for 5-7 minutes without breaking down, and add the crushed tomato with the salt and sugar. Cook uncovered over low heat for 20-25 minutes, stirring occasionally, until the tomato reduces and the oil floats to the surface."
+},
+"ce-churros": {
+"t": "Churros",
+"i": [
+"250 g wheat flour",
+"250 ml of water",
+"1 teaspoon salt",
+"olive or sunflower oil for frying",
+"sugar to sprinkle"
+],
+"s": "Bring the water and salt to a boil in a saucepan and, as soon as it comes to a boil, pour in all the flour at once. Remove from the heat and stir vigorously with a wooden spoon until you obtain a homogeneous mass that comes away from the walls. Put the dough in a churrera and press it so that it falls directly onto the hot oil at 190ºC, forming strips or bows. Fry until golden and crispy, drain on absorbent paper and sprinkle with sugar before serving."
+},
+"ce-crema-catalana": {
+"t": "Catalan cream",
+"i": [
+"1 l of whole milk",
+"8 egg yolks",
+"200g sugar",
+"40 g cornstarch",
+"1 cinnamon stick",
+"the peel of 1 lemon",
+"the peel of 1 orange"
+],
+"s": "Dissolve the cornstarch in a reserved glass of cold milk and heat the rest of the milk with the cinnamon and lemon and orange peels; When it boils, set aside and let it infuse for 10 minutes. Beat the yolks with 150 g of sugar until white and add the milk with the dissolved cornstarch. Strain the hot infused milk over the mixture and bring everything to a simmer, stirring constantly until it thickens, without boiling. Pour into small clay pots, cool in the refrigerator and, before serving, sprinkle with the remaining sugar and burn with a blowtorch until caramelized."
+},
+"sec:rumanos": "Savory Romanian classics",
+"ro-sarmale": {
+"t": "Sarmale (Romanian cabbage rolls)",
+"i": [
+"1 fermented or white cabbage",
+"500 g minced pork",
+"100 g of rice",
+"1 onion",
+"400 g crushed tomato",
+"1 teaspoon paprika",
+"thyme",
+"salt and pepper",
+"slices of smoked bacon (optional)"
+],
+"s": "Sauté the chopped onion and mix it with the meat, raw rice, paprika, salt and pepper. Separate the cabbage leaves, trim the rib and put a little filling in each one; roll them up, tucking in the sides. Place the rolls tightly in a pot on a bed of chopped cabbage and bacon, cover with the tomato, thyme and water, and cook covered over very low heat for 2-3 hours (or in the oven). They are served with polenta and sour cream."
+},
+"ro-mamaliga": {
+"t": "Mămăligă with cheese and cream",
+"i": [
+"250 g corn flour",
+"1 l of water",
+"1 teaspoon salt",
+"150 g fresh Romanian cheese (telemea) or feta",
+"sour cream (smântână)",
+"butter"
+],
+"s": "Bring the salted water to a boil and add the corn flour in a stream, stirring constantly with a whisk so that lumps do not form. Cook over medium heat for 20-30 minutes, stirring often, until it comes away from the walls. Serve the polenta hot with the crumbled cheese, a tablespoon of sour cream and butter."
+},
+"ro-mici": {
+"t": "Mici (grilled mititei)",
+"i": [
+"500 g minced beef",
+"200 g minced pork",
+"3 cloves of garlic",
+"1 teaspoon baking soda",
+"1 teaspoon cumin",
+"1 teaspoon paprika",
+"100 ml meat broth",
+"salt and pepper"
+],
+"s": "Mix the two meats with the crushed garlic, cumin, paprika, baking soda, salt and pepper, and add the cold broth little by little until a sticky dough. Let it rest covered in the refrigerator for a few hours (preferably overnight). Form into thick finger-sized rolls and grill them very hot, turning, until golden brown on the outside and juicy. Serve with mustard and bread."
+},
+"ro-tochitura": {
+"t": "Moldovan tochitură",
+"i": [
+"600 g of pork in tacos",
+"150 g smoked bacon",
+"150 g Romanian sausage",
+"1 onion",
+"3 cloves of garlic",
+"2 tablespoons tomato concentrate",
+"1 bay leaf",
+"butter or oil",
+"salt and pepper",
+"fried eggs and polenta to serve"
+],
+"s": "Brown the bacon and pork in a saucepan with a little butter. Add the chopped onion and garlic and sauté. Add the tomato, bay leaf and water to cover, season with salt and pepper and cook over low heat for 1 hour until the meat is tender and the sauce is concentrated; add the sliced ​​sausage at the end. Serve with polenta and a fried egg on top."
+},
+"ro-ardei-umpluti": {
+"t": "Ardei umpluți (stuffed peppers)",
+"i": [
+"6 peppers to stuff",
+"500 g mixed minced meat",
+"80 g of rice",
+"1 onion",
+"400 g crushed tomato",
+"1 carrot",
+"dill and parsley",
+"salt and pepper",
+"sour cream"
+],
+"s": "Sauté the onion and mix it with the meat, rice, herbs, salt and pepper. Empty the peppers of seeds and fill them loosely (the rice grows). Place them standing up in a pot, cover them with the tomato and the grated carrot with water, and cook, covered, over low heat for 45-60 minutes. Serve with a dollop of sour cream."
+},
+"ro-ciorba-perisoare": {
+"t": "Ciorbă de perișoare (sour meatball soup)",
+"i": [
+"300 g minced meat",
+"2 tablespoons of rice",
+"1 onion",
+"2 carrots",
+"1 parsnip",
+"1 pepper",
+"100 ml borș or lemon juice",
+"parsley and lovage",
+"salt"
+],
+"s": "Cook the onion, carrots, parsnip and diced pepper in salted water. Mix the meat with the rice and a little onion, form small meatballs and add them to the boiling soup; cook 20 minutes. Sour the soup with the borș (or lemon) and boil for a couple more minutes. Finish with plenty of chopped parsley and lovage."
+},
+"ro-salata-boeuf": {
+"t": "Salată de boeuf (Romanian Russian salad)",
+"i": [
+"300 g cooked beef or chicken",
+"3 potatoes",
+"2 carrots",
+"100 g peas",
+"100 g pickled gherkins",
+"200 g mayonnaise",
+"1 tablespoon mustard",
+"salt"
+],
+"s": "Cook the meat and, separately, the potatoes and carrots; let it cool. Cut everything into very small cubes along with the pickles and mix it with the peas, mayonnaise, mustard and salt. Refrigerate for at least 2 hours and serve very cold, smoothed and decorated with pickle or pepper."
+},
+"ro-chiftele": {
+"t": "Chiftele (Romanian fried dumplings)",
+"i": [
+"500 g minced pork",
+"1 grated raw potato",
+"1 onion",
+"1 egg",
+"2 cloves of garlic",
+"dill",
+"flour for coating",
+"oil for frying",
+"salt and pepper"
+],
+"s": "Mix the meat with the grated and drained potato, grated onion, garlic, egg, dill, salt and pepper. Form somewhat flattened balls, dredge them in flour and fry them in hot oil until golden on both sides and cooked on the inside. Drain on paper and serve hot or cold."
+},
+"ro-ostropel-pui": {
+"t": "chicken ostropel",
+"i": [
+"1 chopped chicken",
+"6 cloves of garlic",
+"400 g crushed tomato",
+"1 tablespoon of flour",
+"2 tablespoons of oil",
+"parsley",
+"salt and pepper"
+],
+"s": "Brown the chicken pieces in oil and set them aside. In the same saucepan, sauté the flour for a minute, add the tomato, crushed garlic, salt and pepper and a little water. Return the chicken, cover and simmer for 30-40 minutes until tender and the sauce is thick and very melted. Sprinkle parsley and serve with polenta or bread."
+},
+"ro-cartofi-taranesti": {
+"t": "Cartofi țărănești (peasant style potatoes)",
+"i": [
+"800 g potatoes",
+"200 g of smoked ribs or bacon",
+"2 onions",
+"2 cloves of garlic",
+"1 red pepper",
+"1 teaspoon paprika",
+"thyme",
+"oil",
+"salt and pepper"
+],
+"s": "Brown the rib in cubes and set it aside. Sauté the onion, garlic and pepper in the fat. Add the potato wedges, paprika and thyme, season with salt and pepper and add a little water. Return the meat, cover and cook over medium heat (or in the oven) until the potatoes are tender and melty."
+},
+"ro-ciorba-burta": {
+"t": "Ciorbă de burtă (Romanian tripe soup)",
+"i": [
+"1 kg of pre-cooked beef tripe",
+"1 beef bone with marrow",
+"2 carrots",
+"1 small celery root",
+"1 onion",
+"4 egg yolks",
+"400 g sour cream (smântână)",
+"1 head of garlic",
+"2 tablespoons of vinegar",
+"salt and peppercorns"
+],
+"s": "Cook the bone in plenty of salted water, foaming often, add the onion, celery and a whole carrot and cook until you achieve a clear broth; strain it. Add the tripe cut into thin strips to the strained broth and cook for 30 minutes, adding the other grated and sautéed carrot to give color. Beat the yolks with the cream, temper the mixture by adding ladles of hot broth and pour it into the pot off the heat so that it does not curdle. Add a crushed strain of garlic, sour with vinegar to taste and adjust the salt."
+},
+"ro-ciorba-radauteana": {
+"t": "Ciorbă rădăuțeană (sour chicken soup)",
+"i": [
+"1 kg bone-in chicken (breast and thighs)",
+"2 carrots",
+"1 parsley root",
+"1 small celery root",
+"1 pepper",
+"300 g sour cream",
+"3 egg yolks",
+"1 head of garlic",
+"3 tablespoons apple cider vinegar",
+"2 tablespoons of flour",
+"salt and pepper"
+],
+"s": "Cook the chicken in foaming salted water, along with the whole vegetables, until the meat falls off the bone. Take out the meat, shred it into thin strips and strain the broth (the vegetables are no longer used); return it to the pot with the meat. Beat the yolks with the cream and flour, temper the mixture with ladles of hot broth and pour it in, stirring constantly. Add the crushed garlic and vinegar, bring to a boil and remove from the heat."
+},
+"ro-salata-vinete": {
+"t": "Salată de vinete (roasted eggplant pâté)",
+"i": [
+"1.5 kg of eggplants",
+"150 ml sunflower oil",
+"1 small onion, finely chopped",
+"salt"
+],
+"s": "Roast whole eggplants over a flame or grill until the skin is charred and the flesh is very soft. Peel them while hot and let them drain on a tilted board for an hour to release the bitter juice. Chop them with a wooden knife (avoid metal so they don't rust) and beat them with a spoon, incorporating the oil in a stream, like mayonnaise, until they are creamy. Salt them and add the chopped onion just before serving, with bread."
+},
+"ro-zacusca": {
+"t": "Zacuscă (canned pepper and mushrooms)",
+"i": [
+"1 kg of cooked forest mushrooms (or roasted eggplants)",
+"2 kg roasted and peeled red kapia peppers",
+"1 kg of onion",
+"1 l of crushed tomato",
+"300 ml sunflower oil",
+"bay leaves, salt and peppercorns"
+],
+"s": "Finely chop or crush the cooked mushrooms and roasted peppers, already peeled and seeded. Sauté the chopped onion in all the oil over low heat until it is transparent and melty. Add the peppers and mushrooms, stirring so they don't stick, and add the tomato, bay leaf, salt and pepper. Cook over low heat for 2-3 hours, stirring occasionally, until the paste thickens and the oil rises to the surface; pack hot."
+},
+"sec:croquetas": "Homemade croquettes",
+"cq-jamon": {
+"t": "Ham croquettes",
+"i": [
+"100 g chopped serrano ham",
+"60g butter",
+"70g flour",
+"600 ml of milk",
+"nutmeg",
+"salt and pepper",
+"2 eggs and breadcrumbs for breading",
+"oil for frying"
+],
+"s": "Melt the butter, sauté the ham for a minute and add the flour; cook it for 2 minutes. Pour in the hot milk little by little, stirring constantly until you have a thick, smooth béchamel; season with nutmeg, salt and pepper. Spread it on a platter, cover it tightly and chill for several hours. Form the croquettes, dip them in egg and breadcrumbs and fry them in hot oil until golden brown."
+},
+"cq-pollo": {
+"t": "chicken croquettes",
+"i": [
+"250 g shredded cooked or roast chicken",
+"60g butter",
+"70g flour",
+"600 ml of milk",
+"1/2 onion",
+"nutmeg",
+"salt and pepper",
+"2 eggs and breadcrumbs",
+"oil for frying"
+],
+"s": "Sauté the finely chopped onion in the butter, add the chicken and flour and sauté for 2 minutes. Add the hot milk several times, stirring until a thick béchamel is formed; season with nutmeg. Cool the dough well covered, form the croquettes, coat them with egg and breadcrumbs and fry them golden."
+},
+"cq-bacalao": {
+"t": "Cod croquettes",
+"i": [
+"250 g desalted and crumbled cod",
+"60g butter",
+"70g flour",
+"600 ml of milk",
+"1 clove of garlic",
+"parsley",
+"nutmeg",
+"salt",
+"2 eggs and breadcrumbs",
+"oil for frying"
+],
+"s": "Sauté the chopped garlic and cod in the butter, add the flour and cook for 2 minutes. Pour in the hot milk little by little until a thick bechamel; Adjust salt (be careful, the cod is already salted), nutmeg and parsley. Cool covered, form croquettes, coat them in egg and breadcrumbs and fry them golden."
+},
+"cq-espinacas": {
+"t": "Spinach croquettes",
+"i": [
+"250 g cooked and drained spinach",
+"60g butter",
+"70g flour",
+"550 ml milk",
+"1 clove of garlic",
+"30 g pine nuts (optional)",
+"nutmeg",
+"salt and pepper",
+"2 eggs and breadcrumbs",
+"oil for frying"
+],
+"s": "Sauté the garlic and well-drained and chopped spinach with the pine nuts. Add the flour, sauté and pour the hot milk little by little until a thick bechamel; season with nutmeg. Chill the dough, form the croquettes, bread them and fry them until golden brown."
+},
+"cq-queso": {
+"t": "cheese croquettes",
+"i": [
+"120 g of grated cured or blue cheese",
+"60g butter",
+"70g flour",
+"600 ml of milk",
+"nutmeg",
+"salt and pepper",
+"2 eggs and breadcrumbs",
+"oil for frying"
+],
+"s": "Prepare a thick bechamel: melt the butter, cook the flour for 2 minutes and add the hot milk, stirring. Off the heat, add the cheese until it melts and season with nutmeg, salt and pepper. Cool well covered, form the croquettes, coat them with egg and breadcrumbs and fry them golden."
+},
+"cq-setas": {
+"t": "Mushroom croquettes",
+"i": [
+"250 g assorted mushrooms",
+"60g butter",
+"70g flour",
+"600 ml of milk",
+"1/2 onion",
+"nutmeg",
+"salt and pepper",
+"2 eggs and breadcrumbs",
+"oil for frying"
+],
+"s": "Sauté the finely chopped onion and mushrooms until they lose their water and turn golden. Add the flour, sauté for 2 minutes and pour in the hot milk little by little until a thick bechamel; season with nutmeg. Chill the dough, form the croquettes, bread them and fry them crispy."
+},
+"cq-cocido": {
+"t": "Cooked croquettes",
+"i": [
+"250 g shredded stew or stew meat",
+"60g butter",
+"70g flour",
+"600 ml of milk",
+"1/2 onion",
+"nutmeg",
+"salt and pepper",
+"2 eggs and breadcrumbs",
+"oil for frying"
+],
+"s": "Take advantage of the finely chopped stew meats. Sauté the onion in the butter, add the meat and flour and sauté. Add the hot milk little by little until a thick bechamel; season with nutmeg. Cool covered, form croquettes, coat them with egg and breadcrumbs and fry them golden."
+},
+"cq-gambas": {
+"t": "Prawn croquettes",
+"i": [
+"250 g peeled shrimp",
+"60g butter",
+"70g flour",
+"550 ml milk",
+"100 ml of the peel broth",
+"1/2 onion",
+"nutmeg",
+"salt",
+"2 eggs and breadcrumbs",
+"oil for frying"
+],
+"s": "Boil the shrimp shells for a few minutes for a short broth. Sauté the onion, sauté the chopped shrimp, add the flour and sauté. Pour in the hot milk and broth little by little until a thick bechamel; season with nutmeg and salt. Cool the dough, form the croquettes, bread them and fry them golden."
+},
+"sec:limonadas": "Lemonades and fresh waters",
+"lm-clasica": {
+"t": "classic lemonade",
+"i": [
+"4 lemons",
+"1 l of water",
+"4-5 tablespoons of sugar",
+"ice"
+],
+"s": "Squeeze the lemons and mix the juice with the water. Dissolve the sugar while stirring and taste to adjust the sweetness. Serve very cold with ice and a few lemon slices."
+},
+"lm-fresa": {
+"t": "Strawberry lemonade",
+"i": [
+"200g strawberries",
+"3 lemons",
+"1 l of water",
+"4 tablespoons of sugar",
+"ice"
+],
+"s": "Mash the strawberries with a little water and strain if you want a clean texture. Mix them with the lemon juice, the rest of the water and sugar to taste. Serve very cold with ice."
+},
+"lm-menta-pepino": {
+"t": "Mint and cucumber lemonade",
+"i": [
+"1/2 cucumber",
+"3 lemons",
+"1 l of water",
+"a handful of mint leaves",
+"3 tablespoons of sugar or honey",
+"ice"
+],
+"s": "Blend the cucumber with the mint and a little water and strain. Mix with the lemon juice, the rest of the water and the sweetener. Serve with ice, cucumber slices and mint leaves."
+},
+"lm-naranjada": {
+"t": "Homemade orange",
+"i": [
+"4 oranges",
+"1 lemon",
+"700 ml of water",
+"2-3 tablespoons of sugar",
+"ice"
+],
+"s": "Squeeze the oranges and lemon. Mix the juices with the water and sweeten to taste (the oranges already provide sweetness). Serve very cold with ice and orange slices."
+},
+"lm-agua-sandia": {
+"t": "watermelon water",
+"i": [
+"600 g seedless watermelon",
+"the juice of 1 lime",
+"500 ml of water",
+"sugar to taste (optional)",
+"ice"
+],
+"s": "Mash the watermelon and strain the juice. Mix it with the water and lime, and sweeten only if necessary. Serve very cold with ice and, if you like, mint leaves."
+},
+"lm-te-melocoton": {
+"t": "peach iced tea",
+"i": [
+"2 black tea bags",
+"1 l of water",
+"1 ripe peach",
+"2 tablespoons of sugar or honey",
+"juice of 1/2 lemon",
+"ice"
+],
+"s": "Infuse the tea in the hot water for 4-5 minutes and let it cool. Mash the peach with a little water and mix it with the tea, sweetener and lemon. Serve very cold with ice and peach slices."
+},
+"lm-horchata": {
+"t": "tigernut horchata",
+"i": [
+"200 g dried tiger nuts",
+"1 l of water",
+"100g sugar",
+"lemon zest",
+"cinnamon"
+],
+"s": "Soak the tiger nuts in water for 12 hours, drain them and grind them with the liter of water. Let it rest for 1-2 hours and strain with a cloth, squeezing well. Sweeten with sugar, perfume with lemon and cinnamon and cool. Serve very cold, stirring before."
+},
+"lm-mojito-sin": {
+"t": "Mojito without alcohol",
+"i": [
+"1 lime",
+"a handful of mint leaves",
+"2 teaspoons of sugar",
+"sparkling water",
+"crushed ice"
+],
+"s": "Mash the lime into wedges with the mint and sugar at the bottom of the glass to release the aromas. Fill with crushed ice and top off with sparkling water. Stir and decorate with mint and lime."
+},
+"lm-jamaica": {
+"t": "Jamaica water",
+"i": [
+"30 g dried hibiscus flower",
+"1 l of water",
+"4 tablespoons of sugar",
+"juice of 1/2 lemon",
+"ice"
+],
+"s": "Boil the water, remove from the heat and add the hibiscus flower; Let it infuse for 10-15 minutes. Strain, sweeten with sugar and add the lemon. Cool and serve with ice."
+},
+"sec:postres-rumanos": "Romanian desserts",
+"pr-papanasi": {
+"t": "Papanași (cottage cheese fritters)",
+"i": [
+"500 g cottage cheese (urdă) or fresh cheese",
+"2 eggs",
+"150g flour",
+"1 teaspoon baking powder",
+"lemon zest",
+"a pinch of salt",
+"oil for frying",
+"sour cream and blueberry jam to serve"
+],
+"s": "Mix the cottage cheese with the eggs, zest, salt, flour and yeast until a manageable dough. Form balls with a hole in the center (like a donut) and a small ball on the side. Fry them in not very hot oil until they float golden brown. Serve them hot with sour cream on top and blueberry jam, topped with the ball."
+},
+"pr-cozonac": {
+"t": "Cozonac (braided sweet bread)",
+"i": [
+"500 g strong flour",
+"100g sugar",
+"100 ml of warm milk",
+"2 eggs",
+"25 g fresh yeast",
+"60g butter",
+"lemon zest",
+"for the filling: 150 g of ground walnuts, 50 g of sugar, 2 tablespoons of cocoa, 1 egg white"
+],
+"s": "Activate the yeast in the milk with a tablespoon of sugar. Knead with the flour, sugar, eggs, zest and butter until a smooth and elastic dough; let rise 1 hour. Mix the nuts with the sugar, cocoa and egg white. Stretch the dough, spread the filling, roll, braid two rolls and place them in a mold. Let it rise again and bake at 170°C for about 40-45 minutes."
+},
+"pr-gogosi": {
+"t": "Gogoși (fluffy fritters)",
+"i": [
+"500g flour",
+"250 ml of warm milk",
+"2 eggs",
+"25 g fresh yeast",
+"50g sugar",
+"lemon zest",
+"a pinch of salt",
+"oil for frying",
+"icing sugar to sprinkle"
+],
+"s": "Activates yeast in milk with sugar. Knead with the flour, eggs, sugar, zest and salt until a soft dough; let rise 1 hour. Stretch, cut discs and let them rest for 15 minutes. Fry them in plenty of oil over medium heat, turning them until they puff up and brown. Drain them and sprinkle with icing sugar."
+},
+"pr-clatite": {
+"t": "Clătite (Romanian crepes)",
+"i": [
+"200g flour",
+"400 ml of milk",
+"2 eggs",
+"1 tablespoon of sugar",
+"a pinch of salt",
+"butter for the pan",
+"hazelnut jam or cream to fill"
+],
+"s": "Beat the eggs with the milk, sugar and salt and add the flour until a fluid dough without lumps; Let it rest for 20 minutes. Set thin crepes in a buttered pan, browning them on both sides. Fill them with jam or cream, roll them up and sprinkle sugar."
+},
+"pr-placinta-mere": {
+"t": "Plăcintă cu mere (apple pie)",
+"i": [
+"1 sheet of filo or puff pastry",
+"4 apples",
+"60g sugar",
+"1 teaspoon cinnamon",
+"50 g breadcrumbs",
+"melted butter",
+"icing sugar"
+],
+"s": "Grate the apples and sauté them with the sugar and cinnamon until they lose their water; Add the breadcrumbs to absorb the juice. Brush the dough sheets with butter, spread the filling, roll or assemble in layers in a dish and brush on top. Bake at 180°C for 30-35 minutes until golden. Serve warm with icing sugar."
+},
+"pr-orez-lapte": {
+"t": "Orez cu lapte (rice pudding)",
+"i": [
+"150 g round rice",
+"750 ml milk",
+"60g sugar",
+"1 cinnamon stick",
+"lemon zest",
+"cinnamon powder"
+],
+"s": "Cook the rice for a couple of minutes in water and drain it. Add it to the hot milk with the sugar, cinnamon stick and zest, and cook over low heat, stirring often, for about 25-30 minutes until creamy. Serve cold or warm with cinnamon powder."
+},
+"pr-budinca-gris": {
+"t": "Budincă de griș (semolina pudding)",
+"i": [
+"100 g fine semolina",
+"500 ml of milk",
+"50g sugar",
+"1 egg",
+"vanilla",
+"butter",
+"jam to accompany"
+],
+"s": "Heat the milk with the sugar and vanilla and add the semolina in rain, stirring until it thickens. Remove, temper and add the beaten egg. Pour into a buttered mold and bake at 180°C for about 25 minutes (or set in flan pans). Serve warm or cold with jam."
+},
+"pr-salam-biscuiti": {
+"t": "Salam de biscuiți (biscuit salami)",
+"i": [
+"300 g Maria type cookies",
+"100g butter",
+"100g sugar",
+"3 tablespoons of cocoa",
+"100ml milk",
+"50 g walnuts",
+"icing sugar (optional)"
+],
+"s": "Cut the cookies into irregular pieces. Heat the milk with the sugar, cocoa and butter until a smooth cream and mix it with the cookies and nuts. Form a cylinder with film, roll it tightly and chill in the refrigerator for several hours. Cut into slices that imitate salami; coat in icing sugar if you want."
+}
+}

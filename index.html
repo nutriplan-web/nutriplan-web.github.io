@@ -384,6 +384,10 @@
                 </div>
             </div>
 
+            <div>
+                <p class="font-label-md text-label-md text-on-surface-variant mb-1.5" data-i18n="origin_label">Cocina</p>
+                <div id="catalog-origin" class="flex gap-2 overflow-x-auto scroll-hide py-1"></div>
+            </div>
             <div id="catalog-chips" class="flex gap-2 overflow-x-auto scroll-hide py-1"></div>
 
             <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4"></div>
@@ -424,6 +428,15 @@
                 <h2 class="font-headline-md text-headline-md text-on-surface" data-i18n="fridge_title">Cocina con lo que tengo</h2>
                 <p class="text-on-surface-variant font-body-md" data-i18n="fridge_sub">Escribe los ingredientes que tienes y te decimos qué puedes cocinar ya.</p>
             </section>
+
+            <div>
+                <p class="font-label-md text-label-md text-on-surface-variant mb-1.5" data-i18n="origin_label">Cocina</p>
+                <div class="flex gap-2 overflow-x-auto scroll-hide py-1">
+                    <button id="fridge-origin-ambos" onclick="setFridgeOrigin('ambos')" class="px-4 py-2 rounded-full font-label-lg text-label-lg whitespace-nowrap border border-surface-container transition-all bg-surface-container-high text-on-surface-variant hover:bg-surface-variant" data-i18n="origin_both">Ambas</button>
+                    <button id="fridge-origin-es" onclick="setFridgeOrigin('es')" class="px-4 py-2 rounded-full font-label-lg text-label-lg whitespace-nowrap border border-surface-container transition-all bg-surface-container-high text-on-surface-variant hover:bg-surface-variant">🇪🇸 <span data-i18n="origin_es">Española</span></button>
+                    <button id="fridge-origin-ro" onclick="setFridgeOrigin('ro')" class="px-4 py-2 rounded-full font-label-lg text-label-lg whitespace-nowrap border border-surface-container transition-all bg-surface-container-high text-on-surface-variant hover:bg-surface-variant">🇷🇴 <span data-i18n="origin_ro">Rumana</span></button>
+                </div>
+            </div>
 
             <div class="relative group">
                 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">add</span>
