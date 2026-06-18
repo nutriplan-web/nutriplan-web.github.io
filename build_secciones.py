@@ -511,6 +511,53 @@ seccion("postres", "Postres", "icecream",
       image="img/secciones/po-natillas.jpg", ilustracion=True),
 ])
 
+# ===========================================================================
+# 10) DIPS Y UNTABLES  (img 6 — dips mediterráneos, traían ingredientes)
+# ===========================================================================
+seccion("dips", "Dips y untables", "tapas",
+    "Ocho dips clásicos para mojar pan, crudités y picoteo.", [
+    p("dip-hummus", "Hummus",
+      ["400 g de garbanzos cocidos", "2 cucharadas de tahini", "el zumo de 1 limón", "1 diente de ajo",
+       "3 cucharadas de aceite de oliva virgen extra", "1/2 cucharadita de comino", "sal al gusto", "agua fría al gusto"],
+      "Escurre los garbanzos reservando un poco del líquido. Tritúralos con el tahini, el zumo de limón, el ajo, el comino y la sal hasta una pasta. Añade el aceite y un poco de agua fría mientras bates hasta que quede cremoso. Sirve con un hilo de aceite y pimentón.",
+      image="img/secciones/dip-hummus.jpg", ilustracion=True),
+    p("dip-guacamole", "Guacamole",
+      ["2 aguacates maduros", "1/2 cebolla pequeña picada", "1 tomate picado", "el zumo de 1 lima",
+       "unas hojas de cilantro", "1 chile o guindilla (opcional)", "sal al gusto"],
+      "Abre los aguacates y aplástalos con un tenedor dejando algo de textura. Mezcla con la cebolla, el tomate, el cilantro y el chile bien picados. Aliña con el zumo de lima y la sal. Sírvelo recién hecho para que no se oxide.",
+      image="img/secciones/dip-guacamole.jpg", ilustracion=True),
+    p("dip-tzatziki", "Tzatziki",
+      ["250 g de yogur griego", "1/2 pepino", "1 diente de ajo", "1 cucharada de aceite de oliva",
+       "1 cucharadita de vinagre o limón", "unas hojas de menta o eneldo", "sal al gusto"],
+      "Ralla el pepino, sálalo y escúrrelo bien apretando para quitar el agua. Mézclalo con el yogur, el ajo rallado, el aceite y el vinagre. Añade la menta picada y la sal, y enfría al menos 1 hora antes de servir.",
+      image="img/secciones/dip-tzatziki.jpg", ilustracion=True),
+    p("dip-baba-ganoush", "Baba ganoush",
+      ["2 berenjenas", "2 cucharadas de tahini", "el zumo de 1 limón", "1 diente de ajo",
+       "2 cucharadas de aceite de oliva", "sal al gusto", "perejil para servir"],
+      "Asa las berenjenas enteras al horno a 200 °C unos 40 minutos hasta que estén muy blandas. Deja templar, retira la piel y escurre la pulpa. Tritúrala o cháfala con el tahini, el ajo, el zumo de limón y la sal. Sirve con aceite y perejil por encima.",
+      image="img/secciones/dip-baba-ganoush.jpg", ilustracion=True),
+    p("dip-pico-gallo", "Pico de gallo",
+      ["3 tomates maduros", "1/2 cebolla", "1 chile jalapeño (opcional)", "el zumo de 1 lima",
+       "cilantro picado", "sal al gusto"],
+      "Pica los tomates, la cebolla y el chile en dados muy pequeños. Mézclalos con el cilantro, el zumo de lima y la sal. Deja reposar 10 minutos para que se integren los sabores antes de servir.",
+      image="img/secciones/dip-pico-gallo.jpg", ilustracion=True),
+    p("dip-alioli", "Alioli",
+      ["1 huevo", "1 diente de ajo", "200 ml de aceite de oliva suave", "unas gotas de limón", "sal al gusto"],
+      "Pon el huevo, el ajo, el limón y la sal en el vaso de la batidora. Cubre con el aceite y bate con la batidora pegada al fondo sin moverla hasta que emulsione. Sube despacio para integrar todo el aceite hasta lograr una salsa firme. Consérvala en frío.",
+      image="img/secciones/dip-alioli.jpg", ilustracion=True),
+    p("dip-muhammara", "Muhammara",
+      ["2 pimientos rojos asados", "60 g de nueces", "1 rebanada de pan tostado",
+       "1 cucharada de melaza de granada (o un poco de vinagre)", "1 cucharadita de comino",
+       "2 cucharadas de aceite de oliva", "sal al gusto"],
+      "Tritura los pimientos asados y pelados con las nueces, el pan, el comino y la melaza de granada. Añade el aceite en hilo hasta una pasta espesa y rectifica de sal. Sirve con un poco más de aceite y nueces picadas.",
+      image="img/secciones/dip-muhammara.jpg", ilustracion=True),
+    p("dip-tapenade", "Tapenade de aceitunas",
+      ["200 g de aceitunas negras deshuesadas", "2 cucharadas de alcaparras", "2 filetes de anchoa",
+       "1 diente de ajo", "3 cucharadas de aceite de oliva", "unas gotas de limón"],
+      "Pica las aceitunas, las alcaparras, las anchoas y el ajo. Tritúralos con el aceite y el limón hasta una pasta rústica, no demasiado fina. Úsala sobre pan tostado o como acompañamiento.",
+      image="img/secciones/dip-tapenade.jpg", ilustracion=True),
+])
+
 # ---------------------------------------------------------------------------
 # MOMENTO DEL DÍA (filtro transversal): la sección agrupa por tipo de plato y
 # el "momento" permite filtrar por desayuno/comida/cena/merienda/aperitivo/
@@ -526,6 +573,7 @@ MOMENTOS_SECCION = {
     "aperitivos": ["aperitivo"],
     "ensaladas": ["comida", "cena"],
     "postres": ["postre", "merienda"],
+    "dips": ["aperitivo"],
 }
 # Excepciones: platos dulces o de fruta que encajan mejor en merienda/postre, etc.
 MOMENTOS_OVERRIDE = {
