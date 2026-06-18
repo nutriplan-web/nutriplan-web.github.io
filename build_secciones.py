@@ -656,6 +656,66 @@ seccion("huevos", "Tortillas y huevos", "egg",
       image="img/secciones/hv-tortilla-calabacin.jpg", ilustracion=True),
 ])
 
+# ===========================================================================
+# 13) CLÁSICOS RUMANOS SALADOS  (recetas tradicionales documentadas)
+# ===========================================================================
+seccion("rumanos", "Clásicos rumanos salados", "ramen_dining",
+    "Diez platos tradicionales de Rumanía, tal como se cocinan en casa.", [
+    p("ro-sarmale", "Sarmale (rollitos de col rumanos)",
+      ["1 col fermentada o blanca", "500 g de carne picada de cerdo", "100 g de arroz",
+       "1 cebolla", "400 g de tomate triturado", "1 cucharadita de pimentón", "tomillo", "sal y pimienta",
+       "lonchas de panceta ahumada (opcional)"],
+      "Pocha la cebolla picada y mézclala con la carne, el arroz crudo, el pimentón, sal y pimienta. Separa las hojas de col, recorta el nervio y pon un poco de relleno en cada una; enróllalas metiendo los lados. Coloca los rollitos apretados en una olla sobre un lecho de col picada y panceta, cubre con el tomate, el tomillo y agua, y cuece tapado a fuego muy suave 2-3 horas (o al horno). Se sirven con polenta y nata agria.",
+      image="img/secciones/ro-sarmale.jpg", ilustracion=True),
+    p("ro-mamaliga", "Mămăligă con queso y nata",
+      ["250 g de harina de maíz", "1 l de agua", "1 cucharadita de sal",
+       "150 g de queso fresco rumano (telemea) o feta", "nata agria (smântână)", "mantequilla"],
+      "Lleva el agua con sal a ebullición y añade la harina de maíz en lluvia removiendo sin parar con varillas para que no se formen grumos. Cuece a fuego medio 20-30 minutos removiendo a menudo hasta que se despegue de las paredes. Sirve la polenta caliente con el queso desmenuzado, una cucharada de nata agria y mantequilla.",
+      image="img/secciones/ro-mamaliga.jpg", ilustracion=True),
+    p("ro-mici", "Mici (mititei a la parrilla)",
+      ["500 g de carne picada de ternera", "200 g de carne picada de cerdo", "3 dientes de ajo",
+       "1 cucharadita de bicarbonato", "1 cucharadita de comino", "1 cucharadita de pimentón",
+       "100 ml de caldo de carne", "sal y pimienta"],
+      "Mezcla las dos carnes con el ajo machacado, el comino, el pimentón, el bicarbonato, sal y pimienta, e incorpora el caldo frío poco a poco hasta una masa pegajosa. Deja reposar tapada en la nevera unas horas (mejor toda la noche). Forma rollitos del tamaño de un dedo grueso y ásalos a la parrilla bien caliente, girándolos, hasta que estén dorados por fuera y jugosos. Sirve con mostaza y pan.",
+      image="img/secciones/ro-mici.jpg", ilustracion=True),
+    p("ro-tochitura", "Tochitură moldava",
+      ["600 g de carne de cerdo en tacos", "150 g de panceta ahumada", "150 g de salchicha rumana",
+       "1 cebolla", "3 dientes de ajo", "2 cucharadas de tomate concentrado", "1 hoja de laurel",
+       "manteca o aceite", "sal y pimienta", "huevos fritos y polenta para servir"],
+      "Dora la panceta y la carne de cerdo en una cazuela con un poco de manteca. Añade la cebolla picada y el ajo y rehoga. Incorpora el tomate, el laurel y agua que cubra, salpimienta y guisa a fuego lento 1 hora hasta que la carne esté tierna y la salsa concentrada; añade la salchicha en rodajas al final. Sirve con polenta y un huevo frito encima.",
+      image="img/secciones/ro-tochitura.jpg", ilustracion=True),
+    p("ro-ardei-umpluti", "Ardei umpluți (pimientos rellenos)",
+      ["6 pimientos para rellenar", "500 g de carne picada mixta", "80 g de arroz", "1 cebolla",
+       "400 g de tomate triturado", "1 zanahoria", "eneldo y perejil", "sal y pimienta", "nata agria"],
+      "Pocha la cebolla y mézclala con la carne, el arroz, las hierbas, sal y pimienta. Vacía los pimientos de semillas y rellénalos sin apretar (el arroz crece). Colócalos de pie en una olla, cúbrelos con el tomate y la zanahoria rallada con agua, y cuece tapado a fuego suave 45-60 minutos. Sirve con una cucharada de nata agria.",
+      image="img/secciones/ro-ardei-umpluti.jpg", ilustracion=True),
+    p("ro-ciorba-perisoare", "Ciorbă de perișoare (sopa agria de albóndigas)",
+      ["300 g de carne picada", "2 cucharadas de arroz", "1 cebolla", "2 zanahorias", "1 chirivía",
+       "1 pimiento", "100 ml de borș o zumo de limón", "perejil y levístico (apio de monte)", "sal"],
+      "Cuece en agua con sal la cebolla, las zanahorias, la chirivía y el pimiento en dados. Mezcla la carne con el arroz y un poco de cebolla, forma albóndigas pequeñas y échalas a la sopa hirviendo; cuece 20 minutos. Agria la sopa con el borș (o limón) y hierve un par de minutos más. Termina con abundante perejil y levístico picados.",
+      image="img/secciones/ro-ciorba-perisoare.jpg", ilustracion=True),
+    p("ro-salata-boeuf", "Salată de boeuf (ensalada rusa rumana)",
+      ["300 g de ternera o pollo cocido", "3 patatas", "2 zanahorias", "100 g de guisantes",
+       "100 g de pepinillos en vinagre", "200 g de mayonesa", "1 cucharada de mostaza", "sal"],
+      "Cuece la carne y, por separado, las patatas y las zanahorias; déjalo enfriar. Corta todo en dados muy pequeños junto con los pepinillos y mézclalo con los guisantes, la mayonesa, la mostaza y sal. Refrigera al menos 2 horas y sirve bien fría, alisada y decorada con pepinillo o pimiento.",
+      image="img/secciones/ro-salata-boeuf.jpg", ilustracion=True),
+    p("ro-chiftele", "Chiftele (albóndigas fritas rumanas)",
+      ["500 g de carne picada de cerdo", "1 patata cruda rallada", "1 cebolla", "1 huevo",
+       "2 dientes de ajo", "eneldo", "harina para rebozar", "aceite para freír", "sal y pimienta"],
+      "Mezcla la carne con la patata rallada y escurrida, la cebolla rallada, el ajo, el huevo, el eneldo, sal y pimienta. Forma bolas algo aplanadas, pásalas por harina y fríelas en aceite caliente hasta que estén doradas por ambos lados y cocidas por dentro. Escúrrelas sobre papel y sírvelas calientes o frías.",
+      image="img/secciones/ro-chiftele.jpg", ilustracion=True),
+    p("ro-ostropel-pui", "Ostropel de pollo",
+      ["1 pollo troceado", "6 dientes de ajo", "400 g de tomate triturado", "1 cucharada de harina",
+       "2 cucharadas de aceite", "perejil", "sal y pimienta"],
+      "Dora los trozos de pollo en aceite y resérvalos. En la misma cazuela rehoga la harina un minuto, añade el tomate, el ajo machacado, sal y pimienta y un poco de agua. Devuelve el pollo, tapa y guisa a fuego lento 30-40 minutos hasta que esté tierno y la salsa espesa y muy ajada. Espolvorea perejil y sirve con polenta o pan.",
+      image="img/secciones/ro-ostropel-pui.jpg", ilustracion=True),
+    p("ro-cartofi-taranesti", "Cartofi țărănești (patatas a la campesina)",
+      ["800 g de patatas", "200 g de costilla o panceta ahumada", "2 cebollas", "2 dientes de ajo",
+       "1 pimiento rojo", "1 cucharadita de pimentón", "tomillo", "aceite", "sal y pimienta"],
+      "Dora la costilla en dados y resérvala. Rehoga la cebolla, el ajo y el pimiento en la grasa. Añade las patatas en gajos, el pimentón y el tomillo, salpimienta y agrega un poco de agua. Devuelve la carne, tapa y cocina a fuego medio (o al horno) hasta que las patatas estén tiernas y melosas.",
+      image="img/secciones/ro-cartofi-taranesti.jpg", ilustracion=True),
+])
+
 # ---------------------------------------------------------------------------
 # MOMENTO DEL DÍA (filtro transversal): la sección agrupa por tipo de plato y
 # el "momento" permite filtrar por desayuno/comida/cena/merienda/aperitivo/
@@ -674,6 +734,7 @@ MOMENTOS_SECCION = {
     "dips": ["aperitivo"],
     "cremas-frias": ["comida", "cena"],
     "huevos": ["desayuno", "comida", "cena"],
+    "rumanos": ["comida", "cena"],
 }
 # Excepciones: platos dulces o de fruta que encajan mejor en merienda/postre, etc.
 MOMENTOS_OVERRIDE = {
