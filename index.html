@@ -178,9 +178,13 @@
                 <p class="font-body-md text-on-surface-variant" data-i18n="inicio_hero_sub">Más de 1100 recetas, menú semanal y tus colecciones, todo en un sitio.</p>
             </section>
 
-            <div class="relative group">
-                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
-                <input onkeydown="if(event.key==='Enter')inicioSearch(this.value)" data-i18n-ph="inicio_search_ph" class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary text-body-md placeholder:text-outline-variant transition-all" placeholder="Busca cualquier plato o ingrediente..." type="text"/>
+            <div class="space-y-2">
+                <div class="relative group">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+                    <input onkeydown="if(event.key==='Enter')inicioSearch(this.value)" data-i18n-ph="inicio_search_ph" class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary text-body-md placeholder:text-outline-variant transition-all" placeholder="Busca cualquier plato o ingrediente..." type="text"/>
+                </div>
+                <p class="font-label-md text-label-md text-on-surface-variant" data-i18n="search_in">Buscar en:</p>
+                <div id="inicio-origin" class="flex gap-2 overflow-x-auto scroll-hide py-1"></div>
             </div>
 
             <button onclick="switchView('fridge')" class="w-full text-left rounded-[24px] overflow-hidden bg-gradient-to-br from-primary to-primary-container text-on-primary p-5 flex items-center gap-4 active:scale-[0.99] transition-all shadow-sm">
